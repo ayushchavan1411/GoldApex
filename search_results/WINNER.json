@@ -1,0 +1,62 @@
+{
+  "name": "asian_range_fade|1h|PRIMARY",
+  "timeframe": "1h",
+  "winrate": 0.8969072164948454,
+  "profit_factor": 1.62,
+  "trades": 97,
+  "net_pnl": 52.26,
+  "final_equity": 552.26,
+  "expectancy": 0.54,
+  "max_dd": 0.08,
+  "avg_win": 1.7,
+  "avg_loss": -10.0,
+  "params": {
+    "kind": "asian_range_fade",
+    "look": 40,
+    "rsi": 7,
+    "os": 25,
+    "ob": 70,
+    "sessions": [
+      "overlap"
+    ],
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.3,
+      "max_hold": 12,
+      "be": false,
+      "be_rr": 1.0,
+      "partial": 0.0,
+      "atr": "ATR_14",
+      "allow_long": true,
+      "allow_short": true
+    }
+  },
+  "oos_winrate": 0.9487179487179487,
+  "oos_profit_factor": 2.76,
+  "oos_trades": 39,
+  "oos_net_pnl": 40.3,
+  "full_winrate": 0.9117647058823529,
+  "full_profit_factor": 1.86,
+  "full_trades": 136,
+  "full_net_pnl": 92.55,
+  "full_final_equity": 592.55,
+  "year_breakdown": {
+    "2024": {
+      "trades": 33,
+      "winrate": 0.8788,
+      "pnl": 24.72
+    },
+    "2025": {
+      "trades": 62,
+      "winrate": 0.9032,
+      "pnl": 24.24
+    },
+    "2026": {
+      "trades": 41,
+      "winrate": 0.9512,
+      "pnl": 43.6
+    }
+  },
+  "score": 999,
+  "notes": "Primary pick: multi-year stable ~91% WR on 1h GC=F"
+}

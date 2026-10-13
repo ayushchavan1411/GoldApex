@@ -1,0 +1,49 @@
+{
+  "strategy": "BB(20,2.5) mean-reversion + RSI(3) filter",
+  "sessions": "London + NY Overlap (08-17 UTC)",
+  "exit": "SL 1.5\u00d7ATR14 / TP 0.4\u00d7ATR14 / max 24 bars",
+  "symbol": "GC=F 15m proxy",
+  "period": "2026-08-04 04:00:00 \u2192 2026-10-13 15:15:00",
+  "starting_capital": 500.0,
+  "final_equity": 546.61,
+  "max_drawdown_pct": 7.66,
+  "full": {
+    "trades": 105,
+    "winrate": 81.9,
+    "profit_factor": 1.244,
+    "net_pnl": 46.61,
+    "avg_win": 2.76,
+    "avg_loss": -10.05,
+    "tp_exits": 86,
+    "sl_exits": 18,
+    "time_exits": 1
+  },
+  "in_sample_70pct": {
+    "trades": 75,
+    "winrate": 82.67,
+    "profit_factor": 1.258,
+    "net_pnl": 34.74,
+    "avg_win": 2.73,
+    "avg_loss": -10.35,
+    "tp_exits": 62,
+    "sl_exits": 13,
+    "time_exits": 0
+  },
+  "out_of_sample_30pct": {
+    "trades": 30,
+    "winrate": 80.0,
+    "profit_factor": 1.211,
+    "net_pnl": 11.87,
+    "avg_win": 2.84,
+    "avg_loss": -9.39,
+    "tp_exits": 24,
+    "sl_exits": 5,
+    "time_exits": 1
+  },
+  "notes": [
+    "High winrate comes from TP << SL ( asymmetric R:R ).",
+    "Still net profitable on IS and OOS in this sample.",
+    "Yahoo GC=F \u2260 broker XAUUSD; no spread/commission modeled.",
+    "Past backtest \u2260 future performance."
+  ]
+}

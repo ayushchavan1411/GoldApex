@@ -1,0 +1,49 @@
+{
+  "mode": "continue",
+  "tested": 274156,
+  "phase": 1,
+  "started": "2026-10-13 15:39:12",
+  "target_wr": 0.8,
+  "best_score": 2231.720052165214,
+  "champion": {
+    "name": "triple_confirm_mr|15m|deepc",
+    "timeframe": "15m",
+    "winrate": 0.9076923076923077,
+    "profit_factor": 1.59258809306553,
+    "trades": 65,
+    "net_pnl": 35.41716135531643,
+    "final_equity": 535.4171613553167,
+    "expectancy": 0.5448794054664067,
+    "max_dd": 0.03959999999999964,
+    "avg_win": 1.613289405927358,
+    "avg_loss": -9.961152265732947,
+    "params": {
+      "kind": "triple_confirm_mr",
+      "rsi": 3,
+      "bb": 10,
+      "k": 1.5,
+      "stoch": 14,
+      "os": 20,
+      "ob": 70,
+      "sessions": [
+        "ny"
+      ],
+      "exit": {
+        "sl": 2.0,
+        "tp": 0.3,
+        "max_hold": 24,
+        "be": true,
+        "be_rr": 0.8,
+        "partial": 0.5,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "oos_winrate": 1.0,
+    "oos_profit_factor": 99.0,
+    "oos_trades": 25,
+    "oos_net_pnl": 38.881568845376684,
+    "score": 2231.720052165214
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "strategy": "Asian-Range Fade 1h",
+  "period": "2024-05-21 04:00:00 \u2192 2026-10-13 15:00:00",
+  "trades": 280,
+  "winrate_pct": 85.71,
+  "profit_factor": 0.969,
+  "net_pnl": -10.9,
+  "final_equity": 489.12,
+  "max_dd_pct": 15.54,
+  "tp_exits": 240,
+  "sl_exits": 33
+}
