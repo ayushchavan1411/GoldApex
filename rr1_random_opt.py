@@ -172,10 +172,12 @@ def random_params(kind: str) -> dict:
 
 
 def random_exit() -> dict:
+    # Strict 1:1 with non-tiny stops: rr>=1.0 × ATR_14 preferred (sub-1.0×ATR
+    # + ATR_7 recreated fake 90%+ WR on Twelve Data flat Asian bars).
     return {
-        "rr": RNG.choice([0.4, 0.5, 0.6, 0.8, 1.0, 1.2, 1.5, 2.0]),
-        "max_hold": RNG.choice([2, 3, 4, 6, 8, 12, 18, 24, 36]),
-        "atr": RNG.choice(["ATR_14", "ATR_7"]),
+        "rr": RNG.choice([1.0, 1.0, 1.2]),
+        "max_hold": RNG.choice([4, 6, 8, 12, 18, 24]),
+        "atr": RNG.choice(["ATR_14", "ATR_14", "ATR_14", "ATR_7"]),
         **RNG.choice(
             [
                 {"allow_long": True, "allow_short": True},
@@ -286,7 +288,7 @@ def main():
                 q = False
             if q:
                 quals += 1
-                save_champion(res)
+                save_champion(res, force=True)
                 write_bot(res)
                 seed = json.loads(champ_path.read_text())
                 log(
@@ -300,22 +302,17 @@ def main():
                 res.oos_profit_factor,
                 res.trades + res.oos_trades,
             )
+            # Near-miss tracking: require year_stable before champion write
             if best is None or score_key > best[0]:
-                if res.winrate >= 0.75 and res.trades_per_day >= 0.9:
+                if (
+                    res.winrate >= 0.75
+                    and res.oos_winrate >= 0.75
+                    and res.trades_per_day >= 0.9
+                    and exit_p.get("rr", 1.0) >= 1.0
+                    and year_stable(df, long_e, short_e, exit_p)
+                ):
                     best = (score_key, res)
-                    # only overwrite champion if better composite than file
-                    try:
-                        cur = json.loads(champ_path.read_text())
-                        cur_key = (
-                            min(cur["winrate"], cur["oos_winrate"]),
-                            min(cur["trades_per_day"], cur["oos_trades_per_day"]),
-                            cur["oos_profit_factor"],
-                            cur["trades"] + cur["oos_trades"],
-                        )
-                    except Exception:
-                        cur_key = (-1,)
-                    if score_key > cur_key:
-                        save_champion(res)
+                    if save_champion(res):
                         write_bot(res)
                         seed = json.loads(champ_path.read_text())
                         log(
@@ -323,6 +320,16 @@ def main():
                             f"WR={res.winrate:.1%}/{res.oos_winrate:.1%} "
                             f"tpd={res.trades_per_day:.2f}/{res.oos_trades_per_day:.2f} "
                             f"n={res.trades}/{res.oos_trades}"
+                        )
+                elif res.winrate >= 0.68 and res.oos_winrate >= 0.68:
+                    # track high-WR low-tpd near-misses without claiming qualifier
+                    best = (score_key, res)
+                    if save_champion(res):
+                        write_bot(res)
+                        seed = json.loads(champ_path.read_text())
+                        log(
+                            f"NEAR minWR={min(res.winrate,res.oos_winrate):.1%} "
+                            f"tpd={res.trades_per_day:.2f}/{res.oos_trades_per_day:.2f} {res.name}"
                         )
             if tested % 500 == 0:
                 b = best[1] if best else None

@@ -337,7 +337,8 @@ def simulate(
             continue
         risk = min(MAX_RISK, capital * RISK_PCT)
         dist = atr * rr_atr
-        if dist <= 0:
+        # Absolute stop floor (USD) — blocks tiny-target noise fills
+        if dist < MIN_ATR:
             i += 1
             continue
         qty = risk / dist
@@ -1027,12 +1028,13 @@ def param_space(phase: int):
 
 
 def exit_grid(phase: int):
-    # STRICT 1:1 — single rr distance for both SL and TP
-    rrs = [0.4, 0.5, 0.6, 0.8, 1.0, 1.2, 1.5, 2.0]
-    holds = [2, 3, 4, 6, 8, 12, 18, 24, 36]
+    # STRICT 1:1 — single rr distance for both SL and TP.
+    # Ban sub-1.0×ATR stops: they recreate fake 90%+ WR on flat Twelve Data bars.
+    rrs = [1.0, 1.2, 1.5, 2.0]
+    holds = [4, 6, 8, 12, 18, 24, 36]
     atrs = ["ATR_14", "ATR_7"]
     if phase == 0:
-        rrs, holds, atrs = [0.5, 0.8, 1.0, 1.2], [4, 8, 12, 24], ["ATR_14"]
+        rrs, holds, atrs = [1.0, 1.2], [6, 8, 12, 24], ["ATR_14"]
     sides = [
         {"allow_long": True, "allow_short": True},
         {"allow_long": True, "allow_short": False},
