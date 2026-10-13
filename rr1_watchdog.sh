@@ -36,6 +36,7 @@ while true; do
   start_job "rr1-hill" "rr1_hillclimb.py"
   start_job "rr1-select" "rr1_select_search.py"
   start_job "rr1-public" "rr1_public_search.py"
+  start_job "rr1-freq" "rr1_freqboost.py"
   # heartbeat
   {
     echo -n "$(date -u '+%Y-%m-%d %H:%M:%S') | alive: "
