@@ -1,0 +1,33 @@
+{
+  "kind": "stoch_cross",
+  "timeframe": "15m",
+  "params": {
+    "period": 5,
+    "os": 20,
+    "ob": 80,
+    "sessions": [
+      "london",
+      "overlap"
+    ]
+  },
+  "exit": {
+    "sl": 2.0,
+    "tp": 0.2,
+    "max_hold": 12
+  },
+  "trades": 81,
+  "winrate": 0.9876543209876543,
+  "net_pnl": 74.61,
+  "final_equity": 574.6250941050124,
+  "tp": 79,
+  "sl": 1,
+  "time_exits": 1,
+  "trades_per_bar_day": 1.4210526315789473,
+  "days_with_trade": 39,
+  "bar_days": 57,
+  "day_coverage": 0.6842105263157895,
+  "avg_on_active": 2.076923076923077,
+  "max_per_day": 5,
+  "period": "2026-08-04 04:00:00 \u2192 2026-10-13 16:00:00",
+  "causality": "prior levels where needed; signal close -> next open fill"
+}

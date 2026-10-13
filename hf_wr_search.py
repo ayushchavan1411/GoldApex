@@ -378,11 +378,17 @@ def qualifies(is_m: dict, oos_m: dict) -> bool:
 def score_of(is_m: dict, oos_m: dict) -> float:
     if is_m["trades"] < 15:
         return -1e9
+    # Hard gate: never crown losers / sub-80% IS as "best"
+    if is_m["winrate"] < TARGET_WR or is_m["net_pnl"] <= 0 or is_m["trades_per_day"] < MIN_TRADES_PER_DAY:
+        base_pen = -2000
+    else:
+        base_pen = 0
     s = (
-        is_m["winrate"] * 100
+        base_pen
+        + is_m["winrate"] * 100
         + oos_m["winrate"] * 120
-        + is_m["profit_factor"] * 20
-        + oos_m["profit_factor"] * 25
+        + min(is_m["profit_factor"], 10) * 20
+        + min(oos_m["profit_factor"], 10) * 25
         + min(is_m["trades_per_day"], 5) * 15
         + min(oos_m["trades_per_day"], 5) * 15
         + (10 if is_m["net_pnl"] > 0 else -30)
@@ -390,7 +396,7 @@ def score_of(is_m: dict, oos_m: dict) -> float:
         - is_m["max_dd"] * 40
     )
     if qualifies(is_m, oos_m):
-        s += 500
+        s += 5000  # must dominate non-qualified
     return float(s)
 
 
