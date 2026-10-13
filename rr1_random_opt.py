@@ -147,13 +147,28 @@ def main():
                 if params.get("hours") is not None:
                     params["hours"] = tuple(params["hours"])
                 # mutate
-                for key in ("os", "ob", "rsi", "band", "look", "period", "ema"):
+                for key in ("os", "ob", "band", "look"):
                     if key in params and isinstance(params[key], (int, float)):
                         params[key] = int(params[key] + RNG.randint(-5, 5))
                 if "os" in params:
                     params["os"] = min(40, max(5, int(params["os"])))
                 if "ob" in params:
                     params["ob"] = min(95, max(60, int(params["ob"])))
+                # keep indicator periods on valid columns only
+                if "rsi" in params:
+                    params["rsi"] = RNG.choice([2, 3, 5, 7, 9, 14])
+                if "period" in params and kind in ("bb_fade", "bb_rsi_fade", "bb_mid_reject", "stoch_cross", "donch_fade"):
+                    params["period"] = RNG.choice([5, 9, 10, 14, 20, 40, 50] if kind != "donch_fade" else [10, 20, 40])
+                    if kind.startswith("bb"):
+                        params["period"] = RNG.choice([10, 20, 50])
+                    if kind == "stoch_cross":
+                        params["period"] = RNG.choice([5, 9, 14])
+                if "ema" in params:
+                    params["ema"] = RNG.choice([8, 12, 20, 50, 200])
+                if "bb" in params:
+                    params["bb"] = RNG.choice([10, 20])
+                if "stoch" in params:
+                    params["stoch"] = RNG.choice([5, 14])
                 if RNG.random() < 0.3:
                     params["sessions"] = RNG.choice(SESS)
                 tf = seed.get("timeframe", RNG.choice(tfs))

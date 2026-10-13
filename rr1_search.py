@@ -660,6 +660,16 @@ def main():
     tf_order = [t for t in ("5m", "15m", "1h") if t in frames]
 
     champion: Result | None = None
+    if CHAMPION.exists():
+        try:
+            d = json.loads(CHAMPION.read_text())
+            champion = Result(**{k: d[k] for k in Result.__dataclass_fields__ if k in d})
+            log(
+                f"Loaded prior champion WR={champion.winrate:.1%}/{champion.oos_winrate:.1%} "
+                f"tpd={champion.trades_per_day:.2f}/{champion.oos_trades_per_day:.2f} score={champion.score:.0f}"
+            )
+        except Exception as e:
+            log(f"Could not load prior champion: {e}")
     tested = 0
     phase = 0
     qualified_count = 0
