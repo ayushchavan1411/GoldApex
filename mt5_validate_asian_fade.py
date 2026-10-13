@@ -175,7 +175,8 @@ def prepare(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def backtest(df: pd.DataFrame, spread_points: float = 0.0) -> tuple[pd.DataFrame, dict]:
-    """spread_points: absolute price spread (e.g. 0.25 for $0.25 on XAUUSD). Applied as cost on entry+exit."""
+    """Strict causality: signal close[i] → fill open[i+1]. spread_points = absolute price spread."""
+    opens = df["Open"].to_numpy(float)
     closes = df["Close"].to_numpy(float)
     highs = df["High"].to_numpy(float)
     lows = df["Low"].to_numpy(float)
@@ -188,7 +189,7 @@ def backtest(df: pd.DataFrame, spread_points: float = 0.0) -> tuple[pd.DataFrame
     trades = []
     i = 250
     n = len(df)
-    while i < n - 1:
+    while i < n - 2:
         if capital < HALT:
             break
         gl, gs = bool(long_e[i]), bool(short_e[i])
@@ -196,8 +197,9 @@ def backtest(df: pd.DataFrame, spread_points: float = 0.0) -> tuple[pd.DataFrame
             i += 1
             continue
         direction = "LONG" if gl else "SHORT"
-        entry, atr = closes[i], atrs[i]
-        if not np.isfinite(atr) or atr <= 0:
+        atr = atrs[i]
+        entry = opens[i + 1]
+        if not np.isfinite(atr) or atr <= 0 or not np.isfinite(entry):
             i += 1
             continue
         # pay half-spread on entry

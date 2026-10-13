@@ -221,8 +221,13 @@ def simulate(
     allow_long: bool = True,
     start_i: int = 250,
     end_i: int | None = None,
+    entry_on: str = "next_open",
 ) -> dict:
-    """Bar-based simulator. Entries on bar i close; manage from i+1."""
+    """Bar-based simulator (strict causality by default).
+
+    Signal is evaluated on completed bar i. Default fill is open[i+1]
+    (no same-bar close fill). Stops managed from the entry bar forward.
+    """
     n = len(df)
     end_i = end_i if end_i is not None else n - 1
     capital = START_CAP
@@ -230,6 +235,7 @@ def simulate(
     max_dd = 0.0
     pnls: list[float] = []
 
+    opens = df["Open"].to_numpy(dtype=float)
     closes = df["Close"].to_numpy(dtype=float)
     highs = df["High"].to_numpy(dtype=float)
     lows = df["Low"].to_numpy(dtype=float)
@@ -247,16 +253,26 @@ def simulate(
         if go_long and go_short:
             i += 1
             continue
+        if i + 1 >= n:
+            break
 
         direction = "LONG" if go_long else "SHORT"
-        entry = closes[i]
+        # ATR from signal bar close is known before next open.
         atr = atrs[i]
+        if entry_on == "next_open":
+            entry = opens[i + 1]
+            j = i + 1
+        elif entry_on == "close":
+            # Legacy / optimistic — avoid for published results
+            entry = closes[i]
+            j = i + 1
+        else:
+            raise ValueError(entry_on)
         if not np.isfinite(atr) or atr <= 0 or not np.isfinite(entry) or entry <= 0:
             i += 1
             continue
 
         risk = min(MAX_RISK, capital * RISK_PCT)
-        qty = TRADE_POWER / entry
         sl_dist = max(atr * sl_mult_atr, 1e-6)
         # Scale qty so dollar risk ≈ risk when possible
         qty = risk / sl_dist
@@ -272,7 +288,6 @@ def simulate(
         qty_rem = qty
         realized = 0.0
         tp1_hit = False
-        j = i + 1
         bars = 0
         exit_price = entry
         exited = False
@@ -400,17 +415,19 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict) -> tuple[np.ndarray, np.nd
         short_e = (rsi > p["ob"]) & (c < ema) & sess
 
     elif kind == "bb_mr":
-        up = df[f"BB_UP_{p['period']}_{p['k']}"]
-        lo = df[f"BB_LO_{p['period']}_{p['k']}"]
+        # CRITICAL: bands are close-based — never compare same-bar Low/High to same-bar BB.
+        # Use prior bar's bands (known before current bar's extremes print).
+        up = df[f"BB_UP_{p['period']}_{p['k']}"].shift(1)
+        lo = df[f"BB_LO_{p['period']}_{p['k']}"].shift(1)
         long_e = (df["Low"] <= lo) & (c > lo) & sess
         short_e = (df["High"] >= up) & (c < up) & sess
 
     elif kind == "bb_mr_rsi":
-        up = df[f"BB_UP_{p['period']}_{p['k']}"]
-        lo = df[f"BB_LO_{p['period']}_{p['k']}"]
+        up = df[f"BB_UP_{p['period']}_{p['k']}"].shift(1)
+        lo = df[f"BB_LO_{p['period']}_{p['k']}"].shift(1)
         rsi = df[f"RSI_{p['rsi']}"]
-        long_e = (df["Low"] <= lo) & (rsi < p["os"]) & sess
-        short_e = (df["High"] >= up) & (rsi > p["ob"]) & sess
+        long_e = (df["Low"] <= lo) & (c > lo) & (rsi < p["os"]) & sess
+        short_e = (df["High"] >= up) & (c < up) & (rsi > p["ob"]) & sess
 
     elif kind == "stoch_mr":
         kcol = df[f"STOCH_K_{p['period']}"]
@@ -419,11 +436,28 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict) -> tuple[np.ndarray, np.nd
         short_e = (kcol > p["ob"]) & (kcol < dcol) & (kcol.shift(1) >= dcol.shift(1)) & sess
 
     elif kind == "ema_pullback":
+        # EMA depends on close — compare wick to prior EMA, confirm close back above/below.
         e_fast = df[f"EMA_{p['fast']}"]
         e_slow = df[f"EMA_{p['slow']}"]
+        e_fast_prev = e_fast.shift(1)
+        e_slow_prev = e_slow.shift(1)
         rsi = df[f"RSI_{p['rsi']}"]
-        long_e = (e_fast > e_slow) & (c > e_slow) & (df["Low"] <= e_fast) & (c > e_fast) & (rsi > p["rsi_min"]) & sess
-        short_e = (e_fast < e_slow) & (c < e_slow) & (df["High"] >= e_fast) & (c < e_fast) & (rsi < p["rsi_max"]) & sess
+        long_e = (
+            (e_fast_prev > e_slow_prev)
+            & (c > e_slow_prev)
+            & (df["Low"] <= e_fast_prev)
+            & (c > e_fast_prev)
+            & (rsi > p["rsi_min"])
+            & sess
+        )
+        short_e = (
+            (e_fast_prev < e_slow_prev)
+            & (c < e_slow_prev)
+            & (df["High"] >= e_fast_prev)
+            & (c < e_fast_prev)
+            & (rsi < p["rsi_max"])
+            & sess
+        )
 
     elif kind == "ema_stack_break":
         e1, e2, e3 = df[f"EMA_{p['a']}"], df[f"EMA_{p['b']}"], df[f"EMA_{p['c']}"]
@@ -469,23 +503,24 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict) -> tuple[np.ndarray, np.nd
 
     elif kind == "triple_confirm_mr":
         rsi = df[f"RSI_{p['rsi']}"]
-        lo = df[f"BB_LO_{p['bb']}_{p['k']}"]
-        kcol = df[f"STOCH_K_{p['stoch']}"]
-        up = df[f"BB_UP_{p['bb']}_{p['k']}"]
-        long_e = (rsi < p["os"]) & (df["Low"] <= lo) & (kcol < p["os"]) & sess
-        short_e = (rsi > p["ob"]) & (df["High"] >= up) & (kcol > p["ob"]) & sess
+        # Prior-bar BB/Stoch only — close-based levels must not gate same-bar wicks.
+        lo = df[f"BB_LO_{p['bb']}_{p['k']}"].shift(1)
+        up = df[f"BB_UP_{p['bb']}_{p['k']}"].shift(1)
+        kcol = df[f"STOCH_K_{p['stoch']}"].shift(1)
+        long_e = (rsi < p["os"]) & (df["Low"] <= lo) & (c > lo) & (kcol < p["os"]) & sess
+        short_e = (rsi > p["ob"]) & (df["High"] >= up) & (c < up) & (kcol > p["ob"]) & sess
 
     elif kind == "quad_confirm_mr":
         rsi = df[f"RSI_{p['rsi']}"]
-        lo = df[f"BB_LO_{p['bb']}_{p['k']}"]
-        up = df[f"BB_UP_{p['bb']}_{p['k']}"]
-        kcol = df[f"STOCH_K_{p['stoch']}"]
-        ema = df[f"EMA_{p['ema']}"]
-        long_e = (rsi < p["os"]) & (df["Low"] <= lo) & (kcol < p["os"]) & (c > ema) & sess
-        short_e = (rsi > p["ob"]) & (df["High"] >= up) & (kcol > p["ob"]) & (c < ema) & sess
+        lo = df[f"BB_LO_{p['bb']}_{p['k']}"].shift(1)
+        up = df[f"BB_UP_{p['bb']}_{p['k']}"].shift(1)
+        kcol = df[f"STOCH_K_{p['stoch']}"].shift(1)
+        ema = df[f"EMA_{p['ema']}"].shift(1)
+        long_e = (rsi < p["os"]) & (df["Low"] <= lo) & (c > lo) & (kcol < p["os"]) & (c > ema) & sess
+        short_e = (rsi > p["ob"]) & (df["High"] >= up) & (c < up) & (kcol > p["ob"]) & (c < ema) & sess
 
     elif kind == "asian_range_fade":
-        # fade extremes during london using asian range proxy via rolling 32 bars (~8h on 15m)
+        # Range uses .shift(1) so level excludes the signal bar (no look-ahead on level).
         look = p["look"]
         a_hi = df["High"].rolling(look).max().shift(1)
         a_lo = df["Low"].rolling(look).min().shift(1)

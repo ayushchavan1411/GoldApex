@@ -73,6 +73,8 @@ def prepare(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def backtest(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Strict causality: signal on bar i close → fill at open[i+1]."""
+    opens = df["Open"].to_numpy(float)
     closes = df["Close"].to_numpy(float)
     highs = df["High"].to_numpy(float)
     lows = df["Low"].to_numpy(float)
@@ -85,7 +87,7 @@ def backtest(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     trades = []
     i = 250
     n = len(df)
-    while i < n - 1:
+    while i < n - 2:
         if capital < HALT:
             break
         gl, gs = bool(long_e[i]), bool(short_e[i])
@@ -93,8 +95,9 @@ def backtest(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
             i += 1
             continue
         direction = "LONG" if gl else "SHORT"
-        entry, atr = closes[i], atrs[i]
-        if not np.isfinite(atr) or atr <= 0:
+        atr = atrs[i]  # known at signal close
+        entry = opens[i + 1]  # earliest realistic fill
+        if not np.isfinite(atr) or atr <= 0 or not np.isfinite(entry):
             i += 1
             continue
         risk = min(MAX_RISK, capital * RISK_PCT)

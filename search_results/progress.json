@@ -1,7 +1,7 @@
 {
   "mode": "continue",
-  "tested": 295980,
-  "phase": 1,
+  "tested": 953841,
+  "phase": 2,
   "started": "2026-10-13 15:39:12",
   "target_wr": 0.8,
   "best_score": 2231.720052165214,
