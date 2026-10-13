@@ -2,45 +2,32 @@
 
 **Data:** Twelve Data free `XAU/USD` 5m — **185,000 bars**, **~771 days** (2024-09-03 → 2026-10-13)  
 **Rules:** SL = TP (1:1), next-open fills, ATR ≥ $1.5, year-stability gate  
-**New target:** **WR ≥ 75%** IS+OOS, **≥ 1 trade/day**, profitable
+**Target:** **WR ≥ 75%** IS+OOS, **≥ 1 trade/day**, PF gates, year-stable
 
-## What we already know
+## Current frontier (honest)
 
-| Setup | Window | Result |
-|--------|--------|--------|
-| RSI-level “78%” champion (Yahoo ~71d) | 2y Twelve Data | **~47% WR**, $500→~$411 — **failed** |
-| Random 1:1 baselines (RSI/BB/FVG/fib/SMC smoke) | 2y | typically **~45–52% WR** (honest for 1:1) |
-| Fake “90%+” bb_mid_reject | 2y without ATR floor | **invalid** — harvested flat ATR&lt;$0.5 quote bars |
+| Setup | min WR (IS/OOS) | tpd | Notes |
+|--------|------------------|-----|--------|
+| RSI+MACD Asian (best peak) | **71.0% / 70.6%** | **0.07 / 0.11** | Best WR; far below 1 tpd |
+| Best ≥1 tpd combo | **~54% / ~53%** | **~2.2** | High frequency, no edge vs coin-flip+cost |
+| Full qualifier (≥75% + ≥1 tpd) | — | — | **Not found** after ~2.5M+ configs |
 
-## Methods now searching (24h never-stop)
+## What failed / invalidated
 
-1. Classic: RSI, BB, Stoch, EMA, MACD, pins, engulf  
-2. **ICT/SMC:** FVG reclaim, FVG+RSI, liquidity sweep, sweep+FVG, order-block retest, BOS pullback, SMC confluence  
-3. **Fib:** 38.2 / 50 / 61.8 / 78.6 bounce + premium/discount filter  
-4. Combos: AND/OR, session/hour filters, mutation/hillclimb  
+| Setup | Result |
+|--------|--------|
+| Yahoo ~71d “78%” RSI champion on 2y | **~47% WR** — look-ahead / short-window artifact |
+| Fake “90%+” bb_mid_reject | Invalid without ATR≥1.5 (flat quote bars) |
+| Random / single indicator 1:1 baselines | typically **~45–52% WR** |
 
-Processes: `rr1-search`, `rr1-random`, `rr1-hill`, `rr1-smc`
+## Hunters (watchdog-supervised)
 
-## Goal status
+`rr1_search`, `rr1_random_opt`, `rr1_smc_search`, `rr1_hillclimb`, `rr1_select_search`, `rr1_public_search`, `rr1_freqboost`, **`rr1_union_search`** (multi-OR greedy + session partition), `rr1_orcombo`
 
-No honest **≥75% WR + ≥1 tpd** qualifier on full 2y yet. Hunt continues until manually stopped / 24h+.
+`save_champion` now only overwrites when min(WR) / tpd improves (stops lower-WR noise from clobbering the 71% peak).
 
-## Public free strategies added (2026-10-13)
+## Methods
 
-Implemented & searching (causal, 1:1, 2y):
-- Ichimoku TK cross / Kumo breakout
-- Heikin Ashi flip (+ EMA filter)
-- RSI + MACD confluence
-- EMA cross & EMA pullback + RSI
-- Keltner fade, Z-score fade, CCI fade
-- ADX + DI cross, Supertrend flip
-- Turtle/Donchian breakout
-- Session Opening Range break & fade (Asian/London/NY)
-- Combined with prior ICT/SMC/FVG/fib stacks via AND hunter
+ICT/SMC (FVG, sweeps, OB, BOS, fib), public playbooks (Ichimoku, HA, Keltner, Supertrend, Turtle, ORB), RSI+MACD, AND/OR/union stacking, session/hour partitions.
 
-Smoke on 2y typically ~45–52% WR at 1:1 (expected). Hunt continues for ≥75%.
-
-## Long-run mode (12h–24h+)
-
-`rr1_watchdog.sh` restarts any dead hunter every 2 minutes.
-Expect this to take many hours — ≥75% WR at true 1:1 with ≥1 tpd on 2y is a hard bar.
+Hunt continues until manually stopped.

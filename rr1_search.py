@@ -1046,10 +1046,30 @@ def exit_grid(phase: int):
     return grids
 
 
-def save_champion(r: Result):
-    CHAMPION.write_text(json.dumps(asdict(r), indent=2))
+def _champ_key(winrate: float, oos_winrate: float, tpd: float, oos_tpd: float, score: float = 0.0):
+    """Lexicographic frontier: min WR first, then min tpd, then score."""
+    return (min(winrate, oos_winrate), min(tpd, oos_tpd), score)
+
+
+def save_champion(r: Result, force: bool = False):
+    """Persist champion only if better (or force). Always append to candidates."""
     with open(CANDIDATES, "a", encoding="utf-8") as f:
         f.write(json.dumps(asdict(r)) + "\n")
+    if CHAMPION.exists() and not force:
+        try:
+            d = json.loads(CHAMPION.read_text())
+            old = _champ_key(
+                d["winrate"], d["oos_winrate"],
+                d.get("trades_per_day", 0.0), d.get("oos_trades_per_day", 0.0),
+                d.get("score", 0.0),
+            )
+            new = _champ_key(r.winrate, r.oos_winrate, r.trades_per_day, r.oos_trades_per_day, r.score)
+            if new <= old:
+                return False
+        except Exception:
+            pass
+    CHAMPION.write_text(json.dumps(asdict(r), indent=2))
+    return True
 
 
 def write_bot(r: Result):
