@@ -75,7 +75,44 @@ def _append_board(res, tag: str):
         )
 
 
-def build_library(df):
+def _jitter_params(kind: str, p: dict) -> dict:
+    """Randomize numeric thresholds so later passes explore new ground."""
+    p = dict(p)
+    def jinti(key, lo, hi, step=1):
+        if key in p and isinstance(p[key], (int, float)):
+            p[key] = int(max(lo, min(hi, int(p[key]) + RNG.choice([-2, -1, 0, 0, 1, 2]) * step)))
+    def jfloat(key, lo, hi, step=0.05):
+        if key in p and isinstance(p[key], (int, float)):
+            p[key] = float(max(lo, min(hi, float(p[key]) + RNG.choice([-2, -1, 0, 0, 1, 2]) * step)))
+    if kind in ("rsi_macd", "rsi_level", "fvg_rsi", "ema_pull_rsi", "bb_rsi_fade"):
+        jinti("os", 15, 55)
+        jinti("ob", 50, 90)
+        jinti("band", 2, 12)
+        jinti("rsi", 3, 21)
+    if kind in ("liq_sweep", "liq_sweep_fvg"):
+        jfloat("wick", 0.25, 0.7, 0.05)
+        jinti("swing", 10, 60, 5)
+    if kind in ("keltner_fade", "supertrend_flip"):
+        jfloat("mult", 1.0, 4.0, 0.25)
+    if kind in ("zscore_fade", "cci_fade"):
+        jfloat("th", 1.0, 3.5, 0.25)
+    if kind == "turtle_break":
+        jinti("n", 5, 40, 5)
+    if kind == "ob_retest":
+        jfloat("atr_mult", 0.1, 0.8, 0.05)
+    if kind in ("fib_bounce", "fib_discount", "bos_pullback", "smc_confluence"):
+        jinti("swing", 10, 80, 5)
+    if RNG.random() < 0.35:
+        # random hour slice
+        a = RNG.randint(0, 18)
+        b = min(24, a + RNG.choice([4, 6, 8, 10, 12]))
+        p["hours"] = tuple(range(a, b))
+    if RNG.random() < 0.2:
+        p["dows"] = tuple(sorted(RNG.sample(range(5), k=RNG.randint(2, 5))))  # Mon-Fri subset
+    return p
+
+
+def build_library(df, mutate: bool = False):
     """Diverse selective signal library across families."""
     sess_opts = [
         ("asian",),
@@ -142,6 +179,13 @@ def build_library(df):
         for base in grid:
             for sess in (("asian",), ("london",), ("overlap",), ("ny",), ("london", "overlap"), None):
                 specs.append((kind, {**base, "sessions": sess}))
+
+    # Extra mutated copies each pass
+    if mutate:
+        extras = []
+        for kind, p in RNG.sample(specs, min(400, len(specs))):
+            extras.append((kind, _jitter_params(kind, p)))
+        specs.extend(extras)
 
     lib = []
     seen = set()
@@ -402,7 +446,7 @@ def main():
 
     while True:
         log("union: building library…")
-        lib = build_library(df)
+        lib = build_library(df, mutate=True)
         log(f"union library={len(lib)}")
         singles = score_singles(df, lib, exits[:6])
         log(
