@@ -39,3 +39,8 @@ Implemented & searching (causal, 1:1, 2y):
 - Combined with prior ICT/SMC/FVG/fib stacks via AND hunter
 
 Smoke on 2y typically ~45–52% WR at 1:1 (expected). Hunt continues for ≥75%.
+
+## Long-run mode (12h–24h+)
+
+`rr1_watchdog.sh` restarts any dead hunter every 2 minutes.
+Expect this to take many hours — ≥75% WR at true 1:1 with ≥1 tpd on 2y is a hard bar.
