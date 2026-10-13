@@ -18,6 +18,7 @@ from rr1_search import (
     qualifies,
     save_champion,
     write_bot,
+    year_stable,
 )
 
 RNG = random.Random(int(time.time()) % 100000)
@@ -128,7 +129,11 @@ def main():
     OUT.mkdir(exist_ok=True)
     log("=== RR1 RANDOM OPT START ===")
     frames = {k: add_indicators(v) for k, v in load_frames().items()}
-    tfs = [t for t in ("5m", "15m", "1h") if t in frames]
+    if "5m" in frames and (frames["5m"].index[-1] - frames["5m"].index[0]).days >= 200:
+        tfs = ["5m"]
+        log("Random opt locked to long local 5m")
+    else:
+        tfs = [t for t in ("5m", "15m", "1h") if t in frames]
     best = None
     tested = 0
     quals = 0
@@ -216,6 +221,8 @@ def main():
                     "trades_per_day": res.oos_trades_per_day,
                 },
             )
+            if q and not year_stable(df, long_e, short_e, exit_p):
+                q = False
             if q:
                 quals += 1
                 save_champion(res)

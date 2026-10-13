@@ -462,6 +462,34 @@ def qualifies(is_m, oos_m) -> bool:
     )
 
 
+def year_stable(df: pd.DataFrame, long_e, short_e, exit_p: dict, min_trades: int = 40) -> bool:
+    """Reject one-year wonders (e.g. only works in 2026 melt-up)."""
+    years = sorted(set(df.index.year))
+    checked = 0
+    for y in years:
+        idxs = np.where(df.index.year == y)[0]
+        if len(idxs) < 800:
+            continue
+        m = simulate(
+            df,
+            long_e=long_e,
+            short_e=short_e,
+            rr_atr=exit_p["rr"],
+            max_hold=exit_p["max_hold"],
+            start_i=int(max(idxs[0], 250)),
+            end_i=int(idxs[-1]),
+            atr_col=exit_p.get("atr", "ATR_14"),
+            allow_long=exit_p.get("allow_long", True),
+            allow_short=exit_p.get("allow_short", True),
+        )
+        if m["trades"] < min_trades:
+            continue
+        checked += 1
+        if m["winrate"] < 0.55 or m["net_pnl"] <= 0 or m["profit_factor"] < 1.05:
+            return False
+    return checked >= 2
+
+
 def score_of(is_m, oos_m) -> float:
     if is_m["trades"] < 20:
         return -1e9
@@ -488,6 +516,7 @@ def score_of(is_m, oos_m) -> float:
 def evaluate(name, tf, df, long_e, short_e, exit_p, params) -> Result | None:
     n = len(df)
     split = int(n * 0.7)
+    warm = 500 if n > 50000 else 250
     common = dict(
         long_e=long_e,
         short_e=short_e,
@@ -497,10 +526,18 @@ def evaluate(name, tf, df, long_e, short_e, exit_p, params) -> Result | None:
         allow_long=exit_p.get("allow_long", True),
         allow_short=exit_p.get("allow_short", True),
     )
-    is_m = simulate(df, start_i=250, end_i=split, **common)
+    is_m = simulate(df, start_i=warm, end_i=split, **common)
     oos_m = simulate(df, start_i=split, end_i=n - 2, **common)
     if is_m["trades"] < 20:
         return None
+    # Penalize / reject short-sample Yahoo windows when long local data exists
+    span_days = max(1, (df.index[-1] - df.index[0]).days)
+    sc = score_of(is_m, oos_m)
+    if span_days < 200:
+        sc -= 5000  # don't let 60d Yahoo beat 2y local
+    if qualifies(is_m, oos_m) and span_days >= 200 and not year_stable(df, long_e, short_e, exit_p):
+        sc -= 8000  # fail year gate → not a real qualifier
+        # mark by crushing score so save_champion won't prefer it as QUAL
     return Result(
         name=name,
         timeframe=tf,
@@ -516,7 +553,7 @@ def evaluate(name, tf, df, long_e, short_e, exit_p, params) -> Result | None:
         oos_trades=oos_m["trades"],
         oos_trades_per_day=oos_m["trades_per_day"],
         oos_net_pnl=oos_m["net_pnl"],
-        score=score_of(is_m, oos_m),
+        score=sc,
         rr=1.0,
     )
 
@@ -701,11 +738,19 @@ def main():
         f"Targets: WR>={TARGET_WR:.0%} PF>={TARGET_PF} tpd>={MIN_TPD} "
         f"OOS WR>={OOS_WR:.0%} | STRICT SL=TP | causal next_open"
     )
-    frames = {k: add_indicators(v) for k, v in load_frames().items()}
-    tf_order = [t for t in ("5m", "15m", "1h") if t in frames]
+    raw_frames = load_frames()
+    frames = {k: add_indicators(v) for k, v in raw_frames.items()}
+    # Prefer long local 5m when available (Twelve Data 2y+)
+    long_5m = "5m" in frames and (frames["5m"].index[-1] - frames["5m"].index[0]).days >= 200
+    if long_5m:
+        tf_order = ["5m"]
+        log("Long local 5m detected — searching ONLY on 5m (skip short Yahoo TFs)")
+    else:
+        tf_order = [t for t in ("5m", "15m", "1h") if t in frames]
 
     champion: Result | None = None
-    if CHAMPION.exists():
+    # Never reload short-window champions when hunting on 2y local
+    if CHAMPION.exists() and not long_5m:
         try:
             d = json.loads(CHAMPION.read_text())
             champion = Result(**{k: d[k] for k in Result.__dataclass_fields__ if k in d})
@@ -715,6 +760,11 @@ def main():
             )
         except Exception as e:
             log(f"Could not load prior champion: {e}")
+    elif CHAMPION.exists() and long_5m:
+        arch = OUT / "CHAMPION_pre_2y_search.json"
+        arch.write_text(CHAMPION.read_text())
+        CHAMPION.unlink()
+        log(f"Archived short-window champion → {arch.name}; starting clean on 2y 5m")
     tested = 0
     phase = 0
     qualified_count = 0
@@ -724,7 +774,7 @@ def main():
         space = param_space(phase)
         exits = exit_grid(phase)
         max_exits = 12 + phase * 4
-        log(f"space={len(space)} exits={len(exits)}")
+        log(f"space={len(space)} exits={len(exits)} tfs={tf_order}")
 
         for idx, (kind, params) in enumerate(space):
             for tf in tf_order:
@@ -773,6 +823,8 @@ def main():
                             "trades_per_day": res.oos_trades_per_day,
                         },
                     )
+                    if q and (df.index[-1] - df.index[0]).days >= 200:
+                        q = year_stable(df, long_e, short_e, exit_p)
                     if champion is None or res.score > champion.score:
                         if res.winrate >= 0.70 and res.trades_per_day >= 0.7:
                             champion = res
