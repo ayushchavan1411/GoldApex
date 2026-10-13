@@ -40,6 +40,9 @@ START_CAP = 500.0
 RISK_PCT = 0.02
 MAX_RISK = 20.0
 HALT = START_CAP * 0.85
+# Twelve Data XAU sometimes emits near-flat quote bars (ATR≪$1).
+# Trading those makes 0.5×ATR TP trivial noise — reject them.
+MIN_ATR = 1.5
 
 TARGET_WR = 0.80
 TARGET_PF = 1.20
@@ -221,7 +224,7 @@ def simulate(
         direction = "LONG" if gl else "SHORT"
         atr = atrs[i]
         entry = opens[i + 1]
-        if not np.isfinite(atr) or atr <= 0 or not np.isfinite(entry):
+        if not np.isfinite(atr) or atr < MIN_ATR or not np.isfinite(entry):
             i += 1
             continue
         risk = min(MAX_RISK, capital * RISK_PCT)
