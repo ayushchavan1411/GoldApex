@@ -1,5 +1,47 @@
 [
   {
+    "name": "quad_confirm_mr|1h|c1",
+    "timeframe": "1h",
+    "winrate": 0.9333333333333333,
+    "profit_factor": 633.1254332891363,
+    "trades": 15,
+    "net_pnl": 54.32375546405089,
+    "final_equity": 554.3237554640509,
+    "expectancy": 3.6215836976033926,
+    "max_dd": 0.00016275992061921287,
+    "avg_win": 3.886406694080749,
+    "avg_loss": -0.08593825307959573,
+    "params": {
+      "kind": "quad_confirm_mr",
+      "rsi": 7,
+      "bb": 20,
+      "k": 2.0,
+      "stoch": 14,
+      "ema": 100,
+      "os": 25,
+      "ob": 80,
+      "sessions": [
+        "asian"
+      ],
+      "exit": {
+        "sl": 2.0,
+        "tp": 0.8,
+        "max_hold": 6,
+        "be": false,
+        "be_rr": 1.0,
+        "partial": 0.0,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "oos_winrate": 0.5,
+    "oos_profit_factor": 0.6044730898372731,
+    "oos_trades": 4,
+    "oos_net_pnl": -5.119552391719395,
+    "score": 9545.959949872758
+  },
+  {
     "name": "rsi_mr_ema_filter|15m|c1",
     "timeframe": "15m",
     "winrate": 0.9230769230769231,
@@ -121,6 +163,90 @@
     "oos_trades": 7,
     "oos_net_pnl": 10.594973920054272,
     "score": 3700.75
+  },
+  {
+    "name": "quad_confirm_mr|5m|c1",
+    "timeframe": "5m",
+    "winrate": 1.0,
+    "profit_factor": 99.0,
+    "trades": 15,
+    "net_pnl": 22.978698149195,
+    "final_equity": 522.9786981491948,
+    "expectancy": 1.5319132099463333,
+    "max_dd": 0.0,
+    "avg_win": 1.5319132099463333,
+    "avg_loss": 0.0,
+    "params": {
+      "kind": "quad_confirm_mr",
+      "rsi": 7,
+      "bb": 10,
+      "k": 1.5,
+      "stoch": 5,
+      "ema": 100,
+      "os": 25,
+      "ob": 70,
+      "sessions": [
+        "ny"
+      ],
+      "exit": {
+        "sl": 2.0,
+        "tp": 0.3,
+        "max_hold": 6,
+        "be": false,
+        "be_rr": 1.0,
+        "partial": 0.0,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "oos_winrate": 1.0,
+    "oos_profit_factor": 99.0,
+    "oos_trades": 6,
+    "oos_net_pnl": 9.067770608229448,
+    "score": 3700.75
+  },
+  {
+    "name": "quad_confirm_mr|15m|c1",
+    "timeframe": "15m",
+    "winrate": 1.0,
+    "profit_factor": 99.0,
+    "trades": 14,
+    "net_pnl": 21.414454784841546,
+    "final_equity": 521.4144547848414,
+    "expectancy": 1.5296039132029675,
+    "max_dd": 0.0,
+    "avg_win": 1.5296039132029675,
+    "avg_loss": 0.0,
+    "params": {
+      "kind": "quad_confirm_mr",
+      "rsi": 2,
+      "bb": 10,
+      "k": 1.5,
+      "stoch": 14,
+      "ema": 50,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "ny"
+      ],
+      "exit": {
+        "sl": 2.0,
+        "tp": 0.3,
+        "max_hold": 6,
+        "be": false,
+        "be_rr": 1.0,
+        "partial": 0.0,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "oos_winrate": 1.0,
+    "oos_profit_factor": 99.0,
+    "oos_trades": 6,
+    "oos_net_pnl": 9.067770608230497,
+    "score": 3700.7
   },
   {
     "name": "quad_confirm_mr|5m|c1",
@@ -402,6 +528,48 @@
     "oos_profit_factor": 99.0,
     "oos_trades": 6,
     "oos_net_pnl": 15.188754696883676,
+    "score": 3700.6
+  },
+  {
+    "name": "quad_confirm_mr|1h|c1",
+    "timeframe": "1h",
+    "winrate": 1.0,
+    "profit_factor": 99.0,
+    "trades": 12,
+    "net_pnl": 18.299990144066008,
+    "final_equity": 518.2999901440661,
+    "expectancy": 1.5249991786721673,
+    "max_dd": 0.0,
+    "avg_win": 1.5249991786721673,
+    "avg_loss": 0.0,
+    "params": {
+      "kind": "quad_confirm_mr",
+      "rsi": 2,
+      "bb": 10,
+      "k": 1.5,
+      "stoch": 14,
+      "ema": 50,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "ny"
+      ],
+      "exit": {
+        "sl": 2.0,
+        "tp": 0.3,
+        "max_hold": 6,
+        "be": false,
+        "be_rr": 1.0,
+        "partial": 0.0,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "oos_winrate": 1.0,
+    "oos_profit_factor": 99.0,
+    "oos_trades": 9,
+    "oos_net_pnl": 13.6631391183395,
     "score": 3700.6
   },
   {
@@ -1248,6 +1416,46 @@
     "score": 2325.2491297357865
   },
   {
+    "name": "bb_mr_rsi|1h|c1",
+    "timeframe": "1h",
+    "winrate": 0.9354838709677419,
+    "profit_factor": 6.86317067269408,
+    "trades": 31,
+    "net_pnl": 46.020027071267926,
+    "final_equity": 546.020027071268,
+    "expectancy": 1.4845170022989653,
+    "max_dd": 0.013769131978579182,
+    "avg_win": 1.8575526603429016,
+    "avg_loss": -3.924500039338109,
+    "params": {
+      "kind": "bb_mr_rsi",
+      "period": 20,
+      "k": 2.5,
+      "rsi": 14,
+      "os": 20,
+      "ob": 70,
+      "sessions": [
+        "london"
+      ],
+      "exit": {
+        "sl": 2.0,
+        "tp": 0.3,
+        "max_hold": 6,
+        "be": false,
+        "be_rr": 1.0,
+        "partial": 0.0,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "oos_winrate": 1.0,
+    "oos_profit_factor": 99.0,
+    "oos_trades": 11,
+    "oos_net_pnl": 16.749740921301537,
+    "score": 2312.632873227828
+  },
+  {
     "name": "quad_confirm_mr|15m|c1",
     "timeframe": "15m",
     "winrate": 0.8181818181818182,
@@ -1821,204 +2029,5 @@
     "oos_trades": 7,
     "oos_net_pnl": 16.75009276349487,
     "score": 2257.6315922874537
-  },
-  {
-    "name": "triple_confirm_mr|5m|c1",
-    "timeframe": "5m",
-    "winrate": 0.9512195121951219,
-    "profit_factor": 3.0069886317906342,
-    "trades": 41,
-    "net_pnl": 40.761330847711456,
-    "final_equity": 540.7613308477114,
-    "expectancy": 0.9941788011636941,
-    "max_dd": 0.020000000000000386,
-    "avg_win": 1.5659237890965616,
-    "avg_loss": -10.154848463527223,
-    "params": {
-      "kind": "triple_confirm_mr",
-      "rsi": 7,
-      "bb": 10,
-      "k": 1.5,
-      "stoch": 5,
-      "os": 20,
-      "ob": 80,
-      "sessions": [
-        "ny"
-      ],
-      "exit": {
-        "sl": 2.0,
-        "tp": 0.3,
-        "max_hold": 6,
-        "be": false,
-        "be_rr": 1.0,
-        "partial": 0.0,
-        "atr": "ATR_14",
-        "allow_long": true,
-        "allow_short": true
-      }
-    },
-    "oos_winrate": 1.0,
-    "oos_profit_factor": 99.0,
-    "oos_trades": 7,
-    "oos_net_pnl": 10.594973920054388,
-    "score": 2256.6767806963717
-  },
-  {
-    "name": "rsi_mr|15m|c1",
-    "timeframe": "15m",
-    "winrate": 0.9375,
-    "profit_factor": 3.0461526737239732,
-    "trades": 32,
-    "net_pnl": 31.057725869157764,
-    "final_equity": 531.0577258691577,
-    "expectancy": 0.9705539334111801,
-    "max_dd": 0.019999999999999817,
-    "avg_win": 1.5412107465721394,
-    "avg_loss": -7.589298264003212,
-    "params": {
-      "kind": "rsi_mr",
-      "rsi": 5,
-      "os": 25,
-      "ob": 85,
-      "sessions": [
-        "ny"
-      ],
-      "exit": {
-        "sl": 2.0,
-        "tp": 0.3,
-        "max_hold": 6,
-        "be": false,
-        "be_rr": 1.0,
-        "partial": 0.0,
-        "atr": "ATR_14",
-        "allow_long": true,
-        "allow_short": true
-      }
-    },
-    "oos_winrate": 1.0,
-    "oos_profit_factor": 99.0,
-    "oos_trades": 5,
-    "oos_net_pnl": 7.545135202621909,
-    "score": 2255.4422901058597
-  },
-  {
-    "name": "rsi_mr_ema_filter|1h|c1",
-    "timeframe": "1h",
-    "winrate": 0.875,
-    "profit_factor": 3.1832996679625736,
-    "trades": 16,
-    "net_pnl": 14.647827199982185,
-    "final_equity": 514.6478271999822,
-    "expectancy": 0.9154891999988866,
-    "max_dd": 0.011080704424566106,
-    "avg_win": 1.5254899383421225,
-    "avg_loss": -3.3545159684037658,
-    "params": {
-      "kind": "rsi_mr_ema_filter",
-      "rsi": 3,
-      "ema": 20,
-      "os": 25,
-      "ob": 85,
-      "sessions": [
-        "overlap"
-      ],
-      "exit": {
-        "sl": 2.0,
-        "tp": 0.3,
-        "max_hold": 6,
-        "be": false,
-        "be_rr": 1.0,
-        "partial": 0.0,
-        "atr": "ATR_14",
-        "allow_long": true,
-        "allow_short": true
-      }
-    },
-    "oos_winrate": 1.0,
-    "oos_profit_factor": 99.0,
-    "oos_trades": 5,
-    "oos_net_pnl": 7.545135202621411,
-    "score": 2250.7170738867017
-  },
-  {
-    "name": "triple_confirm_mr|5m|c1",
-    "timeframe": "5m",
-    "winrate": 0.918918918918919,
-    "profit_factor": 2.8338246333666843,
-    "trades": 37,
-    "net_pnl": 57.56349423014494,
-    "final_equity": 557.5634942301448,
-    "expectancy": 1.5557701143282416,
-    "max_dd": 0.020000000000000493,
-    "avg_win": 2.6162750558388987,
-    "avg_loss": -10.4632858894592,
-    "params": {
-      "kind": "triple_confirm_mr",
-      "rsi": 7,
-      "bb": 20,
-      "k": 2.0,
-      "stoch": 5,
-      "os": 20,
-      "ob": 80,
-      "sessions": [
-        "ny"
-      ],
-      "exit": {
-        "sl": 1.2,
-        "tp": 0.3,
-        "max_hold": 6,
-        "be": false,
-        "be_rr": 1.0,
-        "partial": 0.0,
-        "atr": "ATR_14",
-        "allow_long": true,
-        "allow_short": true
-      }
-    },
-    "oos_winrate": 1.0,
-    "oos_profit_factor": 99.0,
-    "oos_trades": 6,
-    "oos_net_pnl": 15.188754696882608,
-    "score": 2250.649261392392
-  },
-  {
-    "name": "bb_mr_rsi|1h|c1",
-    "timeframe": "1h",
-    "winrate": 0.8857142857142857,
-    "profit_factor": 3.032657879018707,
-    "trades": 35,
-    "net_pnl": 60.036653324076816,
-    "final_equity": 560.0366533240768,
-    "expectancy": 1.7153329521164804,
-    "max_dd": 0.028661218085703,
-    "avg_win": 2.889441544024333,
-    "avg_loss": -7.384008635169376,
-    "params": {
-      "kind": "bb_mr_rsi",
-      "period": 20,
-      "k": 2.5,
-      "rsi": 14,
-      "os": 25,
-      "ob": 70,
-      "sessions": [
-        "london"
-      ],
-      "exit": {
-        "sl": 2.0,
-        "tp": 0.5,
-        "max_hold": 6,
-        "be": false,
-        "be_rr": 1.0,
-        "partial": 0.0,
-        "atr": "ATR_14",
-        "allow_long": true,
-        "allow_short": true
-      }
-    },
-    "oos_winrate": 1.0,
-    "oos_profit_factor": 99.0,
-    "oos_trades": 14,
-    "oos_net_pnl": 36.16056596422029,
-    "score": 2249.951460214138
   }
 ]

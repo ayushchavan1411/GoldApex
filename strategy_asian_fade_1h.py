@@ -56,8 +56,19 @@ def prepare(df: pd.DataFrame) -> pd.DataFrame:
     d["range_lo"] = d["Low"].rolling(LOOK).min().shift(1)
     d["hour"] = d.index.hour
     d["overlap"] = (d["hour"] >= 13) & (d["hour"] < 17)
-    d["long"] = d["overlap"] & (d["Low"] <= d["range_lo"]) & (d["RSI"] < OS)
-    d["short"] = d["overlap"] & (d["High"] >= d["range_hi"]) & (d["RSI"] > OB)
+    # Require wick into extreme + close back inside range (matches strategy_search gen_signals)
+    d["long"] = (
+        d["overlap"]
+        & (d["Low"] <= d["range_lo"])
+        & (c > d["range_lo"])
+        & (d["RSI"] < OS)
+    )
+    d["short"] = (
+        d["overlap"]
+        & (d["High"] >= d["range_hi"])
+        & (c < d["range_hi"])
+        & (d["RSI"] > OB)
+    )
     return d
 
 
