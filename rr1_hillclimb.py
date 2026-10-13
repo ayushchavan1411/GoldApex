@@ -27,8 +27,28 @@ def main():
     OUT.mkdir(exist_ok=True)
     log("=== RR1 HILLCLIMB START ===")
     frames = {k: add_indicators(v) for k, v in load_frames().items()}
-    seed = json.loads((OUT / "CHAMPION.json").read_text())
-    log(f"seed WR={seed['winrate']:.1%}/{seed['oos_winrate']:.1%} tpd={seed['trades_per_day']:.2f}")
+    if (OUT / "CHAMPION.json").exists():
+        seed = json.loads((OUT / "CHAMPION.json").read_text())
+        log(f"seed WR={seed['winrate']:.1%}/{seed['oos_winrate']:.1%} tpd={seed['trades_per_day']:.2f}")
+    else:
+        seed = {
+            "winrate": 0.0,
+            "oos_winrate": 0.0,
+            "trades_per_day": 0.0,
+            "oos_trades_per_day": 0.0,
+            "trades": 0,
+            "oos_trades": 0,
+            "params": {
+                "kind": "rsi_level",
+                "rsi": 7,
+                "os": 20,
+                "ob": 80,
+                "band": 5,
+                "sessions": ["overlap", "ny"],
+                "exit": {"rr": 1.0, "max_hold": 6, "atr": "ATR_14", "allow_long": True, "allow_short": True},
+            },
+        }
+        log("no champion yet — seeding from default rsi_level")
 
     tested = 0
     quals = 0
