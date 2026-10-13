@@ -60,9 +60,51 @@ def log(msg: str) -> None:
         f.write(line + "\n")
 
 
+def _load_local_csv(path: Path) -> pd.DataFrame:
+    df = pd.read_csv(path)
+    # support datetime index col or Date
+    for col in ("datetime", "Datetime", "date", "Date", "time", "Time"):
+        if col in df.columns:
+            df[col] = pd.to_datetime(df[col])
+            df = df.set_index(col)
+            break
+    if not isinstance(df.index, pd.DatetimeIndex):
+        df.index = pd.to_datetime(df.index)
+    rename = {c: c.capitalize() if c.lower() in ("open", "high", "low", "close") else c for c in df.columns}
+    df = df.rename(columns=rename)
+    # handle already-capitalized
+    cols = {c.lower(): c for c in df.columns}
+    need = {}
+    for k in ("open", "high", "low", "close"):
+        if k.capitalize() in df.columns:
+            need[k.capitalize()] = df[k.capitalize()]
+        elif k in cols:
+            need[k.capitalize()] = df[cols[k]]
+    out = pd.DataFrame(need).dropna().sort_index()
+    if out.index.tz is not None:
+        out.index = out.index.tz_convert("UTC").tz_localize(None)
+    return out
+
+
 def load_frames() -> dict[str, pd.DataFrame]:
-    frames = {}
+    """Prefer long local Twelve Data CSVs in data/, else Yahoo."""
+    frames: dict[str, pd.DataFrame] = {}
+    data_dir = Path("data")
+    local_map = {
+        "5m": sorted(data_dir.glob("XAUUSD_5min_*.csv")) if data_dir.exists() else [],
+        "15m": sorted(data_dir.glob("XAUUSD_15min_*.csv")) if data_dir.exists() else [],
+        "1h": sorted(data_dir.glob("XAUUSD_1h_*.csv")) if data_dir.exists() else [],
+    }
+    for key, files in local_map.items():
+        if files:
+            df = _load_local_csv(files[-1])
+            if len(df) > 500:
+                frames[key] = df
+                log(f"Loaded LOCAL {key}: {len(df)} {df.index[0]} → {df.index[-1]} ({files[-1].name})")
+    # Yahoo fill for missing TFs
     for key, interval, period in [("5m", "5m", "60d"), ("15m", "15m", "60d"), ("1h", "1h", "730d")]:
+        if key in frames:
+            continue
         df = yf.download("GC=F", interval=interval, period=period, progress=False, auto_adjust=True)
         if isinstance(df.columns, pd.MultiIndex):
             df.columns = df.columns.get_level_values(0)
@@ -71,7 +113,7 @@ def load_frames() -> dict[str, pd.DataFrame]:
             df.index = df.index.tz_convert("UTC").tz_localize(None)
         if len(df) > 500:
             frames[key] = df
-            log(f"Loaded {key}: {len(df)} {df.index[0]} → {df.index[-1]}")
+            log(f"Loaded Yahoo {key}: {len(df)} {df.index[0]} → {df.index[-1]}")
     if not frames:
         raise RuntimeError("no data")
     return frames

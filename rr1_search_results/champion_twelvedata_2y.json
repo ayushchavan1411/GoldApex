@@ -1,0 +1,64 @@
+{
+  "source": "TwelveData",
+  "symbol": "XAU/USD",
+  "interval": "5min",
+  "bars": 185000,
+  "days": 771,
+  "start": "2024-09-03 16:00:00",
+  "end": "2026-10-13 18:15:00",
+  "rules": {
+    "kind": "rsi_level",
+    "rsi": 7,
+    "os": 19,
+    "ob": 90,
+    "sessions": [
+      "overlap",
+      "ny"
+    ],
+    "band": 4,
+    "exit": {
+      "rr": 1.2,
+      "max_hold": 2,
+      "atr": "ATR_14",
+      "allow_long": true,
+      "allow_short": true
+    }
+  },
+  "start_cap": 500.0,
+  "full": {
+    "trades": 569,
+    "winrate": 0.5114235500878734,
+    "profit_factor": 0.8120623192376533,
+    "net_pnl": -628.6495776874417,
+    "final_equity": -128.6495776874424,
+    "max_dd": 1.1998388403373108,
+    "trades_per_day": 0.9417188793001537,
+    "expectancy": -1.10483229822046,
+    "avg_win": 9.334501613671609,
+    "avg_loss": -12.032336500956403
+  },
+  "is": {
+    "trades": 557,
+    "winrate": 0.5098743267504489,
+    "profit_factor": 1.0169695080314685,
+    "net_pnl": 43.8726802764208,
+    "final_equity": 543.8726802764203,
+    "max_dd": 0.23511165775098306,
+    "trades_per_day": 1.2307449494949496,
+    "expectancy": 0.0787660328122456,
+    "avg_win": 9.257943095078394,
+    "avg_loss": -9.470267980680743
+  },
+  "oos": {
+    "trades": 12,
+    "winrate": 0.5833333333333334,
+    "profit_factor": 0.11464375746437608,
+    "net_pnl": -618.2717778929959,
+    "final_equity": -118.27177789299606,
+    "max_dd": 1.2195914283437774,
+    "trades_per_day": 0.07913330193122939,
+    "expectancy": -51.522648157749664,
+    "avg_win": 11.437042651221057,
+    "avg_loss": -139.66621529030866
+  }
+}
