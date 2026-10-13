@@ -62,11 +62,14 @@ def random_params(kind: str) -> dict:
         if kind == "rsi_level":
             p["band"] = RNG.choice([3, 5, 8, 10])
     elif kind in ("bb_fade", "bb_mid_reject"):
-        p.update(period=RNG.choice([10, 20, 50]), k=RNG.choice([1.5, 2.0, 2.5]))
+        # must match columns from add_indicators
+        period, k = RNG.choice([(10, 1.5), (10, 2.0), (20, 1.5), (20, 2.0), (20, 2.5), (50, 2.0)])
+        p.update(period=period, k=k)
     elif kind == "bb_rsi_fade":
+        period, k = RNG.choice([(10, 1.5), (10, 2.0), (20, 1.5), (20, 2.0), (20, 2.5)])
         p.update(
-            period=RNG.choice([10, 20]),
-            k=RNG.choice([1.5, 2.0, 2.5]),
+            period=period,
+            k=k,
             rsi=RNG.choice([2, 3, 5, 7]),
             os=RNG.choice([20, 25, 30, 35]),
             ob=RNG.choice([65, 70, 75, 80]),
@@ -157,16 +160,23 @@ def main():
                 # keep indicator periods on valid columns only
                 if "rsi" in params:
                     params["rsi"] = RNG.choice([2, 3, 5, 7, 9, 14])
-                if "period" in params and kind in ("bb_fade", "bb_rsi_fade", "bb_mid_reject", "stoch_cross", "donch_fade"):
-                    params["period"] = RNG.choice([5, 9, 10, 14, 20, 40, 50] if kind != "donch_fade" else [10, 20, 40])
-                    if kind.startswith("bb"):
-                        params["period"] = RNG.choice([10, 20, 50])
-                    if kind == "stoch_cross":
-                        params["period"] = RNG.choice([5, 9, 14])
+                if kind in ("bb_fade", "bb_mid_reject"):
+                    params["period"], params["k"] = RNG.choice(
+                        [(10, 1.5), (10, 2.0), (20, 1.5), (20, 2.0), (20, 2.5), (50, 2.0)]
+                    )
+                elif kind == "bb_rsi_fade":
+                    params["period"], params["k"] = RNG.choice(
+                        [(10, 1.5), (10, 2.0), (20, 1.5), (20, 2.0), (20, 2.5)]
+                    )
+                elif kind == "stoch_cross":
+                    params["period"] = RNG.choice([5, 9, 14])
+                elif kind == "donch_fade":
+                    params["period"] = RNG.choice([10, 20, 40])
                 if "ema" in params:
                     params["ema"] = RNG.choice([8, 12, 20, 50, 200])
                 if "bb" in params:
                     params["bb"] = RNG.choice([10, 20])
+                    params["k"] = RNG.choice([1.5, 2.0])
                 if "stoch" in params:
                     params["stoch"] = RNG.choice([5, 14])
                 if RNG.random() < 0.3:
