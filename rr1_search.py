@@ -365,8 +365,8 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
     else:
         raise ValueError(kind)
 
-    long_e = long_e.fillna(False).to_numpy() if hasattr(long_e, "fillna") else np.asarray(long_e, bool)
-    short_e = short_e.fillna(False).to_numpy() if hasattr(short_e, "fillna") else np.asarray(short_e, bool)
+    long_e = long_e.fillna(False).to_numpy(dtype=bool, copy=True) if hasattr(long_e, "fillna") else np.array(long_e, dtype=bool, copy=True)
+    short_e = short_e.fillna(False).to_numpy(dtype=bool, copy=True) if hasattr(short_e, "fillna") else np.array(short_e, dtype=bool, copy=True)
     if p.get("vol_ok"):
         vok = df["vol_ok"].fillna(False).to_numpy()
         long_e &= vok
