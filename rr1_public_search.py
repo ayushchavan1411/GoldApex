@@ -207,7 +207,7 @@ def main():
                             + "\n"
                         )
                 if best is None or res.score > best.score:
-                    if res.winrate >= 0.60 and res.trades_per_day >= 0.5 and res.net_pnl > 0:
+                    if res.winrate >= 0.60 and res.net_pnl > 0:
                         best = res
                         save_champion(res)
                         write_bot(res)
