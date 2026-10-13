@@ -47,6 +47,21 @@ KINDS = [
     "fib_bounce",
     "fib_discount",
     "smc_confluence",
+    "ichimoku_tk",
+    "ichimoku_kumo",
+    "rsi_macd",
+    "ema_cross",
+    "ema_pull_rsi",
+    "heikin_flip",
+    "heikin_ema",
+    "keltner_fade",
+    "zscore_fade",
+    "cci_fade",
+    "adx_di_cross",
+    "supertrend_flip",
+    "turtle_break",
+    "orb_break",
+    "orb_fade",
 ]
 SESS = [
     None,
@@ -126,6 +141,33 @@ def random_params(kind: str) -> dict:
         p.update(swing=RNG.choice([10, 20, 40]), fib=RNG.choice(["382", "500", "618", "786"]), wick=RNG.choice([0.35, 0.45, 0.55]))
     elif kind == "bos_pullback":
         p.update(swing=RNG.choice([20, 40]), ema=RNG.choice([8, 12, 20, 50]), bos_look=RNG.choice([6, 12, 20]))
+    elif kind in ("ichimoku_tk", "ichimoku_kumo", "heikin_flip"):
+        pass
+    elif kind == "heikin_ema":
+        p.update(ema=RNG.choice([20, 50, 200]))
+    elif kind == "rsi_macd":
+        p.update(rsi=RNG.choice([7, 14]), os=RNG.choice([35, 40, 45]), ob=RNG.choice([55, 60, 65]))
+    elif kind == "ema_cross":
+        fast, slow = RNG.choice([(5, 20), (9, 21), (12, 26), (21, 50)])
+        p.update(fast=fast, slow=slow)
+    elif kind == "ema_pull_rsi":
+        fast, slow = RNG.choice([(5, 20), (9, 21), (12, 26), (21, 50)])
+        p.update(fast=fast, slow=slow, rsi=RNG.choice([2, 7, 14]), os=RNG.choice([30, 35, 40]), ob=RNG.choice([60, 65, 70]))
+    elif kind == "keltner_fade":
+        period, mult = RNG.choice([(20, 1.5), (20, 2.0), (10, 1.5)])
+        p.update(period=period, mult=mult)
+    elif kind == "zscore_fade":
+        p.update(period=RNG.choice([20, 40]), th=RNG.choice([1.5, 2.0, 2.5]))
+    elif kind == "cci_fade":
+        p.update(period=RNG.choice([14, 20]), th=RNG.choice([100, 150, 200]))
+    elif kind == "adx_di_cross":
+        p.update(adx=RNG.choice([15, 20, 25, 30]))
+    elif kind == "supertrend_flip":
+        p.update(mult=RNG.choice([2.0, 3.0]))
+    elif kind == "turtle_break":
+        p.update(period=RNG.choice([10, 20, 40]))
+    elif kind in ("orb_break", "orb_fade"):
+        p.update(orb=RNG.choice(["ASIAN", "LONDON", "NY"]))
     return p
 
 

@@ -220,6 +220,72 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     d["BOS_DN_20"] = c < d["SW_LO_20"]
     d["BOS_UP_40"] = c > d["SW_HI_40"]
     d["BOS_DN_40"] = c < d["SW_LO_40"]
+
+    # --- Public playbook indicators (Ichimoku, HA, Keltner, Supertrend, CCI, ADX, zscore, ORB) ---
+    # Ichimoku (standard 9/26/52); cloud lagged so we don't use future span B shift as look-ahead for entry
+    tenkan = (h.rolling(9).max() + l.rolling(9).min()) / 2.0
+    kijun = (h.rolling(26).max() + l.rolling(26).min()) / 2.0
+    span_a = ((tenkan + kijun) / 2.0).shift(26)  # classic displacement
+    span_b = ((h.rolling(52).max() + l.rolling(52).min()) / 2.0).shift(26)
+    d["ICH_TENKAN"] = tenkan
+    d["ICH_KIJUN"] = kijun
+    d["ICH_SPAN_A"] = span_a
+    d["ICH_SPAN_B"] = span_b
+    d["ICH_CLOUD_TOP"] = pd.concat([span_a, span_b], axis=1).max(axis=1)
+    d["ICH_CLOUD_BOT"] = pd.concat([span_a, span_b], axis=1).min(axis=1)
+    # Heikin Ashi (numpy recurrence — fast on 185k bars)
+    o_np = d["Open"].to_numpy(float)
+    c_np = c.to_numpy(float)
+    ha_c = ((o_np + h.to_numpy(float) + l.to_numpy(float) + c_np) / 4.0)
+    ha_o = np.empty_like(ha_c)
+    ha_o[0] = 0.5 * (o_np[0] + c_np[0])
+    for i in range(1, len(ha_c)):
+        ha_o[i] = 0.5 * (ha_o[i - 1] + ha_c[i - 1])
+    d["HA_OPEN"] = ha_o
+    d["HA_CLOSE"] = ha_c
+    d["HA_BULL"] = ha_c > ha_o
+    d["HA_BEAR"] = ha_c < ha_o
+    # Keltner
+    for period, mult in ((20, 1.5), (20, 2.0), (10, 1.5)):
+        mid = c.ewm(span=period, adjust=False).mean()
+        d[f"KEL_MID_{period}_{mult}"] = mid
+        d[f"KEL_UP_{period}_{mult}"] = mid + mult * d["ATR_14"]
+        d[f"KEL_LO_{period}_{mult}"] = mid - mult * d["ATR_14"]
+    # Supertrend-like ATR channel (causal: prior close vs prior bands)
+    for mult in (2.0, 3.0):
+        hl2 = (h + l) / 2.0
+        d[f"ST_UP_{mult}"] = (hl2 + mult * d["ATR_14"]).shift(1)
+        d[f"ST_LO_{mult}"] = (hl2 - mult * d["ATR_14"]).shift(1)
+    # CCI
+    for period in (14, 20):
+        tp = (h + l + c) / 3.0
+        sma = tp.rolling(period).mean()
+        mad = (tp - sma).abs().rolling(period).mean()
+        d[f"CCI_{period}"] = (tp - sma) / (0.015 * mad.replace(0, np.nan))
+    # ADX / DI
+    up_move = h.diff()
+    dn_move = -l.diff()
+    plus_dm = up_move.where((up_move > dn_move) & (up_move > 0), 0.0)
+    minus_dm = dn_move.where((dn_move > up_move) & (dn_move > 0), 0.0)
+    tr_s = tr.ewm(alpha=1 / 14, adjust=False).mean()
+    plus_di = 100 * plus_dm.ewm(alpha=1 / 14, adjust=False).mean() / tr_s.replace(0, np.nan)
+    minus_di = 100 * minus_dm.ewm(alpha=1 / 14, adjust=False).mean() / tr_s.replace(0, np.nan)
+    dx = 100 * (plus_di - minus_di).abs() / (plus_di + minus_di).replace(0, np.nan)
+    d["PLUS_DI"] = plus_di
+    d["MINUS_DI"] = minus_di
+    d["ADX"] = dx.ewm(alpha=1 / 14, adjust=False).mean()
+    # Z-score of close
+    for period in (20, 40):
+        m = c.rolling(period).mean()
+        s = c.rolling(period).std()
+        d[f"Z_{period}"] = (c - m) / s.replace(0, np.nan)
+    # Session opening range proxy: first UTC hour of Asian/London/NY (causal via shift)
+    d["date"] = d.index.date
+    for name, start_h in (("ASIAN", 0), ("LONDON", 8), ("NY", 13)):
+        in_open = (d["hour"] >= start_h) & (d["hour"] < start_h + 1)
+        d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
+        d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+
     return d.copy()  # defragment after many column inserts
 
 
@@ -547,6 +613,116 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
             & sess
         )
 
+    # ----- Public free-playbook strategies -----
+    elif kind == "ichimoku_tk":
+        # TK cross with price vs cloud filter (lag cloud one bar for wick safety)
+        ten, kij = df["ICH_TENKAN"], df["ICH_KIJUN"]
+        ctop, cbot = df["ICH_CLOUD_TOP"].shift(1), df["ICH_CLOUD_BOT"].shift(1)
+        long_e = (ten > kij) & (ten.shift(1) <= kij.shift(1)) & (c > ctop) & sess
+        short_e = (ten < kij) & (ten.shift(1) >= kij.shift(1)) & (c < cbot) & sess
+
+    elif kind == "ichimoku_kumo":
+        # Kumo breakout: close breaks prior cloud extreme
+        ctop, cbot = df["ICH_CLOUD_TOP"].shift(1), df["ICH_CLOUD_BOT"].shift(1)
+        long_e = (c > ctop) & (c.shift(1) <= ctop) & (df["ICH_TENKAN"] > df["ICH_KIJUN"]) & sess
+        short_e = (c < cbot) & (c.shift(1) >= cbot) & (df["ICH_TENKAN"] < df["ICH_KIJUN"]) & sess
+
+    elif kind == "rsi_macd":
+        # Public confluence: RSI cross + MACD hist flip
+        rsi = df[f"RSI_{p['rsi']}"]
+        long_e = (
+            (rsi > p["os"])
+            & (rsi.shift(1) <= p["os"])
+            & (df["MACD_HIST"] > 0)
+            & (df["MACD_HIST"].shift(1) <= 0)
+            & sess
+        )
+        short_e = (
+            (rsi < p["ob"])
+            & (rsi.shift(1) >= p["ob"])
+            & (df["MACD_HIST"] < 0)
+            & (df["MACD_HIST"].shift(1) >= 0)
+            & sess
+        )
+
+    elif kind == "ema_cross":
+        fast = df[f"EMA_{p['fast']}"]
+        slow = df[f"EMA_{p['slow']}"]
+        long_e = (fast > slow) & (fast.shift(1) <= slow.shift(1)) & sess
+        short_e = (fast < slow) & (fast.shift(1) >= slow.shift(1)) & sess
+
+    elif kind == "ema_pull_rsi":
+        # EMA pullback in trend + RSI filter (common gold scalp variant)
+        fast = df[f"EMA_{p['fast']}"].shift(1)
+        slow = df[f"EMA_{p['slow']}"].shift(1)
+        rsi = df[f"RSI_{p['rsi']}"]
+        long_e = (fast > slow) & (df["Low"] <= fast) & (c > fast) & (rsi < p["os"]) & sess
+        short_e = (fast < slow) & (df["High"] >= fast) & (c < fast) & (rsi > p["ob"]) & sess
+
+    elif kind == "heikin_flip":
+        long_e = df["HA_BULL"] & (~df["HA_BULL"].shift(1).fillna(False)) & sess
+        short_e = df["HA_BEAR"] & (~df["HA_BEAR"].shift(1).fillna(False)) & sess
+
+    elif kind == "heikin_ema":
+        ema = df[f"EMA_{p['ema']}"].shift(1)
+        long_e = df["HA_BULL"] & (~df["HA_BULL"].shift(1).fillna(False)) & (c > ema) & sess
+        short_e = df["HA_BEAR"] & (~df["HA_BEAR"].shift(1).fillna(False)) & (c < ema) & sess
+
+    elif kind == "keltner_fade":
+        up = df[f"KEL_UP_{p['period']}_{p['mult']}"].shift(1)
+        lo = df[f"KEL_LO_{p['period']}_{p['mult']}"].shift(1)
+        long_e = (df["Low"] <= lo) & (c > lo) & sess
+        short_e = (df["High"] >= up) & (c < up) & sess
+
+    elif kind == "zscore_fade":
+        z = df[f"Z_{p['period']}"]
+        long_e = (z < -p["th"]) & (z.shift(1) >= -p["th"]) & sess
+        short_e = (z > p["th"]) & (z.shift(1) <= p["th"]) & sess
+
+    elif kind == "cci_fade":
+        cci = df[f"CCI_{p['period']}"]
+        long_e = (cci < -p["th"]) & (cci.shift(1) >= -p["th"]) & sess
+        short_e = (cci > p["th"]) & (cci.shift(1) <= p["th"]) & sess
+
+    elif kind == "adx_di_cross":
+        long_e = (
+            (df["PLUS_DI"] > df["MINUS_DI"])
+            & (df["PLUS_DI"].shift(1) <= df["MINUS_DI"].shift(1))
+            & (df["ADX"] > p["adx"])
+            & sess
+        )
+        short_e = (
+            (df["MINUS_DI"] > df["PLUS_DI"])
+            & (df["MINUS_DI"].shift(1) <= df["PLUS_DI"].shift(1))
+            & (df["ADX"] > p["adx"])
+            & sess
+        )
+
+    elif kind == "supertrend_flip":
+        up, lo = df[f"ST_UP_{p['mult']}"], df[f"ST_LO_{p['mult']}"]
+        long_e = (c > up) & (c.shift(1) <= up) & sess
+        short_e = (c < lo) & (c.shift(1) >= lo) & sess
+
+    elif kind == "turtle_break":
+        # classic Donchian breakout (trend follow)
+        hi = df[f"DON_HI_{p['period']}"]
+        lo = df[f"DON_LO_{p['period']}"]
+        long_e = (c > hi) & (c.shift(1) <= hi) & sess
+        short_e = (c < lo) & (c.shift(1) >= lo) & sess
+
+    elif kind == "orb_break":
+        # opening-range breakout of Asian/London/NY first hour
+        name = p["orb"]
+        hi, lo = df[f"OR_HI_{name}"], df[f"OR_LO_{name}"]
+        long_e = (c > hi) & (c.shift(1) <= hi) & sess
+        short_e = (c < lo) & (c.shift(1) >= lo) & sess
+
+    elif kind == "orb_fade":
+        name = p["orb"]
+        hi, lo = df[f"OR_HI_{name}"], df[f"OR_LO_{name}"]
+        long_e = (df["Low"] <= lo) & (c > lo) & sess
+        short_e = (df["High"] >= hi) & (c < hi) & sess
+
     else:
         raise ValueError(kind)
 
@@ -801,6 +977,37 @@ def param_space(phase: int):
         [20, 40], [8, 12, 20, 50], [6, 12, 20], sessions_opts[:5]
     ):
         space.append(("bos_pullback", {"swing": sw, "ema": ema, "bos_look": bos_look, "sessions": sessions}))
+
+    # Public free strategies (Ichimoku, HA, Turtle, ORB, Keltner, RSI+MACD, etc.)
+    for sessions in sessions_opts[:8]:
+        space.append(("ichimoku_tk", {"sessions": sessions}))
+        space.append(("ichimoku_kumo", {"sessions": sessions}))
+        space.append(("heikin_flip", {"sessions": sessions}))
+        for ema in (20, 50, 200):
+            space.append(("heikin_ema", {"ema": ema, "sessions": sessions}))
+        for rsi, os_, ob in itertools.product([7, 14], [35, 40, 45], [55, 60, 65]):
+            space.append(("rsi_macd", {"rsi": rsi, "os": os_, "ob": ob, "sessions": sessions}))
+        for fast, slow in ((5, 20), (9, 21), (12, 26), (21, 50)):
+            space.append(("ema_cross", {"fast": fast, "slow": slow, "sessions": sessions}))
+            for rsi, os_, ob in ((2, 30, 70), (7, 35, 65), (14, 40, 60)):
+                space.append(
+                    ("ema_pull_rsi", {"fast": fast, "slow": slow, "rsi": rsi, "os": os_, "ob": ob, "sessions": sessions})
+                )
+        for period, mult in ((20, 1.5), (20, 2.0), (10, 1.5)):
+            space.append(("keltner_fade", {"period": period, "mult": mult, "sessions": sessions}))
+        for period, th in ((20, 1.5), (20, 2.0), (40, 2.0), (40, 2.5)):
+            space.append(("zscore_fade", {"period": period, "th": th, "sessions": sessions}))
+        for period, th in ((14, 100), (14, 150), (20, 100), (20, 200)):
+            space.append(("cci_fade", {"period": period, "th": th, "sessions": sessions}))
+        for adx in (15, 20, 25, 30):
+            space.append(("adx_di_cross", {"adx": adx, "sessions": sessions}))
+        for mult in (2.0, 3.0):
+            space.append(("supertrend_flip", {"mult": mult, "sessions": sessions}))
+        for period in (10, 20, 40):
+            space.append(("turtle_break", {"period": period, "sessions": sessions}))
+        for orb in ("ASIAN", "LONDON", "NY"):
+            space.append(("orb_break", {"orb": orb, "sessions": sessions}))
+            space.append(("orb_fade", {"orb": orb, "sessions": sessions}))
 
     if phase >= 1:
         extras = []

@@ -24,3 +24,18 @@ Processes: `rr1-search`, `rr1-random`, `rr1-hill`, `rr1-smc`
 ## Goal status
 
 No honest **≥75% WR + ≥1 tpd** qualifier on full 2y yet. Hunt continues until manually stopped / 24h+.
+
+## Public free strategies added (2026-10-13)
+
+Implemented & searching (causal, 1:1, 2y):
+- Ichimoku TK cross / Kumo breakout
+- Heikin Ashi flip (+ EMA filter)
+- RSI + MACD confluence
+- EMA cross & EMA pullback + RSI
+- Keltner fade, Z-score fade, CCI fade
+- ADX + DI cross, Supertrend flip
+- Turtle/Donchian breakout
+- Session Opening Range break & fade (Asian/London/NY)
+- Combined with prior ICT/SMC/FVG/fib stacks via AND hunter
+
+Smoke on 2y typically ~45–52% WR at 1:1 (expected). Hunt continues for ≥75%.
