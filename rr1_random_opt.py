@@ -38,6 +38,15 @@ KINDS = [
     "engulf",
     "macd_cross",
     "donch_fade",
+    "fvg_reclaim",
+    "fvg_rsi",
+    "liq_sweep",
+    "liq_sweep_fvg",
+    "ob_retest",
+    "bos_pullback",
+    "fib_bounce",
+    "fib_discount",
+    "smc_confluence",
 ]
 SESS = [
     None,
@@ -107,6 +116,16 @@ def random_params(kind: str) -> dict:
         p.update(ema=RNG.choice([20, 50, 200]))
     elif kind == "macd_cross":
         pass
+    elif kind in ("fvg_reclaim", "ob_retest"):
+        pass
+    elif kind == "fvg_rsi":
+        p.update(rsi=RNG.choice([3, 7, 14]), os=RNG.choice([20, 25, 30, 35]), ob=RNG.choice([65, 70, 75, 80]))
+    elif kind in ("liq_sweep", "liq_sweep_fvg", "smc_confluence"):
+        p.update(swing=RNG.choice([5, 10, 20, 40]), wick=RNG.choice([0.4, 0.5, 0.6]))
+    elif kind in ("fib_bounce", "fib_discount"):
+        p.update(swing=RNG.choice([10, 20, 40]), fib=RNG.choice(["382", "500", "618", "786"]), wick=RNG.choice([0.35, 0.45, 0.55]))
+    elif kind == "bos_pullback":
+        p.update(swing=RNG.choice([20, 40]), ema=RNG.choice([8, 12, 20, 50]), bos_look=RNG.choice([6, 12, 20]))
     return p
 
 

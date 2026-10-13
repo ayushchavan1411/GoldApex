@@ -44,13 +44,13 @@ HALT = START_CAP * 0.85
 # Trading those makes 0.5×ATR TP trivial noise — reject them.
 MIN_ATR = 1.5
 
-TARGET_WR = 0.80
-TARGET_PF = 1.20
+TARGET_WR = 0.75  # user goal ≥75% on 2y, 1:1, ≥1 tpd
+TARGET_PF = 1.15
 MIN_TPD = 1.0
 MIN_IS = 120
 MIN_OOS = 50
-OOS_WR = 0.80
-OOS_PF = 1.15
+OOS_WR = 0.75
+OOS_PF = 1.10
 OOS_TPD = 0.85
 
 RNG = random.Random(11)
@@ -178,7 +178,49 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     for period in (10, 20, 40):
         d[f"DON_HI_{period}"] = h.rolling(period).max().shift(1)
         d[f"DON_LO_{period}"] = l.rolling(period).min().shift(1)
-    return d
+    # --- ICT / SMC building blocks (all lagged for causality) ---
+    # Swings from prior bars only
+    for sw in (5, 10, 20, 40):
+        d[f"SW_HI_{sw}"] = h.rolling(sw).max().shift(1)
+        d[f"SW_LO_{sw}"] = l.rolling(sw).min().shift(1)
+        # equilibrium / premium-discount of prior swing range
+        mid = (d[f"SW_HI_{sw}"] + d[f"SW_LO_{sw}"]) / 2.0
+        d[f"EQ_{sw}"] = mid
+        rng_s = (d[f"SW_HI_{sw}"] - d[f"SW_LO_{sw}"]).replace(0, np.nan)
+        d[f"FIB382_{sw}"] = d[f"SW_HI_{sw}"] - 0.382 * rng_s
+        d[f"FIB500_{sw}"] = d[f"SW_HI_{sw}"] - 0.500 * rng_s
+        d[f"FIB618_{sw}"] = d[f"SW_HI_{sw}"] - 0.618 * rng_s
+        d[f"FIB786_{sw}"] = d[f"SW_HI_{sw}"] - 0.786 * rng_s
+        # bullish fibs from swing low up
+        d[f"FIB_UP382_{sw}"] = d[f"SW_LO_{sw}"] + 0.382 * rng_s
+        d[f"FIB_UP500_{sw}"] = d[f"SW_LO_{sw}"] + 0.500 * rng_s
+        d[f"FIB_UP618_{sw}"] = d[f"SW_LO_{sw}"] + 0.618 * rng_s
+        d[f"FIB_UP786_{sw}"] = d[f"SW_LO_{sw}"] + 0.786 * rng_s
+    # Fair Value Gaps: gap between bar i-2 and i (middle is i-1), lagged one bar
+    # bullish FVG when Low[i] > High[i-2]; bearish when High[i] < Low[i-2]
+    bull_fvg = l > h.shift(2)
+    bear_fvg = h < l.shift(2)
+    d["FVG_BULL_BOT"] = h.shift(2).where(bull_fvg)
+    d["FVG_BULL_TOP"] = l.where(bull_fvg)
+    d["FVG_BEAR_TOP"] = l.shift(2).where(bear_fvg)
+    d["FVG_BEAR_BOT"] = h.where(bear_fvg)
+    # propagate last known FVG levels forward, then shift so signal bar can't see current formation
+    for col in ("FVG_BULL_BOT", "FVG_BULL_TOP", "FVG_BEAR_TOP", "FVG_BEAR_BOT"):
+        d[col] = d[col].ffill().shift(1)
+    # Order block proxy: last opposite candle before impulse (lagged)
+    # bullish OB: bearish candle followed by strong bullish close above its high
+    impulse_up = (c > h.shift(1)) & (c > d["Open"]) & ((c - d["Open"]) > 0.6 * d["range"])
+    impulse_dn = (c < l.shift(1)) & (c < d["Open"]) & ((d["Open"] - c) > 0.6 * d["range"])
+    d["OB_BULL_HI"] = h.shift(1).where(impulse_up & d["bear"].shift(1)).ffill().shift(1)
+    d["OB_BULL_LO"] = l.shift(1).where(impulse_up & d["bear"].shift(1)).ffill().shift(1)
+    d["OB_BEAR_HI"] = h.shift(1).where(impulse_dn & d["bull"].shift(1)).ffill().shift(1)
+    d["OB_BEAR_LO"] = l.shift(1).where(impulse_dn & d["bull"].shift(1)).ffill().shift(1)
+    # BOS flags vs prior swing (close break)
+    d["BOS_UP_20"] = c > d["SW_HI_20"]
+    d["BOS_DN_20"] = c < d["SW_LO_20"]
+    d["BOS_UP_40"] = c > d["SW_HI_40"]
+    d["BOS_DN_40"] = c < d["SW_LO_40"]
+    return d.copy()  # defragment after many column inserts
 
 
 def trading_days(idx: pd.DatetimeIndex) -> float:
@@ -407,6 +449,104 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
         long_e = p["long_a"] & p["long_b"]
         short_e = p["short_a"] & p["short_b"]
 
+    elif kind == "fvg_reclaim":
+        # tap into prior FVG then close back through the near edge
+        bt, tp = df["FVG_BULL_BOT"], df["FVG_BULL_TOP"]
+        brt, brb = df["FVG_BEAR_TOP"], df["FVG_BEAR_BOT"]
+        long_e = (df["Low"] <= tp) & (df["Low"] >= bt) & (c > tp) & sess
+        short_e = (df["High"] >= brb) & (df["High"] <= brt) & (c < brb) & sess
+
+    elif kind == "fvg_rsi":
+        bt, tp = df["FVG_BULL_BOT"], df["FVG_BULL_TOP"]
+        brt, brb = df["FVG_BEAR_TOP"], df["FVG_BEAR_BOT"]
+        rsi = df[f"RSI_{p['rsi']}"]
+        long_e = (df["Low"] <= tp) & (df["Low"] >= bt) & (c > tp) & (rsi < p["os"]) & sess
+        short_e = (df["High"] >= brb) & (df["High"] <= brt) & (c < brb) & (rsi > p["ob"]) & sess
+
+    elif kind == "liq_sweep":
+        # liquidity grab: pierce prior swing then close back inside (ICT sweep)
+        sw = p["swing"]
+        hi, lo = df[f"SW_HI_{sw}"], df[f"SW_LO_{sw}"]
+        long_e = (df["Low"] < lo) & (c > lo) & (df["lower_wick"] > p.get("wick", 0.45)) & sess
+        short_e = (df["High"] > hi) & (c < hi) & (df["upper_wick"] > p.get("wick", 0.45)) & sess
+
+    elif kind == "liq_sweep_fvg":
+        sw = p["swing"]
+        hi, lo = df[f"SW_HI_{sw}"], df[f"SW_LO_{sw}"]
+        bt, tp = df["FVG_BULL_BOT"], df["FVG_BULL_TOP"]
+        brt, brb = df["FVG_BEAR_TOP"], df["FVG_BEAR_BOT"]
+        long_e = (df["Low"] < lo) & (c > lo) & (df["Low"] <= tp) & (c > bt) & sess
+        short_e = (df["High"] > hi) & (c < hi) & (df["High"] >= brb) & (c < brt) & sess
+
+    elif kind == "ob_retest":
+        # retest of prior order block with rejection close
+        long_e = (
+            (df["Low"] <= df["OB_BULL_HI"])
+            & (df["Low"] >= df["OB_BULL_LO"])
+            & (c > df["OB_BULL_HI"])
+            & sess
+        )
+        short_e = (
+            (df["High"] >= df["OB_BEAR_LO"])
+            & (df["High"] <= df["OB_BEAR_HI"])
+            & (c < df["OB_BEAR_LO"])
+            & sess
+        )
+
+    elif kind == "bos_pullback":
+        # after BOS, pullback to EMA then continue
+        sw = p.get("swing", 20)
+        ema = df[f"EMA_{p['ema']}"].shift(1)
+        bos_up = df[f"BOS_UP_{sw}"].shift(1).fillna(False)
+        bos_dn = df[f"BOS_DN_{sw}"].shift(1).fillna(False)
+        # recent BOS in last N bars
+        n = p.get("bos_look", 12)
+        recent_up = bos_up.rolling(n).max().fillna(0).astype(bool)
+        recent_dn = bos_dn.rolling(n).max().fillna(0).astype(bool)
+        long_e = recent_up & (df["Low"] <= ema) & (c > ema) & sess
+        short_e = recent_dn & (df["High"] >= ema) & (c < ema) & sess
+
+    elif kind == "fib_bounce":
+        # touch fib of prior swing + wick rejection (longs from swing-low fibs, shorts from swing-high fibs)
+        sw = p["swing"]
+        fib = str(p["fib"])  # '382'|'500'|'618'|'786'
+        long_lvl = df[f"FIB_UP{fib}_{sw}"]
+        short_lvl = df[f"FIB{fib}_{sw}"]
+        long_e = (df["Low"] <= long_lvl) & (c > long_lvl) & (df["lower_wick"] > p.get("wick", 0.4)) & sess
+        short_e = (df["High"] >= short_lvl) & (c < short_lvl) & (df["upper_wick"] > p.get("wick", 0.4)) & sess
+
+    elif kind == "fib_discount":
+        # only long in discount (<EQ), short in premium (>EQ) at fib
+        sw = p["swing"]
+        fib = str(p["fib"])
+        long_lvl = df[f"FIB_UP{fib}_{sw}"]
+        short_lvl = df[f"FIB{fib}_{sw}"]
+        long_e = (c < df[f"EQ_{sw}"]) & (df["Low"] <= long_lvl) & (c > long_lvl) & sess
+        short_e = (c > df[f"EQ_{sw}"]) & (df["High"] >= short_lvl) & (c < short_lvl) & sess
+
+    elif kind == "smc_confluence":
+        # sweep + discount/premium + FVG touch
+        sw = p["swing"]
+        hi, lo = df[f"SW_HI_{sw}"], df[f"SW_LO_{sw}"]
+        bt, tp = df["FVG_BULL_BOT"], df["FVG_BULL_TOP"]
+        brt, brb = df["FVG_BEAR_TOP"], df["FVG_BEAR_BOT"]
+        long_e = (
+            (df["Low"] < lo)
+            & (c > lo)
+            & (c < df[f"EQ_{sw}"])
+            & (df["Low"] <= tp)
+            & (c >= bt)
+            & sess
+        )
+        short_e = (
+            (df["High"] > hi)
+            & (c < hi)
+            & (c > df[f"EQ_{sw}"])
+            & (df["High"] >= brb)
+            & (c <= brt)
+            & sess
+        )
+
     else:
         raise ValueError(kind)
 
@@ -485,7 +625,7 @@ def year_stable(df: pd.DataFrame, long_e, short_e, exit_p: dict, min_trades: int
         if m["trades"] < min_trades:
             continue
         checked += 1
-        if m["winrate"] < 0.55 or m["net_pnl"] <= 0 or m["profit_factor"] < 1.05:
+        if m["winrate"] < 0.52 or m["net_pnl"] <= 0 or m["profit_factor"] < 1.0:
             return False
     return checked >= 2
 
@@ -494,7 +634,7 @@ def score_of(is_m, oos_m) -> float:
     if is_m["trades"] < 20:
         return -1e9
     # Must be near target or get crushed
-    if is_m["winrate"] < 0.75 or is_m["trades_per_day"] < 0.8 or is_m["net_pnl"] <= 0:
+    if is_m["winrate"] < 0.70 or is_m["trades_per_day"] < 0.8 or is_m["net_pnl"] <= 0:
         pen = -3000
     else:
         pen = 0
@@ -641,6 +781,26 @@ def param_space(phase: int):
 
     for sessions in sessions_opts[:6]:
         space.append(("macd_cross", {"sessions": sessions}))
+
+    # ICT / SMC / FVG / Fib families
+    for sessions in sessions_opts[:8]:
+        space.append(("fvg_reclaim", {"sessions": sessions}))
+        space.append(("ob_retest", {"sessions": sessions}))
+        for rsi, os_, ob in itertools.product([3, 7, 14], [20, 25, 30, 35], [65, 70, 75, 80]):
+            space.append(("fvg_rsi", {"rsi": rsi, "os": os_, "ob": ob, "sessions": sessions}))
+    for sw, wick, sessions in itertools.product([5, 10, 20, 40], [0.4, 0.5, 0.6], sessions_opts[:7]):
+        space.append(("liq_sweep", {"swing": sw, "wick": wick, "sessions": sessions}))
+        space.append(("liq_sweep_fvg", {"swing": sw, "sessions": sessions}))
+        space.append(("smc_confluence", {"swing": sw, "sessions": sessions}))
+    for sw, fib, wick, sessions in itertools.product(
+        [10, 20, 40], ["382", "500", "618", "786"], [0.35, 0.45, 0.55], sessions_opts[:6]
+    ):
+        space.append(("fib_bounce", {"swing": sw, "fib": fib, "wick": wick, "sessions": sessions}))
+        space.append(("fib_discount", {"swing": sw, "fib": fib, "sessions": sessions}))
+    for sw, ema, bos_look, sessions in itertools.product(
+        [20, 40], [8, 12, 20, 50], [6, 12, 20], sessions_opts[:5]
+    ):
+        space.append(("bos_pullback", {"swing": sw, "ema": ema, "bos_look": bos_look, "sessions": sessions}))
 
     if phase >= 1:
         extras = []
