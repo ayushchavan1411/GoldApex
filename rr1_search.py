@@ -986,7 +986,8 @@ def main():
                     if q and (df.index[-1] - df.index[0]).days >= 200:
                         q = year_stable(df, long_e, short_e, exit_p)
                     if champion is None or res.score > champion.score:
-                        if res.winrate >= 0.70 and res.trades_per_day >= 0.7:
+                        # Track near-misses from 60% up so 2y progress is visible
+                        if res.winrate >= 0.60 and res.trades_per_day >= 0.7 and res.net_pnl > 0:
                             champion = res
                             save_champion(res)
                             write_bot(res)
