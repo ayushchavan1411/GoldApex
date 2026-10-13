@@ -1,0 +1,83 @@
+{
+  "symbol": "GC=F (gold futures proxy for XAUUSD)",
+  "timeframe": "15m",
+  "period_start": "2026-08-04 04:00:00",
+  "period_end": "2026-10-13 15:15:00",
+  "bars": 4534,
+  "starting_capital": 500.0,
+  "final_equity": 424.48,
+  "net_pnl": -75.52,
+  "return_pct": -15.1,
+  "trades": 29,
+  "wins": 14,
+  "losses": 15,
+  "win_rate_pct": 48.3,
+  "avg_win": 4.54,
+  "avg_loss": -9.27,
+  "largest_win": 4.95,
+  "largest_loss": -10.0,
+  "profit_factor": 0.46,
+  "expectancy": -2.6,
+  "max_drawdown_pct": 15.1,
+  "avg_bars_held": 1.2,
+  "tp1_hit_rate_pct": 48.3,
+  "halt_equity": 425.0,
+  "hit_hard_dd_halt": true,
+  "by_setup": {
+    "1D_Fib_1.618": {
+      "n": 9,
+      "pnl": -57.22,
+      "wins": 2,
+      "win_rate": 22.2
+    },
+    "1D_Fib_1.618 (Correction)": {
+      "n": 2,
+      "pnl": 8.9,
+      "wins": 2,
+      "win_rate": 100.0
+    },
+    "Coiled_EMA_Breakout": {
+      "n": 1,
+      "pnl": 4.52,
+      "wins": 1,
+      "win_rate": 100.0
+    },
+    "1D_Fib_0.382": {
+      "n": 3,
+      "pnl": -0.13,
+      "wins": 2,
+      "win_rate": 66.7
+    },
+    "1D_Fib_1.0": {
+      "n": 14,
+      "pnl": -31.57,
+      "wins": 7,
+      "win_rate": 50.0
+    }
+  },
+  "by_direction": {
+    "LONG": {
+      "n": 27,
+      "pnl": -84.4,
+      "wins": 12,
+      "win_rate": 44.4
+    },
+    "SHORT": {
+      "n": 2,
+      "pnl": 8.9,
+      "wins": 2,
+      "win_rate": 100.0
+    }
+  },
+  "by_exit_reason": {
+    "Hard SL": 15,
+    "BE Stop": 14
+  },
+  "assumptions": [
+    "Data: Yahoo Finance GC=F 15m (~60d available), not broker XAUUSD spot",
+    "Entry fill: signal bar close (live bot uses live bid/ask)",
+    "Intrabar: if SL and TP1 both touch same bar before TP1 hit, SL wins (conservative)",
+    "One position at a time; no overnight gap model beyond bar OHLC",
+    "No spreads/commissions modeled"
+  ]
+}
