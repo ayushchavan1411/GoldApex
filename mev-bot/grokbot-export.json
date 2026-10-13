@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-13T20:09:20.633Z",
+  "generator": "@cursor/bdk@0.2.24",
+  "recipe": {
+    "name": "MEV Bot",
+    "avatar": {
+      "color": "#777777",
+      "shape": "tablet"
+    }
+  },
+  "secrets": {
+    "names": [
+      "ALCHEMY_API_KEY",
+      "BURNER_PRIVATE_KEY",
+      "RPC_URL"
+    ],
+    "reauth": []
+  },
+  "slackTokens": null,
+  "answers": {
+    "version": 1,
+    "name": "mev-bot",
+    "description": "Finds under-competed on-chain profit opportunities like flash-loan liquidations, backtests them, and runs small, capped bots with daily reports. No sandwiching.",
+    "location": "./mev-bot",
+    "model": "grok-4.5",
+    "channels": [
+      "schedule"
+    ],
+    "skills": {
+      "include": [
+        "mev-bot-getting-started"
+      ]
+    },
+    "routines": {
+      "include": [
+        "daily-report",
+        "daily-opportunity-scan"
+      ]
+    },
+    "secrets": {
+      "names": [
+        "RPC_URL",
+        "ALCHEMY_API_KEY",
+        "BURNER_PRIVATE_KEY"
+      ]
+    },
+    "repo": {
+      "name": "GoldApex",
+      "namespace": "ayushchavan1411"
+    },
+    "deploy": {
+      "when": "after-review"
+    }
+  }
+}

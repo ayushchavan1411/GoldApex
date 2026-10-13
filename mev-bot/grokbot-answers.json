@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "name": "mev-bot",
+  "description": "Finds under-competed on-chain profit opportunities like flash-loan liquidations, backtests them, and runs small, capped bots with daily reports. No sandwiching.",
+  "location": "./mev-bot",
+  "model": "grok-4.5",
+  "channels": ["schedule"],
+  "memory": "skill",
+  "secrets": {
+    "names": [
+      "RPC_URL",
+      "ALCHEMY_API_KEY",
+      "BURNER_PRIVATE_KEY"
+    ]
+  },
+  "repo": {
+    "namespace": "ayushchavan1411",
+    "name": "GoldApex"
+  },
+  "deploy": {
+    "when": "after-review"
+  }
+}
