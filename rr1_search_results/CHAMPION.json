@@ -1,50 +1,33 @@
 {
-  "name": "best|rsi_macd",
+  "name": "ur3|rsi_macd+bb_rsi_fade+rsi_macd",
   "timeframe": "5m",
-  "winrate": 0.7096774193548387,
-  "profit_factor": 2.2380820801279238,
-  "trades": 31,
-  "trades_per_day": 0.06849747474747475,
-  "net_pnl": 118.32033723067555,
-  "max_dd": 0.03960000000000318,
+  "winrate": 0.7407407407407407,
+  "profit_factor": 2.560219703824455,
+  "trades": 54,
+  "trades_per_day": 0.11931818181818182,
+  "net_pnl": 298.1450278769396,
+  "max_dd": 0.07740918069866647,
   "params": {
-    "kind": "rsi_macd",
-    "rsi": 14,
-    "os": 45,
-    "ob": 60,
-    "sessions": [
-      "asian"
+    "kind": "union",
+    "parts": [
+      "rsi_macd",
+      "bb_rsi_fade",
+      "rsi_macd"
     ],
-    "hours": [
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21
-    ],
+    "k": 3,
     "exit": {
       "rr": 1.2,
-      "max_hold": 8,
+      "max_hold": 6,
       "atr": "ATR_7",
-      "allow_long": true,
-      "allow_short": false
+      "allow_long": false,
+      "allow_short": true
     }
   },
-  "oos_winrate": 0.7058823529411765,
-  "oos_profit_factor": 2.3547557682514157,
-  "oos_trades": 17,
-  "oos_trades_per_day": 0.11210551106924165,
-  "oos_net_pnl": 69.75704699438351,
-  "score": -2638.262778800288,
+  "oos_winrate": 0.7368421052631579,
+  "oos_profit_factor": 2.4282341138113623,
+  "oos_trades": 19,
+  "oos_trades_per_day": 0.12529439472444653,
+  "oos_net_pnl": 74.01659914855523,
+  "score": -2618.383001435649,
   "rr": 1.0
 }

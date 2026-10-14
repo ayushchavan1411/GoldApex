@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """AUTO-GENERATED 1:1 RR bot from rr1_search.
-IS WR=71.0% OOS WR=70.6% tpd=0.07/0.11
+IS WR=74.1% OOS WR=73.7% tpd=0.12/0.13
 CAUSAL next-open · SL=TP=1.2×ATR
 """
 from __future__ import annotations
@@ -8,10 +8,23 @@ import json
 from pathlib import Path
 from rr1_search import load_frames, add_indicators, gen_signals, simulate
 
-KIND = "rsi_macd"
+KIND = "union"
 TF = "5m"
-PARAMS = {'rsi': 14, 'os': 45, 'ob': 60, 'sessions': ('asian',), 'hours': (7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)}
-EXIT = {'rr': 1.2, 'max_hold': 8, 'atr': 'ATR_7', 'allow_long': True, 'allow_short': False}
+PARAMS = {
+  "parts": [
+    "rsi_macd",
+    "bb_rsi_fade",
+    "rsi_macd"
+  ],
+  "k": 3
+}
+EXIT = {
+  "rr": 1.2,
+  "max_hold": 6,
+  "atr": "ATR_7",
+  "allow_long": false,
+  "allow_short": true
+}
 
 def main():
     df = add_indicators(load_frames()[TF])
