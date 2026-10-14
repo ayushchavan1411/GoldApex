@@ -30,7 +30,7 @@ LEADER = OUT / "LEADERBOARD.jsonl"
 def exits():
     return [
         {"rr": rr, "max_hold": mh, "atr": atr, **side}
-        for rr in (0.5, 0.6, 0.8, 1.0, 1.2)
+        for rr in (1.0, 1.2)  # ban sub-1.0×ATR (fake WR on flat bars)
         for mh in (2, 3, 4, 6, 8, 12)
         for atr in ("ATR_14", "ATR_7")
         for side in (
