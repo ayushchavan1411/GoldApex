@@ -16,3 +16,10 @@
 10 under watchdog: search, random, smc, hill, select, public, freq, union, orcombo, regime.
 
 Hunt continues.
+
+
+## Checkpoint 2026-10-14 08:43 UTC
+- Hunters: 12/12 alive (orcombo crash fixed: empty singles sample).
+- Stage A pipeline: ~190k singles tested, 0 full quals.
+- Best still: union `rsi_macd+bb_rsi_fade` **74.1%/73.7% WR**, tpd **0.12/0.13** (n=54/19).
+- No ≥75% WR + ≥1.0 tpd qualifier yet.
