@@ -859,8 +859,10 @@ def score_of(is_m, oos_m) -> float:
         + oos_m["winrate"] * 180
         + min(is_m["profit_factor"], 8) * 25
         + min(oos_m["profit_factor"], 8) * 30
-        + min(is_m["trades_per_day"], 6) * 20
-        + min(oos_m["trades_per_day"], 6) * 20
+        # No max tpd cap — only MIN_TPD gate. Soft-score uses raw tpd (capped only
+        # to keep score finite for extreme spam, not to reject high-frequency bots).
+        + min(is_m["trades_per_day"], 50) * 20
+        + min(oos_m["trades_per_day"], 50) * 20
         - is_m["max_dd"] * 50
     )
     if qualifies(is_m, oos_m):
