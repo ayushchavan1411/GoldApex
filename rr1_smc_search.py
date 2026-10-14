@@ -38,8 +38,9 @@ SESS = [
 
 def exits():
     out = []
+    # Strict RR ≥ 1.0 only (1:1 hunt); sub-1.0 ATR multiples banned.
     for rr, mh, atr, side in itertools.product(
-        [0.5, 0.6, 0.8, 1.0, 1.2, 1.5],
+        [1.0, 1.2, 1.5],
         [2, 3, 4, 6, 8, 12, 18, 24],
         ["ATR_14", "ATR_7"],
         [
@@ -57,12 +58,17 @@ def space():
     for sessions in SESS:
         sp.append(("fvg_reclaim", {"sessions": sessions}))
         sp.append(("ob_retest", {"sessions": sessions}))
+        sp.append(("ob_fvg", {"sessions": sessions}))
         for rsi, os_, ob in itertools.product([3, 7, 14], [20, 25, 30, 35], [65, 70, 75, 80]):
             sp.append(("fvg_rsi", {"rsi": rsi, "os": os_, "ob": ob, "sessions": sessions}))
     for sw, wick, sessions in itertools.product([5, 10, 20, 40], [0.4, 0.5, 0.6], SESS):
         sp.append(("liq_sweep", {"swing": sw, "wick": wick, "sessions": sessions}))
         sp.append(("liq_sweep_fvg", {"swing": sw, "sessions": sessions}))
         sp.append(("smc_confluence", {"swing": sw, "sessions": sessions}))
+        sp.append(("mss_entry", {"swing": sw, "sessions": sessions}))
+        sp.append(("sweep_ob", {"swing": sw, "sessions": sessions}))
+        sp.append(("discount_ob", {"swing": sw, "sessions": sessions}))
+        sp.append(("eq_fade", {"swing": sw, "sessions": sessions}))
     for sw, fib, wick, sessions in itertools.product(
         [10, 20, 40], ["382", "500", "618", "786"], [0.35, 0.45, 0.55], SESS[:7]
     ):

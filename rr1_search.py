@@ -652,6 +652,82 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
             & sess
         )
 
+    elif kind == "mss_entry":
+        # Market Structure Shift / BOS: first close beyond prior swing (ICT MSS proxy)
+        sw = p.get("swing", 20)
+        bos_up = (c > df[f"SW_HI_{sw}"]) & (c.shift(1) <= df[f"SW_HI_{sw}"])
+        bos_dn = (c < df[f"SW_LO_{sw}"]) & (c.shift(1) >= df[f"SW_LO_{sw}"])
+        long_e = bos_up & sess
+        short_e = bos_dn & sess
+
+    elif kind == "ob_fvg":
+        # Order-block retest that also overlaps active FVG (ICT + SMC confluence)
+        bt, tp = df["FVG_BULL_BOT"], df["FVG_BULL_TOP"]
+        brt, brb = df["FVG_BEAR_TOP"], df["FVG_BEAR_BOT"]
+        long_e = (
+            (df["Low"] <= df["OB_BULL_HI"])
+            & (df["Low"] >= df["OB_BULL_LO"])
+            & (c > df["OB_BULL_HI"])
+            & (df["Low"] <= tp)
+            & (c >= bt)
+            & sess
+        )
+        short_e = (
+            (df["High"] >= df["OB_BEAR_LO"])
+            & (df["High"] <= df["OB_BEAR_HI"])
+            & (c < df["OB_BEAR_LO"])
+            & (df["High"] >= brb)
+            & (c <= brt)
+            & sess
+        )
+
+    elif kind == "sweep_ob":
+        # Liquidity sweep into prior order block (ICT raid → OB reaction)
+        sw = p.get("swing", 20)
+        hi, lo = df[f"SW_HI_{sw}"], df[f"SW_LO_{sw}"]
+        long_e = (
+            (df["Low"] < lo)
+            & (c > lo)
+            & (df["Low"] <= df["OB_BULL_HI"])
+            & (df["Low"] >= df["OB_BULL_LO"])
+            & (c > df["OB_BULL_HI"])
+            & sess
+        )
+        short_e = (
+            (df["High"] > hi)
+            & (c < hi)
+            & (df["High"] >= df["OB_BEAR_LO"])
+            & (df["High"] <= df["OB_BEAR_HI"])
+            & (c < df["OB_BEAR_LO"])
+            & sess
+        )
+
+    elif kind == "discount_ob":
+        # Long only OB retest in discount (<EQ); short only OB in premium (>EQ)
+        sw = p.get("swing", 20)
+        eq = df[f"EQ_{sw}"]
+        long_e = (
+            (c < eq)
+            & (df["Low"] <= df["OB_BULL_HI"])
+            & (df["Low"] >= df["OB_BULL_LO"])
+            & (c > df["OB_BULL_HI"])
+            & sess
+        )
+        short_e = (
+            (c > eq)
+            & (df["High"] >= df["OB_BEAR_LO"])
+            & (df["High"] <= df["OB_BEAR_HI"])
+            & (c < df["OB_BEAR_LO"])
+            & sess
+        )
+
+    elif kind == "eq_fade":
+        # Equilibrium mean-reversion: reject through mid of prior swing range
+        sw = p.get("swing", 20)
+        eq = df[f"EQ_{sw}"]
+        long_e = (df["Low"] <= eq) & (c > eq) & (c < df[f"SW_HI_{sw}"]) & sess
+        short_e = (df["High"] >= eq) & (c < eq) & (c > df[f"SW_LO_{sw}"]) & sess
+
     # ----- Public free-playbook strategies -----
     elif kind == "ichimoku_tk":
         # TK cross with price vs cloud filter (lag cloud one bar for wick safety)

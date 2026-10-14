@@ -42,6 +42,7 @@ while true; do
   start_job "rr1-regime" "rr1_regime_search.py"
   start_job "rr1-allcombo" "rr1_allcombo_search.py"
   start_job "rr1-pipeline" "rr1_pipeline_search.py"
+  start_job "rr1-ictstack" "rr1_ict_stack_search.py"
   # heartbeat
   {
     echo -n "$(date -u '+%Y-%m-%d %H:%M:%S') | alive: "
