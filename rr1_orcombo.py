@@ -58,6 +58,11 @@ def _params(kind: str, item):
 
 
 def build_singles(frames, tfs, wr_floor: float, nsig_hi: int):
+    # Fast pre-score exits (strict 1:1 hunt); fuller exit grid used on OR combos.
+    pre_exits = [
+        {"rr": 1.0, "max_hold": mh, "atr": "ATR_14", "allow_long": True, "allow_short": True}
+        for mh in (2, 3, 4)
+    ]
     exits = [
         {"rr": rr, "max_hold": mh, "atr": "ATR_14", "allow_long": True, "allow_short": True}
         for rr in (1.0, 1.2, 1.5)
@@ -66,6 +71,9 @@ def build_singles(frames, tfs, wr_floor: float, nsig_hi: int):
     singles = []
     for tf in tfs:
         if tf not in frames:
+            continue
+        # Skip 1m full-grid pre-score (too slow under memory pressure); sample later if needed.
+        if tf == "1m" and wr_floor >= 0.58:
             continue
         df = frames[tf]
         lib = []
@@ -81,15 +89,23 @@ def build_singles(frames, tfs, wr_floor: float, nsig_hi: int):
                 nsig = int(L.sum() + S.sum())
                 if 30 <= nsig <= nsig_hi:
                     lib.append((kind, p, L, S, nsig))
+        # Cap pre-score budget; prefer mid-frequency signals
+        lib.sort(key=lambda x: abs(x[4] - 180))
+        if len(lib) > 400:
+            lib = lib[:400]
         log(f"library[{tf}] size={len(lib)} wr_floor={wr_floor:.2f}")
+        scored = 0
         for kind, p, L, S, nsig in lib:
             best = None
-            for ex in exits:
+            for ex in pre_exits:
                 res = evaluate(f"s|{kind}|{tf}", tf, df, L, S, ex, {"kind": kind, **p})
                 if not res:
                     continue
                 if best is None or min(res.winrate, res.oos_winrate) > min(best.winrate, best.oos_winrate):
                     best = res
+            scored += 1
+            if scored % 100 == 0:
+                log(f"pre-score[{tf}] {scored}/{len(lib)} kept={len([s for s in singles if s[5]==tf])}")
             if best and min(best.winrate, best.oos_winrate) >= wr_floor and best.trades >= 20:
                 singles.append((best, kind, p, L, S, tf, df))
     singles = sorted(singles, key=lambda x: min(x[0].winrate, x[0].oos_winrate), reverse=True)[:60]
