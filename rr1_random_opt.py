@@ -321,7 +321,7 @@ def main():
                             f"tpd={res.trades_per_day:.2f}/{res.oos_trades_per_day:.2f} "
                             f"n={res.trades}/{res.oos_trades}"
                         )
-                elif res.winrate >= 0.68 and res.oos_winrate >= 0.68:
+                elif res.winrate >= 0.68 and res.oos_winrate >= 0.68 and res.trades >= 30 and res.oos_trades >= 15:
                     # track high-WR low-tpd near-misses without claiming qualifier
                     best = (score_key, res)
                     if save_champion(res):

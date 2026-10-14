@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """AUTO-GENERATED 1:1 RR bot from rr1_search.
-IS WR=71.0% OOS WR=70.6% tpd=0.07/0.11
+IS WR=60.5% OOS WR=82.4% tpd=0.08/0.11
 CAUSAL next-open · SL=TP=1.2×ATR
 """
 from __future__ import annotations
@@ -8,39 +8,22 @@ import json
 from pathlib import Path
 from rr1_search import load_frames, add_indicators, gen_signals, simulate
 
-KIND = "rsi_macd"
+KIND = "smc_confluence"
 TF = "5m"
 PARAMS = {
-  "rsi": 14,
-  "os": 45,
-  "ob": 60,
+  "swing": 20,
   "sessions": [
-    "asian"
+    "london",
+    "overlap"
   ],
-  "hours": [
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21
-  ]
+  "vol_ok": true
 }
 EXIT = {
   "rr": 1.2,
-  "max_hold": 8,
+  "max_hold": 4,
   "atr": "ATR_7",
-  "allow_long": true,
-  "allow_short": false
+  "allow_long": false,
+  "allow_short": true
 }
 
 def main():

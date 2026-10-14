@@ -1054,9 +1054,16 @@ def _champ_key(winrate: float, oos_winrate: float, tpd: float, oos_tpd: float, s
 
 
 def save_champion(r: Result, force: bool = False):
-    """Persist champion only if better (or force). Always append to candidates."""
+    """Persist champion only if better (or force). Always append to candidates.
+
+    Reject tiny-sample WR spikes (e.g. 23 IS / 9 OOS '100% OOS') unless force
+    and the result already passed qualifies() sample gates.
+    """
     with open(CANDIDATES, "a", encoding="utf-8") as f:
         f.write(json.dumps(asdict(r)) + "\n")
+    # Block tiny-sample WR spikes (e.g. 9 OOS trades @ 100%) unless force/qualified
+    if not force and (r.trades < 30 or r.oos_trades < 15):
+        return False
     if CHAMPION.exists() and not force:
         try:
             d = json.loads(CHAMPION.read_text())
@@ -1066,6 +1073,12 @@ def save_champion(r: Result, force: bool = False):
                 d.get("score", 0.0),
             )
             new = _champ_key(r.winrate, r.oos_winrate, r.trades_per_day, r.oos_trades_per_day, r.score)
+            old_oos = int(d.get("oos_trades", 0))
+            # Never replace a decently sampled champ with a thinner OOS miracle
+            if r.oos_trades < 15:
+                return False
+            if old_oos >= 15 and r.oos_trades < old_oos and new[0] <= old[0] + 0.03:
+                return False
             if new <= old:
                 return False
         except Exception:
