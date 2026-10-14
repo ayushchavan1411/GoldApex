@@ -170,17 +170,30 @@ def single_specs():
     return specs
 
 
-def stage_a_singles(frames, tested, quals, best):
+def stage_a_singles(raw_frames, tested, quals, best):
+    """Process one TF at a time to avoid OOM on 1m (910k bars × fat indicator frame)."""
+    import gc
     log("=== PIPE STAGE A: exhaustive singles all TFs ===")
     specs = single_specs()
     RNG.shuffle(specs)
-    log(f"stageA specs={len(specs)} tfs={[t for t in TFS if t in frames]}")
+    tfs = [t for t in TFS if t in raw_frames]
+    log(f"stageA specs={len(specs)} tfs={tfs}")
     leaders = []  # keep top singles for stage B/C
-    for tf in [t for t in TFS if t in frames]:
-        df = frames[tf]
-        # fewer exits on higher TF (slower)
-        exs = EXITS if tf == "5m" else [e for e in EXITS if e["max_hold"] in (6, 8, 12)][:8]
-        for kind, p in specs:
+    for tf in tfs:
+        log(f"stageA loading indicators for {tf} ({len(raw_frames[tf])} bars)…")
+        df = add_indicators(raw_frames[tf]).copy()
+        # fewer exits on non-5m; even fewer on 1m (heavy)
+        if tf == "1m":
+            exs = [e for e in EXITS if e["max_hold"] in (8, 12) and e["allow_long"] and e["allow_short"]][:4]
+            # subsample specs on 1m for memory/time — still broad, not all 9k×exits
+            use_specs = specs[::2]  # half
+        elif tf == "5m":
+            exs = EXITS
+            use_specs = specs
+        else:
+            exs = [e for e in EXITS if e["max_hold"] in (6, 8, 12)][:8]
+            use_specs = specs
+        for kind, p in use_specs:
             try:
                 L, S = gen_signals(df, kind, p)
                 L, S = _clean(L, S)
@@ -191,7 +204,7 @@ def stage_a_singles(frames, tested, quals, best):
             local_best = None
             for ex in exs:
                 res = evaluate(f"A|{kind}|{tf}", tf, df, L, S, ex, {"kind": kind, **p, "pipe": "A"})
-                row = consider(res, L, S, ex, df, tested, quals, best, f"A|{tf}", SINGLES)
+                consider(res, L, S, ex, df, tested, quals, best, f"A|{tf}", SINGLES)
                 if res and (local_best is None or min(res.winrate, res.oos_winrate) > min(local_best.winrate, local_best.oos_winrate)):
                     local_best = res
             if local_best and local_best.trades >= 30 and local_best.oos_trades >= 15:
@@ -205,6 +218,9 @@ def stage_a_singles(frames, tested, quals, best):
                 })
             if tested[0] % 400 == 0:
                 _prog(tested, quals, best, "A")
+        del df
+        gc.collect()
+        log(f"stageA finished TF={tf} leaders_so_far={len(leaders)}")
     leaders.sort(key=lambda x: (x["score"], min(x["tpd"], x["oos_tpd"])), reverse=True)
     top = leaders[:80]
     BEST_SINGLES.write_text(json.dumps(top, indent=2, default=str))
@@ -228,10 +244,10 @@ SMC_KINDS = [
 ]
 
 
-def stage_b_smc_combos(frames, leaders, tested, quals, best):
+def stage_b_smc_combos(raw_frames, leaders, tested, quals, best):
     log("=== PIPE STAGE B: best singles × ICT/SMC/FVG ===")
     # Focus on 5m for execution; HTF leaders aligned in stage C
-    df5 = frames["5m"]
+    df5 = add_indicators(raw_frames["5m"])
     # rebuild 5m leader signals
     base = []
     for lead in leaders:
@@ -284,35 +300,40 @@ def stage_b_smc_combos(frames, leaders, tested, quals, best):
 
 # --------------- Stage C: multi-timeframe ---------------
 
-def stage_c_mtf(frames, leaders, tested, quals, best):
+def stage_c_mtf(raw_frames, leaders, tested, quals, best):
+    import gc
     log("=== PIPE STAGE C: multi-timeframe combos ===")
-    df5 = frames["5m"]
+    df5 = add_indicators(raw_frames["5m"])
     idx5 = df5.index
     # Precompute HTF signal banks from leaders + common HTF filters
     htf_bank = []  # (label, L5, S5)
     for lead in leaders:
         tf = lead["tf"]
-        if tf not in frames:
-            continue
-        dft = frames[tf]
+        if tf not in raw_frames or tf == "1m":
+            continue  # skip aligning 1m→5m noise in MTF bank
+        dft = add_indicators(raw_frames[tf]) if tf != "5m" else df5
         try:
             L, S = gen_signals(dft, lead["kind"], lead["p"])
             L, S = _clean(L, S)
         except Exception:
+            if tf != "5m":
+                del dft
             continue
         if tf == "5m":
             L5, S5 = L, S
         else:
             L5 = align_signal_to_index(L, dft.index, idx5)
             S5 = align_signal_to_index(S, dft.index, idx5)
+            del dft
+            gc.collect()
         if L5.sum() + S5.sum() < 30:
             continue
         htf_bank.append((f"{lead['kind']}@{tf}", L5, S5, lead))
     # Also add pure HTF trend masks from EMA on 15m/1h/4h
     for tf in ("15m", "1h", "4h"):
-        if tf not in frames:
+        if tf not in raw_frames:
             continue
-        dft = frames[tf]
+        dft = add_indicators(raw_frames[tf])
         for kind, p in [
             ("ema_cross", {"fast": 9, "slow": 21, "sessions": None}),
             ("ema_cross", {"fast": 21, "slow": 50, "sessions": None}),
@@ -327,6 +348,8 @@ def stage_c_mtf(frames, leaders, tested, quals, best):
             L5 = align_signal_to_index(L, dft.index, idx5)
             S5 = align_signal_to_index(S, dft.index, idx5)
             htf_bank.append((f"{kind}@{tf}", L5, S5, {"kind": kind, "p": p, "tf": tf}))
+        del dft
+        gc.collect()
     log(f"stageC htf_bank={len(htf_bank)}")
 
     # 5m execution signals (RSI / FVG / SMC)
@@ -406,25 +429,26 @@ def _prog(tested, quals, best, stage):
 def main():
     OUT.mkdir(exist_ok=True)
     log("=== PIPELINE singles→SMC→MTF START ===")
+    # Keep RAW frames only — indicators built per-TF to avoid OOM on 1m
     raw = load_frames(include_resampled=True)
-    frames = {k: add_indicators(v) for k, v in raw.items()}
     global TFS
-    TFS = [t for t in ["1m", "5m", "15m", "30m", "1h", "2h", "4h"] if t in frames]
-    log(f"pipeline TFs available: {TFS}")
+    # 5m first (execution TF), HTFs next, 1m last (heaviest)
+    TFS = [t for t in ["5m", "15m", "30m", "1h", "2h", "4h", "1m"] if t in raw]
+    log(f"pipeline TFs available: {TFS} sizes={{ {', '.join(f'{k}:{len(v)}' for k,v in raw.items())} }}")
     tested = [0]
     quals = [0]
     best = [None]
 
     while True:
-        leaders = stage_a_singles(frames, tested, quals, best)
+        leaders = stage_a_singles(raw, tested, quals, best)
         if BEST_SINGLES.exists():
             try:
                 leaders = json.loads(BEST_SINGLES.read_text())
             except Exception:
                 pass
         if leaders:
-            stage_b_smc_combos(frames, leaders, tested, quals, best)
-            stage_c_mtf(frames, leaders, tested, quals, best)
+            stage_b_smc_combos(raw, leaders, tested, quals, best)
+            stage_c_mtf(raw, leaders, tested, quals, best)
         _prog(tested, quals, best, "loop")
         log(f"pipeline full loop done tested={tested[0]} quals={quals[0]}; restart stages")
         RNG.seed(int(time.time()) % 1000000)
