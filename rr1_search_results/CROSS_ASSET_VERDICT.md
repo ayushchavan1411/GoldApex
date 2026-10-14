@@ -27,7 +27,8 @@
 | GBP/USD | fvg_rsi family | ~75% / ~82% | ~0.05–0.16 | same wall |
 | USO | fvg_rsi dual | ~72% / ~73% | ~0.09–0.16 | below both gates |
 | SLV / GLD | fvg_rsi / smc | ~68–70% | ~0.06–0.09 | below both |
-| EUR/USD | stoch/rsi high-freq | at tpd≥1: **~58% WR** so far | 1.5–2.5+ | **WR collapses when tpd rises** |
+| EUR/USD | HF ceiling (64k exits) | at tpd≥1: **58.2% / 69.0% WR** | 1.58 / 2.38 | **WR collapses when tpd rises** |
+| EUR/USD | OR-boost high-WR seeds | ~66.7% / 68.2% | ~0.11 / 0.15 | WR below 75, tpd ≪ 1 |
 | Index ETFs | smc / dual | ~55–62% | ~0.1 | far |
 
 ## Pattern (same as gold)

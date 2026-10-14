@@ -1,0 +1,75 @@
+{
+  "time": "2026-10-14 20:46:24",
+  "any_goal": false,
+  "symbols": [
+    {
+      "symbol": "EUR/USD",
+      "class": "fx",
+      "tested": 64992,
+      "hf_hits": 6976,
+      "best_hf": {
+        "symbol": "EUR/USD",
+        "kind": "stoch_cross",
+        "params": {
+          "period": 9,
+          "os": 15,
+          "ob": 70,
+          "sessions": [
+            "asian"
+          ]
+        },
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 4,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        },
+        "wr": 0.5815602836879432,
+        "oos_wr": 0.6900584795321637,
+        "tpd": 1.5769292219204347,
+        "oos_tpd": 2.3785394932935917,
+        "n": 705,
+        "oos_n": 342,
+        "pf": 1.391487186442915,
+        "oos_pf": 2.261927014094278,
+        "min_wr": 0.5815602836879432,
+        "min_tpd": 1.5769292219204347
+      },
+      "best_any": {
+        "symbol": "EUR/USD",
+        "kind": "bb_rsi_fade",
+        "params": {
+          "period": 10,
+          "k": 2.0,
+          "rsi": 14,
+          "os": 25,
+          "ob": 75,
+          "sessions": [
+            "london",
+            "overlap"
+          ]
+        },
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 4,
+          "atr": "ATR_14",
+          "allow_long": false,
+          "allow_short": true
+        },
+        "wr": 0.6222222222222222,
+        "oos_wr": 0.6153846153846154,
+        "tpd": 0.20131011343665123,
+        "oos_tpd": 0.09041231992051664,
+        "n": 90,
+        "oos_n": 13,
+        "pf": 1.5698486605106414,
+        "oos_pf": 1.947578221945109,
+        "min_wr": 0.6153846153846154,
+        "min_tpd": 0.09041231992051664
+      },
+      "goal_reachable_in_grid": false,
+      "min_atr": 5.435959175824917e-05
+    }
+  ]
+}

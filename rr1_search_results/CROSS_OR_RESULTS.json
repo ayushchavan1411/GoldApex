@@ -1,5 +1,5 @@
 {
-  "time": "2026-10-14 19:45:52",
+  "time": "2026-10-14 20:45:30",
   "goal": "IS+OOS WR\u226575%, tpd\u22651.0, rr\u22651.0, n\u226530/15",
   "any_qualifier": false,
   "symbols": [
@@ -2386,6 +2386,57 @@
         "near": false,
         "min_wr": 0.6923076923076923,
         "min_tpd": 0.0741948634325316
+      },
+      "quals": [],
+      "nears": []
+    },
+    {
+      "symbol": "EUR/USD",
+      "class": "fx",
+      "bars": 175000,
+      "min_atr": 5.435959175824917e-05,
+      "seed_pool": 21,
+      "tested_seeds": 24474,
+      "or_tested": 1713,
+      "qualifiers": 0,
+      "near_misses": 0,
+      "best": {
+        "symbol": "EUR/USD",
+        "name": "EUR/USD|seed|fvg_rsi|atr_expanded",
+        "kind": "fvg_rsi",
+        "filter": "atr_expanded",
+        "wr": 0.6666666666666666,
+        "oos_wr": 0.6818181818181818,
+        "tpd": 0.10736539383288066,
+        "oos_tpd": 0.15300546448087432,
+        "n": 48,
+        "oos_n": 22,
+        "pf": 2.5380698760123486,
+        "oos_pf": 1.7992343427292525,
+        "pnl": 213.35536483003187,
+        "oos_pnl": 63.94631545903499,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        },
+        "params": {
+          "rsi": 7,
+          "os": 40,
+          "ob": 70,
+          "sessions": [
+            "asian",
+            "london",
+            "overlap",
+            "ny"
+          ]
+        },
+        "qualifies": false,
+        "near": false,
+        "min_wr": 0.6666666666666666,
+        "min_tpd": 0.10736539383288066
       },
       "quals": [],
       "nears": []
