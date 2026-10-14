@@ -89,11 +89,36 @@ def _load_local_csv(path: Path) -> pd.DataFrame:
     return out
 
 
-def load_frames() -> dict[str, pd.DataFrame]:
-    """Prefer long local Twelve Data CSVs in data/, else Yahoo."""
+def resample_ohlc(df: pd.DataFrame, rule: str) -> pd.DataFrame:
+    """Resample OHLC to a higher timeframe (right-labeled closed bars)."""
+    ohlc = df[["Open", "High", "Low", "Close"]].resample(rule, label="right", closed="right").agg(
+        {"Open": "first", "High": "max", "Low": "min", "Close": "last"}
+    ).dropna()
+    return ohlc
+
+
+def align_signal_to_index(signal: np.ndarray | pd.Series, src_index: pd.DatetimeIndex, dst_index: pd.DatetimeIndex) -> np.ndarray:
+    """Map HTF boolean signal onto LTF bars using only completed HTF bars (causal).
+
+    Uses prior HTF bar (.shift(1)) then forward-fills onto the destination index.
+    """
+    s = pd.Series(np.asarray(signal, dtype=bool), index=src_index)
+    # only use last fully closed HTF bar
+    s = s.shift(1)
+    aligned = s.reindex(dst_index, method="ffill").fillna(False)
+    return aligned.to_numpy(dtype=bool)
+
+
+def load_frames(include_resampled: bool = True) -> dict[str, pd.DataFrame]:
+    """Prefer long local Twelve Data CSVs in data/, else Yahoo.
+
+    When local 5m exists, also build 15m/30m/1h/2h/4h via resample for MTF search.
+    Native 1m is only loaded if a local 1m CSV is present (cannot upsample from 5m).
+    """
     frames: dict[str, pd.DataFrame] = {}
     data_dir = Path("data")
     local_map = {
+        "1m": sorted(data_dir.glob("XAUUSD_1min_*.csv")) if data_dir.exists() else [],
         "5m": sorted(data_dir.glob("XAUUSD_5min_*.csv")) if data_dir.exists() else [],
         "15m": sorted(data_dir.glob("XAUUSD_15min_*.csv")) if data_dir.exists() else [],
         "1h": sorted(data_dir.glob("XAUUSD_1h_*.csv")) if data_dir.exists() else [],
@@ -104,19 +129,32 @@ def load_frames() -> dict[str, pd.DataFrame]:
             if len(df) > 500:
                 frames[key] = df
                 log(f"Loaded LOCAL {key}: {len(df)} {df.index[0]} → {df.index[-1]} ({files[-1].name})")
-    # Yahoo fill for missing TFs
-    for key, interval, period in [("5m", "5m", "60d"), ("15m", "15m", "60d"), ("1h", "1h", "730d")]:
-        if key in frames:
-            continue
-        df = yf.download("GC=F", interval=interval, period=period, progress=False, auto_adjust=True)
-        if isinstance(df.columns, pd.MultiIndex):
-            df.columns = df.columns.get_level_values(0)
-        df = df[["Open", "High", "Low", "Close"]].dropna()
-        if df.index.tz is not None:
-            df.index = df.index.tz_convert("UTC").tz_localize(None)
-        if len(df) > 500:
-            frames[key] = df
-            log(f"Loaded Yahoo {key}: {len(df)} {df.index[0]} → {df.index[-1]}")
+    # Yahoo fill for missing TFs (short windows — used only if no local 5m)
+    if "5m" not in frames:
+        for key, interval, period in [("5m", "5m", "60d"), ("15m", "15m", "60d"), ("1h", "1h", "730d")]:
+            if key in frames:
+                continue
+            df = yf.download("GC=F", interval=interval, period=period, progress=False, auto_adjust=True)
+            if isinstance(df.columns, pd.MultiIndex):
+                df.columns = df.columns.get_level_values(0)
+            df = df[["Open", "High", "Low", "Close"]].dropna()
+            if df.index.tz is not None:
+                df.index = df.index.tz_convert("UTC").tz_localize(None)
+            if len(df) > 500:
+                frames[key] = df
+                log(f"Loaded Yahoo {key}: {len(df)} {df.index[0]} → {df.index[-1]}")
+    # Resample higher TFs from long local 5m (2y coverage)
+    if include_resampled and "5m" in frames and (frames["5m"].index[-1] - frames["5m"].index[0]).days >= 200:
+        base = frames["5m"]
+        for tf, rule in (("15m", "15min"), ("30m", "30min"), ("1h", "1h"), ("2h", "2h"), ("4h", "4h")):
+            if tf in frames and len(frames[tf]) > 5000:
+                continue  # keep native if already long
+            rs = resample_ohlc(base, rule)
+            if len(rs) > 400:
+                frames[tf] = rs
+                log(f"Resampled {tf}: {len(rs)} {rs.index[0]} → {rs.index[-1]} from 5m")
+        if "1m" not in frames:
+            log("NOTE: no native 1m CSV — cannot upsample; pipeline skips 1m until downloaded")
     if not frames:
         raise RuntimeError("no data")
     return frames
