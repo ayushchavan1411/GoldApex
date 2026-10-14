@@ -1102,8 +1102,8 @@ from rr1_search import load_frames, add_indicators, gen_signals, simulate
 
 KIND = {json.dumps(r.params["kind"])}
 TF = {json.dumps(r.timeframe)}
-PARAMS = {json.dumps(params, indent=2)}
-EXIT = {json.dumps(exit_p, indent=2)}
+PARAMS = {repr(params)}
+EXIT = {repr(exit_p)}
 
 def main():
     df = add_indicators(load_frames()[TF])
@@ -1151,22 +1151,28 @@ def main():
         tf_order = [t for t in ("5m", "15m", "1h") if t in frames]
 
     champion: Result | None = None
-    # Never reload short-window champions when hunting on 2y local
-    if CHAMPION.exists() and not long_5m:
+    if CHAMPION.exists():
         try:
             d = json.loads(CHAMPION.read_text())
-            champion = Result(**{k: d[k] for k in Result.__dataclass_fields__ if k in d})
-            log(
-                f"Loaded prior champion WR={champion.winrate:.1%}/{champion.oos_winrate:.1%} "
-                f"tpd={champion.trades_per_day:.2f}/{champion.oos_trades_per_day:.2f} score={champion.score:.0f}"
+            # One-time archive of pre-2y short-window champs only
+            short_window = (
+                long_5m
+                and d.get("timeframe") in ("15m", "1h")
+                and (d.get("trades", 0) + d.get("oos_trades", 0)) < 80
             )
+            if short_window:
+                arch = OUT / "CHAMPION_pre_2y_search.json"
+                if not arch.exists():
+                    arch.write_text(CHAMPION.read_text())
+                log(f"Ignoring short-window champion (kept file; archived→{arch.name})")
+            else:
+                champion = Result(**{k: d[k] for k in Result.__dataclass_fields__ if k in d})
+                log(
+                    f"Loaded prior champion WR={champion.winrate:.1%}/{champion.oos_winrate:.1%} "
+                    f"tpd={champion.trades_per_day:.2f}/{champion.oos_trades_per_day:.2f} score={champion.score:.0f}"
+                )
         except Exception as e:
             log(f"Could not load prior champion: {e}")
-    elif CHAMPION.exists() and long_5m:
-        arch = OUT / "CHAMPION_pre_2y_search.json"
-        arch.write_text(CHAMPION.read_text())
-        CHAMPION.unlink()
-        log(f"Archived short-window champion → {arch.name}; starting clean on 2y 5m")
     tested = 0
     phase = 0
     qualified_count = 0

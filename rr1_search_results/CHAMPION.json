@@ -1,0 +1,50 @@
+{
+  "name": "best|rsi_macd",
+  "timeframe": "5m",
+  "winrate": 0.7096774193548387,
+  "profit_factor": 2.2380820801279238,
+  "trades": 31,
+  "trades_per_day": 0.06849747474747475,
+  "net_pnl": 118.32033723067555,
+  "max_dd": 0.03960000000000318,
+  "params": {
+    "kind": "rsi_macd",
+    "rsi": 14,
+    "os": 45,
+    "ob": 60,
+    "sessions": [
+      "asian"
+    ],
+    "hours": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "exit": {
+      "rr": 1.2,
+      "max_hold": 8,
+      "atr": "ATR_7",
+      "allow_long": true,
+      "allow_short": false
+    }
+  },
+  "oos_winrate": 0.7058823529411765,
+  "oos_profit_factor": 2.3547557682514157,
+  "oos_trades": 17,
+  "oos_trades_per_day": 0.11210551106924165,
+  "oos_net_pnl": 69.75704699438351,
+  "score": -2638.262778800288,
+  "rr": 1.0
+}
