@@ -37,3 +37,15 @@ Dedicated hunter `rr1_ict_stack_search.py` now runs:
 - D — those stacks ∧ indicator filters again
 
 Also expanded `rr1_smc_search` with new kinds; banned RR&lt;1.0 there.
+
+
+## SL-hit learning (2026-10-14 14:15 UTC)
+Autopsied **730** strategy variants with trade-level SL|TP|TIME tags.
+
+**Dominant lessons (vote counts):** {'avoid_hours': 59, 'avoid_sessions': 24, 'rsi_sanity': 80, 'skip_weak_impulse': 55, 'atr_expanded': 6, 'atr_not_expanded': 1, 'adx_min_22': 1}
+- **skip_weak_impulse**: many SLs die within 2 bars (bad entry timing / noise)
+- **avoid_hours**: SL clusters often in UTC 14–17, 21 (NY active / late)
+- **rsi_sanity**: RSI at SL entries differs from TP entries — filter chase entries
+- Poison sessions often tagged overlap/ny for loose RSI+MACD (strategy-dependent)
+
+New hunter `rr1_sl_learn_search.py` reapplies these as AND filters on the existing strategy bank and OR-boosts survivors.

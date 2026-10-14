@@ -446,6 +446,125 @@ def simulate(
     }
 
 
+def simulate_trades(
+    df: pd.DataFrame,
+    long_e: np.ndarray,
+    short_e: np.ndarray,
+    rr_atr: float,
+    max_hold: int,
+    start_i: int,
+    end_i: int,
+    atr_col: str = "ATR_14",
+    allow_long: bool = True,
+    allow_short: bool = True,
+) -> list[dict]:
+    """Like simulate(), but returns per-trade rows with exit_reason SL|TP|TIME + context."""
+    n = len(df)
+    opens = df["Open"].to_numpy(float)
+    highs = df["High"].to_numpy(float)
+    lows = df["Low"].to_numpy(float)
+    closes = df["Close"].to_numpy(float)
+    atrs = df[atr_col].to_numpy(float)
+    hours = df["hour"].to_numpy(int) if "hour" in df.columns else np.zeros(n, int)
+    sessions = df["session"].to_numpy() if "session" in df.columns else np.array(["?"] * n)
+    rsi14 = df["RSI_14"].to_numpy(float) if "RSI_14" in df.columns else np.full(n, np.nan)
+    rsi7 = df["RSI_7"].to_numpy(float) if "RSI_7" in df.columns else np.full(n, np.nan)
+    adx = df["ADX"].to_numpy(float) if "ADX" in df.columns else np.full(n, np.nan)
+    plus_di = df["PLUS_DI"].to_numpy(float) if "PLUS_DI" in df.columns else np.full(n, np.nan)
+    minus_di = df["MINUS_DI"].to_numpy(float) if "MINUS_DI" in df.columns else np.full(n, np.nan)
+    ema21 = df["EMA_21"].to_numpy(float) if "EMA_21" in df.columns else np.full(n, np.nan)
+    ema50 = df["EMA_50"].to_numpy(float) if "EMA_50" in df.columns else np.full(n, np.nan)
+    macdh = df["MACD_HIST"].to_numpy(float) if "MACD_HIST" in df.columns else np.full(n, np.nan)
+    atr14 = df["ATR_14"].to_numpy(float) if "ATR_14" in df.columns else atrs
+    times = df.index
+
+    trades: list[dict] = []
+    i = start_i
+    while i < end_i and i + 1 < n:
+        gl = allow_long and bool(long_e[i])
+        gs = allow_short and bool(short_e[i])
+        if gl == gs:
+            i += 1
+            continue
+        direction = "LONG" if gl else "SHORT"
+        atr = atrs[i]
+        entry = opens[i + 1]
+        if not np.isfinite(atr) or atr < MIN_ATR or not np.isfinite(entry):
+            i += 1
+            continue
+        dist = atr * rr_atr
+        if dist < MIN_ATR:
+            i += 1
+            continue
+        sl = entry - dist if direction == "LONG" else entry + dist
+        tp = entry + dist if direction == "LONG" else entry - dist
+
+        j = i + 1
+        bars = 0
+        exit_p = entry
+        reason = "TIME"
+        mfe = 0.0  # max favorable excursion in R
+        mae = 0.0  # max adverse excursion in R
+        while j < n and bars < max_hold:
+            hi, lo = highs[j], lows[j]
+            bars += 1
+            if direction == "LONG":
+                mfe = max(mfe, (hi - entry) / dist)
+                mae = max(mae, (entry - lo) / dist)
+                if lo <= sl:
+                    exit_p, reason = sl, "SL"
+                    break
+                if hi >= tp:
+                    exit_p, reason = tp, "TP"
+                    break
+            else:
+                mfe = max(mfe, (entry - lo) / dist)
+                mae = max(mae, (hi - entry) / dist)
+                if hi >= sl:
+                    exit_p, reason = sl, "SL"
+                    break
+                if lo <= tp:
+                    exit_p, reason = tp, "TP"
+                    break
+            j += 1
+        if reason == "TIME":
+            exit_p = closes[min(j, n - 1)]
+        pnl_r = ((exit_p - entry) / dist) if direction == "LONG" else ((entry - exit_p) / dist)
+        ema_bull = bool(ema21[i] > ema50[i]) if np.isfinite(ema21[i]) and np.isfinite(ema50[i]) else None
+        with_trend = (direction == "LONG" and ema_bull) or (direction == "SHORT" and ema_bull is False)
+        atr_ma = float(np.nanmean(atr14[max(0, i - 50) : i + 1])) if i > 5 else float(atr14[i])
+        trades.append(
+            {
+                "signal_i": int(i),
+                "entry_time": str(times[i + 1]),
+                "exit_time": str(times[min(j, n - 1)]),
+                "direction": direction,
+                "reason": reason,
+                "bars": int(bars),
+                "pnl_r": float(pnl_r),
+                "mfe_r": float(mfe),
+                "mae_r": float(mae),
+                "hour": int(hours[i]),
+                "session": str(sessions[i]),
+                "rsi14": float(rsi14[i]) if np.isfinite(rsi14[i]) else None,
+                "rsi7": float(rsi7[i]) if np.isfinite(rsi7[i]) else None,
+                "adx": float(adx[i]) if np.isfinite(adx[i]) else None,
+                "plus_di": float(plus_di[i]) if np.isfinite(plus_di[i]) else None,
+                "minus_di": float(minus_di[i]) if np.isfinite(minus_di[i]) else None,
+                "macd_hist": float(macdh[i]) if np.isfinite(macdh[i]) else None,
+                "ema_bull": ema_bull,
+                "with_trend": with_trend,
+                "atr_vs_ma": float(atr14[i] / atr_ma) if atr_ma and np.isfinite(atr_ma) else None,
+                "entry": float(entry),
+                "sl": float(sl),
+                "tp": float(tp),
+                "dist": float(dist),
+            }
+        )
+        i = j + 1 if j > i else i + 1
+    return trades
+
+
 def sess_mask(df, sessions):
     if not sessions:
         return np.ones(len(df), dtype=bool)
