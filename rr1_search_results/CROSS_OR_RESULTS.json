@@ -1,0 +1,2394 @@
+{
+  "time": "2026-10-14 19:45:52",
+  "goal": "IS+OOS WR\u226575%, tpd\u22651.0, rr\u22651.0, n\u226530/15",
+  "any_qualifier": false,
+  "symbols": [
+    {
+      "symbol": "USD/JPY",
+      "class": "fx",
+      "bars": 175000,
+      "min_atr": 0.007911178143796178,
+      "seed_pool": 40,
+      "tested_seeds": 23394,
+      "or_tested": 1122,
+      "qualifiers": 0,
+      "near_misses": 380,
+      "best": {
+        "symbol": "USD/JPY",
+        "name": "USD/JPY|seed|fvg_rsi|atr_expanded+skip_tiny_body",
+        "kind": "fvg_rsi",
+        "filter": "atr_expanded+skip_tiny_body",
+        "wr": 0.8333333333333334,
+        "oos_wr": 0.8181818181818182,
+        "tpd": 0.06734006734006734,
+        "oos_tpd": 0.07650273224043716,
+        "n": 30,
+        "oos_n": 11,
+        "pf": 4.746467281718435,
+        "oos_pf": 4.089362355163911,
+        "pnl": 206.0881848203616,
+        "oos_pnl": 67.85207155953191,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        },
+        "params": {
+          "rsi": 14,
+          "os": 40,
+          "ob": 65,
+          "sessions": [
+            "london",
+            "overlap"
+          ]
+        },
+        "qualifies": false,
+        "near": false,
+        "min_wr": 0.8181818181818182,
+        "min_tpd": 0.06734006734006734
+      },
+      "quals": [],
+      "nears": [
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.8,
+          "oos_wr": 0.7857142857142857,
+          "tpd": 0.07856341189674523,
+          "oos_tpd": 0.09736711376055639,
+          "n": 35,
+          "oos_n": 14,
+          "pf": 3.624852761702792,
+          "oos_pf": 3.2928233969915537,
+          "pnl": 207.28543499352097,
+          "oos_pnl": 78.97742934552602,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 70,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7857142857142857,
+          "min_tpd": 0.07856341189674523
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.8,
+          "oos_wr": 0.7857142857142857,
+          "tpd": 0.07856341189674523,
+          "oos_tpd": 0.09736711376055639,
+          "n": 35,
+          "oos_n": 14,
+          "pf": 3.624852761702792,
+          "oos_pf": 3.2928233969915537,
+          "pnl": 207.28543499352097,
+          "oos_pnl": 78.97742934552602,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 70,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7857142857142857,
+          "min_tpd": 0.07856341189674523
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.7941176470588235,
+          "oos_wr": 0.7857142857142857,
+          "tpd": 0.07631874298540965,
+          "oos_tpd": 0.09736711376055639,
+          "n": 34,
+          "oos_n": 14,
+          "pf": 3.449238129447203,
+          "oos_pf": 3.2928233969915537,
+          "pnl": 193.41709313090462,
+          "oos_pnl": 78.97742934552602,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 75,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7857142857142857,
+          "min_tpd": 0.07631874298540965
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.7941176470588235,
+          "oos_wr": 0.7857142857142857,
+          "tpd": 0.07631874298540965,
+          "oos_tpd": 0.09736711376055639,
+          "n": 34,
+          "oos_n": 14,
+          "pf": 3.449238129447203,
+          "oos_pf": 3.2928233969915537,
+          "pnl": 193.41709313090462,
+          "oos_pnl": 78.97742934552602,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 80,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7857142857142857,
+          "min_tpd": 0.07631874298540965
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|seed|fvg_rsi|atr_expanded",
+          "kind": "fvg_rsi",
+          "filter": "atr_expanded",
+          "wr": 0.78125,
+          "oos_wr": 0.8461538461538461,
+          "tpd": 0.0718294051627385,
+          "oos_tpd": 0.09041231992051664,
+          "n": 32,
+          "oos_n": 13,
+          "pf": 3.189323682483691,
+          "oos_pf": 4.801693307060738,
+          "pnl": 166.4908622942142,
+          "oos_pnl": 90.79329525053475,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 40,
+            "ob": 70,
+            "sessions": [
+              "london",
+              "overlap"
+            ]
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.78125,
+          "min_tpd": 0.0718294051627385
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.7804878048780488,
+          "oos_wr": 0.8,
+          "tpd": 0.0920314253647587,
+          "oos_tpd": 0.10432190760059613,
+          "n": 41,
+          "oos_n": 15,
+          "pf": 3.1903273947840356,
+          "oos_pf": 3.5774447241364977,
+          "pnl": 224.78784813611168,
+          "oos_pnl": 90.55697793243682,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 70,
+              "sessions": [
+                "london",
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7804878048780488,
+          "min_tpd": 0.0920314253647587
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|seed|fvg_rsi|atr_expanded",
+          "kind": "fvg_rsi",
+          "filter": "atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 40,
+            "ob": 65,
+            "sessions": [
+              "london",
+              "overlap"
+            ]
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 70,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 75,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+skip_tiny_body+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded+skip_tiny_body|atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 80,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded|atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 70,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+atr_expanded+skip_tiny_body|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded|atr_expanded+skip_tiny_body",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 70,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded|atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 70,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+atr_expanded+skip_tiny_body|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded|atr_expanded+skip_tiny_body",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 75,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+atr_expanded+skip_tiny_body|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded|atr_expanded+skip_tiny_body",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 80,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded|atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 75,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|OR|fvg_rsi+fvg_rsi|atr_expanded+atr_expanded|rr1.2|h8",
+          "kind": "or2",
+          "filter": "atr_expanded|atr_expanded",
+          "wr": 0.7777777777777778,
+          "oos_wr": 0.8,
+          "tpd": 0.08080808080808081,
+          "oos_tpd": 0.10432190760059613,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 3.115788200455847,
+          "oos_pf": 3.5774447241364027,
+          "pnl": 193.13972629364812,
+          "oos_pnl": 90.55697793243283,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "fvg_rsi",
+            "ap": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 65,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 40,
+              "ob": 80,
+              "sessions": [
+                "london",
+                "overlap"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7777777777777778,
+          "min_tpd": 0.08080808080808081
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|seed|fvg_rsi|skip_tiny_body",
+          "kind": "fvg_rsi",
+          "filter": "skip_tiny_body",
+          "wr": 0.7837837837837838,
+          "oos_wr": 0.7692307692307693,
+          "tpd": 0.08305274971941638,
+          "oos_tpd": 0.09041231992051664,
+          "n": 37,
+          "oos_n": 13,
+          "pf": 3.404880088946516,
+          "oos_pf": 3.104339008938256,
+          "pnl": 219.3460422332261,
+          "oos_pnl": 67.62493073090752,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 40,
+            "ob": 65,
+            "sessions": [
+              "london",
+              "overlap"
+            ]
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7692307692307693,
+          "min_tpd": 0.08305274971941638
+        },
+        {
+          "symbol": "USD/JPY",
+          "name": "USD/JPY|seed|fvg_rsi|lon_ny+skip_tiny_body",
+          "kind": "fvg_rsi",
+          "filter": "lon_ny+skip_tiny_body",
+          "wr": 0.7837837837837838,
+          "oos_wr": 0.7692307692307693,
+          "tpd": 0.08305274971941638,
+          "oos_tpd": 0.09041231992051664,
+          "n": 37,
+          "oos_n": 13,
+          "pf": 3.404880088946516,
+          "oos_pf": 3.104339008938256,
+          "pnl": 219.3460422332261,
+          "oos_pnl": 67.62493073090752,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 8,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 40,
+            "ob": 65,
+            "sessions": [
+              "london",
+              "overlap"
+            ]
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7692307692307693,
+          "min_tpd": 0.08305274971941638
+        }
+      ]
+    },
+    {
+      "symbol": "GBP/USD",
+      "class": "fx",
+      "bars": 175000,
+      "min_atr": 5.5771834239893554e-05,
+      "seed_pool": 40,
+      "tested_seeds": 24330,
+      "or_tested": 1710,
+      "qualifiers": 0,
+      "near_misses": 234,
+      "best": {
+        "symbol": "GBP/USD",
+        "name": "GBP/USD|seed|fvg_rsi|lon_ny",
+        "kind": "fvg_rsi",
+        "filter": "lon_ny",
+        "wr": 0.75,
+        "oos_wr": 0.8181818181818182,
+        "tpd": 0.05396723417924831,
+        "oos_tpd": 0.07650273224043716,
+        "n": 24,
+        "oos_n": 11,
+        "pf": 2.9298153701515606,
+        "oos_pf": 3.8946319471412507,
+        "pnl": 123.65608068962982,
+        "oos_pnl": 64.79253801592569,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        },
+        "params": {
+          "rsi": 14,
+          "os": 35,
+          "ob": 70,
+          "sessions": null
+        },
+        "qualifies": false,
+        "near": false,
+        "min_wr": 0.75,
+        "min_tpd": 0.05396723417924831
+      },
+      "quals": [],
+      "nears": [
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|fvg_rsi+bb_rsi_fade|lon_ny+with_trend|rr1.2|h12",
+          "kind": "or2",
+          "filter": "lon_ny|with_trend",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "fvg_rsi",
+            "b": "bb_rsi_fade",
+            "ap": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|bb_rsi_fade+fvg_rsi|with_trend+lon_ny|rr1.2|h12",
+          "kind": "or2",
+          "filter": "with_trend|lon_ny",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "bb_rsi_fade",
+            "b": "fvg_rsi",
+            "ap": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|bb_rsi_fade+fvg_rsi|with_trend+lon_ny|rr1.2|h12",
+          "kind": "or2",
+          "filter": "with_trend|lon_ny",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "bb_rsi_fade",
+            "b": "fvg_rsi",
+            "ap": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|bb_rsi_fade+fvg_rsi|with_trend+lon_ny|rr1.2|h12",
+          "kind": "or2",
+          "filter": "with_trend|lon_ny",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "bb_rsi_fade",
+            "b": "fvg_rsi",
+            "ap": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|bb_rsi_fade+fvg_rsi|with_trend+lon_ny|rr1.2|h12",
+          "kind": "or2",
+          "filter": "with_trend|lon_ny",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "bb_rsi_fade",
+            "b": "fvg_rsi",
+            "ap": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|bb_rsi_fade+fvg_rsi|with_trend+lon_ny|rr1.2|h12",
+          "kind": "or2",
+          "filter": "with_trend|lon_ny",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "bb_rsi_fade",
+            "b": "fvg_rsi",
+            "ap": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|bb_rsi_fade+fvg_rsi|with_trend+lon_ny|rr1.2|h12",
+          "kind": "or2",
+          "filter": "with_trend|lon_ny",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "bb_rsi_fade",
+            "b": "fvg_rsi",
+            "ap": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|bb_rsi_fade+fvg_rsi|with_trend+lon_ny|rr1.2|h12",
+          "kind": "or2",
+          "filter": "with_trend|lon_ny",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "bb_rsi_fade",
+            "b": "fvg_rsi",
+            "ap": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": null
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        },
+        {
+          "symbol": "GBP/USD",
+          "name": "GBP/USD|OR|bb_rsi_fade+fvg_rsi|with_trend+lon_ny|rr1.2|h12",
+          "kind": "or2",
+          "filter": "with_trend|lon_ny",
+          "wr": 0.7450980392156863,
+          "oos_wr": 0.782608695652174,
+          "tpd": 0.11468037263090267,
+          "oos_tpd": 0.15996025832091407,
+          "n": 51,
+          "oos_n": 23,
+          "pf": 2.999454246481283,
+          "oos_pf": 3.265915085414866,
+          "pnl": 304.5094062339639,
+          "oos_pnl": 135.28517849946658,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 12,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "a": "bb_rsi_fade",
+            "b": "fvg_rsi",
+            "ap": {
+              "period": 20,
+              "k": 2.5,
+              "rsi": 14,
+              "os": 30,
+              "ob": 65,
+              "sessions": [
+                "overlap",
+                "ny"
+              ]
+            },
+            "bp": {
+              "rsi": 14,
+              "os": 35,
+              "ob": 70,
+              "sessions": [
+                "asian",
+                "london",
+                "overlap",
+                "ny"
+              ]
+            }
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7450980392156863,
+          "min_tpd": 0.11468037263090267
+        }
+      ]
+    },
+    {
+      "symbol": "USO",
+      "class": "oil_etf",
+      "bars": 40000,
+      "min_atr": 0.03066299351063062,
+      "seed_pool": 40,
+      "tested_seeds": 23550,
+      "or_tested": 636,
+      "qualifiers": 0,
+      "near_misses": 6,
+      "best": {
+        "symbol": "USO",
+        "name": "USO|seed|rsi_cross|pack_trend_adx",
+        "kind": "rsi_cross",
+        "filter": "pack_trend_adx",
+        "wr": 0.7222222222222222,
+        "oos_wr": 0.7333333333333333,
+        "tpd": 0.08727272727272728,
+        "oos_tpd": 0.08560945780676722,
+        "n": 36,
+        "oos_n": 15,
+        "pf": 2.4527198639164007,
+        "oos_pf": 2.5720186708438115,
+        "pnl": 171.33390271023612,
+        "oos_pnl": 69.0635645554734,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        },
+        "params": {
+          "rsi": 14,
+          "os": 25,
+          "ob": 75,
+          "sessions": null
+        },
+        "qualifies": false,
+        "near": false,
+        "min_wr": 0.7222222222222222,
+        "min_tpd": 0.08560945780676722
+      },
+      "quals": [],
+      "nears": [
+        {
+          "symbol": "USO",
+          "name": "USO|seed|rsi_cross|pack_trend_adx",
+          "kind": "rsi_cross",
+          "filter": "pack_trend_adx",
+          "wr": 0.7222222222222222,
+          "oos_wr": 0.7333333333333333,
+          "tpd": 0.08727272727272728,
+          "oos_tpd": 0.08560945780676722,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 2.4527198639164007,
+          "oos_pf": 2.5720186708438115,
+          "pnl": 171.33390271023612,
+          "oos_pnl": 69.0635645554734,
+          "exit": {
+            "rr": 1.0,
+            "max_hold": 6,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 25,
+            "ob": 75,
+            "sessions": null
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7222222222222222,
+          "min_tpd": 0.08560945780676722
+        },
+        {
+          "symbol": "USO",
+          "name": "USO|seed|rsi_cross|pack_trend_adx",
+          "kind": "rsi_cross",
+          "filter": "pack_trend_adx",
+          "wr": 0.7222222222222222,
+          "oos_wr": 0.7333333333333333,
+          "tpd": 0.08727272727272728,
+          "oos_tpd": 0.08560945780676722,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 2.26037954853518,
+          "oos_pf": 3.5511233108040883,
+          "pnl": 155.43812485936704,
+          "oos_pnl": 79.51489310764349,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 6,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 25,
+            "ob": 75,
+            "sessions": null
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7222222222222222,
+          "min_tpd": 0.08560945780676722
+        },
+        {
+          "symbol": "USO",
+          "name": "USO|seed|rsi_cross|pack_trend_adx",
+          "kind": "rsi_cross",
+          "filter": "pack_trend_adx",
+          "wr": 0.7222222222222222,
+          "oos_wr": 0.7333333333333333,
+          "tpd": 0.08727272727272728,
+          "oos_tpd": 0.08560945780676722,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 2.4527198639164007,
+          "oos_pf": 2.5720186708438115,
+          "pnl": 171.33390271023612,
+          "oos_pnl": 69.0635645554734,
+          "exit": {
+            "rr": 1.0,
+            "max_hold": 6,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 25,
+            "ob": 75,
+            "sessions": [
+              "overlap",
+              "ny"
+            ]
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7222222222222222,
+          "min_tpd": 0.08560945780676722
+        },
+        {
+          "symbol": "USO",
+          "name": "USO|seed|rsi_cross|pack_trend_adx",
+          "kind": "rsi_cross",
+          "filter": "pack_trend_adx",
+          "wr": 0.7222222222222222,
+          "oos_wr": 0.7333333333333333,
+          "tpd": 0.08727272727272728,
+          "oos_tpd": 0.08560945780676722,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 2.26037954853518,
+          "oos_pf": 3.5511233108040883,
+          "pnl": 155.43812485936704,
+          "oos_pnl": 79.51489310764349,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 6,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 25,
+            "ob": 75,
+            "sessions": [
+              "overlap",
+              "ny"
+            ]
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7222222222222222,
+          "min_tpd": 0.08560945780676722
+        },
+        {
+          "symbol": "USO",
+          "name": "USO|seed|rsi_cross|pack_trend_adx",
+          "kind": "rsi_cross",
+          "filter": "pack_trend_adx",
+          "wr": 0.7222222222222222,
+          "oos_wr": 0.7333333333333333,
+          "tpd": 0.08727272727272728,
+          "oos_tpd": 0.08560945780676722,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 2.4527198639164007,
+          "oos_pf": 2.5720186708438115,
+          "pnl": 171.33390271023612,
+          "oos_pnl": 69.0635645554734,
+          "exit": {
+            "rr": 1.0,
+            "max_hold": 6,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 25,
+            "ob": 75,
+            "sessions": [
+              "london",
+              "overlap",
+              "ny"
+            ]
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7222222222222222,
+          "min_tpd": 0.08560945780676722
+        },
+        {
+          "symbol": "USO",
+          "name": "USO|seed|rsi_cross|pack_trend_adx",
+          "kind": "rsi_cross",
+          "filter": "pack_trend_adx",
+          "wr": 0.7222222222222222,
+          "oos_wr": 0.7333333333333333,
+          "tpd": 0.08727272727272728,
+          "oos_tpd": 0.08560945780676722,
+          "n": 36,
+          "oos_n": 15,
+          "pf": 2.26037954853518,
+          "oos_pf": 3.5511233108040883,
+          "pnl": 155.43812485936704,
+          "oos_pnl": 79.51489310764349,
+          "exit": {
+            "rr": 1.2,
+            "max_hold": 6,
+            "atr": "ATR_14",
+            "allow_long": true,
+            "allow_short": true
+          },
+          "params": {
+            "rsi": 14,
+            "os": 25,
+            "ob": 75,
+            "sessions": [
+              "london",
+              "overlap",
+              "ny"
+            ]
+          },
+          "qualifies": false,
+          "near": false,
+          "min_wr": 0.7222222222222222,
+          "min_tpd": 0.08560945780676722
+        }
+      ]
+    },
+    {
+      "symbol": "SLV",
+      "class": "metal_etf",
+      "bars": 40000,
+      "min_atr": 0.012687598018243342,
+      "seed_pool": 40,
+      "tested_seeds": 24420,
+      "or_tested": 1557,
+      "qualifiers": 0,
+      "near_misses": 0,
+      "best": {
+        "symbol": "SLV",
+        "name": "SLV|seed|rsi_cross|pack_trend_adx",
+        "kind": "rsi_cross",
+        "filter": "pack_trend_adx",
+        "wr": 0.6842105263157895,
+        "oos_wr": 0.7272727272727273,
+        "tpd": 0.09212121212121212,
+        "oos_tpd": 0.06278026905829596,
+        "n": 38,
+        "oos_n": 11,
+        "pf": 2.03288490503012,
+        "oos_pf": 3.6406819963384898,
+        "pnl": 156.57959006717974,
+        "oos_pnl": 60.002442924752174,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        },
+        "params": {
+          "rsi": 14,
+          "os": 30,
+          "ob": 80,
+          "sessions": null
+        },
+        "qualifies": false,
+        "near": false,
+        "min_wr": 0.6842105263157895,
+        "min_tpd": 0.06278026905829596
+      },
+      "quals": [],
+      "nears": []
+    },
+    {
+      "symbol": "GLD",
+      "class": "metal_etf",
+      "bars": 40000,
+      "min_atr": 0.05652750066608776,
+      "seed_pool": 40,
+      "tested_seeds": 23406,
+      "or_tested": 0,
+      "qualifiers": 0,
+      "near_misses": 0,
+      "best": {
+        "symbol": "GLD",
+        "name": "GLD|seed|rsi_macd|with_trend",
+        "kind": "rsi_macd",
+        "filter": "with_trend",
+        "wr": 0.7096774193548387,
+        "oos_wr": 0.6923076923076923,
+        "tpd": 0.07515151515151515,
+        "oos_tpd": 0.0741948634325316,
+        "n": 31,
+        "oos_n": 13,
+        "pf": 2.3457253605829864,
+        "oos_pf": 2.589049753513497,
+        "pnl": 137.75924995763486,
+        "oos_pnl": 56.94953878637878,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        },
+        "params": {
+          "rsi": 7,
+          "os": 35,
+          "ob": 65,
+          "sessions": null
+        },
+        "qualifies": false,
+        "near": false,
+        "min_wr": 0.6923076923076923,
+        "min_tpd": 0.0741948634325316
+      },
+      "quals": [],
+      "nears": []
+    }
+  ]
+}
