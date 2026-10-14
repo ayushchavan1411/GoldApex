@@ -62,12 +62,33 @@ def fetch_chunk(symbol: str, interval: str, end: datetime, key: str, outputsize:
     raise RuntimeError("failed after retries")
 
 
+def _existing_csvs(symbol: str, interval: str) -> list[Path]:
+    stem = f"{symbol.replace('/', '')}_{interval}_"
+    return sorted(OUT.glob(f"{stem}*.csv"))
+
+
 def download(symbol: str, interval: str, years: float = 2.1, sleep_s: float = 8.5) -> Path:
+    """Download history; merges any existing local CSVs for the same symbol/interval."""
     key = api_key()
     end = datetime.utcnow()
     start_target = end - timedelta(days=int(365.25 * years))
     parts: list[pd.DataFrame] = []
+    # Seed with existing local data so we can resume deeper history without re-fetching
+    for old in _existing_csvs(symbol, interval):
+        try:
+            prev = pd.read_csv(old, parse_dates=["datetime"]).set_index("datetime").sort_index()
+            prev = prev[["Open", "High", "Low", "Close"]].dropna()
+            if len(prev):
+                parts.append(prev)
+                print(f"seed existing {old.name}: {len(prev)} {prev.index[0]} → {prev.index[-1]}", flush=True)
+        except Exception as e:
+            print(f"skip seed {old}: {e}", flush=True)
     cursor = end
+    if parts:
+        # continue backward from earliest we already have
+        earliest_have = min(p.index.min() for p in parts)
+        cursor = earliest_have.to_pydatetime() - timedelta(minutes=1)
+        print(f"resuming backward from {cursor} toward {start_target.date()}", flush=True)
     calls = 0
     print(f"Downloading {symbol} {interval} back to ~{start_target.date()} ...", flush=True)
     while cursor > start_target:
@@ -87,6 +108,13 @@ def download(symbol: str, interval: str, years: float = 2.1, sleep_s: float = 8.
         cursor = earliest.to_pydatetime() - timedelta(minutes=5)
         if len(df) < 50:
             break
+        # checkpoint merge every 10 calls so a kill still keeps progress
+        if calls % 10 == 0:
+            tmp = pd.concat(parts).sort_index()
+            tmp = tmp[~tmp.index.duplicated(keep="last")]
+            ck = OUT / f"{symbol.replace('/', '')}_{interval}_PARTIAL.csv"
+            tmp.to_csv(ck)
+            print(f"checkpoint {ck.name} bars={len(tmp)} start={tmp.index[0]}", flush=True)
         time.sleep(sleep_s)  # free: 8 credits/min
     if not parts:
         raise RuntimeError("no data downloaded")
@@ -95,6 +123,14 @@ def download(symbol: str, interval: str, years: float = 2.1, sleep_s: float = 8.
     stem = f"{symbol.replace('/', '')}_{interval}_{full.index[0].date()}_{full.index[-1].date()}"
     csv = OUT / f"{stem}.csv"
     full.to_csv(csv)
+    # remove older/partial duplicates for this interval
+    for old in _existing_csvs(symbol, interval):
+        if old.resolve() != csv.resolve() and ("PARTIAL" in old.name or old.name.startswith(f"{symbol.replace('/', '')}_{interval}_")):
+            try:
+                if old != csv:
+                    old.unlink(missing_ok=True)
+            except Exception:
+                pass
     out = csv
     try:
         pq = OUT / f"{stem}.parquet"
