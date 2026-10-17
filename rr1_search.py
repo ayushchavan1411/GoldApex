@@ -317,12 +317,27 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
         m = c.rolling(period).mean()
         s = c.rolling(period).std()
         d[f"Z_{period}"] = (c - m) / s.replace(0, np.nan)
-    # Session opening range proxy: first UTC hour of Asian/London/NY (causal via shift)
+    # Session opening range: Asian/London/NY with multiple OR window lengths (minutes).
+    # Causal: ffill within day then shift(1) so the forming bar cannot trade the unfinished OR.
     d["date"] = d.index.date
+    mod = d.index.hour * 60 + d.index.minute
+    d["mod"] = mod
     for name, start_h in (("ASIAN", 0), ("LONDON", 8), ("NY", 13)):
+        # legacy 60-minute OR (kept for existing hunters)
         in_open = (d["hour"] >= start_h) & (d["hour"] < start_h + 1)
         d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
         d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+        start_min = start_h * 60
+        for win in (15, 30, 45, 60, 90):
+            in_or = (mod >= start_min) & (mod < start_min + win)
+            d[f"OR_HI_{name}_{win}"] = (
+                h.where(in_or).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
+            )
+            d[f"OR_LO_{name}_{win}"] = (
+                l.where(in_or).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+            )
+            # after OR window completed (minute >= start+win)
+            d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
 
     # --- Order-flow proxies (no tick/L2 volume in XAU CSV — price-based OF) ---
     # CLV: where close sits in the bar range (1=close on high / aggressive buy)
@@ -985,6 +1000,7 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
 
     elif kind == "orb_break":
         # opening-range breakout of Asian/London/NY first hour
+        # sessions=None → entries allowed any time after OR is known (no session block)
         name = p["orb"]
         hi, lo = df[f"OR_HI_{name}"], df[f"OR_LO_{name}"]
         long_e = (c > hi) & (c.shift(1) <= hi) & sess
@@ -995,6 +1011,27 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
         hi, lo = df[f"OR_HI_{name}"], df[f"OR_LO_{name}"]
         long_e = (df["Low"] <= lo) & (c > lo) & sess
         short_e = (df["High"] >= hi) & (c < hi) & sess
+
+    elif kind == "orb_break_win":
+        # Benny-style ORB: configurable OR window (minutes); no session block when sessions=None
+        name, win = p["orb"], int(p["win"])
+        hi, lo = df[f"OR_HI_{name}_{win}"], df[f"OR_LO_{name}_{win}"]
+        ready = df[f"OR_READY_{name}_{win}"].fillna(False)
+        long_x = (c > hi) & (c.shift(1) <= hi) & ready & sess
+        short_x = (c < lo) & (c.shift(1) >= lo) & ready & sess
+        if p.get("first_only"):
+            day = df["date"]
+            long_e = long_x & ~long_x.groupby(day).cummax().shift(1).fillna(False)
+            short_e = short_x & ~short_x.groupby(day).cummax().shift(1).fillna(False)
+        else:
+            long_e, short_e = long_x, short_x
+
+    elif kind == "orb_fade_win":
+        name, win = p["orb"], int(p["win"])
+        hi, lo = df[f"OR_HI_{name}_{win}"], df[f"OR_LO_{name}_{win}"]
+        ready = df[f"OR_READY_{name}_{win}"].fillna(False)
+        long_e = (df["Low"] <= lo) & (c > lo) & ready & sess
+        short_e = (df["High"] >= hi) & (c < hi) & ready & sess
 
     # --- Order-flow proxy kinds (price-based; no L2/volume in feed) ---
     elif kind == "of_clv_fade":
