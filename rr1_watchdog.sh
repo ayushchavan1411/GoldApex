@@ -17,7 +17,6 @@ start_job() {
   local s="$1"
   local cmd="$2"
   ensure_session "$s"
-  # only start if that script isn't already running
   if ! pgrep -f "python3 -u ${cmd}" >/dev/null 2>&1; then
     echo "$(date -u '+%Y-%m-%d %H:%M:%S') | restart $cmd in $s" | tee -a rr1_search_results/watchdog.log
     tmux_cmd send-keys -t "${s}:0.0" C-c 2>/dev/null || true
@@ -31,20 +30,20 @@ echo "$(date -u '+%Y-%m-%d %H:%M:%S') | watchdog start" | tee -a rr1_search_resu
 
 while true; do
   start_job "rr1-search" "rr1_search.py"
-  # start_job "rr1-random" "rr1_random_opt.py"  # paused for cross-asset RAM
-  # start_job "rr1-smc" "rr1_smc_search.py"  # paused for cross-asset RAM
-  # start_job "rr1-hill" "rr1_hillclimb.py"  # paused for cross-asset RAM
-  # start_job "rr1-select" "rr1_select_search.py"  # paused for cross-asset RAM
-  # start_job "rr1-public" "rr1_public_search.py"  # paused for cross-asset RAM
-  # start_job "rr1-freq" "rr1_freqboost.py"  # paused for cross-asset RAM
-  # start_job "rr1-union" "rr1_union_search.py"  # paused for cross-asset RAM
-  # start_job "rr1-orcombo" "rr1_orcombo.py"  # paused for cross-asset RAM
-  # start_job "rr1-regime" "rr1_regime_search.py"  # paused for cross-asset RAM
-  # start_job "rr1-allcombo" "rr1_allcombo_search.py"  # paused for cross-asset RAM
+  start_job "rr1-random" "rr1_random_opt.py"
+  start_job "rr1-smc" "rr1_smc_search.py"
+  start_job "rr1-hill" "rr1_hillclimb.py"
+  start_job "rr1-select" "rr1_select_search.py"
+  start_job "rr1-public" "rr1_public_search.py"
+  start_job "rr1-freq" "rr1_freqboost.py"
+  start_job "rr1-union" "rr1_union_search.py"
+  start_job "rr1-orcombo" "rr1_orcombo.py"
+  start_job "rr1-regime" "rr1_regime_search.py"
+  start_job "rr1-allcombo" "rr1_allcombo_search.py"
   start_job "rr1-pipeline" "rr1_pipeline_search.py"
   start_job "rr1-ictstack" "rr1_ict_stack_search.py"
   start_job "rr1-sllearn" "rr1_sl_learn_search.py"
-  # heartbeat
+  start_job "rr1-invert" "rr1_invert_search.py"
   {
     echo -n "$(date -u '+%Y-%m-%d %H:%M:%S') | alive: "
     pgrep -af 'python3 -u rr1_' | grep -v pgrep | wc -l

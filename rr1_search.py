@@ -974,6 +974,9 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
         dm = df["dow"].isin(p["dows"]).to_numpy()
         long_e &= dm
         short_e &= dm
+    # Fade mode: buy when base sells, sell when base buys (RR1 WR ≈ 1 − base WR)
+    if p.get("invert"):
+        return short_e, long_e
     return long_e, short_e
 
 

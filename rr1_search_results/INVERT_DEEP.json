@@ -1,0 +1,953 @@
+{
+  "tested": 2424,
+  "top": [
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5617977528089888,
+      "oos_wr": 0.5641025641025641,
+      "min_wr": 0.5617977528089888,
+      "tpd": 0.19907333439846622,
+      "oos_tpd": 0.2545454545454545,
+      "n": 89,
+      "oos_n": 39,
+      "pf": 1.361304332142534,
+      "oos_pf": 1.219848529334023,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5833333333333334,
+      "oos_wr": 0.5555555555555556,
+      "min_wr": 0.5555555555555556,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.23496503496503496,
+      "n": 96,
+      "oos_n": 36,
+      "pf": 1.528580881809554,
+      "oos_pf": 1.1840926782016852,
+      "base_wr": 0.41818181818181815,
+      "base_oos": 0.4722222222222222,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 100,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5714285714285714,
+      "oos_wr": 0.5526315789473685,
+      "min_wr": 0.5526315789473685,
+      "tpd": 0.20354689247483623,
+      "oos_tpd": 0.248018648018648,
+      "n": 91,
+      "oos_n": 38,
+      "pf": 1.368475967880643,
+      "oos_pf": 1.1678335329389038,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5795454545454546,
+      "oos_wr": 0.5405405405405406,
+      "min_wr": 0.5405405405405406,
+      "tpd": 0.1968365553602812,
+      "oos_tpd": 0.24149184149184147,
+      "n": 88,
+      "oos_n": 37,
+      "pf": 1.3606039949533522,
+      "oos_pf": 1.1608328231152687,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5760869565217391,
+      "oos_wr": 0.5384615384615384,
+      "min_wr": 0.5384615384615384,
+      "tpd": 0.20578367151302127,
+      "oos_tpd": 0.2545454545454545,
+      "n": 92,
+      "oos_n": 39,
+      "pf": 1.4316047505893543,
+      "oos_pf": 1.2165230407773757,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5888888888888889,
+      "oos_wr": 0.5384615384615384,
+      "min_wr": 0.5384615384615384,
+      "tpd": 0.20131011343665123,
+      "oos_tpd": 0.2545454545454545,
+      "n": 90,
+      "oos_n": 39,
+      "pf": 1.4115543635045096,
+      "oos_pf": 1.1327479339410509,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.6046511627906976,
+      "oos_wr": 0.5384615384615384,
+      "min_wr": 0.5384615384615384,
+      "tpd": 0.19236299728391118,
+      "oos_tpd": 0.2545454545454545,
+      "n": 86,
+      "oos_n": 39,
+      "pf": 1.486389126261502,
+      "oos_pf": 1.1742527372807237,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5764705882352941,
+      "oos_wr": 0.5384615384615384,
+      "min_wr": 0.5384615384615384,
+      "tpd": 0.19012621824572615,
+      "oos_tpd": 0.2545454545454545,
+      "n": 85,
+      "oos_n": 39,
+      "pf": 1.4402974170899898,
+      "oos_pf": 1.1063030363159694,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.6,
+      "oos_wr": 0.5263157894736842,
+      "min_wr": 0.5263157894736842,
+      "tpd": 0.22367790381850136,
+      "oos_tpd": 0.248018648018648,
+      "n": 100,
+      "oos_n": 38,
+      "pf": 1.6317100203212704,
+      "oos_pf": 0.9811248257939393,
+      "base_wr": 0.41818181818181815,
+      "base_oos": 0.4722222222222222,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 100,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 4,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5833333333333334,
+      "oos_wr": 0.5263157894736842,
+      "min_wr": 0.5263157894736842,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.248018648018648,
+      "n": 96,
+      "oos_n": 38,
+      "pf": 1.5700572117251976,
+      "oos_pf": 0.9790240548082203,
+      "base_wr": 0.41818181818181815,
+      "base_oos": 0.4722222222222222,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 100,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.59375,
+      "oos_wr": 0.5263157894736842,
+      "min_wr": 0.5263157894736842,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.248018648018648,
+      "n": 96,
+      "oos_n": 38,
+      "pf": 1.5198474354636826,
+      "oos_pf": 0.9968713091745768,
+      "base_wr": 0.41818181818181815,
+      "base_oos": 0.4722222222222222,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 100,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.6041666666666666,
+      "oos_wr": 0.5263157894736842,
+      "min_wr": 0.5263157894736842,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.248018648018648,
+      "n": 96,
+      "oos_n": 38,
+      "pf": 1.5614518064472078,
+      "oos_pf": 0.994368415646826,
+      "base_wr": 0.41818181818181815,
+      "base_oos": 0.4722222222222222,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 100,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 24,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5425531914893617,
+      "oos_wr": 0.5263157894736842,
+      "min_wr": 0.5263157894736842,
+      "tpd": 0.21025722958939128,
+      "oos_tpd": 0.248018648018648,
+      "n": 94,
+      "oos_n": 38,
+      "pf": 1.2852990353134497,
+      "oos_pf": 1.02075706580444,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 4,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5568181818181818,
+      "oos_wr": 0.5263157894736842,
+      "min_wr": 0.5263157894736842,
+      "tpd": 0.1968365553602812,
+      "oos_tpd": 0.248018648018648,
+      "n": 88,
+      "oos_n": 38,
+      "pf": 1.2806783889091446,
+      "oos_pf": 1.1298922764175585,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5681818181818182,
+      "oos_wr": 0.5263157894736842,
+      "min_wr": 0.5263157894736842,
+      "tpd": 0.1968365553602812,
+      "oos_tpd": 0.248018648018648,
+      "n": 88,
+      "oos_n": 38,
+      "pf": 1.2927800633520588,
+      "oos_pf": 1.1297611522826754,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 24,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5578947368421052,
+      "oos_wr": 0.525,
+      "min_wr": 0.525,
+      "tpd": 0.2124940086275763,
+      "oos_tpd": 0.26107226107226106,
+      "n": 95,
+      "oos_n": 40,
+      "pf": 1.308561766536045,
+      "oos_pf": 1.110203970532025,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 4,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.524,
+      "oos_wr": 0.5324675324675324,
+      "min_wr": 0.524,
+      "tpd": 0.5681818181818182,
+      "oos_tpd": 0.4974619289340102,
+      "n": 250,
+      "oos_n": 77,
+      "pf": 1.0808435317027163,
+      "oos_pf": 1.1731014545321996,
+      "base_wr": 0.38333333333333336,
+      "base_oos": 0.4603174603174603,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.5220883534136547,
+      "oos_wr": 0.5324675324675324,
+      "min_wr": 0.5220883534136547,
+      "tpd": 0.5659090909090909,
+      "oos_tpd": 0.4974619289340102,
+      "n": 249,
+      "oos_n": 77,
+      "pf": 1.0778570671231935,
+      "oos_pf": 1.1728853484899389,
+      "base_wr": 0.38333333333333336,
+      "base_oos": 0.4603174603174603,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 24,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.5192307692307693,
+      "oos_wr": 0.5434782608695652,
+      "min_wr": 0.5192307692307693,
+      "tpd": 0.35454545454545455,
+      "oos_tpd": 0.297185048454084,
+      "n": 156,
+      "oos_n": 46,
+      "pf": 1.041182202694696,
+      "oos_pf": 1.2736112936714217,
+      "base_wr": 0.3870967741935484,
+      "base_oos": 0.45652173913043476,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.5161290322580645,
+      "oos_wr": 0.5434782608695652,
+      "min_wr": 0.5161290322580645,
+      "tpd": 0.3522727272727273,
+      "oos_tpd": 0.297185048454084,
+      "n": 155,
+      "oos_n": 46,
+      "pf": 1.0349459191239199,
+      "oos_pf": 1.2736777595956121,
+      "base_wr": 0.3870967741935484,
+      "base_oos": 0.45652173913043476,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 24,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.5142857142857142,
+      "oos_wr": 0.52,
+      "min_wr": 0.5142857142857142,
+      "tpd": 0.5568181818181818,
+      "oos_tpd": 0.4845408398707891,
+      "n": 245,
+      "oos_n": 75,
+      "pf": 1.0412759704800483,
+      "oos_pf": 1.139720448182421,
+      "base_wr": 0.38333333333333336,
+      "base_oos": 0.4603174603174603,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.59375,
+      "oos_wr": 0.5142857142857142,
+      "min_wr": 0.5142857142857142,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.22843822843822842,
+      "n": 96,
+      "oos_n": 35,
+      "pf": 1.5359135274700761,
+      "oos_pf": 1.022393578024141,
+      "base_wr": 0.41818181818181815,
+      "base_oos": 0.4722222222222222,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 100,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.6041666666666666,
+      "oos_wr": 0.5142857142857142,
+      "min_wr": 0.5142857142857142,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.22843822843822842,
+      "n": 96,
+      "oos_n": 35,
+      "pf": 1.5512481967631313,
+      "oos_pf": 1.0229499865918832,
+      "base_wr": 0.41818181818181815,
+      "base_oos": 0.4722222222222222,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 100,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 24,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.6179775280898876,
+      "oos_wr": 0.5135135135135135,
+      "min_wr": 0.5135135135135135,
+      "tpd": 0.19907333439846622,
+      "oos_tpd": 0.24149184149184147,
+      "n": 89,
+      "oos_n": 37,
+      "pf": 1.4862422455053164,
+      "oos_pf": 1.109262599117047,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5833333333333334,
+      "oos_wr": 0.5135135135135135,
+      "min_wr": 0.5135135135135135,
+      "tpd": 0.18788943920754114,
+      "oos_tpd": 0.24149184149184147,
+      "n": 84,
+      "oos_n": 37,
+      "pf": 1.3855212648065744,
+      "oos_pf": 1.0105183798747608,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.5182186234817814,
+      "oos_wr": 0.5131578947368421,
+      "min_wr": 0.5131578947368421,
+      "tpd": 0.5613636363636364,
+      "oos_tpd": 0.49100138440239965,
+      "n": 247,
+      "oos_n": 76,
+      "pf": 1.0363139486924564,
+      "oos_pf": 1.1281214233515082,
+      "base_wr": 0.38333333333333336,
+      "base_oos": 0.4603174603174603,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5795454545454546,
+      "oos_wr": 0.5128205128205128,
+      "min_wr": 0.5128205128205128,
+      "tpd": 0.1968365553602812,
+      "oos_tpd": 0.2545454545454545,
+      "n": 88,
+      "oos_n": 39,
+      "pf": 1.433215506422768,
+      "oos_pf": 1.2095166522897705,
+      "base_wr": 0.4126984126984127,
+      "base_oos": 0.43243243243243246,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 200,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 6,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.5122950819672131,
+      "oos_wr": 0.52,
+      "min_wr": 0.5122950819672131,
+      "tpd": 0.5545454545454546,
+      "oos_tpd": 0.4845408398707891,
+      "n": 244,
+      "oos_n": 75,
+      "pf": 1.0449233346499336,
+      "oos_pf": 1.1326360629679786,
+      "base_wr": 0.38333333333333336,
+      "base_oos": 0.4603174603174603,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 24,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.5163398692810458,
+      "oos_wr": 0.5111111111111111,
+      "min_wr": 0.5111111111111111,
+      "tpd": 0.3477272727272727,
+      "oos_tpd": 0.29072450392247345,
+      "n": 153,
+      "oos_n": 45,
+      "pf": 1.0298656398290624,
+      "oos_pf": 1.0848760236322106,
+      "base_wr": 0.3870967741935484,
+      "base_oos": 0.45652173913043476,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|macd_cross|1h",
+      "wr": 0.5163398692810458,
+      "oos_wr": 0.5111111111111111,
+      "min_wr": 0.5111111111111111,
+      "tpd": 0.3477272727272727,
+      "oos_tpd": 0.29072450392247345,
+      "n": 153,
+      "oos_n": 45,
+      "pf": 1.0389403339664347,
+      "oos_pf": 1.1006014347386257,
+      "base_wr": 0.3870967741935484,
+      "base_oos": 0.45652173913043476,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": false
+    }
+  ],
+  "best": {
+    "name": "inv|ema_cross|15m",
+    "wr": 0.5617977528089888,
+    "oos_wr": 0.5641025641025641,
+    "min_wr": 0.5617977528089888,
+    "tpd": 0.19907333439846622,
+    "oos_tpd": 0.2545454545454545,
+    "n": 89,
+    "oos_n": 39,
+    "pf": 1.361304332142534,
+    "oos_pf": 1.219848529334023,
+    "base_wr": 0.4126984126984127,
+    "base_oos": 0.43243243243243246,
+    "params": {
+      "kind": "ema_cross",
+      "fast": 5,
+      "slow": 200,
+      "sessions": [
+        "ny"
+      ],
+      "invert": true,
+      "exit": {
+        "rr": 1.0,
+        "max_hold": 12,
+        "atr": "ATR_7",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "year_ok": true
+  }
+}
