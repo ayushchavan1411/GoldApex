@@ -1,0 +1,45 @@
+{
+  "name": "rsi_cross|15m|DENSE_DAILY",
+  "timeframe": "15m",
+  "winrate": 0.953125,
+  "profit_factor": 2.0984436274659033,
+  "trades": 128,
+  "trades_per_day": 3.393939393939394,
+  "net_pnl": 66.97955129823517,
+  "max_dd": 0.057909320520412255,
+  "params": {
+    "kind": "rsi_cross",
+    "rsi": 5,
+    "os": 25,
+    "ob": 80,
+    "sessions": [
+      "london",
+      "overlap",
+      "ny"
+    ],
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 6
+    }
+  },
+  "oos_winrate": 0.9230769230769231,
+  "oos_profit_factor": 1.4025046766051557,
+  "oos_trades": 52,
+  "oos_trades_per_day": 3.1515151515151514,
+  "oos_net_pnl": 13.929219475526951,
+  "full": {
+    "trades": 180,
+    "winrate": 0.9444444444444444,
+    "profit_factor": 1.8259386337323567,
+    "net_pnl": 82.77471651457299,
+    "final_equity": 582.7747165145734,
+    "max_dd": 0.057909320520412255,
+    "trades_per_day": 3.368983957219251,
+    "expectancy": 0.45985953619207215,
+    "avg_win": 1.0764334312743906,
+    "avg_loss": -10.021896680207345
+  },
+  "score": 99999,
+  "status": "qualified_causal_ge_1_tpd_ge_80wr"
+}

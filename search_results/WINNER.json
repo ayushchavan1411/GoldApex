@@ -1,0 +1,36 @@
+{
+  "name": "asian_range_fade|1h|CAUSAL",
+  "status": "survives_lookahead_fix",
+  "timeframe": "1h",
+  "winrate": 0.9191,
+  "profit_factor": 1.884,
+  "trades": 136,
+  "net_pnl": 94.97,
+  "final_equity": 594.99,
+  "max_dd": 0.0568,
+  "entry": "next_open_after_signal_close",
+  "params": {
+    "kind": "asian_range_fade",
+    "look": 40,
+    "rsi": 7,
+    "os": 25,
+    "ob": 70,
+    "sessions": [
+      "overlap"
+    ],
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.3,
+      "max_hold": 12,
+      "be": false,
+      "atr": "ATR_14"
+    }
+  },
+  "oos_winrate": 0.9487,
+  "is_winrate": 0.907,
+  "invalidated_due_to_lookahead": [
+    "bb_mr_rsi|15m",
+    "triple_confirm_mr|15m"
+  ],
+  "notes": "Range already shift(1). Re-scored with next_open fills after BB look-ahead audit."
+}

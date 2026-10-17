@@ -1,0 +1,74 @@
+{
+  "best": {
+    "name": "range_fade|15m|p0",
+    "timeframe": "15m",
+    "winrate": 0.8666666666666667,
+    "profit_factor": 1.6067840759118135,
+    "trades": 45,
+    "trades_per_day": 1.1931818181818181,
+    "net_pnl": 38.0255089524946,
+    "max_dd": 0.05410204000000043,
+    "params": {
+      "kind": "range_fade",
+      "look": 32,
+      "rsi": 7,
+      "os": 30,
+      "ob": 70,
+      "sessions": [
+        "london",
+        "overlap"
+      ],
+      "exit": {
+        "sl": 1.2,
+        "tp": 0.3,
+        "max_hold": 12,
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "oos_winrate": 0.8181818181818182,
+    "oos_profit_factor": 1.1113428587989072,
+    "oos_trades": 22,
+    "oos_trades_per_day": 1.3333333333333333,
+    "oos_net_pnl": 4.502611579843074,
+    "score": 805.501383509421
+  },
+  "is_m": {
+    "trades": 45,
+    "winrate": 0.8666666666666667,
+    "profit_factor": 1.6067840759118135,
+    "net_pnl": 38.0255089524946,
+    "final_equity": 538.0255089524942,
+    "max_dd": 0.05410204000000043,
+    "trades_per_day": 1.1931818181818181,
+    "expectancy": 0.8450113100554355,
+    "avg_win": 2.5818664411962433,
+    "avg_loss": -10.444547042359817
+  },
+  "oos_m": {
+    "trades": 23,
+    "winrate": 0.782608695652174,
+    "profit_factor": 1.039881275164592,
+    "net_pnl": 1.723595919108583,
+    "final_equity": 501.72359591910873,
+    "max_dd": 0.039599999999999545,
+    "trades_per_day": 1.393939393939394,
+    "expectancy": 0.074938953004721,
+    "avg_win": 2.496765036883525,
+    "avg_loss": -8.643634948958972
+  },
+  "full": {
+    "trades": 68,
+    "winrate": 0.8382352941176471,
+    "profit_factor": 1.365296021534051,
+    "net_pnl": 39.88018609570827,
+    "final_equity": 539.8801860957079,
+    "max_dd": 0.05410204000000043,
+    "trades_per_day": 1.2727272727272727,
+    "expectancy": 0.5864733249368863,
+    "avg_win": 2.6149548995789353,
+    "avg_loss": -9.924749380026459
+  },
+  "coverage": 0.631578947368421,
+  "bar_days": 57
+}

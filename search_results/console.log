@@ -1,0 +1,64 @@
+2026-10-13 15:38:10 | === STRATEGY SEARCH START ===
+2026-10-13 15:38:10 | Targets: IS WR>=80% PF>=1.25 trades>=40 | OOS WR>=78% PF>=1.15 trades>=15
+2026-10-13 15:38:10 | Loaded 15m: 4534 bars 2026-08-04 04:00:00 → 2026-10-13 15:15:00
+2026-10-13 15:38:10 | Loaded 1h: 13662 bars 2024-05-21 04:00:00 → 2026-10-13 15:00:00
+2026-10-13 15:38:11 | Loaded 5m: 13571 bars 2026-08-04 04:00:00 → 2026-10-13 15:25:00
+2026-10-13 15:38:11 | Indicators ready for 15m: (4534, 91)
+2026-10-13 15:38:11 | Indicators ready for 1h: (13662, 91)
+2026-10-13 15:38:11 | Indicators ready for 5m: (13571, 91)
+2026-10-13 15:38:11 | ----- PHASE 0 -----
+2026-10-13 15:38:11 | Param space=4042 exit_grid=18 approx_evals~72756
+2026-10-13 15:38:11 | NEW BEST score=94.6 WR=50.9% OOS_WR=54.8% PF=0.69 tr=53/31 rsi_mr|15m|p0 {'kind': 'rsi_mr', 'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('london', 'overlap'), 'exit': {'sl': 0.6, 'tp': 0.4, 'max_hold': 8, 'be': False, 'be_rr': 1.0, 'partial': 0.0, 'atr': 'ATR_14', 'allow_long': True, 'allow_short': True}}
+2026-10-13 15:38:11 | NEW BEST score=123.1 WR=42.9% OOS_WR=51.6% PF=0.75 tr=56/31 rsi_mr|15m|p0 {'kind': 'rsi_mr', 'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('london', 'overlap'), 'exit': {'sl': 0.6, 'tp': 0.6, 'max_hold': 8, 'be': False, 'be_rr': 1.0, 'partial': 0.0, 'atr': 'ATR_14', 'allow_long': True, 'allow_short': True}}
+2026-10-13 15:38:11 | NEW BEST score=125.8 WR=67.1% OOS_WR=65.5% PF=0.81 tr=76/29 rsi_mr|15m|p0 {'kind': 'rsi_mr', 'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('london', 'overlap'), 'exit': {'sl': 1.0, 'tp': 0.4, 'max_hold': 8, 'be': False, 'be_rr': 1.0, 'partial': 0.0, 'atr': 'ATR_14', 'allow_long': True, 'allow_short': True}}
+2026-10-13 15:38:11 | NEW BEST score=161.6 WR=60.0% OOS_WR=65.5% PF=0.89 tr=75/29 rsi_mr|15m|p0 {'kind': 'rsi_mr', 'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('london', 'overlap'), 'exit': {'sl': 1.0, 'tp': 0.6, 'max_hold': 8, 'be': False, 'be_rr': 1.0, 'partial': 0.0, 'atr': 'ATR_14', 'allow_long': True, 'allow_short': True}}
+2026-10-13 15:38:11 | NEW BEST score=212.0 WR=71.6% OOS_WR=72.4% PF=1.10 tr=74/29 rsi_mr|15m|p0 {'kind': 'rsi_mr', 'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('london', 'overlap'), 'exit': {'sl': 1.5, 'tp': 0.6, 'max_hold': 8, 'be': False, 'be_rr': 1.0, 'partial': 0.0, 'atr': 'ATR_14', 'allow_long': True, 'allow_short': True}}
+2026-10-13 15:38:11 | NEW BEST score=217.9 WR=75.3% OOS_WR=72.4% PF=1.20 tr=73/29 rsi_mr|15m|deep
+2026-10-13 15:38:11 | phase=0 idx=0/4042 tested=34 best_score=217.9 best_wr=77.3% best_oos_wr=72.4%
+2026-10-13 15:38:11 | NEW BEST score=230.9 WR=77.3% OOS_WR=82.1% PF=1.03 tr=44/28 rsi_mr_ema_filter|15m|p0 {'kind': 'rsi_mr_ema_filter', 'rsi': 2, 'ema': 200, 'os': 15, 'ob': 75, 'sessions': ('overlap',), 'exit': {'sl': 1.5, 'tp': 0.4, 'max_hold': 8, 'be': False, 'be_rr': 1.0, 'partial': 0.0, 'atr': 'ATR_14', 'allow_long': True, 'allow_short': True}}
+2026-10-13 15:38:11 | NEW BEST score=233.1 WR=79.5% OOS_WR=82.1% PF=1.02 tr=44/28 rsi_mr_ema_filter|15m|deep
+2026-10-13 15:38:11 | NEW BEST score=236.9 WR=82.7% OOS_WR=80.0% PF=1.26 tr=75/30 bb_mr_rsi|15m|p0 {'kind': 'bb_mr_rsi', 'period': 20, 'k': 2.5, 'rsi': 3, 'os': 30, 'ob': 70, 'sessions': ('london', 'overlap'), 'exit': {'sl': 1.5, 'tp': 0.4, 'max_hold': 8, 'be': False, 'be_rr': 1.0, 'partial': 0.0, 'atr': 'ATR_14', 'allow_long': True, 'allow_short': True}}
+2026-10-13 15:38:11 | NEW BEST score=238.2 WR=82.7% OOS_WR=80.0% PF=1.26 tr=75/30 bb_mr_rsi|15m|deep
+2026-10-13 15:38:11 | ===== WINNER FOUND =====
+2026-10-13 15:38:11 | {
+  "name": "bb_mr_rsi|15m|deep",
+  "timeframe": "15m",
+  "winrate": 0.8266666666666667,
+  "profit_factor": 1.2581021298615755,
+  "trades": 75,
+  "net_pnl": 34.72944831777049,
+  "final_equity": 534.7294483177702,
+  "expectancy": 0.4630593109036065,
+  "max_dd": 0.07659408124664269,
+  "avg_win": 2.7304265876443767,
+  "avg_loss": -10.350538470475449,
+  "params": {
+    "kind": "bb_mr_rsi",
+    "period": 20,
+    "k": 2.5,
+    "rsi": 3,
+    "os": 30,
+    "ob": 70,
+    "sessions": [
+      "london",
+      "overlap"
+    ],
+    "exit": {
+      "sl": 1.5,
+      "tp": 0.4,
+      "max_hold": 24,
+      "be": false,
+      "be_rr": 1.0,
+      "partial": 0.0,
+      "atr": "ATR_14",
+      "allow_long": true,
+      "allow_short": true
+    }
+  },
+  "oos_winrate": 0.8,
+  "oos_profit_factor": 1.2108929842096006,
+  "oos_trades": 30,
+  "oos_net_pnl": 11.109194119447906,
+  "score": 238.20823586138303
+}
+2026-10-13 15:38:11 | Saved WINNER.json — search complete.

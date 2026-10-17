@@ -1,0 +1,924 @@
+{
+  "time": "2026-10-14 14:14:27",
+  "strategies_autopsied": 730,
+  "meta": {
+    "rule_votes": {
+      "avoid_hours": 59,
+      "avoid_sessions": 24,
+      "rsi_sanity": 80,
+      "skip_weak_impulse": 55,
+      "atr_expanded": 6,
+      "atr_not_expanded": 1,
+      "adx_min_22": 1
+    },
+    "poison_hours": [
+      14,
+      15,
+      16,
+      17,
+      21,
+      12,
+      11,
+      10,
+      20,
+      19,
+      13,
+      4,
+      7,
+      23,
+      5
+    ],
+    "poison_sessions": {
+      "overlap": 19,
+      "ny": 7,
+      "london": 1
+    }
+  },
+  "top_sl_rate": [
+    {
+      "name": "rsi_macd|5m|rr1.2|h12|{'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 83,
+      "sl": 50,
+      "tp": 25,
+      "sl_rate": 0.6024096385542169,
+      "sl_avg_mfe": 0.3130047136850644,
+      "sl_with_trend": 0.02,
+      "tp_with_trend": 0.08,
+      "sl_avg_adx": 35.944315621644684,
+      "tp_avg_adx": 32.69932002283694,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            14,
+            15,
+            16,
+            17,
+            21
+          ],
+          "why": "SL-heavy hours [14, 15, 16, 17, 21]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap",
+            "ny"
+          ],
+          "why": "SL-heavy sessions ['overlap', 'ny']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 58.869086558224836,
+          "tp_rsi": 58.69098432915549,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.2|h12|{'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('london', 'overlap', 'ny')}",
+      "n": 120,
+      "sl": 66,
+      "tp": 45,
+      "sl_rate": 0.55,
+      "sl_avg_mfe": 0.3343923998399449,
+      "sl_with_trend": 0.015151515151515152,
+      "tp_with_trend": 0.044444444444444446,
+      "sl_avg_adx": 36.01088692556517,
+      "tp_avg_adx": 35.93143814082591,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            12,
+            14,
+            15,
+            16,
+            17,
+            21
+          ],
+          "why": "SL-heavy hours [12, 14, 15, 16, 17, 21]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap",
+            "ny"
+          ],
+          "why": "SL-heavy sessions ['overlap', 'ny']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 58.350500718178665,
+          "tp_rsi": 57.82615959722242,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.0|h6|{'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 83,
+      "sl": 45,
+      "tp": 27,
+      "sl_rate": 0.5421686746987951,
+      "sl_avg_mfe": 0.2817644807802949,
+      "sl_with_trend": 0.022222222222222223,
+      "tp_with_trend": 0.07407407407407407,
+      "sl_avg_adx": 36.18506299616304,
+      "tp_avg_adx": 32.441200154997134,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            15,
+            16,
+            21
+          ],
+          "why": "SL-heavy hours [15, 16, 21]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap"
+          ],
+          "why": "SL-heavy sessions ['overlap']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 59.00558603741267,
+          "tp_rsi": 58.244240275496544,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "69% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 14, 'os': 30, 'ob': 75, 'sessions': ('london', 'overlap')}",
+      "n": 258,
+      "sl": 136,
+      "tp": 113,
+      "sl_rate": 0.5271317829457365,
+      "sl_avg_mfe": 0.3485707956426028,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.008849557522123894,
+      "sl_avg_adx": 43.01319761416909,
+      "tp_avg_adx": 42.1264939212924,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            11
+          ],
+          "why": "SL-heavy hours [11]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 42.05466286259947,
+          "tp_rsi": 37.556909619348005,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "48% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.2|h12|{'rsi': 7, 'os': 25, 'ob': 65, 'sessions': ('overlap', 'ny')}",
+      "n": 180,
+      "sl": 93,
+      "tp": 75,
+      "sl_rate": 0.5166666666666667,
+      "sl_avg_mfe": 0.3172958714160842,
+      "sl_with_trend": 0.06451612903225806,
+      "tp_with_trend": 0.05333333333333334,
+      "sl_avg_adx": 31.18643774930163,
+      "tp_avg_adx": 30.639603090755124,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            14,
+            16,
+            17
+          ],
+          "why": "SL-heavy hours [14, 16, 17]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 56.44064039866379,
+          "tp_rsi": 56.63179051898985,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.2|h8|{'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 82,
+      "sl": 42,
+      "tp": 26,
+      "sl_rate": 0.5121951219512195,
+      "sl_avg_mfe": 0.2766826642774451,
+      "sl_with_trend": 0.023809523809523808,
+      "tp_with_trend": 0.07692307692307693,
+      "sl_avg_adx": 36.31125129184325,
+      "tp_avg_adx": 32.738616025486444,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            15,
+            16,
+            17
+          ],
+          "why": "SL-heavy hours [15, 16, 17]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap"
+          ],
+          "why": "SL-heavy sessions ['overlap']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 58.611045653799614,
+          "tp_rsi": 58.66973138644516,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 14, 'os': 25, 'ob': 75, 'sessions': ('london', 'overlap')}",
+      "n": 131,
+      "sl": 67,
+      "tp": 58,
+      "sl_rate": 0.5114503816793893,
+      "sl_avg_mfe": 0.35588390523079205,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.0,
+      "sl_avg_adx": 48.08964304742985,
+      "tp_avg_adx": 44.67596105444993,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            10,
+            12,
+            16
+          ],
+          "why": "SL-heavy hours [10, 12, 16]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 56.35665016284446,
+          "tp_rsi": 46.59297436440138,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "49% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 14, 'os': 30, 'ob': 75, 'sessions': ('overlap', 'ny')}",
+      "n": 227,
+      "sl": 116,
+      "tp": 94,
+      "sl_rate": 0.5110132158590308,
+      "sl_avg_mfe": 0.34345698077312037,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.02127659574468085,
+      "sl_avg_adx": 41.76005262186004,
+      "tp_avg_adx": 42.51599111415076,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            17,
+            20
+          ],
+          "why": "SL-heavy hours [17, 20]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 42.299979138922836,
+          "tp_rsi": 40.54374929304835,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 14, 'os': 30, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 344,
+      "sl": 175,
+      "tp": 144,
+      "sl_rate": 0.5087209302325582,
+      "sl_avg_mfe": 0.32909431635593855,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.013888888888888888,
+      "sl_avg_adx": 39.5673834186333,
+      "tp_avg_adx": 39.637861698159305,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            19,
+            20
+          ],
+          "why": "SL-heavy hours [19, 20]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 52.21059021927435,
+          "tp_rsi": 51.35306053287888,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "49% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 14, 'os': 30, 'ob': 70, 'sessions': ('london', 'overlap')}",
+      "n": 420,
+      "sl": 213,
+      "tp": 193,
+      "sl_rate": 0.5071428571428571,
+      "sl_avg_mfe": 0.33557673736716054,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.010362694300518135,
+      "sl_avg_adx": 40.75729599478734,
+      "tp_avg_adx": 38.688610669035235,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            11,
+            13
+          ],
+          "why": "SL-heavy hours [11, 13]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 52.79606549125565,
+          "tp_rsi": 51.75303245833557,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "49% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.2|h6|{'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 75,
+      "sl": 38,
+      "tp": 21,
+      "sl_rate": 0.5066666666666667,
+      "sl_avg_mfe": 0.2714324018413873,
+      "sl_with_trend": 0.02631578947368421,
+      "tp_with_trend": 0.047619047619047616,
+      "sl_avg_adx": 36.85980329940464,
+      "tp_avg_adx": 33.987369875010124,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            15,
+            16,
+            17
+          ],
+          "why": "SL-heavy hours [15, 16, 17]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap"
+          ],
+          "why": "SL-heavy sessions ['overlap']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 59.28564331757644,
+          "tp_rsi": 58.215402160719385,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.2|h6|{'rsi': 7, 'os': 35, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 75,
+      "sl": 38,
+      "tp": 21,
+      "sl_rate": 0.5066666666666667,
+      "sl_avg_mfe": 0.2714324018413873,
+      "sl_with_trend": 0.02631578947368421,
+      "tp_with_trend": 0.047619047619047616,
+      "sl_avg_adx": 36.85980329940464,
+      "tp_avg_adx": 33.987369875010124,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            15,
+            16,
+            17
+          ],
+          "why": "SL-heavy hours [15, 16, 17]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap"
+          ],
+          "why": "SL-heavy sessions ['overlap']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 59.28564331757644,
+          "tp_rsi": 58.215402160719385,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.2|h6|{'rsi': 7, 'os': 40, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 75,
+      "sl": 38,
+      "tp": 21,
+      "sl_rate": 0.5066666666666667,
+      "sl_avg_mfe": 0.2714324018413873,
+      "sl_with_trend": 0.02631578947368421,
+      "tp_with_trend": 0.047619047619047616,
+      "sl_avg_adx": 36.85980329940464,
+      "tp_avg_adx": 33.987369875010124,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            15,
+            16,
+            17
+          ],
+          "why": "SL-heavy hours [15, 16, 17]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap"
+          ],
+          "why": "SL-heavy sessions ['overlap']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 59.28564331757644,
+          "tp_rsi": 58.215402160719385,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.2|h6|{'rsi': 7, 'os': 45, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 75,
+      "sl": 38,
+      "tp": 21,
+      "sl_rate": 0.5066666666666667,
+      "sl_avg_mfe": 0.2714324018413873,
+      "sl_with_trend": 0.02631578947368421,
+      "tp_with_trend": 0.047619047619047616,
+      "sl_avg_adx": 36.85980329940464,
+      "tp_avg_adx": 33.987369875010124,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            15,
+            16,
+            17
+          ],
+          "why": "SL-heavy hours [15, 16, 17]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap"
+          ],
+          "why": "SL-heavy sessions ['overlap']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 59.28564331757644,
+          "tp_rsi": 58.215402160719385,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.5, 'rsi': 14, 'os': 30, 'ob': 75, 'sessions': ('overlap', 'ny')}",
+      "n": 217,
+      "sl": 109,
+      "tp": 100,
+      "sl_rate": 0.5023041474654378,
+      "sl_avg_mfe": 0.3348607638927709,
+      "sl_with_trend": 0.03669724770642202,
+      "tp_with_trend": 0.03,
+      "sl_avg_adx": 37.30570852481893,
+      "tp_avg_adx": 36.49723028291384,
+      "lessons": [
+        {
+          "rule": "atr_expanded",
+          "why": "TP preferred expanded ATR"
+        },
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            15,
+            16,
+            17,
+            20
+          ],
+          "why": "SL-heavy hours [15, 16, 17, 20]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "ny"
+          ],
+          "why": "SL-heavy sessions ['ny']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 40.587565952611406,
+          "tp_rsi": 41.36199431146146,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "50% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 14, 'os': 30, 'ob': 75, 'sessions': None}",
+      "n": 669,
+      "sl": 336,
+      "tp": 300,
+      "sl_rate": 0.5022421524663677,
+      "sl_avg_mfe": 0.36419153506621005,
+      "sl_with_trend": 0.005952380952380952,
+      "tp_with_trend": 0.01,
+      "sl_avg_adx": 42.5394153223518,
+      "tp_avg_adx": 43.171119368393946,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            11,
+            17,
+            20
+          ],
+          "why": "SL-heavy hours [11, 17, 20]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 43.058921825793554,
+          "tp_rsi": 42.20671596775438,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "49% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 7, 'os': 30, 'ob': 70, 'sessions': ('london', 'overlap')}",
+      "n": 1257,
+      "sl": 630,
+      "tp": 584,
+      "sl_rate": 0.5011933174224343,
+      "sl_avg_mfe": 0.368021493002992,
+      "sl_with_trend": 0.18412698412698414,
+      "tp_with_trend": 0.1832191780821918,
+      "sl_avg_adx": 30.327370412739285,
+      "tp_avg_adx": 29.290658614475344,
+      "lessons": [
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 51.169326364950834,
+          "tp_rsi": 50.558190237185016,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "46% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('london', 'overlap')}",
+      "n": 910,
+      "sl": 455,
+      "tp": 421,
+      "sl_rate": 0.5,
+      "sl_avg_mfe": 0.3712878010491442,
+      "sl_with_trend": 0.15164835164835164,
+      "tp_with_trend": 0.14726840855106887,
+      "sl_avg_adx": 30.983850404931207,
+      "tp_avg_adx": 30.180197078881047,
+      "lessons": [
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 57.16894755186232,
+          "tp_rsi": 56.48687827901205,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "45% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "rsi_macd|5m|rr1.0|h6|{'rsi': 7, 'os': 25, 'ob': 70, 'sessions': ('london', 'overlap', 'ny')}",
+      "n": 120,
+      "sl": 60,
+      "tp": 47,
+      "sl_rate": 0.5,
+      "sl_avg_mfe": 0.2886619089123496,
+      "sl_with_trend": 0.016666666666666666,
+      "tp_with_trend": 0.0425531914893617,
+      "sl_avg_adx": 35.55686516644068,
+      "tp_avg_adx": 36.52580406214578,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            8,
+            12,
+            15,
+            16,
+            21
+          ],
+          "why": "SL-heavy hours [8, 12, 15, 16, 21]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "overlap"
+          ],
+          "why": "SL-heavy sessions ['overlap']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 58.04733831836244,
+          "tp_rsi": 57.88327000928554,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "68% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 14, 'os': 25, 'ob': 70, 'sessions': ('overlap', 'ny')}",
+      "n": 243,
+      "sl": 121,
+      "tp": 105,
+      "sl_rate": 0.49794238683127573,
+      "sl_avg_mfe": 0.3487016298904171,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.0,
+      "sl_avg_adx": 40.88456191139307,
+      "tp_avg_adx": 40.48877094220987,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            19,
+            20
+          ],
+          "why": "SL-heavy hours [19, 20]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 62.95928875952641,
+          "tp_rsi": 60.042968346515714,
+          "why": "compare RSI at SL vs TP entries"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.5, 'rsi': 14, 'os': 30, 'ob': 75, 'sessions': None}",
+      "n": 688,
+      "sl": 342,
+      "tp": 325,
+      "sl_rate": 0.49709302325581395,
+      "sl_avg_mfe": 0.37327464759888423,
+      "sl_with_trend": 0.02046783625730994,
+      "tp_with_trend": 0.021538461538461538,
+      "sl_avg_adx": 38.69920629315593,
+      "tp_avg_adx": 38.170600582126625,
+      "lessons": [
+        {
+          "rule": "atr_expanded",
+          "why": "TP preferred expanded ATR"
+        },
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            4,
+            7,
+            15,
+            16,
+            17,
+            20,
+            23
+          ],
+          "why": "SL-heavy hours [4, 7, 15, 16, 17, 20, 23]"
+        },
+        {
+          "rule": "avoid_sessions",
+          "sessions": [
+            "ny"
+          ],
+          "why": "SL-heavy sessions ['ny']"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 40.20578212125913,
+          "tp_rsi": 41.54639819790701,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "59% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.5, 'rsi': 14, 'os': 25, 'ob': 75, 'sessions': ('london', 'overlap')}",
+      "n": 151,
+      "sl": 75,
+      "tp": 73,
+      "sl_rate": 0.4966887417218543,
+      "sl_avg_mfe": 0.3638307226789342,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.0,
+      "sl_avg_adx": 41.81107008588381,
+      "tp_avg_adx": 38.69799854900013,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            12,
+            15
+          ],
+          "why": "SL-heavy hours [12, 15]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 45.835632923702036,
+          "tp_rsi": 52.78579869736622,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "56% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.5, 'rsi': 14, 'os': 25, 'ob': 75, 'sessions': ('overlap', 'ny')}",
+      "n": 121,
+      "sl": 60,
+      "tp": 57,
+      "sl_rate": 0.49586776859504134,
+      "sl_avg_mfe": 0.3239540775477525,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.0,
+      "sl_avg_adx": 40.896106281175115,
+      "tp_avg_adx": 39.81391328970041,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            15,
+            20
+          ],
+          "why": "SL-heavy hours [15, 20]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 50.52545633150183,
+          "tp_rsi": 51.33508526478383,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "48% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 7, 'os': 30, 'ob': 75, 'sessions': ('london', 'overlap')}",
+      "n": 893,
+      "sl": 442,
+      "tp": 423,
+      "sl_rate": 0.49496080627099664,
+      "sl_avg_mfe": 0.3596660253598576,
+      "sl_with_trend": 0.17194570135746606,
+      "tp_with_trend": 0.18203309692671396,
+      "sl_avg_adx": 31.841561296302984,
+      "tp_avg_adx": 30.51047984905373,
+      "lessons": [
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 45.30429657379271,
+          "tp_rsi": 44.97877065510918,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "48% of SLs within 2 bars"
+        }
+      ]
+    },
+    {
+      "name": "bb_rsi_fade|5m|rr1.2|h12|{'period': 20, 'k': 2.0, 'rsi': 14, 'os': 25, 'ob': 75, 'sessions': None}",
+      "n": 364,
+      "sl": 180,
+      "tp": 162,
+      "sl_rate": 0.4945054945054945,
+      "sl_avg_mfe": 0.3737826904876128,
+      "sl_with_trend": 0.0,
+      "tp_with_trend": 0.0,
+      "sl_avg_adx": 46.54023430742228,
+      "tp_avg_adx": 46.80025667770636,
+      "lessons": [
+        {
+          "rule": "avoid_hours",
+          "hours": [
+            4,
+            10,
+            12,
+            16,
+            19,
+            22
+          ],
+          "why": "SL-heavy hours [4, 10, 12, 16, 19, 22]"
+        },
+        {
+          "rule": "rsi_sanity",
+          "sl_rsi": 55.8882170047561,
+          "tp_rsi": 54.40398112993382,
+          "why": "compare RSI at SL vs TP entries"
+        },
+        {
+          "rule": "skip_weak_impulse",
+          "why": "48% of SLs within 2 bars"
+        }
+      ]
+    }
+  ],
+  "global_lessons": {
+    "rule_votes": {
+      "avoid_hours": 59,
+      "avoid_sessions": 24,
+      "rsi_sanity": 80,
+      "skip_weak_impulse": 55,
+      "atr_expanded": 6,
+      "atr_not_expanded": 1,
+      "adx_min_22": 1
+    },
+    "poison_hours": [
+      14,
+      15,
+      16,
+      17,
+      21,
+      12,
+      11,
+      10,
+      20,
+      19,
+      13,
+      4,
+      7,
+      23,
+      5
+    ],
+    "poison_sessions": {
+      "overlap": 19,
+      "ny": 7,
+      "london": 1
+    }
+  }
+}

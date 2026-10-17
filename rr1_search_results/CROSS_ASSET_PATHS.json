@@ -1,0 +1,16 @@
+{
+  "EUR/USD": "data/EURUSD_5min_2024-09-20_2026-10-14.csv",
+  "GBP/USD": "data/GBPUSD_5min_2024-09-24_2026-10-14.csv",
+  "USD/JPY": "data/USDJPY_5min_2024-09-23_2026-10-14.csv",
+  "AUD/USD": "data/AUDUSD_5min_2024-09-24_2026-10-14.csv",
+  "USD/CAD": "data/USDCAD_5min_2024-09-24_2026-10-14.csv",
+  "USD/CHF": "data/USDCHF_5min_2024-09-23_2026-10-14.csv",
+  "NZD/USD": "data/NZDUSD_5min_2024-09-24_2026-10-14.csv",
+  "SPY": "data/SPY_5min_2024-09-24_2026-10-14.csv",
+  "QQQ": "data/QQQ_5min_2024-09-24_2026-10-14.csv",
+  "DIA": "data/DIA_5min_2024-09-23_2026-10-14.csv",
+  "IWM": "data/IWM_5min_2024-09-24_2026-10-14.csv",
+  "USO": "data/USO_5min_2024-09-24_2026-10-14.csv",
+  "GLD": "data/GLD_5min_2024-09-24_2026-10-14.csv",
+  "SLV": "data/SLV_5min_2024-09-24_2026-10-14.csv"
+}

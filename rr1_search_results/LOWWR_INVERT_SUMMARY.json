@@ -1,0 +1,1383 @@
+{
+  "note": "Genuine losers = BOTH IS and OOS WR \u226448% with n\u226580/30. Then invert.",
+  "lowest_bases": [
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.42758620689655175,
+      "oos_wr": 0.3582089552238806,
+      "min_wr": 0.3582089552238806,
+      "avg_wr": 0.39289758106021616,
+      "tpd": 0.324332960536827,
+      "oos_tpd": 0.4372960372960373,
+      "n": 145,
+      "oos_n": 67,
+      "pf": 0.8554709691458923,
+      "oos_pf": 0.6764897714090432,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|5m",
+      "wr": 0.43119266055045874,
+      "oos_wr": 0.3548387096774194,
+      "min_wr": 0.3548387096774194,
+      "avg_wr": 0.39301568511393903,
+      "tpd": 0.2408459595959596,
+      "oos_tpd": 0.20442769665567592,
+      "n": 109,
+      "oos_n": 31,
+      "pf": 0.8490729140754042,
+      "oos_pf": 0.49917380429229746,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 34,
+        "slow": 100,
+        "sessions": [
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "5m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.47019867549668876,
+      "oos_wr": 0.3333333333333333,
+      "min_wr": 0.3333333333333333,
+      "avg_wr": 0.40176600441501104,
+      "tpd": 0.33775363476593706,
+      "oos_tpd": 0.23496503496503496,
+      "n": 151,
+      "oos_n": 36,
+      "pf": 0.8754930139734647,
+      "oos_pf": 0.5367286326366898,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.43010752688172044,
+      "oos_wr": 0.38095238095238093,
+      "min_wr": 0.38095238095238093,
+      "avg_wr": 0.4055299539170507,
+      "tpd": 0.20802045055120627,
+      "oos_tpd": 0.27412587412587414,
+      "n": 93,
+      "oos_n": 42,
+      "pf": 0.7840760761013454,
+      "oos_pf": 0.5867582810247394,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 21,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.456,
+      "oos_wr": 0.36,
+      "min_wr": 0.36,
+      "avg_wr": 0.40800000000000003,
+      "tpd": 0.2795973797731267,
+      "oos_tpd": 0.32634032634032634,
+      "n": 125,
+      "oos_n": 50,
+      "pf": 0.8637747277416112,
+      "oos_pf": 0.6392557755603623,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 12,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.46601941747572817,
+      "oos_wr": 0.3548387096774194,
+      "min_wr": 0.3548387096774194,
+      "avg_wr": 0.41042906357657377,
+      "tpd": 0.2303882409330564,
+      "oos_tpd": 0.20233100233100232,
+      "n": 103,
+      "oos_n": 31,
+      "pf": 0.8494479842090578,
+      "oos_pf": 0.5650445535780825,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 200,
+        "sessions": [
+          "london",
+          "overlap"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|rsi_macd|15m",
+      "wr": 0.45348837209302323,
+      "oos_wr": 0.37142857142857144,
+      "min_wr": 0.37142857142857144,
+      "avg_wr": 0.4124584717607973,
+      "tpd": 0.19236299728391118,
+      "oos_tpd": 0.22843822843822842,
+      "n": 86,
+      "oos_n": 35,
+      "pf": 0.8471018121427856,
+      "oos_pf": 0.6116430399454041,
+      "params": {
+        "kind": "rsi_macd",
+        "rsi": 7,
+        "os": 45,
+        "ob": 55,
+        "sessions": [
+          "london",
+          "overlap"
+        ],
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "rsi_macd"
+    },
+    {
+      "name": "low|macd_cross|15m",
+      "wr": 0.4666666666666667,
+      "oos_wr": 0.358974358974359,
+      "min_wr": 0.358974358974359,
+      "avg_wr": 0.4128205128205128,
+      "tpd": 0.30196517015497687,
+      "oos_tpd": 0.2545454545454545,
+      "n": 135,
+      "oos_n": 39,
+      "pf": 0.8795621036144007,
+      "oos_pf": 0.6205530742796068,
+      "params": {
+        "kind": "macd_cross",
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "macd_cross"
+    },
+    {
+      "name": "low|rsi_cross|5m",
+      "wr": 0.47126436781609193,
+      "oos_wr": 0.3548387096774194,
+      "min_wr": 0.3548387096774194,
+      "avg_wr": 0.41305153874675565,
+      "tpd": 0.19223484848484848,
+      "oos_tpd": 0.20442769665567592,
+      "n": 87,
+      "oos_n": 31,
+      "pf": 0.8190664343439834,
+      "oos_pf": 0.547337012571486,
+      "params": {
+        "kind": "rsi_cross",
+        "rsi": 7,
+        "os": 45,
+        "ob": 55,
+        "sessions": [
+          "asian"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "5m",
+      "kind": "rsi_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.4594594594594595,
+      "oos_wr": 0.375,
+      "min_wr": 0.375,
+      "avg_wr": 0.4172297297297297,
+      "tpd": 0.24828247323853653,
+      "oos_tpd": 0.20885780885780886,
+      "n": 111,
+      "oos_n": 32,
+      "pf": 0.8687726109460593,
+      "oos_pf": 0.556235900518041,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 12,
+        "slow": 34,
+        "sessions": [
+          "overlap"
+        ],
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.44594594594594594,
+      "oos_wr": 0.3888888888888889,
+      "min_wr": 0.3888888888888889,
+      "avg_wr": 0.41741741741741745,
+      "tpd": 0.331043297651382,
+      "oos_tpd": 0.23496503496503496,
+      "n": 148,
+      "oos_n": 36,
+      "pf": 0.8921424335564904,
+      "oos_pf": 0.5943072869703264,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 50,
+        "sessions": [
+          "london",
+          "overlap",
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.45263157894736844,
+      "oos_wr": 0.38235294117647056,
+      "min_wr": 0.38235294117647056,
+      "avg_wr": 0.41749226006191953,
+      "tpd": 0.2124940086275763,
+      "oos_tpd": 0.2219114219114219,
+      "n": 95,
+      "oos_n": 34,
+      "pf": 0.8200246028579921,
+      "oos_pf": 0.60773251198287,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 50,
+        "sessions": [
+          "overlap"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.4418604651162791,
+      "oos_wr": 0.39473684210526316,
+      "min_wr": 0.39473684210526316,
+      "avg_wr": 0.4182986536107711,
+      "tpd": 0.19236299728391118,
+      "oos_tpd": 0.248018648018648,
+      "n": 86,
+      "oos_n": 38,
+      "pf": 0.8111469523243945,
+      "oos_pf": 0.6490485340067367,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 12,
+        "slow": 50,
+        "sessions": [
+          "asian",
+          "london",
+          "overlap",
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|15m",
+      "wr": 0.46534653465346537,
+      "oos_wr": 0.37142857142857144,
+      "min_wr": 0.37142857142857144,
+      "avg_wr": 0.4183875530410184,
+      "tpd": 0.22591468285668637,
+      "oos_tpd": 0.22843822843822842,
+      "n": 101,
+      "oos_n": 35,
+      "pf": 0.8444487924562479,
+      "oos_pf": 0.6072808992343155,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 5,
+        "slow": 34,
+        "sessions": [
+          "london"
+        ],
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "kind": "ema_cross"
+    },
+    {
+      "name": "low|ema_cross|5m",
+      "wr": 0.4722222222222222,
+      "oos_wr": 0.36666666666666664,
+      "min_wr": 0.36666666666666664,
+      "avg_wr": 0.4194444444444444,
+      "tpd": 0.3181818181818182,
+      "oos_tpd": 0.19783325482807348,
+      "n": 144,
+      "oos_n": 30,
+      "pf": 0.9043722265481511,
+      "oos_pf": 0.5695209649397754,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 100,
+        "sessions": [
+          "asian",
+          "london",
+          "overlap",
+          "ny"
+        ],
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "tf": "5m",
+      "kind": "ema_cross"
+    }
+  ],
+  "best_inverts": [
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.59375,
+      "oos_wr": 0.6,
+      "min_wr": 0.59375,
+      "avg_wr": 0.596875,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.2937062937062937,
+      "n": 96,
+      "oos_n": 45,
+      "pf": 1.3284004135630578,
+      "oos_pf": 0.939912793302518,
+      "pnl": 120.30729120122449,
+      "oos_pnl": -8.677461186982693,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5957446808510638,
+      "oos_wr": 0.5909090909090909,
+      "min_wr": 0.5909090909090909,
+      "avg_wr": 0.5933268858800773,
+      "tpd": 0.21025722958939128,
+      "oos_tpd": 0.28717948717948716,
+      "n": 94,
+      "oos_n": 44,
+      "pf": 1.1826998502657067,
+      "oos_pf": 0.988965219119191,
+      "pnl": 71.77095750992862,
+      "oos_pnl": -1.7107975732935845,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5957446808510638,
+      "oos_wr": 0.5909090909090909,
+      "min_wr": 0.5909090909090909,
+      "avg_wr": 0.5933268858800773,
+      "tpd": 0.21025722958939128,
+      "oos_tpd": 0.28717948717948716,
+      "n": 94,
+      "oos_n": 44,
+      "pf": 1.2170737827945288,
+      "oos_pf": 1.0106132960768452,
+      "pnl": 77.26447285771681,
+      "oos_pnl": 1.5527999974604754,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5894736842105263,
+      "oos_wr": 0.6086956521739131,
+      "min_wr": 0.5894736842105263,
+      "avg_wr": 0.5990846681922197,
+      "tpd": 0.2124940086275763,
+      "oos_tpd": 0.30023310023310024,
+      "n": 95,
+      "oos_n": 46,
+      "pf": 1.2256317353801787,
+      "oos_pf": 1.1985883097948804,
+      "pnl": 93.05471300805499,
+      "oos_pnl": 32.02744433389837,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5866666666666667,
+      "oos_wr": 0.6,
+      "min_wr": 0.5866666666666667,
+      "avg_wr": 0.5933333333333333,
+      "tpd": 0.16775842786387601,
+      "oos_tpd": 0.22843822843822842,
+      "n": 75,
+      "oos_n": 35,
+      "pf": 1.3459000554822793,
+      "oos_pf": 1.3354952901047241,
+      "pnl": 102.74606570985449,
+      "oos_pnl": 39.227941529475615,
+      "base_avg": 0.40800000000000003,
+      "base_wr": 0.456,
+      "base_oos": 0.36,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 12,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 18,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5833333333333334,
+      "oos_wr": 0.6304347826086957,
+      "min_wr": 0.5833333333333334,
+      "avg_wr": 0.6068840579710145,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.30023310023310024,
+      "n": 96,
+      "oos_n": 46,
+      "pf": 1.3687867963996987,
+      "oos_pf": 1.1458779020280996,
+      "pnl": 151.7761194073627,
+      "oos_pnl": 22.586496434377967,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5789473684210527,
+      "oos_wr": 0.6363636363636364,
+      "min_wr": 0.5789473684210527,
+      "avg_wr": 0.6076555023923444,
+      "tpd": 0.2124940086275763,
+      "oos_tpd": 0.28717948717948716,
+      "n": 95,
+      "oos_n": 44,
+      "pf": 1.34064505898741,
+      "oos_pf": 1.101378999492214,
+      "pnl": 133.46597168181773,
+      "oos_pnl": 14.211356122639728,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5789473684210527,
+      "oos_wr": 0.6363636363636364,
+      "min_wr": 0.5789473684210527,
+      "avg_wr": 0.6076555023923444,
+      "tpd": 0.2124940086275763,
+      "oos_tpd": 0.28717948717948716,
+      "n": 95,
+      "oos_n": 44,
+      "pf": 1.292610777738993,
+      "oos_pf": 1.1572935142411376,
+      "pnl": 100.68390381120997,
+      "oos_pnl": 19.769955555543227,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5789473684210527,
+      "oos_wr": 0.5833333333333334,
+      "min_wr": 0.5789473684210527,
+      "avg_wr": 0.5811403508771931,
+      "tpd": 0.16999520690206105,
+      "oos_tpd": 0.23496503496503496,
+      "n": 76,
+      "oos_n": 36,
+      "pf": 1.2888270687277663,
+      "oos_pf": 1.2820775643484401,
+      "pnl": 89.90370220852546,
+      "oos_pnl": 35.43386672916,
+      "base_avg": 0.40800000000000003,
+      "base_wr": 0.456,
+      "base_oos": 0.36,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 12,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5733333333333334,
+      "oos_wr": 0.5833333333333334,
+      "min_wr": 0.5733333333333334,
+      "avg_wr": 0.5783333333333334,
+      "tpd": 0.16775842786387601,
+      "oos_tpd": 0.23496503496503496,
+      "n": 75,
+      "oos_n": 36,
+      "pf": 1.2987551360630776,
+      "oos_pf": 1.3432424670455834,
+      "pnl": 94.3242194912382,
+      "oos_pnl": 44.199115418613715,
+      "base_avg": 0.40800000000000003,
+      "base_wr": 0.456,
+      "base_oos": 0.36,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 12,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5714285714285714,
+      "oos_wr": 0.5945945945945946,
+      "min_wr": 0.5714285714285714,
+      "avg_wr": 0.583011583011583,
+      "tpd": 0.17223198594024605,
+      "oos_tpd": 0.24149184149184147,
+      "n": 77,
+      "oos_n": 37,
+      "pf": 1.267008354072186,
+      "oos_pf": 1.431959284931317,
+      "pnl": 90.44280389287057,
+      "oos_pnl": 55.46307218423465,
+      "base_avg": 0.40800000000000003,
+      "base_wr": 0.456,
+      "base_oos": 0.36,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 12,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5696969696969697,
+      "oos_wr": 0.647887323943662,
+      "min_wr": 0.5696969696969697,
+      "avg_wr": 0.6087921468203159,
+      "tpd": 0.36906854130052724,
+      "oos_tpd": 0.4634032634032634,
+      "n": 165,
+      "oos_n": 71,
+      "pf": 1.261650489385357,
+      "oos_pf": 1.6013617050243394,
+      "pnl": 172.03847267828078,
+      "oos_pnl": 134.13757317219688,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|rsi_macd|15m",
+      "wr": 0.5663716814159292,
+      "oos_wr": 0.6346153846153846,
+      "min_wr": 0.5663716814159292,
+      "avg_wr": 0.6004935330156569,
+      "tpd": 0.25275603131490654,
+      "oos_tpd": 0.33939393939393936,
+      "n": 113,
+      "oos_n": 52,
+      "pf": 1.2570837019650805,
+      "oos_pf": 1.8223432987350094,
+      "pnl": 151.73971195875782,
+      "oos_pnl": 166.32857385986688,
+      "base_avg": 0.4124584717607973,
+      "base_wr": 0.45348837209302323,
+      "base_oos": 0.37142857142857144,
+      "base_name": "low|rsi_macd|15m",
+      "params": {
+        "kind": "rsi_macd",
+        "rsi": 7,
+        "os": 45,
+        "ob": 55,
+        "sessions": [
+          "london",
+          "overlap"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": false,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5657894736842105,
+      "oos_wr": 0.6666666666666666,
+      "min_wr": 0.5657894736842105,
+      "avg_wr": 0.6162280701754386,
+      "tpd": 0.16999520690206105,
+      "oos_tpd": 0.23496503496503496,
+      "n": 76,
+      "oos_n": 36,
+      "pf": 1.3286381187789327,
+      "oos_pf": 1.3731548642399847,
+      "pnl": 95.4418436443814,
+      "oos_pnl": 41.63767176915542,
+      "base_avg": 0.40800000000000003,
+      "base_wr": 0.456,
+      "base_oos": 0.36,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 12,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5652173913043478,
+      "oos_wr": 0.6,
+      "min_wr": 0.5652173913043478,
+      "avg_wr": 0.5826086956521739,
+      "tpd": 0.3601214251477872,
+      "oos_tpd": 0.45687645687645684,
+      "n": 161,
+      "oos_n": 70,
+      "pf": 1.2175829278717762,
+      "oos_pf": 1.1990261048346913,
+      "pnl": 132.36484469225707,
+      "oos_pnl": 44.76274570319589,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    }
+  ],
+  "best_year_stable_inverts": [
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.59375,
+      "oos_wr": 0.6,
+      "min_wr": 0.59375,
+      "avg_wr": 0.596875,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.2937062937062937,
+      "n": 96,
+      "oos_n": 45,
+      "pf": 1.3284004135630578,
+      "oos_pf": 0.939912793302518,
+      "pnl": 120.30729120122449,
+      "oos_pnl": -8.677461186982693,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5957446808510638,
+      "oos_wr": 0.5909090909090909,
+      "min_wr": 0.5909090909090909,
+      "avg_wr": 0.5933268858800773,
+      "tpd": 0.21025722958939128,
+      "oos_tpd": 0.28717948717948716,
+      "n": 94,
+      "oos_n": 44,
+      "pf": 1.1826998502657067,
+      "oos_pf": 0.988965219119191,
+      "pnl": 71.77095750992862,
+      "oos_pnl": -1.7107975732935845,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5894736842105263,
+      "oos_wr": 0.6086956521739131,
+      "min_wr": 0.5894736842105263,
+      "avg_wr": 0.5990846681922197,
+      "tpd": 0.2124940086275763,
+      "oos_tpd": 0.30023310023310024,
+      "n": 95,
+      "oos_n": 46,
+      "pf": 1.2256317353801787,
+      "oos_pf": 1.1985883097948804,
+      "pnl": 93.05471300805499,
+      "oos_pnl": 32.02744433389837,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5833333333333334,
+      "oos_wr": 0.6304347826086957,
+      "min_wr": 0.5833333333333334,
+      "avg_wr": 0.6068840579710145,
+      "tpd": 0.2147307876657613,
+      "oos_tpd": 0.30023310023310024,
+      "n": 96,
+      "oos_n": 46,
+      "pf": 1.3687867963996987,
+      "oos_pf": 1.1458779020280996,
+      "pnl": 151.7761194073627,
+      "oos_pnl": 22.586496434377967,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5789473684210527,
+      "oos_wr": 0.6363636363636364,
+      "min_wr": 0.5789473684210527,
+      "avg_wr": 0.6076555023923444,
+      "tpd": 0.2124940086275763,
+      "oos_tpd": 0.28717948717948716,
+      "n": 95,
+      "oos_n": 44,
+      "pf": 1.34064505898741,
+      "oos_pf": 1.101378999492214,
+      "pnl": 133.46597168181773,
+      "oos_pnl": 14.211356122639728,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5696969696969697,
+      "oos_wr": 0.647887323943662,
+      "min_wr": 0.5696969696969697,
+      "avg_wr": 0.6087921468203159,
+      "tpd": 0.36906854130052724,
+      "oos_tpd": 0.4634032634032634,
+      "n": 165,
+      "oos_n": 71,
+      "pf": 1.261650489385357,
+      "oos_pf": 1.6013617050243394,
+      "pnl": 172.03847267828078,
+      "oos_pnl": 134.13757317219688,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|rsi_macd|15m",
+      "wr": 0.5663716814159292,
+      "oos_wr": 0.6346153846153846,
+      "min_wr": 0.5663716814159292,
+      "avg_wr": 0.6004935330156569,
+      "tpd": 0.25275603131490654,
+      "oos_tpd": 0.33939393939393936,
+      "n": 113,
+      "oos_n": 52,
+      "pf": 1.2570837019650805,
+      "oos_pf": 1.8223432987350094,
+      "pnl": 151.73971195875782,
+      "oos_pnl": 166.32857385986688,
+      "base_avg": 0.4124584717607973,
+      "base_wr": 0.45348837209302323,
+      "base_oos": 0.37142857142857144,
+      "base_name": "low|rsi_macd|15m",
+      "params": {
+        "kind": "rsi_macd",
+        "rsi": 7,
+        "os": 45,
+        "ob": 55,
+        "sessions": [
+          "london",
+          "overlap"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": false,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5652173913043478,
+      "oos_wr": 0.6,
+      "min_wr": 0.5652173913043478,
+      "avg_wr": 0.5826086956521739,
+      "tpd": 0.3601214251477872,
+      "oos_tpd": 0.45687645687645684,
+      "n": 161,
+      "oos_n": 70,
+      "pf": 1.2175829278717762,
+      "oos_pf": 1.1990261048346913,
+      "pnl": 132.36484469225707,
+      "oos_pnl": 44.76274570319589,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5617283950617284,
+      "oos_wr": 0.6231884057971014,
+      "min_wr": 0.5617283950617284,
+      "avg_wr": 0.5924584004294149,
+      "tpd": 0.3623582041859722,
+      "oos_tpd": 0.4503496503496503,
+      "n": 162,
+      "oos_n": 69,
+      "pf": 1.169283163072756,
+      "oos_pf": 1.2942905737562065,
+      "pnl": 95.7708801096478,
+      "oos_pnl": 59.54793376595467,
+      "base_avg": 0.39289758106021616,
+      "base_wr": 0.42758620689655175,
+      "base_oos": 0.3582089552238806,
+      "base_name": "low|ema_cross|15m",
+      "params": {
+        "kind": "ema_cross",
+        "fast": 8,
+        "slow": 34,
+        "sessions": [
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    },
+    {
+      "name": "inv|rsi_macd|15m",
+      "wr": 0.5486725663716814,
+      "oos_wr": 0.6346153846153846,
+      "min_wr": 0.5486725663716814,
+      "avg_wr": 0.591643975493533,
+      "tpd": 0.25275603131490654,
+      "oos_tpd": 0.33939393939393936,
+      "n": 113,
+      "oos_n": 52,
+      "pf": 1.1350980104987398,
+      "oos_pf": 1.7708041430801786,
+      "pnl": 75.4133863209319,
+      "oos_pnl": 154.0754390555271,
+      "base_avg": 0.4124584717607973,
+      "base_wr": 0.45348837209302323,
+      "base_oos": 0.37142857142857144,
+      "base_name": "low|rsi_macd|15m",
+      "params": {
+        "kind": "rsi_macd",
+        "rsi": 7,
+        "os": 45,
+        "ob": 55,
+        "sessions": [
+          "london",
+          "overlap"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": false,
+          "allow_short": true
+        }
+      },
+      "year_ok": true
+    }
+  ],
+  "counts": {
+    "bases": 106,
+    "inv": 654,
+    "inv_ge65": 0,
+    "inv_ge60": 0
+  }
+}

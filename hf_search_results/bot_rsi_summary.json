@@ -1,0 +1,16 @@
+{
+  "strategy": "RSI(5) cross fade 15m London+Overlap+NY",
+  "period": "2026-08-04 04:00:00 \u2192 2026-10-13 16:00:00",
+  "trades": 180,
+  "winrate_pct": 94.44,
+  "profit_factor": 1.826,
+  "net_pnl": 82.74,
+  "final_equity": 582.77,
+  "trades_per_bar_day": 3.158,
+  "day_coverage": 0.807,
+  "avg_trades_on_active_days": 3.91,
+  "max_trades_one_day": 6,
+  "tp_exits": 169,
+  "sl_exits": 8,
+  "causality": "signal at close \u2192 fill next open"
+}

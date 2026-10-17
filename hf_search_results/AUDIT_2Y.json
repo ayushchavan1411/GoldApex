@@ -1,0 +1,70 @@
+{
+  "stoch": {
+    "15m": {
+      "strategy": "Stoch(5) cross fade 15m London+Overlap",
+      "period": "2026-08-04 04:00:00 \u2192 2026-10-13 16:30:00",
+      "trades": 82,
+      "winrate_pct": 98.78,
+      "profit_factor": 8.034,
+      "net_pnl": 75.76,
+      "final_equity": 575.77,
+      "trades_per_bar_day": 1.439,
+      "day_coverage": 0.684,
+      "avg_trades_on_active_days": 2.1,
+      "max_trades_one_day": 5,
+      "tp_exits": 80,
+      "sl_exits": 1,
+      "causality": "signal at close \u2192 fill next open"
+    },
+    "1h_2y": {
+      "strategy": "Stoch(5) cross fade 15m London+Overlap",
+      "period": "2024-05-21 04:00:00 \u2192 2026-10-13 16:00:00",
+      "trades": 251,
+      "winrate_pct": 89.24,
+      "profit_factor": 0.844,
+      "net_pnl": -38.61,
+      "final_equity": 461.38,
+      "trades_per_bar_day": 0.35,
+      "day_coverage": 0.305,
+      "avg_trades_on_active_days": 1.15,
+      "max_trades_one_day": 3,
+      "tp_exits": 224,
+      "sl_exits": 25,
+      "causality": "signal at close \u2192 fill next open"
+    }
+  },
+  "rsi": {
+    "15m": {
+      "strategy": "RSI(5) cross fade 15m London+Overlap+NY",
+      "period": "2026-08-04 04:00:00 \u2192 2026-10-13 16:30:00",
+      "trades": 180,
+      "winrate_pct": 94.44,
+      "profit_factor": 1.826,
+      "net_pnl": 82.74,
+      "final_equity": 582.77,
+      "trades_per_bar_day": 3.158,
+      "day_coverage": 0.807,
+      "avg_trades_on_active_days": 3.91,
+      "max_trades_one_day": 6,
+      "tp_exits": 169,
+      "sl_exits": 8,
+      "causality": "signal at close \u2192 fill next open"
+    },
+    "1h_2y": {
+      "strategy": "RSI(5) cross fade 15m London+Overlap+NY",
+      "period": "2024-05-21 04:00:00 \u2192 2026-10-13 16:00:00",
+      "trades": 123,
+      "winrate_pct": 82.11,
+      "profit_factor": 0.544,
+      "net_pnl": -77.42,
+      "final_equity": 422.6,
+      "trades_per_bar_day": 0.172,
+      "day_coverage": 0.127,
+      "avg_trades_on_active_days": 1.35,
+      "max_trades_one_day": 3,
+      "tp_exits": 100,
+      "sl_exits": 16,
+      "causality": "signal at close \u2192 fill next open"
+    }
+  }
+}
