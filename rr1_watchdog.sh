@@ -43,6 +43,7 @@ echo "$(date -u '+%Y-%m-%d %H:%M:%S') | watchdog start (mem-aware)" | tee -a rr1
 while true; do
   # Priority: new gates (pos-RR) + OF/ORB/goal/lowwr
   start_job "rr1-posrr" "rr1_posrr_hunt.py" 2200
+  start_job "rr1-mohamad" "rr1_mohamad_ict_hunt.py" 2200
   start_job "rr1-orderflow" "rr1_orderflow_search.py" 2000
   start_job "rr1-goal" "rr1_goal_allsession.py" 2000
   start_job "rr1-orbwf" "rr1_orb_walkforward.py" 2000

@@ -253,6 +253,61 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     # propagate last known FVG levels forward, then shift so signal bar can't see current formation
     for col in ("FVG_BULL_BOT", "FVG_BULL_TOP", "FVG_BEAR_TOP", "FVG_BEAR_BOT"):
         d[col] = d[col].ffill().shift(1)
+    # CE — Consequent Encroachment (50% of active FVG)
+    d["FVG_BULL_CE"] = (d["FVG_BULL_BOT"] + d["FVG_BULL_TOP"]) / 2.0
+    d["FVG_BEAR_CE"] = (d["FVG_BEAR_BOT"] + d["FVG_BEAR_TOP"]) / 2.0
+    # 1PFVG — 1-period FVG: gap between consecutive bars (body/wick discontinuity), lagged
+    gap_up = l > h.shift(1)
+    gap_dn = h < l.shift(1)
+    d["FVG1_BULL_BOT"] = h.shift(1).where(gap_up).ffill().shift(1)
+    d["FVG1_BULL_TOP"] = l.where(gap_up).ffill().shift(1)
+    d["FVG1_BEAR_TOP"] = l.shift(1).where(gap_dn).ffill().shift(1)
+    d["FVG1_BEAR_BOT"] = h.where(gap_dn).ffill().shift(1)
+    # BPR — Balanced Price Range: overlap zone of most recent bull+bear FVG
+    d["BPR_TOP"] = pd.concat([d["FVG_BULL_TOP"], d["FVG_BEAR_TOP"]], axis=1).min(axis=1)
+    d["BPR_BOT"] = pd.concat([d["FVG_BULL_BOT"], d["FVG_BEAR_BOT"]], axis=1).max(axis=1)
+    # PDH/PDL / PWH/PWL — prior day/week extremes (causal: shift so today can't use unfinished day)
+    day = d.index.normalize()
+    d["_day"] = day
+    day_hi = h.groupby(day).transform("max")
+    day_lo = l.groupby(day).transform("min")
+    # previous calendar day's high/low: take last value of prior day via shift of daily series
+    daily_hi = h.groupby(day).max()
+    daily_lo = l.groupby(day).min()
+    d["PDH"] = day.map(daily_hi.shift(1)).astype(float)
+    d["PDL"] = day.map(daily_lo.shift(1)).astype(float)
+    week = d.index.to_period("W-SUN")
+    weekly_hi = h.groupby(week).max()
+    weekly_lo = l.groupby(week).min()
+    d["PWH"] = week.map(weekly_hi.shift(1)).astype(float)
+    d["PWL"] = week.map(weekly_lo.shift(1)).astype(float)
+    # NDOG / NWOG — New Day / New Week Opening Gap (vs prior close), lagged within session
+    day_open = d["Open"].groupby(day).transform("first")
+    daily_close = c.groupby(day).last()
+    prev_close_map = pd.Series(day.map(daily_close.shift(1)), index=d.index, dtype=float)
+    d["NDOG_TOP"] = pd.concat([day_open, prev_close_map], axis=1).max(axis=1)
+    d["NDOG_BOT"] = pd.concat([day_open, prev_close_map], axis=1).min(axis=1)
+    week_open = d["Open"].groupby(week).transform("first")
+    weekly_close = c.groupby(week).last()
+    prev_wclose = pd.Series(week.map(weekly_close.shift(1)), index=d.index, dtype=float)
+    d["NWOG_TOP"] = pd.concat([week_open, prev_wclose], axis=1).max(axis=1)
+    d["NWOG_BOT"] = pd.concat([week_open, prev_wclose], axis=1).min(axis=1)
+    # also ensure PDH/PDL/PWH/PWL are Series aligned to df index
+    d["PDH"] = pd.Series(d["PDH"], index=d.index, dtype=float)
+    d["PDL"] = pd.Series(d["PDL"], index=d.index, dtype=float)
+    d["PWH"] = pd.Series(d["PWH"], index=d.index, dtype=float)
+    d["PWL"] = pd.Series(d["PWL"], index=d.index, dtype=float)
+    # EQH / EQL — equal highs/lows: current swing within tol of prior swing (liquidity pools)
+    for sw, tol in ((10, 0.15), (20, 0.25)):
+        sw_hi, sw_lo = d[f"SW_HI_{sw}"], d[f"SW_LO_{sw}"]
+        # prior swing (lagged further)
+        prev_hi = sw_hi.shift(sw)
+        prev_lo = sw_lo.shift(sw)
+        atr = d["ATR_14"].replace(0, np.nan)
+        d[f"EQH_{sw}"] = (sw_hi - prev_hi).abs() <= (tol * atr)
+        d[f"EQL_{sw}"] = (sw_lo - prev_lo).abs() <= (tol * atr)
+        d[f"EQH_LVL_{sw}"] = sw_hi.where(d[f"EQH_{sw}"]).ffill()
+        d[f"EQL_LVL_{sw}"] = sw_lo.where(d[f"EQL_{sw}"]).ffill()
     # Order block proxy: last opposite candle before impulse (lagged)
     # bullish OB: bearish candle followed by strong bullish close above its high
     impulse_up = (c > h.shift(1)) & (c > d["Open"]) & ((c - d["Open"]) > 0.6 * d["range"])
@@ -261,6 +316,13 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     d["OB_BULL_LO"] = l.shift(1).where(impulse_up & d["bear"].shift(1)).ffill().shift(1)
     d["OB_BEAR_HI"] = h.shift(1).where(impulse_dn & d["bull"].shift(1)).ffill().shift(1)
     d["OB_BEAR_LO"] = l.shift(1).where(impulse_dn & d["bull"].shift(1)).ffill().shift(1)
+    # Breaker block proxy: bullish OB closed below → bearish breaker (and inverse)
+    broke_bull_ob = c < d["OB_BULL_LO"]
+    broke_bear_ob = c > d["OB_BEAR_HI"]
+    d["BB_BEAR_HI"] = d["OB_BULL_HI"].where(broke_bull_ob).ffill().shift(1)
+    d["BB_BEAR_LO"] = d["OB_BULL_LO"].where(broke_bull_ob).ffill().shift(1)
+    d["BB_BULL_HI"] = d["OB_BEAR_HI"].where(broke_bear_ob).ffill().shift(1)
+    d["BB_BULL_LO"] = d["OB_BEAR_LO"].where(broke_bear_ob).ffill().shift(1)
     # BOS flags vs prior swing (close break)
     d["BOS_UP_20"] = c > d["SW_HI_20"]
     d["BOS_DN_20"] = c < d["SW_LO_20"]
@@ -923,6 +985,149 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
         eq = df[f"EQ_{sw}"]
         long_e = (df["Low"] <= eq) & (c > eq) & (c < df[f"SW_HI_{sw}"]) & sess
         short_e = (df["High"] >= eq) & (c < eq) & (c > df[f"SW_LO_{sw}"]) & sess
+
+    # ----- mohamad.trades ICT glossary (reel DemxNo2IIjs) -----
+    elif kind == "fvg_ce":
+        # CE — Consequent Encroachment: react at 50% of FVG
+        ce_b, ce_s = df["FVG_BULL_CE"], df["FVG_BEAR_CE"]
+        long_e = (df["Low"] <= ce_b) & (c > ce_b) & (c >= df["FVG_BULL_BOT"]) & sess
+        short_e = (df["High"] >= ce_s) & (c < ce_s) & (c <= df["FVG_BEAR_TOP"]) & sess
+
+    elif kind == "ifvg":
+        # IFVG — Inversion FVG: close through FVG then retest flipped level
+        bt, tp = df["FVG_BULL_BOT"], df["FVG_BULL_TOP"]
+        brt, brb = df["FVG_BEAR_TOP"], df["FVG_BEAR_BOT"]
+        # bearish inversion: close below bullish FVG bot, then retest as resistance
+        inv_bear = (c < bt) & (c.shift(1) >= bt)
+        inv_bull = (c > brt) & (c.shift(1) <= brt)
+        # recent inversion then touch
+        look = int(p.get("look", 12))
+        recent_bear = inv_bear.rolling(look).max().fillna(0).astype(bool)
+        recent_bull = inv_bull.rolling(look).max().fillna(0).astype(bool)
+        long_e = recent_bull & (df["Low"] <= brt) & (c > brt) & sess
+        short_e = recent_bear & (df["High"] >= bt) & (c < bt) & sess
+
+    elif kind == "fvg1_reclaim":
+        # 1PFVG reclaim
+        bt, tp = df["FVG1_BULL_BOT"], df["FVG1_BULL_TOP"]
+        brt, brb = df["FVG1_BEAR_TOP"], df["FVG1_BEAR_BOT"]
+        long_e = (df["Low"] <= tp) & (df["Low"] >= bt) & (c > tp) & sess
+        short_e = (df["High"] >= brb) & (df["High"] <= brt) & (c < brb) & sess
+
+    elif kind == "ote_entry":
+        # OTE — Optimal Trade Entry: 61.8–78.6% retracement of prior swing
+        # Longs: discount zone between FIB618..FIB786 measured down from swing high
+        # Shorts: premium zone between FIB_UP618..FIB_UP786 measured up from swing low
+        sw = p.get("swing", 20)
+        long_hi, long_lo = df[f"FIB618_{sw}"], df[f"FIB786_{sw}"]  # long_hi > long_lo
+        short_lo, short_hi = df[f"FIB_UP618_{sw}"], df[f"FIB_UP786_{sw}"]  # short_hi > short_lo
+        in_ote_long = (df["Low"] <= long_hi) & (df["Low"] >= long_lo)
+        in_ote_short = (df["High"] >= short_lo) & (df["High"] <= short_hi)
+        if p.get("need_sweep"):
+            hi, lo = df[f"SW_HI_{sw}"], df[f"SW_LO_{sw}"]
+            long_e = in_ote_long & (df["Low"] < lo) & (c > long_hi) & sess
+            short_e = in_ote_short & (df["High"] > hi) & (c < short_lo) & sess
+        else:
+            long_e = in_ote_long & (c > long_lo) & (c < df[f"EQ_{sw}"]) & sess
+            short_e = in_ote_short & (c < short_hi) & (c > df[f"EQ_{sw}"]) & sess
+
+    elif kind == "pdh_pdl":
+        # Previous Day High/Low — break or fade
+        mode = p.get("mode", "fade")  # fade | break
+        pdh, pdl = df["PDH"], df["PDL"]
+        if mode == "break":
+            long_e = (c > pdh) & (c.shift(1) <= pdh) & sess
+            short_e = (c < pdl) & (c.shift(1) >= pdl) & sess
+        else:
+            long_e = (df["Low"] <= pdl) & (c > pdl) & sess
+            short_e = (df["High"] >= pdh) & (c < pdh) & sess
+
+    elif kind == "pwh_pwl":
+        mode = p.get("mode", "fade")
+        pwh, pwl = df["PWH"], df["PWL"]
+        if mode == "break":
+            long_e = (c > pwh) & (c.shift(1) <= pwh) & sess
+            short_e = (c < pwl) & (c.shift(1) >= pwl) & sess
+        else:
+            long_e = (df["Low"] <= pwl) & (c > pwl) & sess
+            short_e = (df["High"] >= pwh) & (c < pwh) & sess
+
+    elif kind == "ndog_fade":
+        # New Day Opening Gap fill fade (toward fill then reject)
+        top, bot = df["NDOG_TOP"], df["NDOG_BOT"]
+        long_e = (df["Low"] <= bot) & (c > bot) & (c < top) & sess
+        short_e = (df["High"] >= top) & (c < top) & (c > bot) & sess
+
+    elif kind == "nwog_fade":
+        top, bot = df["NWOG_TOP"], df["NWOG_BOT"]
+        long_e = (df["Low"] <= bot) & (c > bot) & (c < top) & sess
+        short_e = (df["High"] >= top) & (c < top) & (c > bot) & sess
+
+    elif kind == "eqh_eql_sweep":
+        # Sweep equal highs / equal lows (BSL/SSL raid)
+        sw = p.get("swing", 20)
+        eqh, eql = df[f"EQH_LVL_{sw}"], df[f"EQL_LVL_{sw}"]
+        long_e = (df["Low"] < eql) & (c > eql) & (df["lower_wick"] > p.get("wick", 0.45)) & sess
+        short_e = (df["High"] > eqh) & (c < eqh) & (df["upper_wick"] > p.get("wick", 0.45)) & sess
+
+    elif kind == "breaker_retest":
+        # Breaker block retest (BB in ICT sense, not Bollinger)
+        long_e = (
+            (df["Low"] <= df["BB_BULL_HI"])
+            & (df["Low"] >= df["BB_BULL_LO"])
+            & (c > df["BB_BULL_HI"])
+            & sess
+        )
+        short_e = (
+            (df["High"] >= df["BB_BEAR_LO"])
+            & (df["High"] <= df["BB_BEAR_HI"])
+            & (c < df["BB_BEAR_LO"])
+            & sess
+        )
+
+    elif kind == "cisd":
+        # CISD — Change in State of Delivery: close through prior opposing candle open
+        # bullish CISD: after bearish candle, close above its open (shift to causal)
+        prior_bear = df["bear"].shift(1).fillna(False)
+        prior_bull = df["bull"].shift(1).fillna(False)
+        prior_open = df["Open"].shift(1)
+        long_e = prior_bear & (c > prior_open) & (c.shift(1) <= prior_open) & sess
+        short_e = prior_bull & (c < prior_open) & (c.shift(1) >= prior_open) & sess
+
+    elif kind == "bpr_reclaim":
+        # BPR — Balanced Price Range reclaim
+        top, bot = df["BPR_TOP"], df["BPR_BOT"]
+        valid = top > bot  # real overlap
+        long_e = valid & (df["Low"] <= top) & (df["Low"] >= bot) & (c > top) & sess
+        short_e = valid & (df["High"] >= bot) & (df["High"] <= top) & (c < bot) & sess
+
+    elif kind == "poi_stack":
+        # POI stack: FVG-CE + discount/premium + optional MSS
+        sw = p.get("swing", 20)
+        ce_b, ce_s = df["FVG_BULL_CE"], df["FVG_BEAR_CE"]
+        eq = df[f"EQ_{sw}"]
+        long_e = (df["Low"] <= ce_b) & (c > ce_b) & (c < eq) & sess
+        short_e = (df["High"] >= ce_s) & (c < ce_s) & (c > eq) & sess
+        if p.get("need_mss"):
+            bos_up = (c > df[f"SW_HI_{sw}"]) | (c.shift(1) > df[f"SW_HI_{sw}"])
+            bos_dn = (c < df[f"SW_LO_{sw}"]) | (c.shift(1) < df[f"SW_LO_{sw}"])
+            # recent MSS in lookback
+            look = int(p.get("look", 20))
+            long_e = long_e & bos_up.rolling(look).max().fillna(0).astype(bool)
+            short_e = short_e & bos_dn.rolling(look).max().fillna(0).astype(bool)
+
+    elif kind == "amd_sweep_mss":
+        # AMD proxy: Asian range (accumulation) → London/NY sweep (manipulation) → MSS (distribution)
+        # Use OR Asian as accumulate range; sweep then BOS
+        hi, lo = df["OR_HI_ASIAN"], df["OR_LO_ASIAN"]
+        sw = p.get("swing", 20)
+        swept_lo = (df["Low"] < lo) & (c > lo)
+        swept_hi = (df["High"] > hi) & (c < hi)
+        bos_up = (c > df[f"SW_HI_{sw}"]) & (c.shift(1) <= df[f"SW_HI_{sw}"])
+        bos_dn = (c < df[f"SW_LO_{sw}"]) & (c.shift(1) >= df[f"SW_LO_{sw}"])
+        look = int(p.get("look", 18))
+        long_e = swept_lo.rolling(look).max().fillna(0).astype(bool) & bos_up & sess
+        short_e = swept_hi.rolling(look).max().fillna(0).astype(bool) & bos_dn & sess
 
     # ----- Public free-playbook strategies -----
     elif kind == "ichimoku_tk":
