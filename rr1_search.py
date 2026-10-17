@@ -53,6 +53,14 @@ OOS_WR = 0.75
 OOS_PF = 1.10
 OOS_TPD = 0.85
 
+# Alternate gate (user 2026-10-17): low-risk / high-reward (TP > SL) + tpd≥1
+# → WR ≥ 60% IS+OOS is enough when geometric RR (tp/sl) ≥ MIN_POS_RR.
+ALT_WR = 0.60
+ALT_OOS_WR = 0.60
+ALT_PF = 1.15
+ALT_OOS_PF = 1.10
+MIN_POS_RR = 1.5  # TP distance ≥ 1.5× SL distance
+
 RNG = random.Random(11)
 
 
@@ -398,8 +406,14 @@ def simulate(
     atr_col: str = "ATR_14",
     allow_long: bool = True,
     allow_short: bool = True,
+    sl_atr: float | None = None,
+    tp_atr: float | None = None,
 ) -> dict:
-    """1:1 only: SL = TP = rr_atr * ATR."""
+    """Causal next-open sim. Default 1:1 (SL=TP=rr_atr×ATR).
+
+    Favorable RR (low-risk / high-reward): pass tp_atr > sl_atr (both in ATR units).
+    Risk (qty) is always sized off the SL distance.
+    """
     n = len(df)
     opens = df["Open"].to_numpy(float)
     highs = df["High"].to_numpy(float)
@@ -407,6 +421,8 @@ def simulate(
     closes = df["Close"].to_numpy(float)
     atrs = df[atr_col].to_numpy(float)
     times = df.index
+    sl_m = float(sl_atr if sl_atr is not None else rr_atr)
+    tp_m = float(tp_atr if tp_atr is not None else rr_atr)
 
     capital = START_CAP
     peak = START_CAP
@@ -428,14 +444,19 @@ def simulate(
             i += 1
             continue
         risk = min(MAX_RISK, capital * RISK_PCT)
-        dist = atr * rr_atr
+        sl_dist = atr * sl_m
+        tp_dist = atr * tp_m
         # Absolute stop floor (USD) — blocks tiny-target noise fills
-        if dist < MIN_ATR:
+        if sl_dist < MIN_ATR or tp_dist < MIN_ATR * 0.5:
             i += 1
             continue
-        qty = risk / dist
-        sl = entry - dist if direction == "LONG" else entry + dist
-        tp = entry + dist if direction == "LONG" else entry - dist  # 1:1
+        qty = risk / sl_dist
+        if direction == "LONG":
+            sl = entry - sl_dist
+            tp = entry + tp_dist
+        else:
+            sl = entry + sl_dist
+            tp = entry - tp_dist
 
         j = i + 1
         bars = 0
@@ -479,6 +500,7 @@ def simulate(
             "max_dd": max_dd,
             "trades_per_day": 0.0,
             "expectancy": 0.0,
+            "geo_rr": float(tp_m / sl_m) if sl_m > 0 else 0.0,
         }
     arr = np.array(pnls, float)
     wins, losses = arr[arr > 0], arr[arr <= 0]
@@ -497,6 +519,7 @@ def simulate(
         "expectancy": float(arr.mean()),
         "avg_win": float(wins.mean()) if len(wins) else 0.0,
         "avg_loss": float(losses.mean()) if len(losses) else 0.0,
+        "geo_rr": float(tp_m / sl_m) if sl_m > 0 else 0.0,
     }
 
 
@@ -1185,6 +1208,7 @@ class Result:
 
 
 def qualifies(is_m, oos_m) -> bool:
+    """Classic RR1 path: WR≥75% IS+OOS, tpd≥1, PF gates."""
     return (
         is_m["trades"] >= MIN_IS
         and oos_m["trades"] >= MIN_OOS
@@ -1199,10 +1223,61 @@ def qualifies(is_m, oos_m) -> bool:
     )
 
 
+def geo_rr_of(exit_p: dict) -> float:
+    """Geometric reward:risk from exit params (tp/sl in ATR units)."""
+    sl = float(exit_p.get("sl_atr", exit_p.get("rr", 1.0)))
+    tp = float(exit_p.get("tp_atr", exit_p.get("rr", 1.0)))
+    if sl <= 0:
+        return 0.0
+    return tp / sl
+
+
+def qualifies_posrr(is_m, oos_m, exit_p: dict) -> bool:
+    """Low-risk / high-reward path: WR≥60%, tpd≥1, geo RR≥MIN_POS_RR, PF gates."""
+    if geo_rr_of(exit_p) < MIN_POS_RR:
+        return False
+    return (
+        is_m["trades"] >= MIN_IS
+        and oos_m["trades"] >= MIN_OOS
+        and is_m["winrate"] >= ALT_WR
+        and oos_m["winrate"] >= ALT_OOS_WR
+        and is_m["profit_factor"] >= ALT_PF
+        and oos_m["profit_factor"] >= ALT_OOS_PF
+        and is_m["net_pnl"] > 0
+        and oos_m["net_pnl"] > 0
+        and is_m["trades_per_day"] >= MIN_TPD
+        and oos_m["trades_per_day"] >= OOS_TPD
+    )
+
+
+def qualifies_any(is_m, oos_m, exit_p: dict | None = None) -> bool:
+    if qualifies(is_m, oos_m):
+        return True
+    if exit_p is not None and qualifies_posrr(is_m, oos_m, exit_p):
+        return True
+    return False
+
+
+def _exit_sim_kwargs(exit_p: dict) -> dict:
+    """Common simulate kwargs from an exit-params dict (supports asym TP/SL)."""
+    rr = float(exit_p.get("rr", 1.0))
+    return dict(
+        rr_atr=rr,
+        max_hold=exit_p["max_hold"],
+        atr_col=exit_p.get("atr", "ATR_14"),
+        allow_long=exit_p.get("allow_long", True),
+        allow_short=exit_p.get("allow_short", True),
+        sl_atr=exit_p.get("sl_atr", rr),
+        tp_atr=exit_p.get("tp_atr", rr),
+    )
+
+
 def year_stable(df: pd.DataFrame, long_e, short_e, exit_p: dict, min_trades: int = 40) -> bool:
     """Reject one-year wonders (e.g. only works in 2026 melt-up)."""
     years = sorted(set(df.index.year))
     checked = 0
+    # Favorable-RR path can pass with lower WR; year floor stays ≥52%
+    wr_floor = 0.52
     for y in years:
         idxs = np.where(df.index.year == y)[0]
         if len(idxs) < 800:
@@ -1211,18 +1286,14 @@ def year_stable(df: pd.DataFrame, long_e, short_e, exit_p: dict, min_trades: int
             df,
             long_e=long_e,
             short_e=short_e,
-            rr_atr=exit_p["rr"],
-            max_hold=exit_p["max_hold"],
             start_i=int(max(idxs[0], 250)),
             end_i=int(idxs[-1]),
-            atr_col=exit_p.get("atr", "ATR_14"),
-            allow_long=exit_p.get("allow_long", True),
-            allow_short=exit_p.get("allow_short", True),
+            **_exit_sim_kwargs(exit_p),
         )
         if m["trades"] < min_trades:
             continue
         checked += 1
-        if m["winrate"] < 0.52 or m["net_pnl"] <= 0 or m["profit_factor"] < 1.0:
+        if m["winrate"] < wr_floor or m["net_pnl"] <= 0 or m["profit_factor"] < 1.0:
             return False
     return checked >= 2
 
@@ -1230,8 +1301,8 @@ def year_stable(df: pd.DataFrame, long_e, short_e, exit_p: dict, min_trades: int
 def score_of(is_m, oos_m) -> float:
     if is_m["trades"] < 20:
         return -1e9
-    # Must be near target or get crushed
-    if is_m["winrate"] < 0.70 or is_m["trades_per_day"] < 0.8 or is_m["net_pnl"] <= 0:
+    # Soft floor: prefer ≥60% WR + near-daily frequency (pos-RR path) or classic ≥70%
+    if is_m["winrate"] < 0.60 or is_m["trades_per_day"] < 0.8 or is_m["net_pnl"] <= 0:
         pen = -3000
     else:
         pen = 0
@@ -1259,11 +1330,7 @@ def evaluate(name, tf, df, long_e, short_e, exit_p, params) -> Result | None:
     common = dict(
         long_e=long_e,
         short_e=short_e,
-        rr_atr=exit_p["rr"],  # SL=TP=rr*ATR
-        max_hold=exit_p["max_hold"],
-        atr_col=exit_p.get("atr", "ATR_14"),
-        allow_long=exit_p.get("allow_long", True),
-        allow_short=exit_p.get("allow_short", True),
+        **_exit_sim_kwargs(exit_p),
     )
     is_m = simulate(df, start_i=warm, end_i=split, **common)
     oos_m = simulate(df, start_i=split, end_i=n - 2, **common)
@@ -1272,9 +1339,12 @@ def evaluate(name, tf, df, long_e, short_e, exit_p, params) -> Result | None:
     # Penalize / reject short-sample Yahoo windows when long local data exists
     span_days = max(1, (df.index[-1] - df.index[0]).days)
     sc = score_of(is_m, oos_m)
+    # Boost favorable-RR setups that clear the 60%+tpd≥1 path
+    if qualifies_posrr(is_m, oos_m, exit_p):
+        sc += 5000
     if span_days < 200:
         sc -= 5000  # don't let 60d Yahoo beat 2y local
-    if qualifies(is_m, oos_m) and span_days >= 200 and not year_stable(df, long_e, short_e, exit_p):
+    if qualifies_any(is_m, oos_m, exit_p) and span_days >= 200 and not year_stable(df, long_e, short_e, exit_p):
         sc -= 8000  # fail year gate → not a real qualifier
         # mark by crushing score so save_champion won't prefer it as QUAL
     return Result(
@@ -1527,10 +1597,13 @@ def save_champion(r: Result, force: bool = False):
 def write_bot(r: Result):
     params = {k: v for k, v in r.params.items() if k not in ("kind", "exit")}
     exit_p = r.params["exit"]
+    sl_m = exit_p.get("sl_atr", exit_p.get("rr", 1.0))
+    tp_m = exit_p.get("tp_atr", exit_p.get("rr", 1.0))
+    geo = (tp_m / sl_m) if sl_m else 0.0
     code = f'''#!/usr/bin/env python3
-"""AUTO-GENERATED 1:1 RR bot from rr1_search.
+"""AUTO-GENERATED RR bot from rr1_search.
 IS WR={r.winrate:.1%} OOS WR={r.oos_winrate:.1%} tpd={r.trades_per_day:.2f}/{r.oos_trades_per_day:.2f}
-CAUSAL next-open · SL=TP={exit_p['rr']}×ATR
+CAUSAL next-open · SL={sl_m}×ATR TP={tp_m}×ATR (geoRR={geo:.2f})
 """
 from __future__ import annotations
 import json
@@ -1553,14 +1626,16 @@ def main():
         p["dows"] = tuple(p["dows"])
     L, S = gen_signals(df, KIND, p)
     n = len(df); split = int(n * 0.7)
-    common = dict(long_e=L, short_e=S, rr_atr=EXIT["rr"], max_hold=EXIT["max_hold"],
+    rr = EXIT.get("rr", 1.0)
+    common = dict(long_e=L, short_e=S, rr_atr=rr, max_hold=EXIT["max_hold"],
                   atr_col=EXIT.get("atr","ATR_14"),
-                  allow_long=EXIT.get("allow_long", True), allow_short=EXIT.get("allow_short", True))
+                  allow_long=EXIT.get("allow_long", True), allow_short=EXIT.get("allow_short", True),
+                  sl_atr=EXIT.get("sl_atr", rr), tp_atr=EXIT.get("tp_atr", rr))
     full = simulate(df, start_i=250, end_i=n-2, **common)
     is_m = simulate(df, start_i=250, end_i=split, **common)
     oos_m = simulate(df, start_i=split, end_i=n-2, **common)
-    report = {{"kind": KIND, "tf": TF, "params": PARAMS, "exit": EXIT, "rr": "1:1",
-              "full": full, "is": is_m, "oos": oos_m}}
+    report = {{"kind": KIND, "tf": TF, "params": PARAMS, "exit": EXIT,
+              "geo_rr": {geo!r}, "full": full, "is": is_m, "oos": oos_m}}
     Path("rr1_search_results").mkdir(exist_ok=True)
     Path("rr1_search_results/bot_report.json").write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))

@@ -48,6 +48,7 @@ while true; do
   start_job "rr1-orderflow" "rr1_orderflow_search.py"
   start_job "rr1-goal" "rr1_goal_allsession.py"
   start_job "rr1-orbwf" "rr1_orb_walkforward.py"
+  start_job "rr1-posrr" "rr1_posrr_hunt.py"
   {
     echo -n "$(date -u '+%Y-%m-%d %H:%M:%S') | alive: "
     pgrep -af 'python3 -u rr1_' | grep -v pgrep | wc -l
