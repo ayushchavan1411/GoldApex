@@ -1800,8 +1800,25 @@ def save_champion(r: Result, force: bool = False):
 
 
 def write_bot(r: Result):
+    """Only package live_rr1_bot.py when Result clears RR1 or pos-RR gates."""
+    exit_p = r.params.get("exit") or {}
+    is_m = {
+        "trades": r.trades,
+        "winrate": r.winrate,
+        "profit_factor": r.profit_factor,
+        "net_pnl": r.net_pnl,
+        "trades_per_day": r.trades_per_day,
+    }
+    oos_m = {
+        "trades": r.oos_trades,
+        "winrate": r.oos_winrate,
+        "profit_factor": r.oos_profit_factor,
+        "net_pnl": r.oos_net_pnl,
+        "trades_per_day": r.oos_trades_per_day,
+    }
+    if not qualifies_any(is_m, oos_m, exit_p):
+        return False
     params = {k: v for k, v in r.params.items() if k not in ("kind", "exit")}
-    exit_p = r.params["exit"]
     sl_m = exit_p.get("sl_atr", exit_p.get("rr", 1.0))
     tp_m = exit_p.get("tp_atr", exit_p.get("rr", 1.0))
     geo = (tp_m / sl_m) if sl_m else 0.0
@@ -1849,6 +1866,7 @@ if __name__ == "__main__":
     main()
 '''
     BOT_PATH.write_text(code)
+    return True
 
 
 def main():
