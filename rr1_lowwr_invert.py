@@ -2,8 +2,9 @@
 """Phase A: hunt the LOWEST win-rate RR1 bases (anti-edge).
 Phase B: invert those losers (buy when they sell) and promote high-WR fades.
 
-Scoring for bases: minimize min(WR_IS, WR_OOS) subject to sample floors.
-At 1:1, a real 30% WR base → ~70% inverted WR if the anti-edge is genuine.
+Scoring for bases: minimize max(WR_IS, WR_OOS) (both periods weak), then
+min(WR_IS, WR_OOS). This rejects IS~50%/OOS-collapse noise that does not fade.
+At 1:1, a real dual-weak ~40% base → ~60%+ inverted WR if the anti-edge is genuine.
 """
 from __future__ import annotations
 
@@ -34,8 +35,20 @@ SUMMARY = OUT / "LOWWR_INVERT_SUMMARY.json"
 
 MIN_BASE_N = 60
 MIN_BASE_OOS_N = 20
+# Prefer dual-weak sample: both IS+OOS low with enough OOS trades
+MIN_GENUINE_N = 80
+MIN_GENUINE_OOS_N = 30
 # keep pushing toward the floor — no artificial "must be ≤45%" until invert stage
 KEEP_WORST = 80
+
+
+def base_rank_key(row: dict):
+    """Lower is worse (better anti-edge). Prefer both periods weak + more trades."""
+    return (
+        row.get("max_wr", max(row["wr"], row["oos_wr"])),
+        row["min_wr"],
+        -(row["n"] + row["oos_n"]),
+    )
 
 
 def exits_base():
@@ -141,6 +154,7 @@ def dump_summary(worst_bases, best_invs, tested, inverted, quals):
                 "inverted": inverted,
                 "quals": quals,
                 "worst_min_wr": worst_bases[0]["min_wr"] if worst_bases else None,
+                "worst_max_wr": worst_bases[0].get("max_wr") if worst_bases else None,
                 "best_inv_min_wr": best_invs[0]["min_wr"] if best_invs else None,
                 "time": time.strftime("%Y-%m-%d %H:%M:%S"),
             },
@@ -277,12 +291,20 @@ def main():
                         continue
                     if res.trades < MIN_BASE_N or res.oos_trades < MIN_BASE_OOS_N:
                         continue
-                    # prefer lower min WR; tie-break more trades
-                    key = (min(res.winrate, res.oos_winrate), -(res.trades + res.oos_trades))
+                    # prefer lower max(IS,OOS) (both weak); then lower min; then more trades
+                    key = (
+                        max(res.winrate, res.oos_winrate),
+                        min(res.winrate, res.oos_winrate),
+                        -(res.trades + res.oos_trades),
+                    )
                     bkey = (
-                        (min(base_best.winrate, base_best.oos_winrate), -(base_best.trades + base_best.oos_trades))
+                        (
+                            max(base_best.winrate, base_best.oos_winrate),
+                            min(base_best.winrate, base_best.oos_winrate),
+                            -(base_best.trades + base_best.oos_trades),
+                        )
                         if base_best
-                        else (9.0, 0)
+                        else (9.0, 9.0, 0)
                     )
                     if key < bkey:
                         base_best = res
@@ -295,6 +317,8 @@ def main():
                     "wr": base_best.winrate,
                     "oos_wr": base_best.oos_winrate,
                     "min_wr": min(base_best.winrate, base_best.oos_winrate),
+                    "max_wr": max(base_best.winrate, base_best.oos_winrate),
+                    "avg_wr": (base_best.winrate + base_best.oos_winrate) / 2,
                     "tpd": base_best.trades_per_day,
                     "oos_tpd": base_best.oos_trades_per_day,
                     "n": base_best.trades,
@@ -307,19 +331,28 @@ def main():
                     "time": time.strftime("%Y-%m-%d %H:%M:%S"),
                 }
                 append_jsonl(LOW_BOARD, brow)
-                worst_bases.append(brow)
-                worst_bases.sort(key=lambda r: (r["min_wr"], -(r["n"] + r["oos_n"])))
-                worst_bases[:] = worst_bases[:KEEP_WORST]
+                # Only promote into "worst" board when both periods are weak with sample
+                genuine = (
+                    brow["n"] >= MIN_GENUINE_N
+                    and brow["oos_n"] >= MIN_GENUINE_OOS_N
+                    and brow["wr"] <= 0.48
+                    and brow["oos_wr"] <= 0.48
+                )
+                if genuine:
+                    worst_bases.append(brow)
+                    worst_bases.sort(key=base_rank_key)
+                    worst_bases[:] = worst_bases[:KEEP_WORST]
 
                 # Phase B: only fade GENUINE losers (both IS and OOS weak) — avoids
                 # IS~50%/OOS~25% noise that does not invert into a real high-WR edge.
                 fade_key = json.dumps({"kind": kind, "tf": tf, "p": base_p}, sort_keys=True, default=str)
                 both_weak = brow["wr"] <= 0.48 and brow["oos_wr"] <= 0.48
-                should_fade = both_weak and (
-                    brow["min_wr"] <= 0.45
+                should_fade = both_weak and genuine and (
+                    brow["max_wr"] <= 0.46
                     or (
                         worst_bases
-                        and brow["min_wr"] <= worst_bases[min(14, len(worst_bases) - 1)]["min_wr"] + 0.02
+                        and brow["max_wr"]
+                        <= worst_bases[min(14, len(worst_bases) - 1)].get("max_wr", 1.0) + 0.02
                     )
                 )
                 if should_fade and fade_key not in faded_keys:
@@ -330,16 +363,20 @@ def main():
                     inverted += n_inv
                     best_invs.sort(key=lambda r: (r["min_wr"], r["n"] + r["oos_n"]), reverse=True)
                     best_invs[:] = best_invs[:KEEP_WORST]
-                    if brow["min_wr"] <= 0.38 or (best_invs and best_invs[0]["min_wr"] >= 0.65):
+                    if brow["max_wr"] <= 0.44 or (best_invs and best_invs[0]["min_wr"] >= 0.65):
                         log(
-                            f"LOW base minWR={brow['min_wr']:.1%} {brow['wr']:.1%}/{brow['oos_wr']:.1%} "
+                            f"LOW base maxWR={brow['max_wr']:.1%} {brow['wr']:.1%}/{brow['oos_wr']:.1%} "
                             f"n={brow['n']}/{brow['oos_n']} | {brow['name']} "
                             f"→ best_inv minWR={(best_invs[0]['min_wr'] if best_invs else 0):.1%}"
                         )
 
                 if tested % 150 == 0:
                     dump_summary(worst_bases, best_invs, tested, inverted, quals)
-                    wb = f"{worst_bases[0]['min_wr']:.1%}" if worst_bases else "n/a"
+                    wb = (
+                        f"max={worst_bases[0]['max_wr']:.1%}/min={worst_bases[0]['min_wr']:.1%}"
+                        if worst_bases
+                        else "n/a"
+                    )
                     bi = f"{best_invs[0]['min_wr']:.1%}" if best_invs else "n/a"
                     log(
                         f"lowwr tested={tested} inverted={inverted} quals={quals} "
