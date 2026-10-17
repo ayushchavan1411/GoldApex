@@ -324,6 +324,45 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
         d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
         d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
 
+    # --- Order-flow proxies (no tick/L2 volume in XAU CSV — price-based OF) ---
+    # CLV: where close sits in the bar range (1=close on high / aggressive buy)
+    rng_of = (h - l).replace(0, np.nan)
+    clv = ((c - l) / rng_of).clip(0, 1).fillna(0.5)
+    d["OF_CLV"] = clv
+    # Signed delta proxy ≈ (2*CLV-1)*range  (buy pressure positive)
+    of_delta = (2.0 * clv - 1.0) * (h - l)
+    # Also blend body direction for aggression
+    body_signed = c - d["Open"]
+    d["OF_DELTA"] = 0.6 * of_delta + 0.4 * body_signed
+    d["OF_CVD"] = d["OF_DELTA"].cumsum()
+    for span in (8, 20, 50):
+        d[f"OF_CVD_SMA_{span}"] = d["OF_CVD"].rolling(span).mean()
+        d[f"OF_DELTA_SMA_{span}"] = d["OF_DELTA"].rolling(span).mean()
+    # Stacked imbalance: consecutive bars with extreme CLV
+    buy_imb = clv >= 0.70
+    sell_imb = clv <= 0.30
+    # running streak lengths (causal)
+    buy_streak = buy_imb.astype(int).groupby((~buy_imb).cumsum()).cumsum()
+    sell_streak = sell_imb.astype(int).groupby((~sell_imb).cumsum()).cumsum()
+    d["OF_BUY_STREAK"] = buy_streak
+    d["OF_SELL_STREAK"] = sell_streak
+    # Absorption: large effort (range vs ATR) but close rejects in opposite direction
+    atr14 = d["ATR_14"].replace(0, np.nan)
+    effort = (h - l) / atr14
+    d["OF_EFFORT"] = effort
+    # buy absorption: sell-side delta bar but long lower wick + close in upper half
+    d["OF_ABSORB_BUY"] = (d["OF_DELTA"] < 0) & (d["lower_wick"] >= 0.55) & (clv >= 0.55) & (effort >= 1.2)
+    d["OF_ABSORB_SELL"] = (d["OF_DELTA"] > 0) & (d["upper_wick"] >= 0.55) & (clv <= 0.45) & (effort >= 1.2)
+    # CVD divergence helpers: rolling extremes of price vs CVD (lagged for signal use)
+    for look in (10, 20):
+        d[f"OF_PX_HH_{look}"] = c >= c.rolling(look).max().shift(1)
+        d[f"OF_PX_LL_{look}"] = c <= c.rolling(look).min().shift(1)
+        d[f"OF_CVD_HH_{look}"] = d["OF_CVD"] >= d["OF_CVD"].rolling(look).max().shift(1)
+        d[f"OF_CVD_LL_{look}"] = d["OF_CVD"] <= d["OF_CVD"].rolling(look).min().shift(1)
+    # Sweep + absorb: take prior swing extreme then close back inside (stop-run)
+    d["OF_SWEEP_LO"] = (l < d["SW_LO_10"]) & (c > d["SW_LO_10"]) & (clv >= 0.55)
+    d["OF_SWEEP_HI"] = (h > d["SW_HI_10"]) & (c < d["SW_HI_10"]) & (clv <= 0.45)
+
     return d.copy()  # defragment after many column inserts
 
 
@@ -956,6 +995,69 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
         hi, lo = df[f"OR_HI_{name}"], df[f"OR_LO_{name}"]
         long_e = (df["Low"] <= lo) & (c > lo) & sess
         short_e = (df["High"] >= hi) & (c < hi) & sess
+
+    # --- Order-flow proxy kinds (price-based; no L2/volume in feed) ---
+    elif kind == "of_clv_fade":
+        # Extreme CLV then reverse (exhaustion fade)
+        clv = df["OF_CLV"]
+        lo_th, hi_th = p.get("lo", 0.25), p.get("hi", 0.75)
+        long_e = (clv.shift(1) <= lo_th) & (clv > lo_th) & (clv > 0.5) & sess
+        short_e = (clv.shift(1) >= hi_th) & (clv < hi_th) & (clv < 0.5) & sess
+
+    elif kind == "of_stacked_imb":
+        # N stacked buy/sell imbalances → continuation (momentum OF)
+        n_stack = int(p.get("n", 3))
+        long_e = (df["OF_BUY_STREAK"] >= n_stack) & (df["OF_BUY_STREAK"].shift(1) < n_stack) & sess
+        short_e = (df["OF_SELL_STREAK"] >= n_stack) & (df["OF_SELL_STREAK"].shift(1) < n_stack) & sess
+
+    elif kind == "of_stacked_fade":
+        # Fade after stacked imbalance exhaustion
+        n_stack = int(p.get("n", 3))
+        long_e = (df["OF_SELL_STREAK"].shift(1) >= n_stack) & (df["OF_CLV"] > 0.55) & sess
+        short_e = (df["OF_BUY_STREAK"].shift(1) >= n_stack) & (df["OF_CLV"] < 0.45) & sess
+
+    elif kind == "of_absorption":
+        long_e = df["OF_ABSORB_BUY"].fillna(False) & sess
+        short_e = df["OF_ABSORB_SELL"].fillna(False) & sess
+
+    elif kind == "of_cvd_cross":
+        span = int(p.get("span", 20))
+        cvd, sma = df["OF_CVD"], df[f"OF_CVD_SMA_{span}"]
+        long_e = (cvd > sma) & (cvd.shift(1) <= sma.shift(1)) & sess
+        short_e = (cvd < sma) & (cvd.shift(1) >= sma.shift(1)) & sess
+
+    elif kind == "of_cvd_div":
+        # Bearish div: price HH without CVD HH → short; bullish div: price LL without CVD LL → long
+        look = int(p.get("look", 20))
+        px_hh, px_ll = df[f"OF_PX_HH_{look}"], df[f"OF_PX_LL_{look}"]
+        cvd_hh, cvd_ll = df[f"OF_CVD_HH_{look}"], df[f"OF_CVD_LL_{look}"]
+        long_e = px_ll & (~cvd_ll) & (df["OF_CLV"] > 0.5) & sess
+        short_e = px_hh & (~cvd_hh) & (df["OF_CLV"] < 0.5) & sess
+
+    elif kind == "of_delta_flip":
+        # Delta flips after directional streak (momentum shift)
+        n_streak = int(p.get("n", 3))
+        dlt = df["OF_DELTA"]
+        long_e = (df["OF_SELL_STREAK"].shift(1) >= n_streak) & (dlt > 0) & (dlt.shift(1) <= 0) & sess
+        short_e = (df["OF_BUY_STREAK"].shift(1) >= n_streak) & (dlt < 0) & (dlt.shift(1) >= 0) & sess
+
+    elif kind == "of_sweep_absorb":
+        long_e = df["OF_SWEEP_LO"].fillna(False) & sess
+        short_e = df["OF_SWEEP_HI"].fillna(False) & sess
+
+    elif kind == "of_cvd_rsi":
+        # CVD momentum + RSI extreme confluence
+        span = int(p.get("span", 20))
+        rsi = df[f"RSI_{p.get('rsi', 14)}"]
+        cvd, sma = df["OF_CVD"], df[f"OF_CVD_SMA_{span}"]
+        long_e = (cvd > sma) & (rsi < p.get("os", 35)) & (rsi.shift(1) >= p.get("os", 35)) & sess
+        short_e = (cvd < sma) & (rsi > p.get("ob", 65)) & (rsi.shift(1) <= p.get("ob", 65)) & sess
+
+    elif kind == "of_imb_absorb":
+        # Stacked sell imbalance then buy absorption (and inverse)
+        n_stack = int(p.get("n", 2))
+        long_e = (df["OF_SELL_STREAK"].shift(1) >= n_stack) & df["OF_ABSORB_BUY"].fillna(False) & sess
+        short_e = (df["OF_BUY_STREAK"].shift(1) >= n_stack) & df["OF_ABSORB_SELL"].fillna(False) & sess
 
     else:
         raise ValueError(kind)
