@@ -49,36 +49,33 @@ def exits():
 
 
 def specs():
+    """All-session only (sessions=None) — do not block Asian/London/NY/overlap."""
     out = []
-    sessions = [
-        None,
-        ("asian",),
-        ("london",),
-        ("overlap",),
-        ("ny",),
-        ("london", "overlap"),
-        ("overlap", "ny"),
-        ("london", "overlap", "ny"),
-        ("asian", "london", "overlap", "ny"),
-    ]
-    for sess in sessions:
-        for lo, hi in ((0.20, 0.80), (0.25, 0.75), (0.30, 0.70), (0.15, 0.85)):
-            out.append(("of_clv_fade", {"lo": lo, "hi": hi, "sessions": sess}))
-        for n in (2, 3, 4, 5):
-            out.append(("of_stacked_imb", {"n": n, "sessions": sess}))
-            out.append(("of_stacked_fade", {"n": n, "sessions": sess}))
-            out.append(("of_delta_flip", {"n": n, "sessions": sess}))
-            out.append(("of_imb_absorb", {"n": n, "sessions": sess}))
-        out.append(("of_absorption", {"sessions": sess}))
-        out.append(("of_sweep_absorb", {"sessions": sess}))
-        for span in (8, 20, 50):
-            out.append(("of_cvd_cross", {"span": span, "sessions": sess}))
-            for rsi, os_, ob in ((7, 30, 70), (14, 35, 65), (14, 40, 60), (5, 25, 75)):
-                out.append(
-                    ("of_cvd_rsi", {"span": span, "rsi": rsi, "os": os_, "ob": ob, "sessions": sess})
-                )
-        for look in (10, 20):
-            out.append(("of_cvd_div", {"look": look, "sessions": sess}))
+    sess = None  # trade every hour
+    for lo, hi in ((0.15, 0.85), (0.20, 0.80), (0.25, 0.75), (0.30, 0.70), (0.35, 0.65)):
+        out.append(("of_clv_fade", {"lo": lo, "hi": hi, "sessions": sess}))
+    for n in (2, 3, 4, 5, 6):
+        out.append(("of_stacked_imb", {"n": n, "sessions": sess}))
+        out.append(("of_stacked_fade", {"n": n, "sessions": sess}))
+        out.append(("of_delta_flip", {"n": n, "sessions": sess}))
+        out.append(("of_imb_absorb", {"n": n, "sessions": sess}))
+    out.append(("of_absorption", {"sessions": sess}))
+    out.append(("of_sweep_absorb", {"sessions": sess}))
+    for span in (5, 8, 13, 20, 34, 50):
+        out.append(("of_cvd_cross", {"span": span, "sessions": sess}))
+        for rsi, os_, ob in (
+            (3, 25, 75),
+            (5, 25, 75),
+            (5, 30, 70),
+            (7, 30, 70),
+            (7, 35, 65),
+            (14, 30, 70),
+            (14, 35, 65),
+            (14, 40, 60),
+        ):
+            out.append(("of_cvd_rsi", {"span": span, "rsi": rsi, "os": os_, "ob": ob, "sessions": sess}))
+    for look in (8, 10, 14, 20, 30):
+        out.append(("of_cvd_div", {"look": look, "sessions": sess}))
     seen, uniq = set(), []
     for kind, p in out:
         key = (kind, json.dumps(p, sort_keys=True, default=str))

@@ -76,20 +76,12 @@ def exits_inv():
 
 
 def specs():
-    """Bias toward trend/breakout kinds that often lose at RR1 (good fade candidates)."""
+    """Bias toward trend/breakout kinds that often lose at RR1 (good fade candidates).
+
+    sessions always None — do not block any trading session.
+    """
     out = []
-    sessions = [
-        None,
-        ("asian",),
-        ("london",),
-        ("overlap",),
-        ("ny",),
-        ("london", "overlap"),
-        ("overlap", "ny"),
-        ("london", "overlap", "ny"),
-        ("asian", "london", "overlap"),
-        ("asian", "london", "overlap", "ny"),
-    ]
+    sessions = [None]
     for sess in sessions:
         for fast, slow in itertools.product([3, 5, 8, 9, 12, 13, 21, 34], [21, 34, 50, 55, 100, 200]):
             if fast >= slow:
@@ -117,6 +109,18 @@ def specs():
         for swing in (10, 20, 40):
             out.append(("mss_entry", {"swing": swing, "sessions": sess}))
             out.append(("bos_pullback", {"swing": swing, "ema": 21, "sessions": sess}))
+        # Order-flow proxies (all-session)
+        for lo, hi in ((0.2, 0.8), (0.25, 0.75), (0.3, 0.7)):
+            out.append(("of_clv_fade", {"lo": lo, "hi": hi, "sessions": sess}))
+        for n in (2, 3, 4, 5):
+            out.append(("of_stacked_imb", {"n": n, "sessions": sess}))
+            out.append(("of_stacked_fade", {"n": n, "sessions": sess}))
+            out.append(("of_delta_flip", {"n": n, "sessions": sess}))
+        out.append(("of_absorption", {"sessions": sess}))
+        out.append(("of_sweep_absorb", {"sessions": sess}))
+        for span in (8, 20):
+            out.append(("of_cvd_cross", {"span": span, "sessions": sess}))
+            out.append(("of_cvd_div", {"look": span, "sessions": sess}))
     seen, uniq = set(), []
     for kind, p in out:
         key = (kind, json.dumps(p, sort_keys=True, default=str))
