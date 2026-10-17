@@ -1033,6 +1033,51 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
         long_e = (df["Low"] <= lo) & (c > lo) & ready & sess
         short_e = (df["High"] >= hi) & (c < hi) & ready & sess
 
+    elif kind == "orb_retest_win":
+        # Break OR then retest the broken level (Benny-style continuation entry)
+        name, win = p["orb"], int(p["win"])
+        hi, lo = df[f"OR_HI_{name}_{win}"], df[f"OR_LO_{name}_{win}"]
+        ready = df[f"OR_READY_{name}_{win}"].fillna(False)
+        broke_up = (c > hi) & ready
+        broke_dn = (c < lo) & ready
+        day = df["date"]
+        up_seen = broke_up.groupby(day).cummax()
+        dn_seen = broke_dn.groupby(day).cummax()
+        # retest: after break, touch OR edge then close back in break direction
+        long_e = up_seen & (df["Low"] <= hi) & (c > hi) & ready & sess & ~broke_up
+        short_e = dn_seen & (df["High"] >= lo) & (c < lo) & ready & sess & ~broke_dn
+
+    elif kind == "orb_of_break":
+        # OR breakout confirmed by order-flow proxy (CLV / stacked imbalance)
+        name, win = p["orb"], int(p["win"])
+        hi, lo = df[f"OR_HI_{name}_{win}"], df[f"OR_LO_{name}_{win}"]
+        ready = df[f"OR_READY_{name}_{win}"].fillna(False)
+        n_stack = int(p.get("n", 2))
+        of_long = (df["OF_CLV"] >= 0.65) | (df["OF_BUY_STREAK"] >= n_stack)
+        of_short = (df["OF_CLV"] <= 0.35) | (df["OF_SELL_STREAK"] >= n_stack)
+        long_e = (c > hi) & (c.shift(1) <= hi) & ready & of_long & sess
+        short_e = (c < lo) & (c.shift(1) >= lo) & ready & of_short & sess
+
+    elif kind == "orb_of_fade":
+        # Fade OR extreme when OF shows absorption / exhaustion
+        name, win = p["orb"], int(p["win"])
+        hi, lo = df[f"OR_HI_{name}_{win}"], df[f"OR_LO_{name}_{win}"]
+        ready = df[f"OR_READY_{name}_{win}"].fillna(False)
+        long_e = (
+            (df["Low"] <= lo)
+            & (c > lo)
+            & ready
+            & (df["OF_ABSORB_BUY"].fillna(False) | (df["OF_CLV"] > 0.55))
+            & sess
+        )
+        short_e = (
+            (df["High"] >= hi)
+            & (c < hi)
+            & ready
+            & (df["OF_ABSORB_SELL"].fillna(False) | (df["OF_CLV"] < 0.45))
+            & sess
+        )
+
     # --- Order-flow proxy kinds (price-based; no L2/volume in feed) ---
     elif kind == "of_clv_fade":
         # Extreme CLV then reverse (exhaustion fade)
@@ -1433,13 +1478,17 @@ def _champ_key(winrate: float, oos_winrate: float, tpd: float, oos_tpd: float, s
 def save_champion(r: Result, force: bool = False):
     """Persist champion only if better (or force). Always append to candidates.
 
-    Reject tiny-sample WR spikes (e.g. 23 IS / 9 OOS '100% OOS') unless force
-    and the result already passed qualifies() sample gates.
+    Hard floors always apply (force never bypasses): sample size, OOS PnL>0, PF≥1.
+    `force` only skips the lexicographic 'better than current' comparison.
     """
     with open(CANDIDATES, "a", encoding="utf-8") as f:
         f.write(json.dumps(asdict(r)) + "\n")
-    # Block tiny-sample WR spikes (e.g. 9 OOS trades @ 100%) unless force/qualified
-    if not force and (r.trades < 30 or r.oos_trades < 15):
+    # Hard quality floor — force cannot install a losing / thin / sub-1-PF champ
+    if r.trades < 30 or r.oos_trades < 15:
+        return False
+    if r.net_pnl <= 0 or r.oos_net_pnl <= 0:
+        return False
+    if r.profit_factor < 1.0 or r.oos_profit_factor < 1.0:
         return False
     if CHAMPION.exists() and not force:
         try:
@@ -1457,6 +1506,17 @@ def save_champion(r: Result, force: bool = False):
             if old_oos >= 15 and r.oos_trades < old_oos and new[0] <= old[0] + 0.03:
                 return False
             if new <= old:
+                return False
+        except Exception:
+            pass
+    elif CHAMPION.exists() and force:
+        # Even forced writes cannot downgrade min(IS,OOS) WR by >3pp vs a solid champ
+        try:
+            d = json.loads(CHAMPION.read_text())
+            old_min = min(float(d["winrate"]), float(d["oos_winrate"]))
+            new_min = min(r.winrate, r.oos_winrate)
+            old_oos_pf = float(d.get("oos_profit_factor", 0))
+            if old_oos_pf >= 1.2 and new_min < old_min - 0.03:
                 return False
         except Exception:
             pass

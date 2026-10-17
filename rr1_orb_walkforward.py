@@ -54,7 +54,10 @@ def exits():
 
 
 def specs():
-    """All ORB variants — sessions always None (no trading-session blocks)."""
+    """All ORB variants — sessions always None (no trading-session blocks).
+
+    Includes Benny break/fade/retest + OF-confirmed ORB (reel DdCYACaP-ef).
+    """
     out = []
     s = None
     for orb in ("ASIAN", "LONDON", "NY"):
@@ -66,6 +69,10 @@ def specs():
                     ("orb_break_win", {"orb": orb, "win": win, "first_only": first, "sessions": s})
                 )
             out.append(("orb_fade_win", {"orb": orb, "win": win, "sessions": s}))
+            out.append(("orb_retest_win", {"orb": orb, "win": win, "sessions": s}))
+            for n in (2, 3):
+                out.append(("orb_of_break", {"orb": orb, "win": win, "n": n, "sessions": s}))
+            out.append(("orb_of_fade", {"orb": orb, "win": win, "sessions": s}))
     return out
 
 
@@ -258,8 +265,9 @@ def main():
                             and wf.get("ok")
                         ):
                             quals += 1
-                            save_champion(res, force=True)
-                            write_bot(res)
+                            # force only skips lex-compare; hard PF/PnL floors still apply
+                            if save_champion(res, force=True):
+                                write_bot(res)
                             log(f"QUAL ORB-WF {res.winrate:.1%}/{res.oos_winrate:.1%} tpd={res.trades_per_day:.2f} | {res.name}")
                         if tested % 150 == 0:
                             dump(tested, quals, best, near, wf_ok)

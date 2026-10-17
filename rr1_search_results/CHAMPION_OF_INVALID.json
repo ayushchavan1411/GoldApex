@@ -1,0 +1,30 @@
+{
+  "name": "inv|of_stacked_imb|1h",
+  "timeframe": "1h",
+  "winrate": 0.7631578947368421,
+  "profit_factor": 1.892626800028563,
+  "trades": 76,
+  "trades_per_day": 0.17272727272727273,
+  "net_pnl": 145.73199600159893,
+  "max_dd": 0.09607920319999845,
+  "params": {
+    "kind": "of_stacked_imb",
+    "n": 4,
+    "sessions": null,
+    "invert": true,
+    "exit": {
+      "rr": 1.0,
+      "max_hold": 6,
+      "atr": "ATR_14",
+      "allow_long": true,
+      "allow_short": false
+    }
+  },
+  "oos_winrate": 0.8387096774193549,
+  "oos_profit_factor": 0.6988526061265006,
+  "oos_trades": 62,
+  "oos_trades_per_day": 0.40055376095985235,
+  "oos_net_pnl": -27.415294899579493,
+  "score": -2659.615665155738,
+  "rr": 1.0
+}

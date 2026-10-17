@@ -1,0 +1,638 @@
+{
+  "tested": 39800,
+  "quals": 0,
+  "best": {
+    "name": "inv|of_stacked_imb|1h",
+    "wr": 1.0,
+    "oos_wr": 0.9767441860465116,
+    "min_wr": 0.9767441860465116,
+    "tpd": 0.0659090909090909,
+    "oos_tpd": 0.2778034148592524,
+    "n": 29,
+    "oos_n": 43,
+    "pf": 99.0,
+    "oos_pf": 3.05171914259519,
+    "pnl": 68.64321535732476,
+    "oos_pnl": 20.586362986116118,
+    "params": {
+      "kind": "of_stacked_imb",
+      "n": 6,
+      "sessions": null,
+      "invert": true,
+      "exit": {
+        "rr": 1.0,
+        "max_hold": 8,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": false
+      }
+    },
+    "invert": true,
+    "year_ok": false,
+    "time": "2026-10-17 18:37:23"
+  },
+  "near_hits": [
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9347826086956522,
+      "oos_wr": 0.9583333333333334,
+      "min_wr": 0.9347826086956522,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 6.1806970493041655,
+      "oos_pf": 1.807847161810604,
+      "pnl": 162.92575571723987,
+      "oos_pnl": 16.393930201483535,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:48"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9347826086956522,
+      "oos_wr": 0.9375,
+      "min_wr": 0.9347826086956522,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 6.1073249864883525,
+      "oos_pf": 0.7553818392347101,
+      "pnl": 160.46218036701316,
+      "oos_pnl": -8.215666289423764,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:49"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9347826086956522,
+      "oos_wr": 0.9583333333333334,
+      "min_wr": 0.9347826086956522,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 6.1806970493041655,
+      "oos_pf": 1.807847161810604,
+      "pnl": 162.92575571723987,
+      "oos_pnl": 16.393930201483535,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:05"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9347826086956522,
+      "oos_wr": 0.9375,
+      "min_wr": 0.9347826086956522,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 6.1073249864883525,
+      "oos_pf": 0.7553818392347101,
+      "pnl": 160.46218036701316,
+      "oos_pnl": -8.215666289423764,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 6,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:06"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9130434782608695,
+      "oos_wr": 0.9375,
+      "min_wr": 0.9130434782608695,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 5.883153680857778,
+      "oos_pf": 1.6011284873035916,
+      "pnl": 153.34193263406672,
+      "oos_pnl": 12.179681388958755,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 4,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:48"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9130434782608695,
+      "oos_wr": 0.9166666666666666,
+      "min_wr": 0.9130434782608695,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 6.231401187438722,
+      "oos_pf": 1.8517495298514937,
+      "pnl": 165.1851952000199,
+      "oos_pnl": 17.936652379529,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:48"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9130434782608695,
+      "oos_wr": 0.9375,
+      "min_wr": 0.9130434782608695,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 8.559860883812524,
+      "oos_pf": 1.4973935346030478,
+      "pnl": 235.38850118362166,
+      "oos_pnl": 10.072439579609494,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 4,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:49"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9130434782608695,
+      "oos_wr": 0.9375,
+      "min_wr": 0.9130434782608695,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 5.883153680857778,
+      "oos_pf": 1.6011284873035916,
+      "pnl": 153.34193263406672,
+      "oos_pnl": 12.179681388958755,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 4,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:05"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9130434782608695,
+      "oos_wr": 0.9166666666666666,
+      "min_wr": 0.9130434782608695,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 6.231401187438722,
+      "oos_pf": 1.8517495298514937,
+      "pnl": 165.1851952000199,
+      "oos_pnl": 17.936652379529,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:05"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9130434782608695,
+      "oos_wr": 0.9375,
+      "min_wr": 0.9130434782608695,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 8.559860883812524,
+      "oos_pf": 1.4973935346030478,
+      "pnl": 235.38850118362166,
+      "oos_pnl": 10.072439579609494,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 4,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:06"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9,
+      "oos_wr": 0.9090909090909091,
+      "min_wr": 0.9,
+      "tpd": 0.06818181818181818,
+      "oos_tpd": 0.14213197969543148,
+      "n": 30,
+      "oos_n": 22,
+      "pf": 4.090725004495288,
+      "oos_pf": 1.5740462622803748,
+      "pnl": 97.08337718116375,
+      "oos_pnl": 11.610244988617058,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:48"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9,
+      "oos_wr": 0.9090909090909091,
+      "min_wr": 0.9,
+      "tpd": 0.06818181818181818,
+      "oos_tpd": 0.14213197969543148,
+      "n": 30,
+      "oos_n": 22,
+      "pf": 4.197681793145634,
+      "oos_pf": 1.6157553016948294,
+      "pnl": 100.5626690256835,
+      "oos_pnl": 12.463431579305613,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:48"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9,
+      "oos_wr": 0.9090909090909091,
+      "min_wr": 0.9,
+      "tpd": 0.06818181818181818,
+      "oos_tpd": 0.14213197969543148,
+      "n": 30,
+      "oos_n": 22,
+      "pf": 4.357338852191572,
+      "oos_pf": 1.6138482188458396,
+      "pnl": 105.58366267829349,
+      "oos_pnl": 12.425371602809298,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:48"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9,
+      "oos_wr": 0.9090909090909091,
+      "min_wr": 0.9,
+      "tpd": 0.06818181818181818,
+      "oos_tpd": 0.14213197969543148,
+      "n": 30,
+      "oos_n": 22,
+      "pf": 4.090725004495288,
+      "oos_pf": 1.5740462622803748,
+      "pnl": 97.08337718116375,
+      "oos_pnl": 11.610244988617058,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 6,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:05"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9,
+      "oos_wr": 0.9090909090909091,
+      "min_wr": 0.9,
+      "tpd": 0.06818181818181818,
+      "oos_tpd": 0.14213197969543148,
+      "n": 30,
+      "oos_n": 22,
+      "pf": 4.197681793145634,
+      "oos_pf": 1.6157553016948294,
+      "pnl": 100.5626690256835,
+      "oos_pnl": 12.463431579305613,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:05"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9,
+      "oos_wr": 0.9090909090909091,
+      "min_wr": 0.9,
+      "tpd": 0.06818181818181818,
+      "oos_tpd": 0.14213197969543148,
+      "n": 30,
+      "oos_n": 22,
+      "pf": 4.357338852191572,
+      "oos_pf": 1.6138482188458396,
+      "pnl": 105.58366267829349,
+      "oos_pnl": 12.425371602809298,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:05"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9130434782608695,
+      "oos_wr": 0.8958333333333334,
+      "min_wr": 0.8958333333333334,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 6.201873976013707,
+      "oos_pf": 0.8799425080612244,
+      "pnl": 164.14202549815758,
+      "oos_pnl": -3.719434982279658,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:49"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.9130434782608695,
+      "oos_wr": 0.8958333333333334,
+      "min_wr": 0.8958333333333334,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 6.201873976013707,
+      "oos_pf": 0.8799425080612244,
+      "pnl": 164.14202549815758,
+      "oos_pnl": -3.719434982279658,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 19:01:06"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.8913043478260869,
+      "oos_wr": 0.9583333333333334,
+      "min_wr": 0.8913043478260869,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 3.724559574515968,
+      "oos_pf": 2.468387407150228,
+      "pnl": 158.92484777557905,
+      "oos_pnl": 30.1922669431655,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:48"
+    },
+    {
+      "name": "inv|of_stacked_imb|1h",
+      "wr": 0.8913043478260869,
+      "oos_wr": 0.9166666666666666,
+      "min_wr": 0.8913043478260869,
+      "tpd": 0.10454545454545454,
+      "oos_tpd": 0.31010613751730504,
+      "n": 46,
+      "oos_n": 48,
+      "pf": 3.6900929349356897,
+      "oos_pf": 0.6973427991161278,
+      "pnl": 156.6757887766229,
+      "oos_pnl": -12.190206942140257,
+      "params": {
+        "kind": "of_stacked_imb",
+        "n": 5,
+        "sessions": null,
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false
+        }
+      },
+      "invert": true,
+      "year_ok": false,
+      "time": "2026-10-17 18:35:49"
+    }
+  ],
+  "time": "2026-10-17 19:05:15",
+  "note": "Price-based order-flow proxies (no L2/volume in XAU CSV)"
+}

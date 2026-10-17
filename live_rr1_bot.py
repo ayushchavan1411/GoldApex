@@ -1,53 +1,24 @@
 #!/usr/bin/env python3
-"""AUTO-GENERATED 1:1 RR bot from rr1_search.
-IS WR=74.1% OOS WR=73.7% tpd=0.12/0.13
-CAUSAL next-open · SL=TP=1.2×ATR
+"""RR1 live bot placeholder — NO FULL QUALIFIER YET.
+
+Gates: WR≥75% IS+OOS, tpd≥1, PF gates, year_stable, causal next-open, MIN_ATR≥1.5.
+
+Current best durable (not packaged — tpd≪1):
+  sl2|fvg_rsi+atr_expanded+skip_tiny_body|5m
+  IS/OOS WR ≈ 76.1%/76.2%  tpd ≈ 0.10/0.14  PF ≈ 3.17/2.79
+
+Invalid OF overwrite (parked CHAMPION_OF_INVALID.json) must not ship here.
+Benny reel ORB (DdCYACaP-ef) does not qualify under RR1 on XAU.
 """
 from __future__ import annotations
-import json
-from pathlib import Path
-from rr1_search import load_frames, add_indicators, gen_signals, simulate
 
-KIND = "union"
-TF = "5m"
-PARAMS = {
-  "parts": [
-    "rsi_macd",
-    "bb_rsi_fade",
-    "rsi_macd"
-  ],
-  "k": 3
-}
-EXIT = {
-  "rr": 1.2,
-  "max_hold": 6,
-  "atr": "ATR_7",
-  "allow_long": false,
-  "allow_short": true
-}
 
 def main():
-    df = add_indicators(load_frames()[TF])
-    p = dict(PARAMS)
-    if p.get("sessions") is not None:
-        p["sessions"] = tuple(p["sessions"])
-    if p.get("hours") is not None:
-        p["hours"] = tuple(p["hours"])
-    if p.get("dows") is not None:
-        p["dows"] = tuple(p["dows"])
-    L, S = gen_signals(df, KIND, p)
-    n = len(df); split = int(n * 0.7)
-    common = dict(long_e=L, short_e=S, rr_atr=EXIT["rr"], max_hold=EXIT["max_hold"],
-                  atr_col=EXIT.get("atr","ATR_14"),
-                  allow_long=EXIT.get("allow_long", True), allow_short=EXIT.get("allow_short", True))
-    full = simulate(df, start_i=250, end_i=n-2, **common)
-    is_m = simulate(df, start_i=250, end_i=split, **common)
-    oos_m = simulate(df, start_i=split, end_i=n-2, **common)
-    report = {"kind": KIND, "tf": TF, "params": PARAMS, "exit": EXIT, "rr": "1:1",
-              "full": full, "is": is_m, "oos": oos_m}
-    Path("rr1_search_results").mkdir(exist_ok=True)
-    Path("rr1_search_results/bot_report.json").write_text(json.dumps(report, indent=2))
-    print(json.dumps(report, indent=2))
+    raise SystemExit(
+        "No full RR1 qualifier yet (need WR≥75% IS+OOS + tpd≥1 + PF + year_stable). "
+        "See rr1_search_results/CHAMPION.json for best durable near-miss."
+    )
+
 
 if __name__ == "__main__":
     main()
