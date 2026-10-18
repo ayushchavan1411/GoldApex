@@ -1,13 +1,8 @@
 #!/usr/bin/env python3
-"""Percent-reward hunt on fixed 0.02 lot + charges ($500 start).
+"""1% risk / 1% reward hunt — NO ATR-based RR.
 
-User (2026-10-18): settled on **1.2% reward** (1:1 SL=TP), with charges,
-profit reported after fees on $500 / 0.02 lot.
-
-Primary: tp=sl=1.2% of price (and 1.2% of capital as secondary).
-Also keeps 0.5%/1.0% for comparison.
-
-Charges: spread $0.30 + commission $7/lot RT × 0.02 = $0.14/trade.
+User (2026-10-18): remove ATR RR; use 1% SL = 1% TP (price), fixed 0.02 lot,
+$500 capital, charges included. Goal still WR≥75% IS+OOS, tpd≥1, year_stable.
 """
 from __future__ import annotations
 
@@ -15,17 +10,18 @@ import itertools
 import json
 import random
 import time
-from pathlib import Path
 
 from rr1_search import (
     COMMISSION_PER_LOT_RT,
     FIXED_LOT,
     OUT,
+    PCT_RR,
     SPREAD_PRICE,
     START_CAP,
     TARGET_WR,
     add_indicators,
     evaluate,
+    fee_pct_exits,
     gen_signals,
     load_frames,
     log,
@@ -34,72 +30,30 @@ from rr1_search import (
     simulate,
     write_bot,
     year_stable,
+    _exit_sim_kwargs,
 )
 
-RNG = random.Random(50)
-LEADER = OUT / "PCT05_LEADERBOARD.jsonl"
-PROGRESS = OUT / "pct05_progress.json"
-SUMMARY = OUT / "PCT05_SUMMARY.json"
-REPORT = OUT / "PCT05_CHARGES_REPORT.json"
-
-
-def fee_exit(mode: str, pct: float, max_hold: int, side: dict) -> dict:
-    """Build exit dict for percent targets + fixed lot + charges."""
-    base = {
-        "rr": 1.0,
-        "max_hold": max_hold,
-        "atr": "ATR_14",
-        "fixed_lot": FIXED_LOT,
-        "spread_price": SPREAD_PRICE,
-        "commission_per_lot_rt": COMMISSION_PER_LOT_RT,
-        "start_cap": START_CAP,
-        **side,
-    }
-    if mode == "price":
-        base["sl_pct"] = pct
-        base["tp_pct"] = pct
-        base["reward_label"] = f"{pct:.1%}_price"
-    else:
-        base["sl_cap_pct"] = pct
-        base["tp_cap_pct"] = pct
-        base["reward_label"] = f"{pct:.1%}_capital"
-    return base
-
-
-# User-confirmed primary reward (2026-10-18)
-PRIMARY_PCT = 0.012  # 1.2%
+RNG = random.Random(100)
+LEADER = OUT / "PCT1_LEADERBOARD.jsonl"
+PROGRESS = OUT / "pct1_progress.json"
+SUMMARY = OUT / "PCT1_SUMMARY.json"
+REPORT = OUT / "PCT1_CHARGES_REPORT.json"
 
 
 def exits():
-    sides = (
-        dict(allow_long=True, allow_short=True),
-        dict(allow_long=True, allow_short=False),
-        dict(allow_long=False, allow_short=True),
-    )
-    out = []
-    # 1.2% first (primary), then nearby % for comparison
-    for mode, pct in (
-        ("price", PRIMARY_PCT),
-        ("cap", PRIMARY_PCT),
-        ("price", 0.01),
-        ("cap", 0.01),
-        ("price", 0.005),
-        ("cap", 0.005),
-    ):
-        holds = (12, 24, 36, 48, 72) if abs(pct - PRIMARY_PCT) < 1e-9 else (12, 24, 48)
-        for mh, side in itertools.product(holds, sides):
-            out.append(fee_exit(mode, pct, mh, side))
-    return out
+    # Strict 1% only (user: drop ATR RR)
+    return fee_pct_exits(PCT_RR, holds=(12, 18, 24, 36, 48, 72, 96))
 
 
 def specs():
     s = None
     out = []
-    # High-WR / course families
     for kind, extra in (
         ("fvg_rsi", {"rsi": 14, "os": 40, "ob": 80}),
         ("fvg_rsi", {"rsi": 14, "os": 35, "ob": 65}),
+        ("fvg_rsi", {"rsi": 7, "os": 30, "ob": 70}),
         ("fvg_reclaim", {}),
+        ("fvg_ce", {}),
         ("turtle_soup", {"period": 20, "wick": 0.35}),
         ("turtle_soup", {"period": 10, "wick": 0.35}),
         ("wyckoff_spring", {"swing": 20, "wick": 0.45}),
@@ -111,17 +65,24 @@ def specs():
         ("liq_sweep_fvg", {"swing": 20, "wick": 0.45}),
         ("rsi_macd", {"rsi": 14, "os": 40, "ob": 60}),
         ("rsi_level", {"rsi": 14, "os": 35, "ob": 65, "band": 5}),
+        ("rsi_cross", {"rsi": 14, "os": 30, "ob": 70}),
         ("donch_fade", {"period": 20, "rsi": 14, "os": 35, "ob": 65}),
         ("orb_fade", {"orb": "LONDON"}),
         ("orb_fade", {"orb": "NY"}),
+        ("orb_break", {"orb": "LONDON"}),
         ("of_sweep_absorb", {}),
         ("cisd", {}),
         ("ob_retest", {}),
+        ("mss_entry", {"swing": 20}),
+        ("eqh_eql_sweep", {"swing": 20, "wick": 0.45}),
+        ("pin_rsi", {"rsi": 14, "os": 30, "ob": 70, "wick": 0.55, "body": 0.35}),
+        ("engulf", {"ema": 21}),
     ):
         out.append((kind, {**extra, "sessions": s}))
-    for sess in (("london", "overlap", "ny"), ("overlap", "ny"), ("london",)):
+    for sess in (("london", "overlap", "ny"), ("overlap", "ny"), ("london",), ("ny",)):
         out.append(("fvg_rsi", {"rsi": 14, "os": 40, "ob": 80, "sessions": sess}))
         out.append(("turtle_soup", {"period": 20, "wick": 0.35, "sessions": sess}))
+        out.append(("liq_sweep", {"swing": 20, "wick": 0.45, "sessions": sess}))
     return out
 
 
@@ -136,7 +97,7 @@ def dump(tested, quals, best, near, showcase):
                 "best_tpd": best.get("tpd") if best else None,
                 "best_net_after_charges": best.get("net_pnl") if best else None,
                 "near": len(near),
-                "gate": f"WR>={TARGET_WR:.0%} tpd>=1 after charges lot={FIXED_LOT}",
+                "gate": f"1% RR (no ATR) WR>={TARGET_WR:.0%} tpd>=1 lot={FIXED_LOT} after fees",
                 "time": time.strftime("%Y-%m-%d %H:%M:%S"),
             },
             indent=2,
@@ -153,12 +114,10 @@ def dump(tested, quals, best, near, showcase):
 
 
 def main():
-    from rr1_search import _exit_sim_kwargs
-
     OUT.mkdir(exist_ok=True)
     log(
-        f"=== 0.5% REWARD HUNT lot={FIXED_LOT} cap=${START_CAP:.0f} "
-        f"spread=${SPREAD_PRICE} comm=${COMMISSION_PER_LOT_RT}/lot RT ==="
+        f"=== 1% RISK/REWARD HUNT (NO ATR) lot={FIXED_LOT} cap=${START_CAP:.0f} "
+        f"spread=${SPREAD_PRICE} comm=${COMMISSION_PER_LOT_RT}/lot RT pct={PCT_RR:.1%} ==="
     )
     raw = load_frames(include_resampled=True)
     frames = {}
@@ -167,67 +126,60 @@ def main():
             log(f"indicators {tf}…")
             frames[tf] = add_indicators(raw[tf])
 
-    # --- Showcase: champ-like fvg_rsi under 0.5% / 1% with fees ---
-    showcase = {"assumptions": {
-        "start_cap": START_CAP,
-        "lot": FIXED_LOT,
-        "oz": FIXED_LOT * 100,
-        "spread_price_usd": SPREAD_PRICE,
-        "commission_per_lot_rt": COMMISSION_PER_LOT_RT,
-        "commission_per_trade": COMMISSION_PER_LOT_RT * FIXED_LOT,
-        "note": (
-            "Prior hunt used ATR×RR (not 1% price). "
-            "0.5%_price ≈ $21 move at XAU~$4200 (harder). "
-            "0.5%_capital = $2.50/side ≈ $1.25 move on 0.02 lot (easier)."
-        ),
-    }, "runs": []}
+    showcase = {
+        "assumptions": {
+            "mode": "1%_price_SL_TP_1:1",
+            "atr_rr": "REMOVED",
+            "start_cap": START_CAP,
+            "lot": FIXED_LOT,
+            "spread_price_usd": SPREAD_PRICE,
+            "commission_per_trade": COMMISSION_PER_LOT_RT * FIXED_LOT,
+        },
+        "runs": [],
+    }
     df5 = frames["5m"]
-    L, S = gen_signals(df5, "fvg_rsi", {"rsi": 14, "os": 40, "ob": 80, "sessions": None})
     n = len(df5)
     split = int(n * 0.7)
-    for mode, pct, label, mh in (
-        ("price", PRIMARY_PCT, "1.2%_of_price_1:1", 48),
-        ("cap", PRIMARY_PCT, "1.2%_of_capital_1:1", 24),
-        ("price", 0.01, "1.0%_of_price_1:1", 48),
-        ("cap", 0.01, "1.0%_of_capital_1:1", 24),
-        ("price", 0.005, "0.5%_of_price_1:1", 48),
-        ("cap", 0.005, "0.5%_of_capital_1:1", 24),
+    for sk, sp in (
+        ("fvg_rsi", {"rsi": 14, "os": 40, "ob": 80, "sessions": None}),
+        ("turtle_soup", {"period": 20, "wick": 0.35, "sessions": None}),
+        ("ob_retest", {"sessions": None}),
+        ("liq_sweep", {"swing": 20, "wick": 0.45, "sessions": None}),
     ):
-        ex = fee_exit(mode, pct, mh, dict(allow_long=True, allow_short=True))
+        L, S = gen_signals(df5, sk, sp)
+        ex = fee_pct_exits(PCT_RR, holds=(48,), sides=False)[0]
         kw = _exit_sim_kwargs(ex)
         full = simulate(df5, start_i=250, end_i=n - 2, long_e=L, short_e=S, **kw)
         is_m = simulate(df5, start_i=250, end_i=split, long_e=L, short_e=S, **kw)
         oos_m = simulate(df5, start_i=split, end_i=n - 2, long_e=L, short_e=S, **kw)
         row = {
-            "label": label,
-            "signal": "fvg_rsi(14/40/80) 5m",
+            "signal": sk,
+            "label": "1.0%_of_price_1:1",
             "WR_IS": is_m["winrate"],
             "WR_OOS": oos_m["winrate"],
             "tpd_IS": is_m["trades_per_day"],
             "tpd_OOS": oos_m["trades_per_day"],
             "n_IS": is_m["trades"],
             "n_OOS": oos_m["trades"],
-            "PF_IS": is_m["profit_factor"],
-            "net_after_charges_IS": is_m["net_pnl"],
-            "net_after_charges_OOS": oos_m["net_pnl"],
             "net_after_charges_FULL": full["net_pnl"],
             "final_equity_FULL": full["final_equity"],
+            "profit_on_500_FULL": full["final_equity"] - START_CAP,
             "total_charges_FULL": full.get("total_charges"),
             "max_dd_FULL": full["max_dd"],
-            "profit_on_500_FULL": full["final_equity"] - START_CAP,
         }
         showcase["runs"].append(row)
         log(
-            f"SHOW {label} WR={is_m['winrate']:.1%}/{oos_m['winrate']:.1%} "
+            f"SHOW {sk} 1% WR={is_m['winrate']:.1%}/{oos_m['winrate']:.1%} "
             f"tpd={is_m['trades_per_day']:.2f} "
-            f"net@500=${full['net_pnl']:.1f} eq=${full['final_equity']:.1f} "
+            f"profit@500=${full['final_equity']-START_CAP:.1f} eq=${full['final_equity']:.1f} "
             f"charges=${full.get('total_charges', 0):.1f}"
         )
     REPORT.write_text(json.dumps(showcase, indent=2, default=str))
 
     sp = specs()
     exs = exits()
-    log(f"specs={len(sp)} exits={len(exs)} tfs={list(frames)}")
+    log(f"specs={len(sp)} exits={len(exs)} tfs={list(frames)} (ATR RR disabled)")
+
     tested = quals = 0
     best = None
     near: list[dict] = []
@@ -250,7 +202,7 @@ def main():
                         continue
                     for ex in exs:
                         tested += 1
-                        tag = f"{'inv|' if invert else 'pct|'}{kind}|{ex.get('reward_label')}|{tf}"
+                        tag = f"{'inv|' if invert else 'pct1|'}{kind}|1%|{tf}"
                         res = evaluate(tag, tf, df, L, S, dict(ex), {"kind": kind, **pp})
                         if not res or res.trades < 40 or res.oos_trades < 20:
                             continue
@@ -287,7 +239,7 @@ def main():
                             near.sort(key=lambda r: (r["min_wr"], r["tpd"]), reverse=True)
                             near[:] = near[:40]
                             log(
-                                f"NEAR pct05 {min_wr:.1%} tpd={res.trades_per_day:.2f} "
+                                f"NEAR pct1 {min_wr:.1%} tpd={res.trades_per_day:.2f} "
                                 f"net=${res.net_pnl:.1f} year={yok} | {res.name}"
                             )
                         is_m = {
@@ -310,16 +262,16 @@ def main():
                             if save_champion(res, force=True):
                                 write_bot(res)
                             log(
-                                f"QUAL PCT05 {res.winrate:.1%}/{res.oos_winrate:.1%} "
+                                f"QUAL PCT1 {res.winrate:.1%}/{res.oos_winrate:.1%} "
                                 f"tpd={res.trades_per_day:.2f} net=${res.net_pnl:.1f} | {res.name}"
                             )
                         if tested % 100 == 0:
                             dump(tested, quals, best, near, showcase)
                             bw = f"{best['min_wr']:.1%}" if best else "n/a"
-                            log(f"pct05 tested={tested} quals={quals} best={bw} near={len(near)}")
+                            log(f"pct1 tested={tested} quals={quals} best={bw} near={len(near)}")
 
         dump(tested, quals, best, near, showcase)
-        log(f"pct05 pass done tested={tested} quals={quals}; reshuffle")
+        log(f"pct1 pass done tested={tested} quals={quals}; reshuffle")
 
 
 if __name__ == "__main__":

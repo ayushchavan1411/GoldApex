@@ -1,0 +1,11 @@
+{
+  "tested": 3300,
+  "quals": 0,
+  "best_min_wr": 0.55,
+  "best_name": "pct1|ob_retest|1%|15m",
+  "best_tpd": 1.5254833040421794,
+  "best_net_after_charges": 1791.0020225000592,
+  "near": 0,
+  "gate": "1% RR (no ATR) WR>=75% tpd>=1 lot=0.02 after fees",
+  "time": "2026-10-18 13:46:56"
+}

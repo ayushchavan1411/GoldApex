@@ -41,16 +41,13 @@ mkdir -p rr1_search_results
 echo "$(date -u '+%Y-%m-%d %H:%M:%S') | watchdog start (mem-aware)" | tee -a rr1_search_results/watchdog.log
 
 while true; do
-  # Bridge + course + 0.5%-reward/fees hunt
+  # 1% price RR only (ATR RR removed) — bridge set
   start_job "rr1-pct05" "rr1_pct05_hunt.py" 2200
   start_job "rr1-course" "rr1_course_hunt.py" 2200
   start_job "rr1-posrr" "rr1_posrr_hunt.py" 2200
   start_job "rr1-mohamad" "rr1_mohamad_ict_hunt.py" 2200
   start_job "rr1-freq" "rr1_freqboost.py" 2200
   start_job "rr1-invert" "rr1_invert_search.py" 2000
-  start_job "rr1-orcombo" "rr1_orcombo.py" 3500
-  # Heavy bridge — only with spare RAM
-  start_job "rr1-union" "rr1_union_search.py" 4500
   {
     echo -n "$(date -u '+%Y-%m-%d %H:%M:%S') | alive: "
     pgrep -af 'python3 -u rr1_' | grep -v pgrep | wc -l

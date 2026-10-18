@@ -49,9 +49,8 @@ FIXED_LOT = 0.02
 CONTRACT_SIZE = 100.0  # oz per 1.00 lot → 0.02 lot = 2 oz
 SPREAD_PRICE = 0.30  # typical XAUUSD spread in $ (round-trip applied via entry/exit)
 COMMISSION_PER_LOT_RT = 7.0  # $ round-turn commission per 1.00 lot
-# 0.5% reward options:
-#   price_pct=0.005 → TP distance = 0.5% of entry (~$21 at $4200 — harder than 1×ATR)
-#   cap_pct=0.005   → TP $ = 0.5% of $500 = $2.50 → ~$1.25 price move on 0.02 lot (easier)
+# User 2026-10-18 (later): DROP ATR-based RR — use 1% risk / 1% reward (price %).
+PCT_RR = 0.01  # 1% SL = 1% TP (1:1)
 
 TARGET_WR = 0.75  # user goal ≥75% on 2y, 1:1, ≥1 tpd
 TARGET_PF = 1.15
@@ -1655,6 +1654,41 @@ def _exit_sim_kwargs(exit_p: dict) -> dict:
         if k in exit_p and exit_p[k] is not None:
             kw[k] = exit_p[k]
     return kw
+
+
+def fee_pct_exits(
+    pct: float = PCT_RR,
+    holds: tuple[int, ...] = (12, 24, 36, 48, 72),
+    sides: bool = True,
+) -> list[dict]:
+    """1:1 percent-of-price exits + fixed 0.02 lot + spread/commission (no ATR RR)."""
+    side_opts = (
+        (
+            dict(allow_long=True, allow_short=True),
+            dict(allow_long=True, allow_short=False),
+            dict(allow_long=False, allow_short=True),
+        )
+        if sides
+        else (dict(allow_long=True, allow_short=True),)
+    )
+    out = []
+    for mh, side in itertools.product(holds, side_opts):
+        out.append(
+            {
+                "rr": 1.0,
+                "max_hold": mh,
+                "atr": "ATR_14",  # unused when sl_pct set; kept for API compat
+                "sl_pct": pct,
+                "tp_pct": pct,
+                "fixed_lot": FIXED_LOT,
+                "spread_price": SPREAD_PRICE,
+                "commission_per_lot_rt": COMMISSION_PER_LOT_RT,
+                "start_cap": START_CAP,
+                "reward_label": f"{pct:.1%}_price",
+                **side,
+            }
+        )
+    return out
 
 
 def year_stable(df: pd.DataFrame, long_e, short_e, exit_p: dict, min_trades: int = 40) -> bool:

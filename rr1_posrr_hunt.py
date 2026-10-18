@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""Favorable R:R hunter (low-risk / high-reward).
+"""High-frequency signal hunt under 1% price risk/reward (no ATR RR).
 
-User gate (2026-10-17): if TP > SL (geo RR ≥ 1.5) and tpd ≥ 1,
-WR ≥ 60% IS+OOS is enough (plus PF / year_stable / sample gates).
-
-Sessions always None (no session blocks). RR1 ≥75% path still lives in other hunters.
+User (2026-10-18): drop ATR-based RR; SL=TP=1% of price, fixed 0.02 lot + fees.
+Gate: WR≥75% IS+OOS, tpd≥1, year_stable (classic).
 """
 from __future__ import annotations
 
@@ -14,16 +12,15 @@ import random
 import time
 
 from rr1_search import (
-    ALT_WR,
-    MIN_POS_RR,
     OUT,
+    PCT_RR,
     add_indicators,
     evaluate,
+    fee_pct_exits,
     gen_signals,
-    geo_rr_of,
     load_frames,
     log,
-    qualifies_posrr,
+    qualifies,
     save_champion,
     write_bot,
     year_stable,
@@ -36,37 +33,8 @@ SUMMARY = OUT / "POSRR_SUMMARY.json"
 
 
 def exits():
-    """Favorable RR only: tp_atr / sl_atr ≥ MIN_POS_RR. Slim grid for RAM."""
-    out = []
-    for sl, tp in (
-        (1.0, 1.5),
-        (1.0, 2.0),
-        (1.0, 2.5),
-        (1.0, 3.0),
-        (0.8, 2.0),
-        (1.2, 2.4),
-        (1.2, 3.0),
-    ):
-        if tp / sl < MIN_POS_RR:
-            continue
-        for mh in (6, 8, 12, 18, 24):
-            for atr in ("ATR_14", "ATR_7"):
-                for side in (
-                    dict(allow_long=True, allow_short=True),
-                    dict(allow_long=True, allow_short=False),
-                    dict(allow_long=False, allow_short=True),
-                ):
-                    out.append(
-                        {
-                            "rr": sl,  # legacy field = SL size
-                            "sl_atr": sl,
-                            "tp_atr": tp,
-                            "max_hold": mh,
-                            "atr": atr,
-                            **side,
-                        }
-                    )
-    return out
+    """User: drop ATR RR — 1% price risk/reward only."""
+    return fee_pct_exits(PCT_RR, holds=(12, 18, 24, 36, 48, 72))
 
 
 def specs():
@@ -130,7 +98,7 @@ def dump(tested, quals, best, near):
                 "best_geo_rr": best.get("geo_rr") if best else None,
                 "best_tpd": best.get("tpd") if best else None,
                 "near": len(near),
-                "gate": f"WR>={ALT_WR:.0%} geoRR>={MIN_POS_RR} tpd>=1",
+                "gate": f"1% price RR (no ATR) WR>=75% tpd>=1",
                 "time": time.strftime("%Y-%m-%d %H:%M:%S"),
             },
             indent=2,
@@ -144,8 +112,8 @@ def dump(tested, quals, best, near):
                 "best": best,
                 "near_hits": near[:20],
                 "gate": {
-                    "wr": ALT_WR,
-                    "min_pos_rr": MIN_POS_RR,
+                    "wr": 0.75,
+                    "pct_rr": PCT_RR,
                     "tpd": 1.0,
                     "sessions": None,
                 },
@@ -159,7 +127,7 @@ def dump(tested, quals, best, near):
 
 def main():
     OUT.mkdir(exist_ok=True)
-    log(f"=== POS-RR HUNT WR>={ALT_WR:.0%} geoRR>={MIN_POS_RR} tpd>=1 sessions=None ===")
+    log(f"=== 1% PRICE RR HUNT (was posrr) WR>=75% tpd>=1 sessions=None ===")
     raw = load_frames(include_resampled=True)
     frames = {}
     # Skip 1h to keep RSS under control alongside other hunters
@@ -196,7 +164,7 @@ def main():
                         if not res or res.trades < 40 or res.oos_trades < 20:
                             continue
                         min_wr = min(res.winrate, res.oos_winrate)
-                        geo = geo_rr_of(ex)
+                        yok = year_stable(df, L, S, dict(ex))
                         row = {
                             "name": res.name,
                             "wr": res.winrate,
@@ -208,38 +176,29 @@ def main():
                             "oos_n": res.oos_trades,
                             "pf": res.profit_factor,
                             "oos_pf": res.oos_profit_factor,
-                            "geo_rr": geo,
+                            "net_pnl": res.net_pnl,
                             "params": res.params,
-                            "year_ok": year_stable(df, L, S, dict(ex)),
+                            "year_ok": yok,
                             "time": time.strftime("%Y-%m-%d %H:%M:%S"),
                         }
                         with open(LEADER, "a") as f:
                             f.write(json.dumps(row, default=str) + "\n")
 
-                        # Prefer higher min_wr among tpd≥1; else track best min_wr overall
-                        score_key = (1 if row["tpd"] >= 1.0 and row["oos_tpd"] >= 0.85 else 0, min_wr, geo)
-                        if best is None:
+                        score_key = (
+                            1 if row["tpd"] >= 1.0 and row["oos_tpd"] >= 0.85 else 0,
+                            min_wr,
+                            row["tpd"],
+                        )
+                        if best is None or score_key > best.get("_sk", (0, 0, 0)):
                             best = {**row, "_sk": score_key}
-                        else:
-                            if score_key > best.get("_sk", (0, 0, 0)):
-                                best = {**row, "_sk": score_key}
 
-                        if (
-                            min_wr >= 0.58
-                            and res.trades_per_day >= 0.9
-                            and res.profit_factor >= 1.0
-                            and res.oos_profit_factor >= 1.0
-                        ):
+                        if min_wr >= 0.65 and res.trades_per_day >= 0.7 and res.net_pnl > 0:
                             near.append(row)
-                            near.sort(
-                                key=lambda r: (r["min_wr"], r["tpd"], r["geo_rr"]),
-                                reverse=True,
-                            )
+                            near.sort(key=lambda r: (r["min_wr"], r["tpd"]), reverse=True)
                             near[:] = near[:40]
                             log(
-                                f"NEAR posRR {min_wr:.1%} tpd={res.trades_per_day:.2f} "
-                                f"geo={geo:.2f} pf={res.profit_factor:.2f}/{res.oos_profit_factor:.2f} "
-                                f"year={row['year_ok']} | {res.name}"
+                                f"NEAR 1pct {min_wr:.1%} tpd={res.trades_per_day:.2f} "
+                                f"net=${res.net_pnl:.1f} year={yok} | {res.name}"
                             )
 
                         is_m = {
@@ -257,13 +216,13 @@ def main():
                             "net_pnl": res.oos_net_pnl,
                             "trades_per_day": res.oos_trades_per_day,
                         }
-                        if qualifies_posrr(is_m, oos_m, ex) and year_stable(df, L, S, dict(ex)):
+                        if qualifies(is_m, oos_m) and yok:
                             quals += 1
                             if save_champion(res, force=True):
                                 write_bot(res)
                             log(
-                                f"QUAL POS-RR {res.winrate:.1%}/{res.oos_winrate:.1%} "
-                                f"tpd={res.trades_per_day:.2f} geo={geo:.2f} | {res.name}"
+                                f"QUAL 1PCT {res.winrate:.1%}/{res.oos_winrate:.1%} "
+                                f"tpd={res.trades_per_day:.2f} net=${res.net_pnl:.1f} | {res.name}"
                             )
 
                         if tested % 200 == 0:

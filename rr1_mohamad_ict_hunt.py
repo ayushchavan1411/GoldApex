@@ -15,9 +15,11 @@ from pathlib import Path
 
 from rr1_search import (
     OUT,
+    PCT_RR,
     TARGET_WR,
     add_indicators,
     evaluate,
+    fee_pct_exits,
     gen_signals,
     load_frames,
     log,
@@ -35,17 +37,8 @@ NOTE = OUT / "IG_DemxNo2IIjs_ANALYSIS.json"
 
 
 def exits():
-    return [
-        {"rr": rr, "max_hold": mh, "atr": atr, **side}
-        for rr in (1.0, 1.2)
-        for mh in (4, 6, 8, 12, 18)
-        for atr in ("ATR_14", "ATR_7")
-        for side in (
-            dict(allow_long=True, allow_short=True),
-            dict(allow_long=True, allow_short=False),
-            dict(allow_long=False, allow_short=True),
-        )
-    ]
+    # User: drop ATR RR — 1% price risk/reward only
+    return fee_pct_exits(PCT_RR, holds=(12, 18, 24, 36, 48, 72))
 
 
 def specs():

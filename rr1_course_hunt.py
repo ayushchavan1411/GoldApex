@@ -17,14 +17,15 @@ from pathlib import Path
 
 from rr1_search import (
     OUT,
+    PCT_RR,
     TARGET_WR,
     add_indicators,
     evaluate,
+    fee_pct_exits,
     gen_signals,
     load_frames,
     log,
     qualifies,
-    qualifies_posrr,
     save_champion,
     write_bot,
     year_stable,
@@ -38,46 +39,13 @@ MASTERY = OUT / "STRATEGY_MASTERY.json"
 
 
 def exits_rr1():
-    return [
-        {"rr": rr, "max_hold": mh, "atr": atr, **side}
-        for rr in (1.0, 1.2)
-        for mh in (4, 6, 8, 12, 18, 24)
-        for atr in ("ATR_14", "ATR_7")
-        for side in (
-            dict(allow_long=True, allow_short=True),
-            dict(allow_long=True, allow_short=False),
-            dict(allow_long=False, allow_short=True),
-        )
-    ]
+    # User: drop ATR RR — 1% price risk/reward only
+    return fee_pct_exits(PCT_RR, holds=(12, 18, 24, 36, 48, 72))
 
 
 def exits_posrr():
-    # Favorable RR: tp > sl in ATR units (geoRR = tp/sl)
-    out = []
-    for sl, tp, mh, atr in itertools.product(
-        (1.0, 1.2, 1.5),
-        (1.5, 2.0, 2.5, 3.0),
-        (6, 8, 12, 18, 24),
-        ("ATR_14", "ATR_7"),
-    ):
-        if tp / sl < 1.5:
-            continue
-        for side in (
-            dict(allow_long=True, allow_short=True),
-            dict(allow_long=True, allow_short=False),
-            dict(allow_long=False, allow_short=True),
-        ):
-            out.append(
-                {
-                    "rr": sl,
-                    "sl_atr": sl,
-                    "tp_atr": tp,
-                    "max_hold": mh,
-                    "atr": atr,
-                    **side,
-                }
-            )
-    return out
+    # ATR pos-RR disabled; same 1% grid (kept for call-site compat)
+    return fee_pct_exits(PCT_RR, holds=(24, 48))
 
 
 def specs():
@@ -266,8 +234,7 @@ def main():
 
     sp = specs()
     ex_rr1 = exits_rr1()
-    ex_pos = exits_posrr()
-    log(f"specs={len(sp)} exits_rr1={len(ex_rr1)} exits_pos={len(ex_pos)} tfs={list(frames)}")
+    log(f"specs={len(sp)} exits_1pct={len(ex_rr1)} tfs={list(frames)} (ATR RR removed)")
 
     tested = quals = quals_pos = 0
     best = None
@@ -293,7 +260,7 @@ def main():
                     nsig = int(L.sum() + S.sum())
                     if nsig < 50:
                         continue
-                    # RR1 exits
+                    # 1% price RR exits only
                     for ex in ex_rr1:
                         tested += 1
                         tag = f"{'inv|' if invert else 'course|'}{kind}|{tf}"
@@ -362,61 +329,12 @@ def main():
                             dump(tested, quals, quals_pos, best, near)
                             bw = f"{best['min_wr']:.1%}" if best else "n/a"
                             log(
-                                f"course tested={tested} quals={quals}/{quals_pos} "
+                                f"course tested={tested} quals={quals} "
                                 f"best={bw} near={len(near)}"
-                            )
-                    # Pos-RR exits (sample to keep RAM/CPU sane)
-                    for ex in RNG.sample(ex_pos, min(18, len(ex_pos))):
-                        tested += 1
-                        tag = f"{'inv|' if invert else 'course|'}{kind}|pos|{tf}"
-                        res = evaluate(tag, tf, df, L, S, dict(ex), {"kind": kind, **pp})
-                        if not res or res.trades < 40 or res.oos_trades < 20:
-                            continue
-                        min_wr = min(res.winrate, res.oos_winrate)
-                        yok = year_stable(df, L, S, dict(ex))
-                        row = {
-                            "name": res.name,
-                            "path": "posrr",
-                            "wr": res.winrate,
-                            "oos_wr": res.oos_winrate,
-                            "min_wr": min_wr,
-                            "tpd": res.trades_per_day,
-                            "oos_tpd": res.oos_trades_per_day,
-                            "n": res.trades,
-                            "oos_n": res.oos_trades,
-                            "pf": res.profit_factor,
-                            "params": res.params,
-                            "year_ok": yok,
-                            "time": time.strftime("%Y-%m-%d %H:%M:%S"),
-                        }
-                        with open(LEADER, "a") as f:
-                            f.write(json.dumps(row, default=str) + "\n")
-                        is_m = {
-                            "trades": res.trades,
-                            "winrate": res.winrate,
-                            "profit_factor": res.profit_factor,
-                            "net_pnl": res.net_pnl,
-                            "trades_per_day": res.trades_per_day,
-                            "max_dd": res.max_dd,
-                        }
-                        oos_m = {
-                            "trades": res.oos_trades,
-                            "winrate": res.oos_winrate,
-                            "profit_factor": res.oos_profit_factor,
-                            "net_pnl": res.oos_net_pnl,
-                            "trades_per_day": res.oos_trades_per_day,
-                        }
-                        if qualifies_posrr(is_m, oos_m, dict(ex)) and yok:
-                            quals_pos += 1
-                            if save_champion(res, force=True):
-                                write_bot(res)
-                            log(
-                                f"QUAL POSRR {res.winrate:.1%}/{res.oos_winrate:.1%} "
-                                f"tpd={res.trades_per_day:.2f} | {res.name}"
                             )
 
         dump(tested, quals, quals_pos, best, near)
-        log(f"course pass done tested={tested} quals={quals}/{quals_pos}; reshuffle")
+        log(f"course pass done tested={tested} quals={quals}; reshuffle")
 
 
 if __name__ == "__main__":

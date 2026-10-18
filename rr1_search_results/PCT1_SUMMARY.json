@@ -1,0 +1,116 @@
+{
+  "tested": 3300,
+  "quals": 0,
+  "best": {
+    "name": "pct1|ob_retest|1%|15m",
+    "wr": 0.5513196480938416,
+    "oos_wr": 0.55,
+    "min_wr": 0.55,
+    "tpd": 1.5254833040421794,
+    "oos_tpd": 0.13053613053613053,
+    "n": 682,
+    "oos_n": 20,
+    "pf": 1.1249218290183287,
+    "net_pnl": 1791.0020225000592,
+    "oos_net_pnl": -108.3401895999803,
+    "params": {
+      "kind": "ob_retest",
+      "sessions": null,
+      "exit": {
+        "rr": 1.0,
+        "max_hold": 48,
+        "atr": "ATR_14",
+        "sl_pct": 0.01,
+        "tp_pct": 0.01,
+        "fixed_lot": 0.02,
+        "spread_price": 0.3,
+        "commission_per_lot_rt": 7.0,
+        "start_cap": 500.0,
+        "reward_label": "1.0%_price",
+        "allow_long": true,
+        "allow_short": false
+      }
+    },
+    "year_ok": true,
+    "time": "2026-10-18 13:46:54",
+    "_sk": [
+      0,
+      0.55,
+      1.5254833040421794,
+      1791.0020225000592
+    ]
+  },
+  "near": [],
+  "showcase": {
+    "assumptions": {
+      "mode": "1%_price_SL_TP_1:1",
+      "atr_rr": "REMOVED",
+      "start_cap": 500.0,
+      "lot": 0.02,
+      "spread_price_usd": 0.3,
+      "commission_per_trade": 0.14
+    },
+    "runs": [
+      {
+        "signal": "fvg_rsi",
+        "label": "1.0%_of_price_1:1",
+        "WR_IS": 0.5416666666666666,
+        "WR_OOS": 0.4807692307692308,
+        "tpd_IS": 0.2117535843705688,
+        "tpd_OOS": 0.34291097503532736,
+        "n_IS": 96,
+        "n_OOS": 52,
+        "net_after_charges_FULL": 684.297743220078,
+        "final_equity_FULL": 1184.2977432200744,
+        "profit_on_500_FULL": 684.2977432200744,
+        "total_charges_FULL": 109.52000000000002,
+        "max_dd_FULL": 0.25179873191567564
+      },
+      {
+        "signal": "turtle_soup",
+        "label": "1.0%_of_price_1:1",
+        "WR_IS": 0.5147058823529411,
+        "WR_OOS": 0.45588235294117646,
+        "tpd_IS": 0.14999212226248623,
+        "tpd_OOS": 0.4484220442769666,
+        "n_IS": 68,
+        "n_OOS": 68,
+        "net_after_charges_FULL": -80.23886280002768,
+        "final_equity_FULL": 419.7611371999733,
+        "profit_on_500_FULL": -80.23886280002671,
+        "total_charges_FULL": 50.320000000000014,
+        "max_dd_FULL": 0.26883673454738527
+      },
+      {
+        "signal": "ob_retest",
+        "label": "1.0%_of_price_1:1",
+        "WR_IS": 0.3333333333333333,
+        "WR_OOS": 0.0,
+        "tpd_IS": 0.05955569560422247,
+        "tpd_OOS": 0.07253886010362695,
+        "n_IS": 27,
+        "n_OOS": 11,
+        "net_after_charges_FULL": -113.54718020000864,
+        "final_equity_FULL": 386.45281979999174,
+        "profit_on_500_FULL": -113.54718020000826,
+        "total_charges_FULL": 19.979999999999993,
+        "max_dd_FULL": 0.22974397949008865
+      },
+      {
+        "signal": "liq_sweep",
+        "label": "1.0%_of_price_1:1",
+        "WR_IS": 0.472,
+        "WR_OOS": 0.4642857142857143,
+        "tpd_IS": 0.27572081298251144,
+        "tpd_OOS": 0.36928874234573716,
+        "n_IS": 125,
+        "n_OOS": 56,
+        "net_after_charges_FULL": -93.55458100004587,
+        "final_equity_FULL": 406.4454189999559,
+        "profit_on_500_FULL": -93.5545810000441,
+        "total_charges_FULL": 92.49999999999999,
+        "max_dd_FULL": 0.38948971138536176
+      }
+    ]
+  }
+}

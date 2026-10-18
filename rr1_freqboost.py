@@ -9,7 +9,20 @@ from __future__ import annotations
 import itertools, json, random, time
 from pathlib import Path
 import numpy as np
-from rr1_search import OUT, add_indicators, evaluate, gen_signals, load_frames, log, qualifies, save_champion, write_bot, year_stable
+from rr1_search import (
+    OUT,
+    PCT_RR,
+    add_indicators,
+    evaluate,
+    fee_pct_exits,
+    gen_signals,
+    load_frames,
+    log,
+    qualifies,
+    save_champion,
+    write_bot,
+    year_stable,
+)
 
 RNG = random.Random(77)
 
@@ -160,12 +173,8 @@ def main():
     tested = 0
     quals = 0
     best = None
-    exits_1_1 = [
-        {"rr": rr, "max_hold": mh, "atr": atr}
-        for rr in (1.0, 1.2, 1.5)
-        for mh in (3, 4, 6, 8, 12)
-        for atr in ("ATR_14", "ATR_7")
-    ]
+    # User: drop ATR RR — 1% price risk/reward only
+    exits_1_1 = fee_pct_exits(PCT_RR, holds=(12, 24, 36, 48), sides=False)
 
     while True:
         # Phase 1: OR high-WR family
@@ -174,7 +183,8 @@ def main():
                 L0, S0 = gen_signals(df, kind, p)
             except Exception:
                 continue
-            for ex0 in [{"rr": rr, "max_hold": mh, "atr": atr, **side} for rr in (1.0, 1.2) for mh in (6, 8, 12) for atr in ("ATR_7", "ATR_14")]:
+            for ex0 in fee_pct_exits(PCT_RR, holds=(24, 48), sides=False):
+                ex0 = {**ex0, **side}
                 tested += 1
                 res = evaluate(f"fb|{kind}", "5m", df, L0, S0, ex0, {"kind": kind, **p})
                 if not res:
@@ -187,7 +197,8 @@ def main():
                 L, S = L & ~both, S & ~both
                 if int(L.sum() + S.sum()) < 80:
                     continue
-                for ex0 in [{"rr": rr, "max_hold": mh, "atr": "ATR_14", **side} for rr in (1.0, 1.2) for mh in (6, 8)]:
+                for ex0 in fee_pct_exits(PCT_RR, holds=(24, 48), sides=False):
+                    ex0 = {**ex0, **side}
                     tested += 1
                     res = evaluate(f"fbOR|{kind}+{pk}", "5m", df, L, S, ex0, {"kind": "combo_or", "a": kind, "b": pk})
                     if not res:
