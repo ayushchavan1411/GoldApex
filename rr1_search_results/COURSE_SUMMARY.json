@@ -1,42 +1,50 @@
 {
-  "tested": 960,
+  "tested": 1350240,
   "quals_rr1": 0,
   "quals_posrr": 0,
   "best": {
-    "name": "course|turtle_soup|30m",
+    "name": "inv|turtle_soup|30m",
     "path": "rr1",
-    "wr": 0.59375,
-    "oos_wr": 0.625,
-    "min_wr": 0.59375,
-    "tpd": 0.21510883482714468,
-    "oos_tpd": 0.2597402597402597,
-    "n": 96,
-    "oos_n": 40,
-    "pf": 1.4068171857459624,
-    "oos_pf": 1.6828464387091178,
+    "wr": 0.6172839506172839,
+    "oos_wr": 0.6551724137931034,
+    "min_wr": 0.6172839506172839,
+    "tpd": 0.18149807938540333,
+    "oos_tpd": 0.18831168831168832,
+    "n": 81,
+    "oos_n": 29,
+    "pf": 1.3626160975593598,
+    "oos_pf": 1.5509958591964075,
     "params": {
       "kind": "turtle_soup",
       "period": 40,
-      "wick": 0.25,
+      "wick": 0.35,
       "sessions": [
-        "overlap"
+        "london"
       ],
+      "invert": true,
       "exit": {
-        "rr": 1.2,
-        "max_hold": 24,
-        "atr": "ATR_7",
+        "rr": 1.0,
+        "max_hold": 36,
+        "atr": "ATR_14",
+        "sl_pct": 0.01,
+        "tp_pct": 0.01,
+        "fixed_lot": 0.02,
+        "spread_price": 0.3,
+        "commission_per_lot_rt": 7.0,
+        "start_cap": 500.0,
+        "reward_label": "1.0%_price",
         "allow_long": true,
         "allow_short": false
       }
     },
-    "year_ok": true,
-    "time": "2026-10-18 11:59:57",
+    "year_ok": false,
+    "time": "2026-10-18 13:50:01",
     "_sk": [
       0,
-      0.59375,
-      0.21510883482714468
+      0.6172839506172839,
+      0.18149807938540333
     ]
   },
   "near_hits": [],
-  "time": "2026-10-18 12:00:02"
+  "time": "2026-10-18 18:51:32"
 }

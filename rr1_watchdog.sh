@@ -41,13 +41,16 @@ mkdir -p rr1_search_results
 echo "$(date -u '+%Y-%m-%d %H:%M:%S') | watchdog start (mem-aware)" | tee -a rr1_search_results/watchdog.log
 
 while true; do
-  # 1% price RR only (ATR RR removed) — bridge set
+  # 5× port hunt (any SL%/TP%, after fees) takes priority
+  start_job "rr1-5x" "rr1_5x_hunt.py" 2200
+  # 1% / course / pos-RR bridge set
   start_job "rr1-pct05" "rr1_pct05_hunt.py" 2200
   start_job "rr1-course" "rr1_course_hunt.py" 2200
   start_job "rr1-posrr" "rr1_posrr_hunt.py" 2200
   start_job "rr1-mohamad" "rr1_mohamad_ict_hunt.py" 2200
-  start_job "rr1-freq" "rr1_freqboost.py" 2200
-  start_job "rr1-invert" "rr1_invert_search.py" 2000
+  # defer invert when RAM tight (5x + bridge preferred)
+  start_job "rr1-freq" "rr1_freqboost.py" 2400
+  start_job "rr1-invert" "rr1_invert_search.py" 2800
   {
     echo -n "$(date -u '+%Y-%m-%d %H:%M:%S') | alive: "
     pgrep -af 'python3 -u rr1_' | grep -v pgrep | wc -l
