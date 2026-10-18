@@ -106,5 +106,34 @@
       }
     },
     "time": "2026-10-18 18:54:38"
+  },
+  "external_dukascopy_validation": {
+    "source": "user/Grok independent Dukascopy backtest",
+    "data": "Sep 2023 \u2013 Sep/Oct 2026, UTC, real median spread ~$0.51",
+    "verdict": "Do NOT trade live yet. Paper MT5 demo at 0.01 lot max only.",
+    "full_3y_0.01": {
+      "trades": 173,
+      "winrate": 0.595,
+      "pf": 1.41,
+      "end_balance": 1429,
+      "max_dd": 0.22,
+      "start": 500
+    },
+    "full_3y_0.02": {
+      "trades": 173,
+      "winrate": 0.595,
+      "pf": 1.41,
+      "end_balance": 2358,
+      "max_dd": 0.27,
+      "start": 500
+    },
+    "past_year_0.02_dd": 0.58,
+    "concerns_accepted": [
+      "0.02 lot risks ~20-25%/trade; ~10% of reshuffled paths hit $0",
+      "random longs in same sessions/stops ~56.7% WR; signal edge small/~12% of random runs beat it",
+      "needs session filter; all-hours flat/blowup; shorts lose always",
+      "only ~173 trades / 3y; params look post-hoc; Q1 2026 and 4/12 quarters red"
+    ],
+    "recommendation": "0.01 lot max, MT5 demo paper only, not real money"
   }
 }
