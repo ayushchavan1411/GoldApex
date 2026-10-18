@@ -1,0 +1,133 @@
+{
+  "tested": 4900,
+  "quals": 0,
+  "best": {
+    "name": "pct|donch_fade|1.0%_price|5m",
+    "wr": 0.5447263017356475,
+    "oos_wr": 0.5869565217391305,
+    "min_wr": 0.5447263017356475,
+    "tpd": 1.6549873737373737,
+    "oos_tpd": 0.3033443240697127,
+    "n": 749,
+    "oos_n": 46,
+    "pf": 0.9808961943636872,
+    "net_pnl": -112.05563620015096,
+    "oos_net_pnl": -105.5785399999381,
+    "params": {
+      "kind": "donch_fade",
+      "period": 20,
+      "rsi": 14,
+      "os": 35,
+      "ob": 65,
+      "sessions": null,
+      "exit": {
+        "rr": 1.0,
+        "max_hold": 18,
+        "atr": "ATR_14",
+        "fixed_lot": 0.02,
+        "spread_price": 0.3,
+        "commission_per_lot_rt": 7.0,
+        "start_cap": 500.0,
+        "allow_long": true,
+        "allow_short": false,
+        "sl_pct": 0.01,
+        "tp_pct": 0.01,
+        "reward_label": "1.0%_price"
+      }
+    },
+    "year_ok": false,
+    "time": "2026-10-18 12:34:10",
+    "_sk": [
+      0,
+      0.5447263017356475,
+      1.6549873737373737,
+      -112.05563620015096
+    ]
+  },
+  "near": [],
+  "showcase": {
+    "assumptions": {
+      "start_cap": 500.0,
+      "lot": 0.02,
+      "oz": 2.0,
+      "spread_price_usd": 0.3,
+      "commission_per_lot_rt": 7.0,
+      "commission_per_trade": 0.14,
+      "note": "Prior hunt used ATR\u00d7RR (not 1% price). 0.5%_price \u2248 $21 move at XAU~$4200 (harder). 0.5%_capital = $2.50/side \u2248 $1.25 move on 0.02 lot (easier)."
+    },
+    "runs": [
+      {
+        "label": "0.5%_of_capital_1:1",
+        "signal": "fvg_rsi(14/40/80) 5m",
+        "WR_IS": 0.5344827586206896,
+        "WR_OOS": 0.3103448275862069,
+        "tpd_IS": 0.2558689144477706,
+        "tpd_OOS": 0.3824776260009421,
+        "n_IS": 116,
+        "n_OOS": 58,
+        "PF_IS": 0.8204510990718087,
+        "net_after_charges_IS": -27.95045999998389,
+        "net_after_charges_OOS": -66.67233999995653,
+        "net_after_charges_FULL": -77.28279999994844,
+        "final_equity_FULL": 422.7172000000538,
+        "total_charges_FULL": 120.62000000000003,
+        "max_dd_FULL": 0.1643262691758974,
+        "profit_on_500_FULL": -77.28279999994618
+      },
+      {
+        "label": "1.0%_of_capital_1:1",
+        "signal": "fvg_rsi(14/40/80) 5m",
+        "WR_IS": 0.5982142857142857,
+        "WR_OOS": 0.46551724137931033,
+        "tpd_IS": 0.24704584843233024,
+        "tpd_OOS": 0.3824776260009421,
+        "n_IS": 112,
+        "n_OOS": 58,
+        "PF_IS": 1.3304855113734497,
+        "net_after_charges_IS": 75.88954000001678,
+        "net_after_charges_OOS": -16.67233999995652,
+        "net_after_charges_FULL": 59.21720000006027,
+        "final_equity_FULL": 559.2172000000626,
+        "total_charges_FULL": 125.80000000000001,
+        "max_dd_FULL": 0.07822488320005103,
+        "profit_on_500_FULL": 59.217200000062576
+      },
+      {
+        "label": "0.5%_of_price_1:1",
+        "signal": "fvg_rsi(14/40/80) 5m",
+        "WR_IS": 0.5841584158415841,
+        "WR_OOS": 0.48148148148148145,
+        "tpd_IS": 0.22278241688986924,
+        "tpd_OOS": 0.3560998586905323,
+        "n_IS": 101,
+        "n_OOS": 54,
+        "PF_IS": 1.5795612717261394,
+        "net_after_charges_IS": 437.91503120001414,
+        "net_after_charges_OOS": 174.0552983000602,
+        "net_after_charges_FULL": 611.9703295000744,
+        "final_equity_FULL": 1111.9703295000736,
+        "total_charges_FULL": 114.70000000000002,
+        "max_dd_FULL": 0.23412626431868777,
+        "profit_on_500_FULL": 611.9703295000736
+      },
+      {
+        "label": "1.0%_of_price_1:1",
+        "signal": "fvg_rsi(14/40/80) 5m",
+        "WR_IS": 0.5714285714285714,
+        "WR_OOS": 0.5283018867924528,
+        "tpd_IS": 0.21616511737828897,
+        "tpd_OOS": 0.34950541686292985,
+        "n_IS": 98,
+        "n_OOS": 53,
+        "PF_IS": 1.5916239208555925,
+        "net_after_charges_IS": 448.8284806000177,
+        "net_after_charges_OOS": 370.0444724000683,
+        "net_after_charges_FULL": 818.872953000086,
+        "final_equity_FULL": 1318.8729530000821,
+        "total_charges_FULL": 111.74000000000004,
+        "max_dd_FULL": 0.24983563836219075,
+        "profit_on_500_FULL": 818.8729530000821
+      }
+    ]
+  }
+}

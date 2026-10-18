@@ -44,6 +44,15 @@ HALT = START_CAP * 0.85
 # Trading those makes 0.5×ATR TP trivial noise — reject them.
 MIN_ATR = 1.5
 
+# Fixed-lot + charges path (user 2026-10-18): $500 account, 0.02 lot, after fees
+FIXED_LOT = 0.02
+CONTRACT_SIZE = 100.0  # oz per 1.00 lot → 0.02 lot = 2 oz
+SPREAD_PRICE = 0.30  # typical XAUUSD spread in $ (round-trip applied via entry/exit)
+COMMISSION_PER_LOT_RT = 7.0  # $ round-turn commission per 1.00 lot
+# 0.5% reward options:
+#   price_pct=0.005 → TP distance = 0.5% of entry (~$21 at $4200 — harder than 1×ATR)
+#   cap_pct=0.005   → TP $ = 0.5% of $500 = $2.50 → ~$1.25 price move on 0.02 lot (easier)
+
 TARGET_WR = 0.75  # user goal ≥75% on 2y, 1:1, ≥1 tpd
 TARGET_PF = 1.15
 MIN_TPD = 1.0
@@ -481,11 +490,25 @@ def simulate(
     allow_short: bool = True,
     sl_atr: float | None = None,
     tp_atr: float | None = None,
+    # Percent / fixed-lot / charges (optional — ATR path unchanged when unset)
+    sl_pct: float | None = None,
+    tp_pct: float | None = None,
+    sl_cap_pct: float | None = None,
+    tp_cap_pct: float | None = None,
+    fixed_lot: float | None = None,
+    spread_price: float | None = None,
+    commission_per_lot_rt: float | None = None,
+    start_cap: float | None = None,
 ) -> dict:
     """Causal next-open sim. Default 1:1 (SL=TP=rr_atr×ATR).
 
     Favorable RR (low-risk / high-reward): pass tp_atr > sl_atr (both in ATR units).
-    Risk (qty) is always sized off the SL distance.
+    Risk (qty) is sized off the SL distance unless fixed_lot is set.
+
+    Percent exits (mutually choose one family):
+      - sl_pct / tp_pct: fraction of entry price (e.g. 0.005 = 0.5% of gold price)
+      - sl_cap_pct / tp_cap_pct: fraction of start_cap as $ target, converted via fixed lot
+    Charges: half-spread on entry+exit + round-turn commission when spread/commission set.
     """
     n = len(df)
     opens = df["Open"].to_numpy(float)
@@ -496,14 +519,26 @@ def simulate(
     times = df.index
     sl_m = float(sl_atr if sl_atr is not None else rr_atr)
     tp_m = float(tp_atr if tp_atr is not None else rr_atr)
+    geo_sl, geo_tp = sl_m, tp_m
 
-    capital = START_CAP
-    peak = START_CAP
+    cap0 = float(start_cap if start_cap is not None else START_CAP)
+    lot = float(fixed_lot) if fixed_lot is not None else None
+    oz = (lot * CONTRACT_SIZE) if lot is not None else None
+    spr = float(spread_price) if spread_price is not None else 0.0
+    comm_rt = float(commission_per_lot_rt) if commission_per_lot_rt is not None else 0.0
+    use_pct = sl_pct is not None or tp_pct is not None
+    use_cap = sl_cap_pct is not None or tp_cap_pct is not None
+    halt = cap0 * 0.85
+
+    capital = cap0
+    peak = cap0
     max_dd = 0.0
     pnls: list[float] = []
+    gross_pnls: list[float] = []
+    charge_list: list[float] = []
     i = start_i
     while i < end_i and i + 1 < n:
-        if capital < HALT:
+        if capital < halt:
             break
         gl = allow_long and bool(long_e[i])
         gs = allow_short and bool(short_e[i])
@@ -512,18 +547,56 @@ def simulate(
             continue
         direction = "LONG" if gl else "SHORT"
         atr = atrs[i]
-        entry = opens[i + 1]
-        if not np.isfinite(atr) or atr < MIN_ATR or not np.isfinite(entry):
+        raw_entry = opens[i + 1]
+        if not np.isfinite(raw_entry):
             i += 1
             continue
-        risk = min(MAX_RISK, capital * RISK_PCT)
-        sl_dist = atr * sl_m
-        tp_dist = atr * tp_m
-        # Absolute stop floor (USD) — blocks tiny-target noise fills
-        if sl_dist < MIN_ATR or tp_dist < MIN_ATR * 0.5:
+        # ATR gate only for ATR-distance mode (pct/cap modes don't need MIN_ATR bar filter the same way)
+        if not use_pct and not use_cap:
+            if not np.isfinite(atr) or atr < MIN_ATR:
+                i += 1
+                continue
+
+        # Fill with half-spread adverse
+        if direction == "LONG":
+            entry = raw_entry + spr / 2.0
+        else:
+            entry = raw_entry - spr / 2.0
+
+        if use_cap:
+            if oz is None or oz <= 0:
+                i += 1
+                continue
+            sl_c = float(sl_cap_pct if sl_cap_pct is not None else tp_cap_pct or 0.005)
+            tp_c = float(tp_cap_pct if tp_cap_pct is not None else sl_cap_pct or 0.005)
+            sl_dist = (cap0 * sl_c) / oz
+            tp_dist = (cap0 * tp_c) / oz
+            geo_sl, geo_tp = sl_c, tp_c
+        elif use_pct:
+            sl_p = float(sl_pct if sl_pct is not None else tp_pct or 0.005)
+            tp_p = float(tp_pct if tp_pct is not None else sl_pct or 0.005)
+            sl_dist = entry * sl_p
+            tp_dist = entry * tp_p
+            geo_sl, geo_tp = sl_p, tp_p
+        else:
+            sl_dist = atr * sl_m
+            tp_dist = atr * tp_m
+            geo_sl, geo_tp = sl_m, tp_m
+            # Absolute stop floor (USD) — blocks tiny-target noise fills
+            if sl_dist < MIN_ATR or tp_dist < MIN_ATR * 0.5:
+                i += 1
+                continue
+
+        if sl_dist <= 0 or tp_dist <= 0:
             i += 1
             continue
-        qty = risk / sl_dist
+
+        if oz is not None:
+            qty = oz
+        else:
+            risk = min(MAX_RISK, capital * RISK_PCT)
+            qty = risk / sl_dist
+
         if direction == "LONG":
             sl = entry - sl_dist
             tp = entry + tp_dist
@@ -556,24 +629,45 @@ def simulate(
             j += 1
         if not hit:
             exit_p = closes[min(j, n - 1)]
-        pnl = (exit_p - entry) * qty if direction == "LONG" else (entry - exit_p) * qty
+        # Exit half-spread adverse
+        if direction == "LONG":
+            exit_p = exit_p - spr / 2.0
+            gross = (exit_p - entry) * qty
+        else:
+            exit_p = exit_p + spr / 2.0
+            gross = (entry - exit_p) * qty
+        # Note: entry already includes +spr/2 and exit -spr/2, so gross is after spread.
+        # Commission is extra cash fee.
+        lot_for_fee = lot if lot is not None else (qty / CONTRACT_SIZE)
+        commission = comm_rt * abs(lot_for_fee)
+        # Spread already in gross via fills; report spread_$ separately for transparency
+        spread_cash = spr * qty  # full round-trip $ impact vs mid
+        charges = commission  # cash fees beyond spread-in-fill
+        pnl = gross - commission
         capital += pnl
         peak = max(peak, capital)
         max_dd = max(max_dd, (peak - capital) / peak if peak else 0)
         pnls.append(pnl)
+        gross_pnls.append(gross + commission)  # mid-to-mid approx before fee (spread already in gross)
+        charge_list.append(commission + spread_cash)
         i = j + 1 if j > i else i + 1
 
+    geo = float(geo_tp / geo_sl) if (use_pct or use_cap) and geo_sl > 0 else (float(tp_m / sl_m) if sl_m > 0 else 0.0)
     if not pnls:
         return {
             "trades": 0,
             "winrate": 0.0,
             "profit_factor": 0.0,
             "net_pnl": 0.0,
+            "gross_pnl": 0.0,
+            "total_charges": 0.0,
             "final_equity": capital,
             "max_dd": max_dd,
             "trades_per_day": 0.0,
             "expectancy": 0.0,
-            "geo_rr": float(tp_m / sl_m) if sl_m > 0 else 0.0,
+            "geo_rr": geo,
+            "lot": lot,
+            "start_cap": cap0,
         }
     arr = np.array(pnls, float)
     wins, losses = arr[arr > 0], arr[arr <= 0]
@@ -586,13 +680,17 @@ def simulate(
         "winrate": float((arr > 0).mean()),
         "profit_factor": float(pf),
         "net_pnl": float(arr.sum()),
+        "gross_pnl": float(np.sum(gross_pnls)),
+        "total_charges": float(np.sum(charge_list)),
         "final_equity": float(capital),
         "max_dd": float(max_dd),
         "trades_per_day": float(len(arr) / tdays),
         "expectancy": float(arr.mean()),
         "avg_win": float(wins.mean()) if len(wins) else 0.0,
         "avg_loss": float(losses.mean()) if len(losses) else 0.0,
-        "geo_rr": float(tp_m / sl_m) if sl_m > 0 else 0.0,
+        "geo_rr": geo,
+        "lot": lot,
+        "start_cap": cap0,
     }
 
 
@@ -1533,9 +1631,9 @@ def qualifies_any(is_m, oos_m, exit_p: dict | None = None) -> bool:
 
 
 def _exit_sim_kwargs(exit_p: dict) -> dict:
-    """Common simulate kwargs from an exit-params dict (supports asym TP/SL)."""
+    """Common simulate kwargs from an exit-params dict (supports asym TP/SL + pct/lot/fees)."""
     rr = float(exit_p.get("rr", 1.0))
-    return dict(
+    kw = dict(
         rr_atr=rr,
         max_hold=exit_p["max_hold"],
         atr_col=exit_p.get("atr", "ATR_14"),
@@ -1544,6 +1642,19 @@ def _exit_sim_kwargs(exit_p: dict) -> dict:
         sl_atr=exit_p.get("sl_atr", rr),
         tp_atr=exit_p.get("tp_atr", rr),
     )
+    for k in (
+        "sl_pct",
+        "tp_pct",
+        "sl_cap_pct",
+        "tp_cap_pct",
+        "fixed_lot",
+        "spread_price",
+        "commission_per_lot_rt",
+        "start_cap",
+    ):
+        if k in exit_p and exit_p[k] is not None:
+            kw[k] = exit_p[k]
+    return kw
 
 
 def year_stable(df: pd.DataFrame, long_e, short_e, exit_p: dict, min_trades: int = 40) -> bool:
