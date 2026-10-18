@@ -41,30 +41,15 @@ mkdir -p rr1_search_results
 echo "$(date -u '+%Y-%m-%d %H:%M:%S') | watchdog start (mem-aware)" | tee -a rr1_search_results/watchdog.log
 
 while true; do
-  # Priority: new gates (pos-RR) + OF/ORB/goal/lowwr
+  # Bridge + course mastery only (trim spray to protect RAM / WR↔freq hunt)
+  start_job "rr1-course" "rr1_course_hunt.py" 2200
   start_job "rr1-posrr" "rr1_posrr_hunt.py" 2200
   start_job "rr1-mohamad" "rr1_mohamad_ict_hunt.py" 2200
-  start_job "rr1-orderflow" "rr1_orderflow_search.py" 2000
-  start_job "rr1-goal" "rr1_goal_allsession.py" 2000
-  start_job "rr1-orbwf" "rr1_orb_walkforward.py" 2000
-  start_job "rr1-lowwr" "rr1_lowwr_invert.py" 2000
-  start_job "rr1-invert" "rr1_invert_search.py" 2000
-  # Mid priority
-  start_job "rr1-select" "rr1_select_search.py" 2200
-  start_job "rr1-public" "rr1_public_search.py" 2200
   start_job "rr1-freq" "rr1_freqboost.py" 2200
-  start_job "rr1-regime" "rr1_regime_search.py" 2200
-  # Heavy — only when plenty of RAM
-  start_job "rr1-union" "rr1_union_search.py" 3500
-  start_job "rr1-pipeline" "rr1_pipeline_search.py" 3500
-  start_job "rr1-ictstack" "rr1_ict_stack_search.py" 3500
-  start_job "rr1-sllearn" "rr1_sl_learn_search.py" 3500
-  start_job "rr1-allcombo" "rr1_allcombo_search.py" 4000
-  start_job "rr1-orcombo" "rr1_orcombo.py" 4000
-  start_job "rr1-hill" "rr1_hillclimb.py" 4000
-  start_job "rr1-smc" "rr1_smc_search.py" 4000
-  start_job "rr1-random" "rr1_random_opt.py" 4000
-  start_job "rr1-search" "rr1_search.py" 4500
+  start_job "rr1-invert" "rr1_invert_search.py" 2000
+  start_job "rr1-orcombo" "rr1_orcombo.py" 3500
+  # Heavy bridge — only with spare RAM
+  start_job "rr1-union" "rr1_union_search.py" 4000
   {
     echo -n "$(date -u '+%Y-%m-%d %H:%M:%S') | alive: "
     pgrep -af 'python3 -u rr1_' | grep -v pgrep | wc -l

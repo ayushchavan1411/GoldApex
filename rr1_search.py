@@ -448,6 +448,17 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     d["OF_SWEEP_LO"] = (l < d["SW_LO_10"]) & (c > d["SW_LO_10"]) & (clv >= 0.55)
     d["OF_SWEEP_HI"] = (h > d["SW_HI_10"]) & (c < d["SW_HI_10"]) & (clv <= 0.45)
 
+    # Prior completed clock-hour extremes (causal: only previous hour, never forming hour)
+    hour_id = d.index.floor("h")
+    hourly = pd.DataFrame({"H": h, "L": l}).groupby(hour_id).agg({"H": "max", "L": "min"})
+    prior_h = hourly.shift(1)
+    d["PH_HI"] = pd.Series(hour_id.map(prior_h["H"]), index=d.index, dtype=float)
+    d["PH_LO"] = pd.Series(hour_id.map(prior_h["L"]), index=d.index, dtype=float)
+    # Inside-bar mother range: bar i-1 fully inside bar i-2 → mother = i-2 (lagged for signal bar)
+    d["IB_MOTHER"] = (h.shift(1) <= h.shift(2)) & (l.shift(1) >= l.shift(2))
+    d["IB_HI"] = h.shift(2)
+    d["IB_LO"] = l.shift(2)
+
     return d.copy()  # defragment after many column inserts
 
 
@@ -1368,6 +1379,64 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
         n_stack = int(p.get("n", 2))
         long_e = (df["OF_SELL_STREAK"].shift(1) >= n_stack) & df["OF_ABSORB_BUY"].fillna(False) & sess
         short_e = (df["OF_BUY_STREAK"].shift(1) >= n_stack) & df["OF_ABSORB_SELL"].fillna(False) & sess
+
+    # --- Course-derived models (ICT Silver Bullet, Turtle Soup, Wyckoff, PA) ---
+    elif kind == "silver_bullet":
+        # ICT Silver Bullet: killzone (via p['hours']) + prior-hour sweep + FVG reclaim
+        ph_hi, ph_lo = df["PH_HI"], df["PH_LO"]
+        bt, tp = df["FVG_BULL_BOT"], df["FVG_BULL_TOP"]
+        brt, brb = df["FVG_BEAR_TOP"], df["FVG_BEAR_BOT"]
+        sweep_lo = (df["Low"] < ph_lo) & (c > ph_lo)
+        sweep_hi = (df["High"] > ph_hi) & (c < ph_hi)
+        long_e = sweep_lo & (df["Low"] <= tp) & (c > bt) & sess
+        short_e = sweep_hi & (df["High"] >= brb) & (c < brt) & sess
+
+    elif kind == "turtle_soup":
+        # Linda Raschke Turtle Soup: failed Donchian breakout (pierce then close back inside)
+        hi = df[f"DON_HI_{p['period']}"]
+        lo = df[f"DON_LO_{p['period']}"]
+        wick = p.get("wick", 0.35)
+        long_e = (df["Low"] < lo) & (c > lo) & (df["lower_wick"] > wick) & sess
+        short_e = (df["High"] > hi) & (c < hi) & (df["upper_wick"] > wick) & sess
+
+    elif kind == "wyckoff_spring":
+        # Wyckoff spring: false break below swing/range low → long only
+        sw = p.get("swing", 20)
+        lo = df[f"SW_LO_{sw}"]
+        wick = p.get("wick", 0.45)
+        long_e = (df["Low"] < lo) & (c > lo) & (c > df["Open"]) & (df["lower_wick"] > wick) & sess
+        short_e = pd.Series(False, index=df.index)
+
+    elif kind == "wyckoff_upthrust":
+        # Wyckoff upthrust: false break above swing/range high → short only
+        sw = p.get("swing", 20)
+        hi = df[f"SW_HI_{sw}"]
+        wick = p.get("wick", 0.45)
+        long_e = pd.Series(False, index=df.index)
+        short_e = (df["High"] > hi) & (c < hi) & (c < df["Open"]) & (df["upper_wick"] > wick) & sess
+
+    elif kind == "inside_break":
+        # Al Brooks / classic PA: break of inside-bar mother range
+        mother = df["IB_MOTHER"].fillna(False)
+        mhi, mlo = df["IB_HI"], df["IB_LO"]
+        long_e = mother & (c > mhi) & (c.shift(1) <= mhi) & sess
+        short_e = mother & (c < mlo) & (c.shift(1) >= mlo) & sess
+
+    elif kind == "fakey":
+        # Fakey: IB completed prior bar; false break closes beyond mother; reverse through opposite side
+        # At bar i-1: IB_MOTHER True ⇒ bar i-2 was inside bar i-3's mother range stored in IB_HI/LO at i-1
+        prior_ib = df["IB_MOTHER"].shift(1).fillna(False)
+        mhi, mlo = df["IB_HI"].shift(1), df["IB_LO"].shift(1)
+        broke_dn = c.shift(1) < mlo
+        broke_up = c.shift(1) > mhi
+        long_e = prior_ib & broke_dn & (c > mhi) & sess
+        short_e = prior_ib & broke_up & (c < mlo) & sess
+        # also allow same-bar failed break (pierce then close back through mid)
+        mother = df["IB_MOTHER"].fillna(False)
+        mhi0, mlo0 = df["IB_HI"], df["IB_LO"]
+        mid = (mhi0 + mlo0) / 2.0
+        long_e = long_e | (mother & (df["Low"] < mlo0) & (c > mid) & sess)
+        short_e = short_e | (mother & (df["High"] > mhi0) & (c < mid) & sess)
 
     else:
         raise ValueError(kind)

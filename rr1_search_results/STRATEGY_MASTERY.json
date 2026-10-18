@@ -1,0 +1,142 @@
+{
+  "updated": "2026-10-18 11:59:36",
+  "sources_studied": [
+    {
+      "name": "ICT Concepts Glossary (Freedom Trading School / public ICT notes)",
+      "concepts": [
+        "FVG",
+        "IFVG",
+        "CE",
+        "OB",
+        "BOS",
+        "MSS",
+        "OTE",
+        "PDH/PDL",
+        "EQH/EQL",
+        "AMD",
+        "BPR",
+        "CISD",
+        "NDOG/NWOG",
+        "Silver Bullet",
+        "liquidity sweep",
+        "premium/discount"
+      ]
+    },
+    {
+      "name": "ICT Silver Bullet AM playbook (free public summaries)",
+      "concepts": [
+        "NY AM 10-11 killzone",
+        "London SB",
+        "NY PM SB",
+        "prior-hour liquidity",
+        "FVG entry after sweep"
+      ]
+    },
+    {
+      "name": "Opening Range Breakout rule cards (Benny-style / public ORB)",
+      "concepts": [
+        "OR window",
+        "break",
+        "fade",
+        "retest",
+        "first-only",
+        "walk-forward / stress framing"
+      ]
+    },
+    {
+      "name": "BabyPips School of Pipsology (free)",
+      "concepts": [
+        "support/resistance",
+        "candlestick patterns",
+        "engulfing",
+        "pin bar",
+        "inside bar",
+        "trend vs range",
+        "risk:reward",
+        "position sizing basics"
+      ]
+    },
+    {
+      "name": "Wyckoff Analytics free PDF notes (springs / upthrusts)",
+      "concepts": [
+        "accumulation spring",
+        "distribution upthrust",
+        "false break of range",
+        "effort vs result"
+      ]
+    },
+    {
+      "name": "Al Brooks Always-In / price-action free samples",
+      "concepts": [
+        "always-in long/short",
+        "inside bar breakout",
+        "failed breakout",
+        "signal bar",
+        "follow-through"
+      ]
+    },
+    {
+      "name": "Linda Raschke Turtle Soup (public write-ups)",
+      "concepts": [
+        "failed 20-bar Donchian breakout",
+        "fade the false break"
+      ]
+    },
+    {
+      "name": "Price-action fakey (Nison / Brooks public notes)",
+      "concepts": [
+        "inside-bar false break",
+        "reversal through mother range"
+      ]
+    }
+  ],
+  "mastered_and_encoded": {
+    "already_in_engine_before_this_pass": [
+      "rsi_cross/level",
+      "bb_fade/bb_rsi_fade",
+      "stoch_cross",
+      "ema_wick/stack/cross/pull",
+      "pin_rsi",
+      "engulf",
+      "macd_cross",
+      "donch_fade",
+      "turtle_break",
+      "fvg_reclaim/fvg_rsi/fvg_ce/ifvg",
+      "liq_sweep/liq_sweep_fvg",
+      "ob_retest/ob_fvg",
+      "bos_pullback",
+      "mss_entry",
+      "fib_bounce/discount/OTE",
+      "smc_confluence",
+      "pdh_pdl/pwh_pwl",
+      "ndog/nwog",
+      "eqh_eql_sweep",
+      "breaker",
+      "cisd",
+      "bpr",
+      "poi_stack",
+      "amd_sweep_mss",
+      "orb_break/fade/retest/of",
+      "ichimoku",
+      "keltner",
+      "zscore",
+      "cci",
+      "adx_di",
+      "supertrend",
+      "heikin",
+      "orderflow proxies (CLV/CVD/imb/absorb/sweep)"
+    ],
+    "newly_encoded_this_pass": [
+      "silver_bullet",
+      "turtle_soup",
+      "wyckoff_spring",
+      "wyckoff_upthrust",
+      "inside_break",
+      "fakey"
+    ]
+  },
+  "goal": {
+    "classic_rr1": "WR\u226575% IS+OOS, SL=TP, tpd\u22651, PF gates, year_stable, causal next-open, MIN_ATR\u22651.5",
+    "pos_rr": "geoRR\u22651.5, WR\u226560% IS+OOS, tpd\u22651, PF gates, year_stable"
+  }
+}

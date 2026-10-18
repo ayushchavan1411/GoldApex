@@ -1,0 +1,42 @@
+{
+  "tested": 960,
+  "quals_rr1": 0,
+  "quals_posrr": 0,
+  "best": {
+    "name": "course|turtle_soup|30m",
+    "path": "rr1",
+    "wr": 0.59375,
+    "oos_wr": 0.625,
+    "min_wr": 0.59375,
+    "tpd": 0.21510883482714468,
+    "oos_tpd": 0.2597402597402597,
+    "n": 96,
+    "oos_n": 40,
+    "pf": 1.4068171857459624,
+    "oos_pf": 1.6828464387091178,
+    "params": {
+      "kind": "turtle_soup",
+      "period": 40,
+      "wick": 0.25,
+      "sessions": [
+        "overlap"
+      ],
+      "exit": {
+        "rr": 1.2,
+        "max_hold": 24,
+        "atr": "ATR_7",
+        "allow_long": true,
+        "allow_short": false
+      }
+    },
+    "year_ok": true,
+    "time": "2026-10-18 11:59:57",
+    "_sk": [
+      0,
+      0.59375,
+      0.21510883482714468
+    ]
+  },
+  "near_hits": [],
+  "time": "2026-10-18 12:00:02"
+}
