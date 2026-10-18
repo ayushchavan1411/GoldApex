@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""0.5% reward hunt on fixed 0.02 lot + charges ($500 start).
+"""Percent-reward hunt on fixed 0.02 lot + charges ($500 start).
 
-User (2026-10-18): try 0.5% reward (easier than ~1%), include charges,
-report profit after charges on $500 capital with 0.02 lot.
+User (2026-10-18): settled on **1.2% reward** (1:1 SL=TP), with charges,
+profit reported after fees on $500 / 0.02 lot.
 
-Two target families (1:1 SL=TP):
-  A) price_pct=0.5% of entry  (~$21 at XAU~$4200 — larger than 5m ATR)
-  B) cap_pct=0.5% of $500=$2.50 → ~$1.25 price move on 0.02 lot (easier)
+Primary: tp=sl=1.2% of price (and 1.2% of capital as secondary).
+Also keeps 0.5%/1.0% for comparison.
 
 Charges: spread $0.30 + commission $7/lot RT × 0.02 = $0.14/trade.
 """
@@ -67,6 +66,10 @@ def fee_exit(mode: str, pct: float, max_hold: int, side: dict) -> dict:
     return base
 
 
+# User-confirmed primary reward (2026-10-18)
+PRIMARY_PCT = 0.012  # 1.2%
+
+
 def exits():
     sides = (
         dict(allow_long=True, allow_short=True),
@@ -74,8 +77,17 @@ def exits():
         dict(allow_long=False, allow_short=True),
     )
     out = []
-    for mode, pct in (("cap", 0.005), ("cap", 0.01), ("price", 0.005), ("price", 0.01)):
-        for mh, side in itertools.product((6, 12, 18, 24, 36, 48), sides):
+    # 1.2% first (primary), then nearby % for comparison
+    for mode, pct in (
+        ("price", PRIMARY_PCT),
+        ("cap", PRIMARY_PCT),
+        ("price", 0.01),
+        ("cap", 0.01),
+        ("price", 0.005),
+        ("cap", 0.005),
+    ):
+        holds = (12, 24, 36, 48, 72) if abs(pct - PRIMARY_PCT) < 1e-9 else (12, 24, 48)
+        for mh, side in itertools.product(holds, sides):
             out.append(fee_exit(mode, pct, mh, side))
     return out
 
@@ -173,13 +185,15 @@ def main():
     L, S = gen_signals(df5, "fvg_rsi", {"rsi": 14, "os": 40, "ob": 80, "sessions": None})
     n = len(df5)
     split = int(n * 0.7)
-    for mode, pct, label in (
-        ("cap", 0.005, "0.5%_of_capital_1:1"),
-        ("cap", 0.01, "1.0%_of_capital_1:1"),
-        ("price", 0.005, "0.5%_of_price_1:1"),
-        ("price", 0.01, "1.0%_of_price_1:1"),
+    for mode, pct, label, mh in (
+        ("price", PRIMARY_PCT, "1.2%_of_price_1:1", 48),
+        ("cap", PRIMARY_PCT, "1.2%_of_capital_1:1", 24),
+        ("price", 0.01, "1.0%_of_price_1:1", 48),
+        ("cap", 0.01, "1.0%_of_capital_1:1", 24),
+        ("price", 0.005, "0.5%_of_price_1:1", 48),
+        ("cap", 0.005, "0.5%_of_capital_1:1", 24),
     ):
-        ex = fee_exit(mode, pct, 24, dict(allow_long=True, allow_short=True))
+        ex = fee_exit(mode, pct, mh, dict(allow_long=True, allow_short=True))
         kw = _exit_sim_kwargs(ex)
         full = simulate(df5, start_i=250, end_i=n - 2, long_e=L, short_e=S, **kw)
         is_m = simulate(df5, start_i=250, end_i=split, long_e=L, short_e=S, **kw)
