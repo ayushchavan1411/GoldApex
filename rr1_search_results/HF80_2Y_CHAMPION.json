@@ -1,0 +1,43 @@
+{
+  "rule": "Best stable IS\u2248OOS on 2y under HF80 cost rules (NOT 80% \u2014 none found)",
+  "look_ahead": {
+    "signal": "rsi_cross/level uses RSI[i] (Close[i]) vs RSI[i-1]",
+    "fill": "Open[i+1] + half-spread + $0.05 slip",
+    "exits": "SL checked before TP on same bar; no future bars",
+    "verdict": "NO look-ahead bug under signal-on-close \u2192 next-open",
+    "strict_shift_test": "RSI.shift(1)-only cross: same collapse (~58-62% WR), confirms issue is overfitting not peeking"
+  },
+  "champion": {
+    "name": "inv|rsi_level|tp7/sl14|h30|15m|L|lot0.02",
+    "is_wr": 0.7168458781362007,
+    "oos_wr": 0.7313432835820896,
+    "wr_gap": 0.014497405445888845,
+    "full_wr": 0.7196531791907514,
+    "full_net": 708.8002799999416,
+    "full_dd": 0.3053976809072504,
+    "tpd": 0.5756387403446227,
+    "pf": 1.276062082816994,
+    "is_n": 279,
+    "oos_n": 67,
+    "params": {
+      "rsi": 7,
+      "os": 10,
+      "ob": 90,
+      "invert": true
+    },
+    "exit": {
+      "tp_dist": 7.0,
+      "sl_dist": 14.0,
+      "max_hold": 30,
+      "lot": 0.02,
+      "sl_mult": 2.0,
+      "net_tp": 13.459999999999999,
+      "allow_long": true,
+      "allow_short": false
+    },
+    "avg_win": 13.157990763052068,
+    "max_open": 5
+  },
+  "target_80_status": "NOT FOUND on 2y IS+OOS",
+  "time": "2026-10-19 20:23:16"
+}

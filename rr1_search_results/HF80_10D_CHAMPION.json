@@ -81,5 +81,13 @@
     "tpd": 4.5,
     "net": 259,
     "dd": 0.193
+  },
+  "two_year_validation": {
+    "status": "REJECTED",
+    "is_wr": 0.5847378277153558,
+    "oos_wr": 0.5958466453674122,
+    "wr_gap": 0.011108817652056402,
+    "full_net": -10964.730365001722,
+    "note": "OOS\u2248IS (~59%) so no look-ahead; 10d 83% did not generalize"
   }
 }

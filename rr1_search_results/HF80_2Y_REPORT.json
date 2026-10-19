@@ -1,0 +1,129 @@
+{
+  "title": "HF80 2-year causal IS/OOS validation",
+  "look_ahead": {
+    "signal": "rsi_cross/level uses RSI[i] (Close[i]) vs RSI[i-1]",
+    "fill": "Open[i+1] + half-spread + $0.05 slip",
+    "exits": "SL checked before TP on same bar; no future bars",
+    "verdict": "NO look-ahead bug under signal-on-close \u2192 next-open",
+    "strict_shift_test": "RSI.shift(1)-only cross: same collapse (~58-62% WR), confirms issue is overfitting not peeking"
+  },
+  "ten_day_champ_on_2y": {
+    "label": "champ_rsi_cross",
+    "kind": "rsi_cross",
+    "params": {
+      "rsi": 7,
+      "os": 10,
+      "ob": 80
+    },
+    "exit": {
+      "tp_dist": 4.0,
+      "sl_dist": 8.0,
+      "max_hold": 30,
+      "lot": 0.05,
+      "net_tp": 18.65,
+      "sl_mult": 2.0,
+      "allow_long": true,
+      "allow_short": true
+    },
+    "invert": false,
+    "shift_rsi": false,
+    "net_tp_design": 18.65,
+    "wr_gap": 0.011108817652056402,
+    "is": {
+      "trades": 2136,
+      "winrate": 0.5847378277153558,
+      "net": -7594.9388150020795,
+      "dd": 10.616755677002246,
+      "tpd": 4.711517252245155,
+      "pf": 0.7434804306407667,
+      "max_concurrent": 5,
+      "avg_win": 17.62425958366607,
+      "avg_loss": -33.37952540586359,
+      "expectancy": -3.5556829658249436
+    },
+    "oos": {
+      "trades": 626,
+      "winrate": 0.5958466453674122,
+      "net": -3369.7915499996425,
+      "dd": 7.147240671272614,
+      "tpd": 4.1281205840791335,
+      "pf": 0.6713596886723854,
+      "max_concurrent": 4,
+      "avg_win": 18.455619705094325,
+      "avg_loss": -40.52860750988073,
+      "expectancy": -5.38305359424863
+    },
+    "full": {
+      "trades": 2762,
+      "winrate": 0.5872556118754526,
+      "net": -10964.730365001722,
+      "dd": 15.438830046783519,
+      "tpd": 4.565289256198347,
+      "pf": 0.7249284579934243,
+      "max_concurrent": 5,
+      "avg_win": 17.815441658445813,
+      "avg_loss": -34.966119942983184,
+      "expectancy": -3.9698516889941065
+    },
+    "years": {
+      "2024": {
+        "wr": 0.5714285714285714,
+        "n": 371,
+        "net": -392.7006050006629,
+        "dd": 1.004248793077431,
+        "tpd": 3.9679144385026737
+      },
+      "2025": {
+        "wr": 0.5913290689410092,
+        "n": 1407,
+        "net": -4862.181560001754,
+        "dd": 9.265479895169406,
+        "tpd": 4.906102117061021
+      },
+      "2026": {
+        "wr": 0.5873983739837398,
+        "n": 984,
+        "net": -5709.848199999305,
+        "dd": 11.891532014543609,
+        "tpd": 4.378893833439288
+      }
+    }
+  },
+  "ten_day_verdict": "10d 83.3% WR was a thin-sample fluke. On ~2y 5m: IS 58.5% / OOS 59.6% (gap 1.1% \u2014 OOS matches IS) but far below 80%, net heavily negative.",
+  "full_2y_hunt": {
+    "tested": 17574,
+    "hits_is_oos_ge_78_gap5": 0,
+    "best_stable_ge_70": {
+      "name": "inv|rsi_level|tp7/sl14|h30|15m|L|lot0.02",
+      "is_wr": 0.7168458781362007,
+      "oos_wr": 0.7313432835820896,
+      "wr_gap": 0.014497405445888845,
+      "full_wr": 0.7196531791907514,
+      "full_net": 708.8002799999416,
+      "full_dd": 0.3053976809072504,
+      "tpd": 0.5756387403446227,
+      "pf": 1.276062082816994,
+      "is_n": 279,
+      "oos_n": 67,
+      "params": {
+        "rsi": 7,
+        "os": 10,
+        "ob": 90,
+        "invert": true
+      },
+      "exit": {
+        "tp_dist": 7.0,
+        "sl_dist": 14.0,
+        "max_hold": 30,
+        "lot": 0.02,
+        "sl_mult": 2.0,
+        "net_tp": 13.459999999999999,
+        "allow_long": true,
+        "allow_short": false
+      },
+      "avg_win": 13.157990763052068,
+      "max_open": 5
+    }
+  },
+  "verdict": "No strategy clears \u226580% WR on BOTH IS and OOS over 2y under $2 TP / SL\u22642\u00d7TP / unlimited rules. Best stable is ~72%/73% IS/OOS (gap 1.4%) on 15m inverted rsi_level \u2014 profitable but not 80%."
+}

@@ -1,0 +1,48 @@
+{
+  "tested": 17574,
+  "hits_78": 0,
+  "best80": null,
+  "best70_stable": {
+    "kind": "rsi_level",
+    "params": {
+      "rsi": 7,
+      "os": 10,
+      "ob": 90,
+      "invert": true
+    },
+    "exit": {
+      "tp_dist": 7.0,
+      "sl_dist": 14.0,
+      "max_hold": 30,
+      "lot": 0.02,
+      "sl_mult": 2.0,
+      "net_tp": 13.459999999999999,
+      "allow_long": true,
+      "allow_short": false
+    },
+    "invert": true,
+    "tf": "15m",
+    "is_wr": 0.7168458781362007,
+    "oos_wr": 0.7313432835820896,
+    "full_wr": 0.7196531791907514,
+    "wr_gap": 0.014497405445888845,
+    "is_n": 279,
+    "oos_n": 67,
+    "is_net": 562.9802799999237,
+    "oos_net": 145.82000000001796,
+    "full_net": 708.8002799999416,
+    "full_dd": 0.3053976809072504,
+    "tpd": 0.5756387403446227,
+    "pf": 1.276062082816994,
+    "avg_win": 13.157990763052068,
+    "max_open": 5,
+    "_sk": [
+      0.7168458781362007,
+      -0.014497405445888845,
+      145.82000000001796
+    ]
+  },
+  "near": [],
+  "elapsed_s": 575.9864344596863,
+  "note": "2y causal IS70/OOS30; gap\u22645pp; TP net\u2265$2; SL\u22642\u00d7TP; unlimited positions"
+}
