@@ -163,9 +163,14 @@ def main() -> None:
                                 )
                             )
                 if tested % 3000 == 0 and tested:
-                    print(f"… tested={tested} best_min="
-                          f"{min(best['is_wr'], best['oos_wr']):.1%} tpd={best['full_tpd']:.2f}" if best else f"… {tested}",
-                          flush=True)
+                    if best:
+                        print(
+                            f"… tested={tested} best_min={min(best['is_wr'], best['oos_wr']):.1%} "
+                            f"tpd={best['full_tpd']:.2f}",
+                            flush=True,
+                        )
+                    else:
+                        print(f"… tested={tested}", flush=True)
 
     board70 = sorted(board70, key=lambda r: (min(r["is_wr"], r["oos_wr"]), r["full_tpd"]), reverse=True)
     # dedupe names roughly
