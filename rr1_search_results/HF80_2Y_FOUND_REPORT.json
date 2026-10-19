@@ -1,0 +1,122 @@
+{
+  "look_ahead": {
+    "bb": "BB bands .shift(1) \u2014 prior bar only",
+    "rsi": "RSI[i] from Close[i]; signal \u2192 fill Open[i+1]",
+    "trend": "EMA_50.shift(1) vs Close[i]",
+    "verdict": "causal next-open; no future bars"
+  },
+  "strategy": {
+    "name": "inv|bb_rsi_fade|withTrend|tp15/sl30|h72|1h|LS|lot0.02|one",
+    "logic": "INVERTED bb_rsi_fade (momentum at BB/RSI extreme) + withTrend (long only above EMA50, short only below), London+Overlap, 1h, 1-pos",
+    "params": {
+      "period": 50,
+      "k": 2.0,
+      "rsi": 2,
+      "os": 10,
+      "ob": 90,
+      "sessions": [
+        "london",
+        "overlap"
+      ],
+      "invert": true
+    },
+    "exit": {
+      "tp_dist": 15.0,
+      "sl_dist": 30.0,
+      "max_hold": 72,
+      "lot": 0.02,
+      "sl_mult": 2.0,
+      "net_tp": 29.459999999999997,
+      "allow_long": true,
+      "allow_short": true
+    }
+  },
+  "results": {
+    "is": {
+      "trades": 47,
+      "winrate": 0.8297872340425532,
+      "tpd": 0.10681818181818181,
+      "eq": 1164.619999999979,
+      "net": 664.6199999999809,
+      "dd": 0.15268985346415057,
+      "pf": 2.37227452923682,
+      "max_concurrent": 1,
+      "avg_win": 29.459999999999557,
+      "avg_loss": -60.54000000000032,
+      "expectancy": 14.14085106382938
+    },
+    "oos": {
+      "trades": 20,
+      "winrate": 0.85,
+      "tpd": 0.12921089063221045,
+      "eq": 819.2000000000066,
+      "net": 319.2000000000064,
+      "dd": 0.11434291542326064,
+      "pf": 2.7575156921044393,
+      "max_concurrent": 1,
+      "avg_win": 29.46000000000031,
+      "avg_loss": -60.539999999999644,
+      "expectancy": 15.96000000000032
+    },
+    "full": {
+      "trades": 67,
+      "winrate": 0.835820895522388,
+      "tpd": 0.1127946127946128,
+      "eq": 1483.8199999999833,
+      "net": 983.8199999999871,
+      "dd": 0.15268985346415057,
+      "pf": 2.4773403009279895,
+      "max_concurrent": 1,
+      "avg_win": 29.459999999999802,
+      "avg_loss": -60.54000000000013,
+      "expectancy": 14.683880597014733
+    },
+    "full_multi": {
+      "trades": 89,
+      "winrate": 0.7752808988764045,
+      "tpd": 0.14983164983164984,
+      "eq": 1321.939999999983,
+      "net": 821.9399999999879,
+      "dd": 0.3969277321920294,
+      "pf": 1.678840436075312,
+      "max_concurrent": 7,
+      "signals": 89,
+      "avg_win": 29.45999999999981,
+      "avg_loss": -60.53999999999998,
+      "wins_tp": 69,
+      "losses_sl": 20,
+      "time_exits": 0,
+      "expectancy": 9.235280898876269
+    },
+    "wr_gap": 0.02021276595744681,
+    "years": {
+      "2024": {
+        "wr": 0.9166666666666666,
+        "n": 12,
+        "net": 263.5199999999935,
+        "dd": 0.12108000000000106,
+        "tpd": 0.14545454545454545
+      },
+      "2025": {
+        "wr": 0.8,
+        "n": 30,
+        "net": 343.7999999999855,
+        "dd": 0.2286858308465251,
+        "tpd": 0.1048951048951049
+      },
+      "2026": {
+        "wr": 0.84,
+        "n": 25,
+        "net": 376.5000000000082,
+        "dd": 0.10564601108127124,
+        "tpd": 0.1112523839796567
+      }
+    }
+  },
+  "caveats": {
+    "trades": "Only 67 trades over ~2y (~0.11/day) \u2014 selective, not HF",
+    "oos_n": 20,
+    "note": "OOS n=20 is thin; WR match is good but confidence interval wide"
+  },
+  "verdict": "PASS gate: IS 83.0% / OOS 85.0% (gap 2.0%), both \u226580%, nets>0, TP net\u2265$2, SL=2\u00d7TP"
+}

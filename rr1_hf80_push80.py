@@ -211,9 +211,8 @@ def main() -> None:
                                     )
                                 )
                         if tested % 5000 == 0 and tested:
-                            print(f"… tested={tested} hits={len(hits)} best_min="
-                                  f"{min(best['is_wr'], best['oos_wr']):.1%}" if best else f"… tested={tested}",
-                                  flush=True)
+                            bm = f"{min(best['is_wr'], best['oos_wr']):.1%}" if best else "n/a"
+                            print(f"… tested={tested} hits={len(hits)} best_min={bm}", flush=True)
 
     OUT.joinpath("HF80_2Y_PUSH_SUMMARY.json").write_text(
         json.dumps(

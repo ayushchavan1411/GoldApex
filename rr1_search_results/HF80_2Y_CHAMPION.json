@@ -1,43 +1,98 @@
 {
-  "rule": "Best stable IS\u2248OOS on 2y under HF80 cost rules (NOT 80% \u2014 none found)",
-  "look_ahead": {
-    "signal": "rsi_cross/level uses RSI[i] (Close[i]) vs RSI[i-1]",
-    "fill": "Open[i+1] + half-spread + $0.05 slip",
-    "exits": "SL checked before TP on same bar; no future bars",
-    "verdict": "NO look-ahead bug under signal-on-close \u2192 next-open",
-    "strict_shift_test": "RSI.shift(1)-only cross: same collapse (~58-62% WR), confirms issue is overfitting not peeking"
-  },
+  "status": "FOUND",
+  "rule": "2y IS&OOS \u226580%, gap\u22645pp, TP net\u2265$2, SL\u22642\u00d7TP, causal next-open, 1-pos",
   "champion": {
-    "name": "inv|rsi_level|tp7/sl14|h30|15m|L|lot0.02",
-    "is_wr": 0.7168458781362007,
-    "oos_wr": 0.7313432835820896,
-    "wr_gap": 0.014497405445888845,
-    "full_wr": 0.7196531791907514,
-    "full_net": 708.8002799999416,
-    "full_dd": 0.3053976809072504,
-    "tpd": 0.5756387403446227,
-    "pf": 1.276062082816994,
-    "is_n": 279,
-    "oos_n": 67,
+    "name": "inv|bb_rsi_fade|withTrend|tp15/sl30|h72|1h|LS|lot0.02|one",
+    "kind": "bb_rsi_fade",
+    "variant": "withTrend",
     "params": {
-      "rsi": 7,
+      "period": 50,
+      "k": 2.0,
+      "rsi": 2,
       "os": 10,
       "ob": 90,
+      "sessions": [
+        "london",
+        "overlap"
+      ],
       "invert": true
     },
     "exit": {
-      "tp_dist": 7.0,
-      "sl_dist": 14.0,
-      "max_hold": 30,
+      "tp_dist": 15.0,
+      "sl_dist": 30.0,
+      "max_hold": 72,
       "lot": 0.02,
       "sl_mult": 2.0,
-      "net_tp": 13.459999999999999,
+      "net_tp": 29.459999999999997,
       "allow_long": true,
-      "allow_short": false
+      "allow_short": true
     },
-    "avg_win": 13.157990763052068,
-    "max_open": 5
+    "invert": true,
+    "mode": "one",
+    "tf": "1h",
+    "is_wr": 0.8297872340425532,
+    "oos_wr": 0.85,
+    "wr_gap": 0.02021276595744681,
+    "is_n": 47,
+    "oos_n": 20,
+    "is_net": 664.6199999999809,
+    "oos_net": 319.2000000000064,
+    "is_dd": 0.15268985346415057,
+    "oos_dd": 0.11434291542326064,
+    "tpd_is": 0.10681818181818181,
+    "avg_win_is": 29.459999999999557,
+    "pf_is": 2.37227452923682,
+    "max_open": 1,
+    "full_wr": 0.835820895522388,
+    "full_net": 983.8199999999871,
+    "full_dd": 0.15268985346415057,
+    "full_n": 67,
+    "tpd": 0.1127946127946128,
+    "pf": 2.4773403009279895,
+    "avg_win": 29.459999999999802
   },
-  "target_80_status": "NOT FOUND on 2y IS+OOS",
-  "time": "2026-10-19 20:23:16"
+  "validation": {
+    "is_wr": 0.8297872340425532,
+    "oos_wr": 0.85,
+    "wr_gap": 0.02021276595744681,
+    "full_wr": 0.835820895522388,
+    "full_net": 983.8199999999871,
+    "full_dd": 0.15268985346415057,
+    "years": {
+      "2024": {
+        "wr": 0.9166666666666666,
+        "n": 12,
+        "net": 263.5199999999935,
+        "dd": 0.12108000000000106,
+        "tpd": 0.14545454545454545
+      },
+      "2025": {
+        "wr": 0.8,
+        "n": 30,
+        "net": 343.7999999999855,
+        "dd": 0.2286858308465251,
+        "tpd": 0.1048951048951049
+      },
+      "2026": {
+        "wr": 0.84,
+        "n": 25,
+        "net": 376.5000000000082,
+        "dd": 0.10564601108127124,
+        "tpd": 0.1112523839796567
+      }
+    }
+  },
+  "look_ahead": {
+    "bb": "BB bands .shift(1) \u2014 prior bar only",
+    "rsi": "RSI[i] from Close[i]; signal \u2192 fill Open[i+1]",
+    "trend": "EMA_50.shift(1) vs Close[i]",
+    "verdict": "causal next-open; no future bars"
+  },
+  "caveats": {
+    "trades": "Only 67 trades over ~2y (~0.11/day) \u2014 selective, not HF",
+    "oos_n": 20,
+    "note": "OOS n=20 is thin; WR match is good but confidence interval wide"
+  },
+  "verdict": "PASS gate: IS 83.0% / OOS 85.0% (gap 2.0%), both \u226580%, nets>0, TP net\u2265$2, SL=2\u00d7TP",
+  "time": "2026-10-19 21:07:14"
 }
