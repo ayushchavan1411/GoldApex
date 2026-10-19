@@ -162,12 +162,17 @@ def main() -> None:
                     L, S = S, L
                 # Need enough IS signals to support ≥1 tpd over ~IS days (~500+)
                 nsig = int(L[warm:end].sum() + S[warm:end].sum())
-                if nsig < 400:  # rough: 2y ~600 trading days → need dense
+                # Need density for ≥1 tpd, but skip every-bar spam (WR collapses + too slow)
+                if nsig < 500:
+                    continue
+                if nsig > 25000 and tf == "5m":
+                    continue
+                if kind == "rsi_stay" and nsig > 15000:
                     continue
                 cache.append((kind, pp, tf, L, S, invert, nsig))
     RNG.shuffle(cache)
-    # Prefer denser signals first
-    cache.sort(key=lambda x: -x[6])
+    # Prefer mid-density (enough for 1tpd, not noise)
+    cache.sort(key=lambda x: abs(x[6] - 3000))
     log(f"signal cache={len(cache)}")
 
     tested = hits = 0
@@ -215,17 +220,22 @@ def main() -> None:
         )
         if probe["trades"] < 400 or probe["tpd"] < 0.85:
             continue
-        # Don't require high probe WR — frequency first
+        # Need a WR floor on probe or expand is wasted — 80% at 1tpd is hard
+        if probe["winrate"] < 0.62:
+            continue
         log(
             f"PROBE tpd={probe['tpd']:.2f} WR={probe['winrate']:.1%} n={probe['trades']} "
             f"| {kind} {tf} inv={invert} nsig={nsig}"
         )
 
-        # Expand: prefer multi for tpd, also try one
+        # Expand: multi first (frequency); one-pos only if probe already strong
         prefer = [e for e in exs if e["sl_mult"] >= 1.75]
-        sample = RNG.sample(prefer, min(len(prefer), 160))
+        sample = RNG.sample(prefer, min(len(prefer), 100))
+        modes = (("multi", simulate_multi),)
+        if probe["winrate"] >= 0.70:
+            modes = (("multi", simulate_multi), ("one", simulate_one))
         for ex in sample:
-            for sim, mode in ((simulate_multi, "multi"), (simulate_one, "one")):
+            for mode, sim in modes:
                 tested += 1
                 full = sim(
                     df, L, S,
