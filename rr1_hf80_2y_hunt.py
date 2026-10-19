@@ -357,6 +357,34 @@ def make_signals(df, kind, pp):
     return np.asarray(L, bool), np.asarray(S, bool)
 
 
+def focused_specs() -> list[tuple[str, dict]]:
+    """High-WR-biased subset for pass 0 (extreme RSI / wide BB, few sessions)."""
+    out: list[tuple[str, dict]] = []
+    sess_opts = [None, ("london",), ("overlap",), ("ny",), ("london", "overlap"), ("overlap", "ny")]
+    for sess, rsi, os, ob in itertools.product(
+        sess_opts, (3, 5, 7, 14), (5, 8, 10, 12, 15, 20), (80, 85, 88, 90, 92, 95)
+    ):
+        base = {"rsi": rsi, "os": os, "ob": ob, "sessions": sess}
+        out.append(("rsi_cross", dict(base)))
+        out.append(("rsi_level", dict(base)))
+        out.append(("rsi_recover", {k: v for k, v in base.items() if k != "sessions"}))
+    for sess, (per, k) in itertools.product(sess_opts, [(20, 2.0), (20, 2.5), (50, 2.0)]):
+        out.append(("bb_fade", {"period": per, "k": k, "sessions": sess}))
+        out.append(
+            ("bb_rsi_fade", {"period": per, "k": k, "rsi": 5, "os": 15, "ob": 85, "sessions": sess})
+        )
+    for sess, per, os, ob in itertools.product(sess_opts, (5, 14), (15, 20), (80, 85, 90)):
+        out.append(("stoch_cross", {"period": per, "os": os, "ob": ob, "sessions": sess}))
+    for z, th in itertools.product((20, 40), (2.0, 2.5, 3.0)):
+        out.append(("zscore_fade", {"period": z, "th": th}))
+    for per, th in itertools.product((14, 20), (150, 200, 250)):
+        out.append(("cci_fade", {"period": per, "th": th}))
+    for wick, body in itertools.product((0.6, 0.75), (0.25,)):
+        out.append(("wick_reject", {"wick": wick, "body": body}))
+    out.append(("micro_bounce", {}))
+    return out
+
+
 def main(passes: int = 4) -> None:
     OUT.mkdir(exist_ok=True)
     LEADER.write_text("")
@@ -382,9 +410,9 @@ def main(passes: int = 4) -> None:
         windows[tf] = (warm, split, n - 2)
         log(f"{tf}: bars={n} {df.index[0]}→{df.index[-1]} split={df.index[split]}")
 
-    sp = specs()
+    sp = focused_specs()  # pass 0; expand to full specs() later if needed
     exs = exits()
-    log(f"specs={len(sp)} exits={len(exs)} tfs={list(frames)}")
+    log(f"focused specs={len(sp)} exits={len(exs)} tfs={list(frames)}")
 
     # Build signal cache (skip 5m for first passes to move faster)
     cache = []
