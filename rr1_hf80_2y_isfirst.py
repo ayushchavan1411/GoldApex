@@ -269,7 +269,6 @@ def main() -> None:
             default=str,
         )
     )
-    CEILING.write_text(json.dumps(SUMMARY.read_text()))  # noop safeguard
     CEILING.write_text(
         json.dumps(
             {
