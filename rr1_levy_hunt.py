@@ -5,8 +5,9 @@ Rule (no real volume in XAU CSV → range effort proxy):
   Bullish: price and volume move together (up + high relative range).
   Bearish: heavy volume on drops, light volume on rallies (fade light bounces).
 
-Hunt: any SL%/TP% after fees, fixed 0.02 lot, $500 start. Rank by min(WR_IS, WR_OOS)
-with IS+OOS net > 0. Also track 5× equity hits.
+Hunt: any SL%/TP% after fees, $500 start, lot grid sized for DD≤20%.
+Hard gate: max_dd ≤ 20% on IS, OOS, and FULL (reject otherwise).
+Rank by min(WR_IS, WR_OOS) with IS+OOS net > 0. Also track 5× equity hits.
 """
 from __future__ import annotations
 
@@ -38,6 +39,10 @@ PROGRESS = OUT / "levy_progress.json"
 SUMMARY = OUT / "LEVY_SUMMARY.json"
 CHAMP = OUT / "LEVY_CHAMPION.json"
 TARGET_EQ = START_CAP * 5.0
+# User hard rule: holy drawdown must not exceed 20%.
+MAX_DD = 0.20
+# 0.02 lot blows past 20% DD on the regime champ; keep smaller sizes in the grid.
+LOT_GRID = (0.02, 0.01, 0.005, 0.003, 0.0024, 0.001)
 
 
 def exits() -> list[dict]:
@@ -62,7 +67,7 @@ def exits() -> list[dict]:
         dict(allow_long=False, allow_short=True),
     )
     out = []
-    for (sl, tp), mh, side in itertools.product(pairs, holds, sides):
+    for (sl, tp), mh, side, lot in itertools.product(pairs, holds, sides, LOT_GRID):
         out.append(
             {
                 "rr": tp / sl if sl else 1.0,
@@ -70,7 +75,7 @@ def exits() -> list[dict]:
                 "atr": "ATR_14",
                 "sl_pct": sl,
                 "tp_pct": tp,
-                "fixed_lot": FIXED_LOT,
+                "fixed_lot": lot,
                 "spread_price": SPREAD_PRICE,
                 "commission_per_lot_rt": COMMISSION_PER_LOT_RT,
                 "start_cap": START_CAP,
@@ -121,35 +126,57 @@ def specs() -> list[tuple[str, dict]]:
     return out
 
 
-def dump(tested: int, hits: int, best: dict | None, near: list) -> None:
+def dump(tested: int, hits: int, best: dict | None, near: list, dd_ok: int = 0) -> None:
     PROGRESS.write_text(
         json.dumps(
             {
                 "tested": tested,
                 "hits_5x_oos": hits,
+                "dd20_ok": dd_ok,
+                "max_dd_cap": MAX_DD,
                 "best_min_wr": best["min_wr"] if best else None,
                 "best_name": best.get("name") if best else None,
                 "best_eq": best.get("full_eq") if best else None,
                 "best_net": best.get("full_net") if best else None,
+                "best_dd": best.get("full_dd") if best else None,
                 "near": len(near),
                 "source": "Guy Levy IG reel DerP1HHjpUg — price+volume (range proxy)",
+                "gate": f"max_dd<={MAX_DD:.0%} IS+OOS+FULL, IS+OOS net>0",
                 "time": time.strftime("%Y-%m-%d %H:%M:%S"),
             },
             indent=2,
         )
     )
     SUMMARY.write_text(
-        json.dumps({"tested": tested, "hits": hits, "best": best, "near": near[:25]}, indent=2, default=str)
+        json.dumps(
+            {
+                "tested": tested,
+                "hits": hits,
+                "dd20_ok": dd_ok,
+                "max_dd_cap": MAX_DD,
+                "best": best,
+                "near": near[:25],
+            },
+            indent=2,
+            default=str,
+        )
     )
 
 
 def maybe_save(row: dict) -> None:
+    if row["full_dd"] > MAX_DD:
+        return
     prev = None
+    prev_meta = None
     if CHAMP.exists():
         try:
-            prev = json.loads(CHAMP.read_text()).get("champion")
+            prev_meta = json.loads(CHAMP.read_text())
+            prev = prev_meta.get("champion")
         except Exception:
             prev = None
+    # Prefer DD-compliant champs only; ignore prior champs that breached the cap.
+    if prev is not None and float(prev.get("full_dd", 1.0)) > MAX_DD:
+        prev = None
     key = (row["min_wr"], row["full_eq"], -row["full_dd"])
     old = (
         (float(prev.get("min_wr", 0)), float(prev.get("full_eq", 0)), -float(prev.get("full_dd", 1)))
@@ -158,27 +185,28 @@ def maybe_save(row: dict) -> None:
     )
     if old is not None and key <= old:
         return
-    CHAMP.write_text(
-        json.dumps(
-            {
-                "source": "Guy Levy / marketscoach price-volume (range proxy)",
-                "reel": "https://www.instagram.com/reel/DerP1HHjpUg/",
-                "note": "XAU CSV has no real volume — LEVY_VOL = bar range / prior SMA",
-                "champion": row,
-                "time": time.strftime("%Y-%m-%d %H:%M:%S"),
-            },
-            indent=2,
-            default=str,
-        )
+    payload = {
+        "source": "Guy Levy / marketscoach price-volume (range proxy)",
+        "reel": "https://www.instagram.com/reel/DerP1HHjpUg/",
+        "note": "XAU CSV has no real volume — LEVY_VOL = bar range / prior SMA",
+        "gate": f"max_dd <= {MAX_DD:.0%} on IS/OOS/FULL",
+        "champion": row,
+        "time": time.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    if prev_meta and prev_meta.get("dd_cap_note"):
+        payload["dd_cap_note"] = prev_meta["dd_cap_note"]
+    CHAMP.write_text(json.dumps(payload, indent=2, default=str))
+    log(
+        f"NEW LEVY CHAMP {row['name']} minWR={row['min_wr']:.1%} "
+        f"eq=${row['full_eq']:.0f} dd={row['full_dd']:.1%}"
     )
-    log(f"NEW LEVY CHAMP {row['name']} minWR={row['min_wr']:.1%} eq=${row['full_eq']:.0f}")
 
 
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     log(
-        f"=== LEVY PV HUNT lot={FIXED_LOT} cap=${START_CAP:.0f} "
-        f"spread=${SPREAD_PRICE} (range-proxy volume) ==="
+        f"=== LEVY PV HUNT lots={LOT_GRID} cap=${START_CAP:.0f} "
+        f"MAX_DD={MAX_DD:.0%} spread=${SPREAD_PRICE} (range-proxy volume) ==="
     )
     raw = load_frames(include_resampled=True)
     frames = {}
@@ -191,7 +219,7 @@ def main() -> None:
     exs = exits()
     log(f"specs={len(sp)} exits={len(exs)} tfs={list(frames)}")
 
-    tested = hits = 0
+    tested = hits = dd_ok = 0
     best: dict | None = None
     near: list[dict] = []
 
@@ -224,7 +252,7 @@ def main() -> None:
                         full = simulate(df, L0, S0, start_i=warm, end_i=n - 2, **kw)
                         if full["trades"] < 40:
                             if tested % 400 == 0:
-                                dump(tested, hits, best, near)
+                                dump(tested, hits, best, near, dd_ok)
                             continue
                         is_m = simulate(df, L0, S0, start_i=warm, end_i=split, **kw)
                         oos_m = simulate(df, L0, S0, start_i=split, end_i=n - 2, **kw)
@@ -232,6 +260,16 @@ def main() -> None:
                             continue
                         if is_m["net_pnl"] <= 0 or oos_m["net_pnl"] <= 0:
                             continue
+                        # Hard reject: holy DD must stay ≤ 20% on every split.
+                        if (
+                            full["max_dd"] > MAX_DD
+                            or is_m["max_dd"] > MAX_DD
+                            or oos_m["max_dd"] > MAX_DD
+                        ):
+                            if tested % 400 == 0:
+                                dump(tested, hits, best, near, dd_ok)
+                            continue
+                        dd_ok += 1
                         min_wr = min(is_m["winrate"], oos_m["winrate"])
                         side_tag = (
                             "LS"
@@ -240,9 +278,10 @@ def main() -> None:
                         )
                         sess = pp.get("sessions")
                         sess_tag = "all" if not sess else "+".join(sess)
+                        lot = float(ex.get("fixed_lot", FIXED_LOT))
                         name = (
                             f"{'inv|' if invert else 'levy|'}{kind}|{ex['reward_label']}|"
-                            f"h{ex['max_hold']}|{tf}|{side_tag}|{sess_tag}"
+                            f"h{ex['max_hold']}|{tf}|{side_tag}|{sess_tag}|lot{lot:g}"
                         )
                         yok = year_stable(df, L0, S0, dict(ex), min_trades=20)
                         row = {
@@ -261,7 +300,10 @@ def main() -> None:
                             "oos_n": oos_m["trades"],
                             "full_tpd": full["trades_per_day"],
                             "full_dd": full["max_dd"],
+                            "is_dd": is_m["max_dd"],
+                            "oos_dd": oos_m["max_dd"],
                             "full_pf": full["profit_factor"],
+                            "lot": lot,
                             "charges": full.get("total_charges"),
                             "year_ok": yok,
                             "params": {"kind": kind, **pp, "tf": tf, "exit": dict(ex)},
@@ -277,19 +319,24 @@ def main() -> None:
                             maybe_save(row)
                         if min_wr >= 0.55 and (full["final_equity"] >= TARGET_EQ or min_wr >= 0.60):
                             near.append(row)
-                            near.sort(key=lambda r: (r["min_wr"], r["full_eq"]), reverse=True)
+                            near.sort(
+                                key=lambda r: (r["min_wr"], r["full_eq"], -r["full_dd"]),
+                                reverse=True,
+                            )
                             near[:] = near[:40]
                             log(
                                 f"LEVY HIT {min_wr:.1%} eq=${row['full_eq']:.0f} "
-                                f"oos=${row['oos_net']:.0f} year={yok} | {name}"
+                                f"dd={row['full_dd']:.1%} oos=${row['oos_net']:.0f} "
+                                f"year={yok} | {name}"
                             )
                         if tested % 200 == 0:
-                            dump(tested, hits, best, near)
+                            dump(tested, hits, best, near, dd_ok)
                             bw = f"{best['min_wr']:.1%}" if best else "n/a"
-                            log(f"levy tested={tested} hits5x={hits} best={bw}")
+                            bd = f"{best['full_dd']:.1%}" if best else "n/a"
+                            log(f"levy tested={tested} dd20={dd_ok} hits5x={hits} best={bw} dd={bd}")
 
-        dump(tested, hits, best, near)
-        log(f"levy pass done tested={tested} hits5x={hits}; reshuffle")
+        dump(tested, hits, best, near, dd_ok)
+        log(f"levy pass done tested={tested} dd20={dd_ok} hits5x={hits}; reshuffle")
 
 
 if __name__ == "__main__":
