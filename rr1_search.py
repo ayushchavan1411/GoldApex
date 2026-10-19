@@ -456,6 +456,30 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     d["OF_SWEEP_LO"] = (l < d["SW_LO_10"]) & (c > d["SW_LO_10"]) & (clv >= 0.55)
     d["OF_SWEEP_HI"] = (h > d["SW_HI_10"]) & (c < d["SW_HI_10"]) & (clv <= 0.45)
 
+    # --- Guy Levy / marketscoach price-volume proxies (no real volume in XAU CSV) ---
+    # Volume proxy = bar range (effort). Relative volume vs prior SMA (causal .shift on SMA uses closed bars).
+    vol = (h - l).astype(float)
+    d["LEVY_VOL"] = vol
+    for span in (10, 20, 40):
+        vma = vol.rolling(span).mean().shift(1)  # prior avg only
+        d[f"LEVY_RVOL_{span}"] = vol / vma.replace(0, np.nan)
+    d["LEVY_UP"] = c > d["Open"]
+    d["LEVY_DN"] = c < d["Open"]
+    # Rolling "together" score: up-bars with high rvol vs down-bars with high rvol
+    rvol20 = d["LEVY_RVOL_20"]
+    d["LEVY_UP_HV"] = d["LEVY_UP"] & (rvol20 >= 1.2)
+    d["LEVY_DN_HV"] = d["LEVY_DN"] & (rvol20 >= 1.2)
+    d["LEVY_UP_LV"] = d["LEVY_UP"] & (rvol20 <= 0.8)
+    d["LEVY_DN_LV"] = d["LEVY_DN"] & (rvol20 <= 0.8)
+    # Regime: last N bars — bullish if heavy-vol ups dominate heavy-vol downs
+    for look in (8, 16, 24):
+        hv_up = d["LEVY_UP_HV"].rolling(look).sum()
+        hv_dn = d["LEVY_DN_HV"].rolling(look).sum()
+        lv_up = d["LEVY_UP_LV"].rolling(look).sum()
+        d[f"LEVY_BULL_REG_{look}"] = (hv_up > hv_dn) & (hv_up >= 2)
+        # Bearish distribution: heavy vol on drops + light vol on rallies
+        d[f"LEVY_BEAR_REG_{look}"] = (hv_dn > hv_up) & (lv_up >= 2) & (hv_dn >= 2)
+
     # Prior completed clock-hour extremes (causal: only previous hour, never forming hour)
     hour_id = d.index.floor("h")
     hourly = pd.DataFrame({"H": h, "L": l}).groupby(hour_id).agg({"H": "max", "L": "min"})
@@ -1534,6 +1558,69 @@ def gen_signals(df: pd.DataFrame, kind: str, p: dict):
         mid = (mhi0 + mlo0) / 2.0
         long_e = long_e | (mother & (df["Low"] < mlo0) & (c > mid) & sess)
         short_e = short_e | (mother & (df["High"] > mhi0) & (c < mid) & sess)
+
+    # --- Guy Levy marketscoach: price+volume (range-proxy) accumulation / distribution ---
+    elif kind == "levy_accum":
+        # Bottom: price spikes up AND volume rises with it → long
+        rspan = int(p.get("rvol", 20))
+        rthr = float(p.get("rvol_thr", 1.2))
+        rvol = df[f"LEVY_RVOL_{rspan}"]
+        spike = df["LEVY_UP"] & (df["OF_CLV"] >= float(p.get("clv", 0.65)))
+        rising = rvol > rvol.shift(1)
+        long_e = spike & (rvol >= rthr) & rising & sess
+        short_e = pd.Series(False, index=df.index)
+
+    elif kind == "levy_distrib":
+        # Top: falls on heavy volume; bounces on light volume → short on light bounce after HV drop
+        rspan = int(p.get("rvol", 20))
+        hi_thr = float(p.get("hi_thr", 1.2))
+        lo_thr = float(p.get("lo_thr", 0.8))
+        look = int(p.get("look", 6))
+        rvol = df[f"LEVY_RVOL_{rspan}"]
+        recent_hv_drop = (df["LEVY_DN"] & (rvol >= hi_thr)).rolling(look).max().fillna(0).astype(bool)
+        light_bounce = df["LEVY_UP"] & (rvol <= lo_thr)
+        long_e = pd.Series(False, index=df.index)
+        short_e = recent_hv_drop & light_bounce & sess
+
+    elif kind == "levy_pv_confirm":
+        # Bullish: price and volume move together (up + HV). Bearish: down + HV.
+        rspan = int(p.get("rvol", 20))
+        rthr = float(p.get("rvol_thr", 1.2))
+        rvol = df[f"LEVY_RVOL_{rspan}"]
+        long_e = df["LEVY_UP"] & (rvol >= rthr) & (df["OF_CLV"] >= 0.55) & sess
+        short_e = df["LEVY_DN"] & (rvol >= rthr) & (df["OF_CLV"] <= 0.45) & sess
+
+    elif kind == "levy_light_bounce_fade":
+        # "A bounce on light volume is not a recovery" → fade light up-bars after selling
+        rspan = int(p.get("rvol", 20))
+        lo_thr = float(p.get("lo_thr", 0.8))
+        look = int(p.get("look", 8))
+        rvol = df[f"LEVY_RVOL_{rspan}"]
+        sold = (df["LEVY_DN"]).rolling(look).sum() >= int(p.get("min_dn", 3))
+        long_e = pd.Series(False, index=df.index)
+        short_e = sold & df["LEVY_UP"] & (rvol <= lo_thr) & sess
+
+    elif kind == "levy_regime":
+        # Trade with Levy bull/bear regime; entry on PV-confirm bar inside regime
+        look = int(p.get("look", 16))
+        rspan = int(p.get("rvol", 20))
+        rthr = float(p.get("rvol_thr", 1.1))
+        rvol = df[f"LEVY_RVOL_{rspan}"]
+        bull = df[f"LEVY_BULL_REG_{look}"].fillna(False)
+        bear = df[f"LEVY_BEAR_REG_{look}"].fillna(False)
+        long_e = bull & df["LEVY_UP"] & (rvol >= rthr) & sess
+        short_e = bear & df["LEVY_DN"] & (rvol >= rthr) & sess
+
+    elif kind == "levy_regime_pull":
+        # In bull regime, buy light-volume dip (pullback); in bear regime, short light-volume bounce
+        look = int(p.get("look", 16))
+        rspan = int(p.get("rvol", 20))
+        lo_thr = float(p.get("lo_thr", 0.85))
+        rvol = df[f"LEVY_RVOL_{rspan}"]
+        bull = df[f"LEVY_BULL_REG_{look}"].fillna(False)
+        bear = df[f"LEVY_BEAR_REG_{look}"].fillna(False)
+        long_e = bull & df["LEVY_DN"] & (rvol <= lo_thr) & sess
+        short_e = bear & df["LEVY_UP"] & (rvol <= lo_thr) & sess
 
     else:
         raise ValueError(kind)

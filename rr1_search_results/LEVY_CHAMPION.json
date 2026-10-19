@@ -1,0 +1,632 @@
+{
+  "source": "Guy Levy / marketscoach IG reel DerP1HHjpUg",
+  "note": "Volume = bar range proxy (no real volume in XAU CSV)",
+  "champion": {
+    "name": "inv|levy_regime|1.5%/1.0%|h72|15m|L|overlap+ny",
+    "min_wr": 0.6456692913385826,
+    "full_wr": 0.6477987421383647,
+    "full_eq": 2360.771830440058,
+    "full_net": 1860.7718304400596,
+    "oos_net": 411.56281520002955,
+    "is_net": 1449.2090152400292,
+    "n": 159,
+    "oos_n": 32,
+    "tpd": 0.2634943181818182,
+    "dd": 0.42497399257490004,
+    "pf": 1.5586343251005026,
+    "is_wr": 0.6456692913385826,
+    "oos_wr": 0.65625,
+    "params": {
+      "kind": "levy_regime",
+      "sessions": [
+        "overlap",
+        "ny"
+      ],
+      "look": 8,
+      "rvol": 20,
+      "rvol_thr": 1.1,
+      "invert": true,
+      "tf": "15m",
+      "exit": {
+        "rr": 0.6666666666666667,
+        "max_hold": 72,
+        "atr": "ATR_14",
+        "sl_pct": 0.015,
+        "tp_pct": 0.01,
+        "fixed_lot": 0.02,
+        "spread_price": 0.3,
+        "commission_per_lot_rt": 7.0,
+        "start_cap": 500.0,
+        "reward_label": "1.5%/1.0%",
+        "allow_long": true,
+        "allow_short": false
+      }
+    }
+  },
+  "top": [
+    {
+      "name": "inv|levy_regime|1.5%/1.0%|h72|15m|L|overlap+ny",
+      "min_wr": 0.6456692913385826,
+      "full_wr": 0.6477987421383647,
+      "full_eq": 2360.771830440058,
+      "full_net": 1860.7718304400596,
+      "oos_net": 411.56281520002955,
+      "is_net": 1449.2090152400292,
+      "n": 159,
+      "oos_n": 32,
+      "tpd": 0.2634943181818182,
+      "dd": 0.42497399257490004,
+      "pf": 1.5586343251005026,
+      "is_wr": 0.6456692913385826,
+      "oos_wr": 0.65625,
+      "params": {
+        "kind": "levy_regime",
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "look": 8,
+        "rvol": 20,
+        "rvol_thr": 1.1,
+        "invert": true,
+        "tf": "15m",
+        "exit": {
+          "rr": 0.6666666666666667,
+          "max_hold": 72,
+          "atr": "ATR_14",
+          "sl_pct": 0.015,
+          "tp_pct": 0.01,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.5%/1.0%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "inv|levy_regime|1.5%/1.0%|h72|15m|L|overlap+ny",
+      "min_wr": 0.6153846153846154,
+      "full_wr": 0.625,
+      "full_eq": 1962.2392342400433,
+      "full_net": 1462.2392342400476,
+      "oos_net": 290.43348970002387,
+      "is_net": 1171.8057445400232,
+      "n": 136,
+      "oos_n": 26,
+      "tpd": 0.22537878787878787,
+      "dd": 0.44501291187432895,
+      "pf": 1.4810534516308673,
+      "is_wr": 0.6272727272727273,
+      "oos_wr": 0.6153846153846154,
+      "params": {
+        "kind": "levy_regime",
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "look": 8,
+        "rvol": 20,
+        "rvol_thr": 1.3,
+        "invert": true,
+        "tf": "15m",
+        "exit": {
+          "rr": 0.6666666666666667,
+          "max_hold": 72,
+          "atr": "ATR_14",
+          "sl_pct": 0.015,
+          "tp_pct": 0.01,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.5%/1.0%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "levy_accum|1.5%/1.0%|h72|30m|L|ny",
+      "min_wr": 0.5454545454545454,
+      "full_wr": 0.6666666666666666,
+      "full_eq": 2826.632677000053,
+      "full_net": 2326.632677000049,
+      "oos_net": 144.82662980003533,
+      "is_net": 2181.8060472000143,
+      "n": 138,
+      "oos_n": 44,
+      "tpd": 0.23019182652210174,
+      "dd": 0.2797068604121796,
+      "pf": 1.6002241091112512,
+      "is_wr": 0.723404255319149,
+      "oos_wr": 0.5454545454545454,
+      "params": {
+        "kind": "levy_accum",
+        "sessions": [
+          "ny"
+        ],
+        "rvol": 20,
+        "rvol_thr": 1.2,
+        "clv": 0.6,
+        "invert": false,
+        "tf": "30m",
+        "exit": {
+          "rr": 0.6666666666666667,
+          "max_hold": 72,
+          "atr": "ATR_14",
+          "sl_pct": 0.015,
+          "tp_pct": 0.01,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.5%/1.0%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "levy_accum|1.5%/1.0%|h72|30m|LS|ny",
+      "min_wr": 0.5454545454545454,
+      "full_wr": 0.6666666666666666,
+      "full_eq": 2826.632677000053,
+      "full_net": 2326.632677000049,
+      "oos_net": 144.82662980003533,
+      "is_net": 2181.8060472000143,
+      "n": 138,
+      "oos_n": 44,
+      "tpd": 0.23019182652210174,
+      "dd": 0.2797068604121796,
+      "pf": 1.6002241091112512,
+      "is_wr": 0.723404255319149,
+      "oos_wr": 0.5454545454545454,
+      "params": {
+        "kind": "levy_accum",
+        "sessions": [
+          "ny"
+        ],
+        "rvol": 20,
+        "rvol_thr": 1.2,
+        "clv": 0.6,
+        "invert": false,
+        "tf": "30m",
+        "exit": {
+          "rr": 0.6666666666666667,
+          "max_hold": 72,
+          "atr": "ATR_14",
+          "sl_pct": 0.015,
+          "tp_pct": 0.01,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.5%/1.0%",
+          "allow_long": true,
+          "allow_short": true
+        }
+      }
+    },
+    {
+      "name": "levy_accum|1.5%/1.0%|h48|30m|L|ny",
+      "min_wr": 0.5434782608695652,
+      "full_wr": 0.6527777777777778,
+      "full_eq": 2972.3677307000567,
+      "full_net": 2472.3677307000535,
+      "oos_net": 169.89586690003915,
+      "is_net": 2302.471863800015,
+      "n": 144,
+      "oos_n": 46,
+      "tpd": 0.24020016680567138,
+      "dd": 0.24166081156546687,
+      "pf": 1.6793254064866572,
+      "is_wr": 0.7040816326530612,
+      "oos_wr": 0.5434782608695652,
+      "params": {
+        "kind": "levy_accum",
+        "sessions": [
+          "ny"
+        ],
+        "rvol": 20,
+        "rvol_thr": 1.2,
+        "clv": 0.6,
+        "invert": false,
+        "tf": "30m",
+        "exit": {
+          "rr": 0.6666666666666667,
+          "max_hold": 48,
+          "atr": "ATR_14",
+          "sl_pct": 0.015,
+          "tp_pct": 0.01,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.5%/1.0%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "levy_accum|1.5%/1.0%|h48|30m|LS|ny",
+      "min_wr": 0.5434782608695652,
+      "full_wr": 0.6527777777777778,
+      "full_eq": 2972.3677307000567,
+      "full_net": 2472.3677307000535,
+      "oos_net": 169.89586690003915,
+      "is_net": 2302.471863800015,
+      "n": 144,
+      "oos_n": 46,
+      "tpd": 0.24020016680567138,
+      "dd": 0.24166081156546687,
+      "pf": 1.6793254064866572,
+      "is_wr": 0.7040816326530612,
+      "oos_wr": 0.5434782608695652,
+      "params": {
+        "kind": "levy_accum",
+        "sessions": [
+          "ny"
+        ],
+        "rvol": 20,
+        "rvol_thr": 1.2,
+        "clv": 0.6,
+        "invert": false,
+        "tf": "30m",
+        "exit": {
+          "rr": 0.6666666666666667,
+          "max_hold": 48,
+          "atr": "ATR_14",
+          "sl_pct": 0.015,
+          "tp_pct": 0.01,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.5%/1.0%",
+          "allow_long": true,
+          "allow_short": true
+        }
+      }
+    },
+    {
+      "name": "inv|levy_regime|0.5%/0.5%|h48|15m|L|london+overlap+ny",
+      "min_wr": 0.5317919075144508,
+      "full_wr": 0.5495118549511855,
+      "full_eq": 2292.928519640159,
+      "full_net": 1792.9285196401884,
+      "oos_net": 410.84688130011233,
+      "is_net": 1382.0816383400756,
+      "n": 717,
+      "oos_n": 173,
+      "tpd": 1.1882102272727273,
+      "dd": 0.3960330772806872,
+      "pf": 1.1505551033815702,
+      "is_wr": 0.5551470588235294,
+      "oos_wr": 0.5317919075144508,
+      "params": {
+        "kind": "levy_regime",
+        "sessions": [
+          "london",
+          "overlap",
+          "ny"
+        ],
+        "look": 16,
+        "rvol": 20,
+        "rvol_thr": 1.1,
+        "invert": true,
+        "tf": "15m",
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 48,
+          "atr": "ATR_14",
+          "sl_pct": 0.005,
+          "tp_pct": 0.005,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "0.5%/0.5%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "inv|levy_regime|0.5%/0.5%|h96|15m|L|london+overlap+ny",
+      "min_wr": 0.5290697674418605,
+      "full_wr": 0.5393419170243204,
+      "full_eq": 2176.098713840154,
+      "full_net": 1676.098713840187,
+      "oos_net": 387.7751751001034,
+      "is_net": 1288.3235387400841,
+      "n": 699,
+      "oos_n": 172,
+      "tpd": 1.1583806818181819,
+      "dd": 0.37034577669091273,
+      "pf": 1.135243818929688,
+      "is_wr": 0.5426944971537002,
+      "oos_wr": 0.5290697674418605,
+      "params": {
+        "kind": "levy_regime",
+        "sessions": [
+          "london",
+          "overlap",
+          "ny"
+        ],
+        "look": 16,
+        "rvol": 20,
+        "rvol_thr": 1.1,
+        "invert": true,
+        "tf": "15m",
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 96,
+          "atr": "ATR_14",
+          "sl_pct": 0.005,
+          "tp_pct": 0.005,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "0.5%/0.5%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "inv|levy_regime|1.5%/1.0%|h48|30m|L|ny",
+      "min_wr": 0.5263157894736842,
+      "full_wr": 0.5909090909090909,
+      "full_eq": 1133.313707280026,
+      "full_net": 633.3137072800273,
+      "oos_net": 78.56408020001884,
+      "is_net": 554.7496270800085,
+      "n": 66,
+      "oos_n": 19,
+      "tpd": 0.11009174311926606,
+      "dd": 0.3502794760625884,
+      "pf": 1.3095951532246581,
+      "is_wr": 0.6170212765957447,
+      "oos_wr": 0.5263157894736842,
+      "params": {
+        "kind": "levy_regime",
+        "sessions": [
+          "ny"
+        ],
+        "look": 16,
+        "rvol": 20,
+        "rvol_thr": 1.3,
+        "invert": true,
+        "tf": "30m",
+        "exit": {
+          "rr": 0.6666666666666667,
+          "max_hold": 48,
+          "atr": "ATR_14",
+          "sl_pct": 0.015,
+          "tp_pct": 0.01,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.5%/1.0%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "inv|levy_regime|0.5%/0.5%|h72|15m|L|london+overlap+ny",
+      "min_wr": 0.5232558139534884,
+      "full_wr": 0.5487977369165488,
+      "full_eq": 2185.055820350148,
+      "full_net": 1685.0558203501832,
+      "oos_net": 334.79997500010734,
+      "is_net": 1350.255845350076,
+      "n": 707,
+      "oos_n": 172,
+      "tpd": 1.1716382575757576,
+      "dd": 0.37635918378942335,
+      "pf": 1.1381523798753463,
+      "is_wr": 0.5570093457943925,
+      "oos_wr": 0.5232558139534884,
+      "params": {
+        "kind": "levy_regime",
+        "sessions": [
+          "london",
+          "overlap",
+          "ny"
+        ],
+        "look": 16,
+        "rvol": 20,
+        "rvol_thr": 1.1,
+        "invert": true,
+        "tf": "15m",
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 72,
+          "atr": "ATR_14",
+          "sl_pct": 0.005,
+          "tp_pct": 0.005,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "0.5%/0.5%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "inv|levy_distrib|0.5%/0.5%|h96|15m|L|ny",
+      "min_wr": 0.5138888888888888,
+      "full_wr": 0.5519287833827893,
+      "full_eq": 1916.7308911500745,
+      "full_net": 1416.7308911500909,
+      "oos_net": 257.4093040000498,
+      "is_net": 1159.321587150041,
+      "n": 337,
+      "oos_n": 72,
+      "tpd": 0.5584753787878788,
+      "dd": 0.2498048507388233,
+      "pf": 1.2616146900005984,
+      "is_wr": 0.5622641509433962,
+      "oos_wr": 0.5138888888888888,
+      "params": {
+        "kind": "levy_distrib",
+        "sessions": [
+          "ny"
+        ],
+        "rvol": 20,
+        "hi_thr": 1.5,
+        "lo_thr": 0.85,
+        "look": 10,
+        "invert": true,
+        "tf": "15m",
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 96,
+          "atr": "ATR_14",
+          "sl_pct": 0.005,
+          "tp_pct": 0.005,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "0.5%/0.5%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "inv|levy_distrib|0.5%/0.5%|h96|15m|LS|ny",
+      "min_wr": 0.5138888888888888,
+      "full_wr": 0.5519287833827893,
+      "full_eq": 1916.7308911500745,
+      "full_net": 1416.7308911500909,
+      "oos_net": 257.4093040000498,
+      "is_net": 1159.321587150041,
+      "n": 337,
+      "oos_n": 72,
+      "tpd": 0.5584753787878788,
+      "dd": 0.2498048507388233,
+      "pf": 1.2616146900005984,
+      "is_wr": 0.5622641509433962,
+      "oos_wr": 0.5138888888888888,
+      "params": {
+        "kind": "levy_distrib",
+        "sessions": [
+          "ny"
+        ],
+        "rvol": 20,
+        "hi_thr": 1.5,
+        "lo_thr": 0.85,
+        "look": 10,
+        "invert": true,
+        "tf": "15m",
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 96,
+          "atr": "ATR_14",
+          "sl_pct": 0.005,
+          "tp_pct": 0.005,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "0.5%/0.5%",
+          "allow_long": true,
+          "allow_short": true
+        }
+      }
+    },
+    {
+      "name": "inv|levy_regime|1.0%/2.0%|h96|30m|L|ny",
+      "min_wr": 0.42105263157894735,
+      "full_wr": 0.5151515151515151,
+      "full_eq": 1841.1929600000158,
+      "full_net": 1341.1929600000171,
+      "oos_net": 470.3524214000163,
+      "is_net": 870.8405386000015,
+      "n": 66,
+      "oos_n": 19,
+      "tpd": 0.11009174311926606,
+      "dd": 0.2627922137952299,
+      "pf": 1.5727102294223811,
+      "is_wr": 0.5531914893617021,
+      "oos_wr": 0.42105263157894735,
+      "params": {
+        "kind": "levy_regime",
+        "sessions": [
+          "ny"
+        ],
+        "look": 16,
+        "rvol": 20,
+        "rvol_thr": 1.3,
+        "invert": true,
+        "tf": "30m",
+        "exit": {
+          "rr": 2.0,
+          "max_hold": 96,
+          "atr": "ATR_14",
+          "sl_pct": 0.01,
+          "tp_pct": 0.02,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.0%/2.0%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    },
+    {
+      "name": "inv|levy_regime|1.2%/1.2%|h96|30m|L|ny",
+      "min_wr": 0.42105263157894735,
+      "full_wr": 0.5454545454545454,
+      "full_eq": 803.6432177680263,
+      "full_net": 303.64321776802615,
+      "oos_net": 93.49713480001707,
+      "is_net": 210.14608296800918,
+      "n": 66,
+      "oos_n": 19,
+      "tpd": 0.11009174311926606,
+      "dd": 0.36293219368156804,
+      "pf": 1.1198719104949908,
+      "is_wr": 0.5957446808510638,
+      "oos_wr": 0.42105263157894735,
+      "params": {
+        "kind": "levy_regime",
+        "sessions": [
+          "ny"
+        ],
+        "look": 16,
+        "rvol": 20,
+        "rvol_thr": 1.3,
+        "invert": true,
+        "tf": "30m",
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 96,
+          "atr": "ATR_14",
+          "sl_pct": 0.012,
+          "tp_pct": 0.012,
+          "fixed_lot": 0.02,
+          "spread_price": 0.3,
+          "commission_per_lot_rt": 7.0,
+          "start_cap": 500.0,
+          "reward_label": "1.2%/1.2%",
+          "allow_long": true,
+          "allow_short": false
+        }
+      }
+    }
+  ]
+}
