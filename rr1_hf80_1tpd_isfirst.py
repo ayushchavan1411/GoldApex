@@ -110,8 +110,12 @@ def main() -> None:
     while net_on_tp(probe_tp, 0.05) < MIN_NET_TP:
         probe_tp += 0.3
 
-    for tf, df in frames.items():
+    # Higher TFs first (faster + historically higher WR); 5m last
+    tf_order = [t for t in ("15m", "30m", "5m") if t in frames]
+    for tf in tf_order:
+        df = frames[tf]
         warm, split, end = windows[tf]
+        log(f"=== scanning {tf} ===")
         for kind, base in kinds:
             for invert in (False, True):
                 try:
@@ -128,23 +132,34 @@ def main() -> None:
                 if nsig < 500 or nsig > 18000:
                     continue
 
-                # IS multi probe
-                is_pr = simulate_multi(
+                # Fast one-pos IS probe first
+                is_pr = simulate_one(
                     df, L, S,
                     tp_dist=probe_tp, sl_dist=2 * probe_tp, max_hold=20, lot=0.05,
                     allow_long=True, allow_short=True, start_i=warm, end_i=split,
                 )
+                if is_pr["tpd"] < 0.9 or is_pr["trades"] < 150:
+                    # try multi if one-pos under-fires
+                    is_pr = simulate_multi(
+                        df, L, S,
+                        tp_dist=probe_tp, sl_dist=2 * probe_tp, max_hold=20, lot=0.05,
+                        allow_long=True, allow_short=True, start_i=warm, end_i=split,
+                    )
                 if is_pr["tpd"] < 1.0 or is_pr["trades"] < 200:
                     continue
-                if is_pr["winrate"] < 0.70:
+                if is_pr["winrate"] < 0.68:
                     continue
                 log(
                     f"IS-PROBE {is_pr['winrate']:.1%} tpd={is_pr['tpd']:.2f} n={is_pr['trades']} "
                     f"| {kind} {tf} inv={invert} sess={base.get('sessions')}"
                 )
 
-                for ex in exits:
-                    # Skip exits unlikely to keep frequency (very large TP / short hold mismatch)
+                # Compact exit sample when expanding
+                ex_iter = exits
+                if is_pr["winrate"] < 0.75:
+                    # only SL=2× and dual/long sides
+                    ex_iter = [e for e in exits if e["sl_mult"] >= 1.75]
+                for ex in ex_iter:
                     for sim, mode in ((simulate_multi, "multi"), (simulate_one, "one")):
                         tested += 1
                         is_m = sim(

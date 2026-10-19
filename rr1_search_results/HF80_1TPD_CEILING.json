@@ -1,0 +1,8 @@
+{
+  "tested": 10920,
+  "hits_80_1tpd": 0,
+  "best_at_tpd1": null,
+  "top70": [],
+  "elapsed_s": 658.4529356956482,
+  "verdict": "No tpd\u22651 candidates with IS WR\u226570% expanded"
+}
