@@ -234,7 +234,7 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
         d[f"DON_LO_{period}"] = l.rolling(period).min().shift(1)
     # --- ICT / SMC building blocks (all lagged for causality) ---
     # Swings from prior bars only
-    for sw in (5, 10, 20, 40):
+    for sw in (5, 10, 20, 40, 60, 80):
         d[f"SW_HI_{sw}"] = h.rolling(sw).max().shift(1)
         d[f"SW_LO_{sw}"] = l.rolling(sw).min().shift(1)
         # equilibrium / premium-discount of prior swing range

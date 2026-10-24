@@ -219,19 +219,33 @@ def build_specs() -> list[tuple[str, dict]]:
         specs.append(("bb_ema_touch", {"period": per, "k": k, "ema": 21}))
         specs.append(("bb_ema_touch", {"period": per, "k": k, "ema": 50}))
         specs.append(("ema_stack_bb", {"a": 8, "b": 21, "c": 50, "period": per, "k": k}))
-    for sw, fib in itertools.product((20, 40), ("500", "618", "786")):
+    for sw, fib in itertools.product((10, 20, 40, 60, 80), ("382", "500", "618", "786")):
         specs.append(("fvg_fib", {"swing": sw, "fib": fib, "wick": 0.0}))
-        specs.append(("fib_ema", {"swing": sw, "fib": fib, "wick": 0.35, "fast": 21, "slow": 50}))
-        specs.append(("fib_ema", {"swing": sw, "fib": fib, "wick": 0.0, "fast": 8, "slow": 21}))
         specs.append(("fib_bb", {"swing": sw, "fib": fib, "wick": 0.0, "period": 20, "k": 2.0}))
         specs.append(("ema_stack_fib", {"a": 8, "b": 21, "c": 50, "swing": sw, "fib": fib, "wick": 0.0}))
+        specs.append(("ema_stack_fib", {"a": 5, "b": 21, "c": 50, "swing": sw, "fib": fib, "wick": 0.35}))
         specs.append(("ema_stack_fvg", {"a": 8, "b": 21, "c": 50}))
+    # Dense fib_ema — current ceiling family (~75%)
+    for sw, fib, wick, fast, slow in itertools.product(
+        (10, 20, 40, 60, 80),
+        ("382", "500", "618", "786"),
+        (0.0, 0.25, 0.35, 0.45, 0.55),
+        (8, 13, 21, 34),
+        (21, 34, 50, 100, 200),
+    ):
+        if fast >= slow:
+            continue
+        specs.append(("fib_ema", {"swing": sw, "fib": fib, "wick": wick, "fast": fast, "slow": slow}))
+    for sw, fib, wick, fast, slow in itertools.product(
+        (20, 40, 60), ("618", "786"), (0.0, 0.35), (8, 21), (50, 200)
+    ):
+        specs.append(("fvg_fib_ema", {"swing": sw, "fib": fib, "wick": wick, "fast": fast, "slow": slow}))
 
     # --- three / four-way ---
-    for sw, fib, per, k in itertools.product((20, 40), ("618", "786"), (20, 40), (2.0, 2.5)):
-        specs.append(("fvg_fib_ema", {"swing": sw, "fib": fib, "wick": 0.0, "fast": 21, "slow": 50}))
+    for sw, fib, per, k in itertools.product((20, 40, 60), ("618", "786"), (20, 40), (2.0, 2.5)):
         specs.append(("fvg_bb_ema", {"period": per, "k": k, "fast": 21, "slow": 50}))
         specs.append(("fib_bb_ema", {"swing": sw, "fib": fib, "wick": 0.0, "period": per, "k": k, "fast": 21, "slow": 50}))
+        specs.append(("fib_bb_ema", {"swing": sw, "fib": fib, "wick": 0.35, "period": per, "k": k, "fast": 8, "slow": 21}))
         specs.append(("fvg_fib_bb", {"swing": sw, "fib": fib, "wick": 0.0, "period": per, "k": k}))
         specs.append(
             (
@@ -247,16 +261,25 @@ def build_specs() -> list[tuple[str, dict]]:
                 },
             )
         )
-    return specs
+    # dedupe
+    seen = set()
+    uniq = []
+    for kind, p in specs:
+        key = (kind, tuple(sorted((k, str(v)) for k, v in p.items())))
+        if key in seen:
+            continue
+        seen.add(key)
+        uniq.append((kind, p))
+    return uniq
 
 
 def build_exits() -> list[dict]:
     out = []
     for lot, tp, sm, mh, side in itertools.product(
         (0.02, 0.05, 0.1),
-        (1.0, 1.3, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 7.0, 10.0, 12.0, 15.0),
+        (1.0, 1.3, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 7.0, 10.0, 12.0, 15.0, 20.0),
         (1.5, 1.75, 2.0),
-        (8, 12, 20, 30, 48, 72),
+        (8, 12, 20, 30, 48, 72, 96, 120),
         (
             dict(allow_long=True, allow_short=True),
             dict(allow_long=True, allow_short=False),
