@@ -1,8 +1,8 @@
 {
-  "elapsed_s": 1785.4947264194489,
-  "remaining_s": 1292.505273103714,
-  "signal_combos": 2425,
-  "tested_exits": 246000,
+  "elapsed_s": 2658.3440461158752,
+  "remaining_s": 419.6559536457062,
+  "signal_combos": 3227,
+  "tested_exits": 303550,
   "hits80": 0,
   "best_tpd1": {
     "name": "fib_ema|tp20/sl40|h120|15m|L|lot0.05|multi",
