@@ -30,7 +30,8 @@ SUMMARY = OUT / "HF80_FFBE_SUMMARY.json"
 
 TARGET_WR = 0.80
 MAX_GAP = 0.05
-DEADLINE_S = 2 * 60 * 60  # 2 hours
+# Override with FFBE_DEADLINE_S (seconds) when restarting mid-window
+DEADLINE_S = float(__import__("os").environ.get("FFBE_DEADLINE_S", 2 * 60 * 60))
 UPDATE_EVERY = 25
 
 
