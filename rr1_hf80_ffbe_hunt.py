@@ -302,6 +302,12 @@ def main() -> None:
                     other.rename(other.with_suffix(other.suffix + ".bak"))
                     log(f"parked shorter seed {other.name}")
     raw = load_frames(include_resampled=True)
+    # Force 15m from 5m even when span < 200d (load_frames gate)
+    if "5m" in raw and "15m" not in raw:
+        from rr1_search import resample_ohlc
+
+        raw["15m"] = resample_ohlc(raw["5m"], "15min")
+        log(f"Forced resample 15m: {len(raw['15m'])} from 5m")
     frames = {tf: add_indicators(raw[tf]) for tf in ("5m", "15m") if tf in raw}
     if not frames:
         raise SystemExit("need 5m and/or 15m data")
