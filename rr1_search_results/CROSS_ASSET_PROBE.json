@@ -1,0 +1,109 @@
+{
+  "ok": {
+    "GBP/USD": [
+      1.31551,
+      1.31527,
+      1.31481
+    ],
+    "USD/JPY": [
+      158.79578,
+      158.74302,
+      158.77245
+    ],
+    "AUD/USD": [
+      0.69579,
+      0.69575,
+      0.69558
+    ],
+    "USD/CAD": [
+      1.42757,
+      1.42745,
+      1.42781
+    ],
+    "USD/CHF": [
+      0.8385,
+      0.83848,
+      0.83839
+    ],
+    "NZD/USD": [
+      0.55734,
+      0.55735,
+      0.55731
+    ],
+    "EUR/USD": [
+      1.11245,
+      1.11259,
+      1.11244
+    ],
+    "SPY": [
+      771.13,
+      771.27,
+      770.595
+    ],
+    "QQQ": [
+      733.09,
+      733.29,
+      732.4
+    ],
+    "DIA": [
+      515.715,
+      515.7,
+      515.39
+    ],
+    "IWM": [
+      272.195,
+      272.305,
+      272.13
+    ],
+    "USO": [
+      153.84,
+      153.4,
+      153.22
+    ],
+    "CL": [
+      91.855,
+      91.91,
+      91.875
+    ],
+    "NG": [
+      6.21,
+      6.22,
+      6.225
+    ],
+    "ES": [
+      65.75,
+      65.76,
+      65.715
+    ],
+    "GLD": [
+      374.02,
+      374.45,
+      374.29
+    ],
+    "SLV": [
+      50.355,
+      50.47,
+      50.4
+    ],
+    "UNG": [
+      10.98,
+      10.97,
+      10.975
+    ]
+  },
+  "fail": {
+    "XAG/USD": "This symbol is available starting with the Grow or Venture plan. Consider upgrading now at https://twelvedata.com/pricin",
+    "XPT/USD": "This symbol is available starting with the Grow or Venture plan. Consider upgrading now at https://twelvedata.com/pricin",
+    "XPD/USD": "This symbol is available starting with the Grow or Venture plan. Consider upgrading now at https://twelvedata.com/pricin",
+    "WTI/USD": "This symbol is available starting with the Grow or Venture plan. Consider upgrading now at https://twelvedata.com/pricin",
+    "BRENT/USD": "**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: ht",
+    "USOIL": "**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: ht",
+    "WTICO/USD": "**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: ht",
+    "BCO/USD": "**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: ht",
+    "SPX": "This symbol is available starting with the Pro or Venture plan. Consider upgrading now at https://twelvedata.com/pricing",
+    "IXIC": "**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: ht",
+    "DJI": "**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: ht",
+    "NDX": "This symbol is available starting with the Grow or Venture plan. Consider upgrading now at https://twelvedata.com/pricin",
+    "NQ": "**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: ht"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "idea": "OR portfolio of top-5 \u2014 one position at a time, not AND combo",
+  "singles": [
+    {
+      "name": "inv|turtle_soup|30m",
+      "tf": "30m",
+      "wr": 0.5362318840579711,
+      "oos_wr": 0.4,
+      "tpd": 1.0822663252240716,
+      "oos_tpd": 0.032467532467532464,
+      "n": 483,
+      "oos_n": 5,
+      "net": 1852.747336740228,
+      "eq": 2352.747336740237,
+      "charges": 518.0
+    },
+    {
+      "name": "course|wyckoff_spring|5m",
+      "tf": "5m",
+      "wr": 0.47058823529411764,
+      "oos_wr": 0.25,
+      "tpd": 0.18749015282810777,
+      "oos_tpd": 0.0527555346208196,
+      "n": 85,
+      "oos_n": 8,
+      "net": -79.64979760003412,
+      "eq": 420.3502023999671,
+      "charges": 62.90000000000002
+    },
+    {
+      "name": "inv|wyckoff_spring|15m",
+      "tf": "15m",
+      "wr": 0.14285714285714285,
+      "oos_wr": 0.5422535211267606,
+      "tpd": 0.015521064301552107,
+      "oos_tpd": 0.9268065268065268,
+      "n": 7,
+      "oos_n": 142,
+      "net": -102.9795420000023,
+      "eq": 397.0204579999978,
+      "charges": 5.180000000000001
+    },
+    {
+      "name": "inv|rsi_macd|5m",
+      "tf": "5m",
+      "wr": 0.3953488372093023,
+      "oos_wr": 0.25,
+      "tpd": 0.09484795966598393,
+      "oos_tpd": 0.0263777673104098,
+      "n": 43,
+      "oos_n": 4,
+      "net": -84.62195620001198,
+      "eq": 415.37804379998863,
+      "charges": 31.819999999999997
+    },
+    {
+      "name": "inv|of_absorption|5m",
+      "tf": "5m",
+      "wr": 0.5365853658536586,
+      "oos_wr": 0.0,
+      "tpd": 1.085237119899165,
+      "oos_tpd": 0.00659444182760245,
+      "n": 492,
+      "oos_n": 1,
+      "net": 2182.5454602002055,
+      "eq": 2682.545460200201,
+      "charges": 468.4200000000001
+    }
+  ],
+  "portfolio_all_tf": {
+    "winrate": 0.49764309764309766,
+    "trades_per_day": 2.457737321196359,
+    "trades": 1485,
+    "net_pnl": 2120.800207020539,
+    "final_equity": 2620.8002070205666,
+    "max_dd": 1.1294448611864403,
+    "profit_factor": 1.0689845759684276,
+    "by_source": {
+      "course|wyckoff_spring|5m": 405,
+      "inv|of_absorption|5m": 195,
+      "inv|rsi_macd|5m": 311,
+      "inv|turtle_soup|30m": 475,
+      "inv|wyckoff_spring|15m": 99
+    }
+  },
+  "portfolio_is": {
+    "winrate": 0.509822263797942,
+    "trades_per_day": 2.357964392626438,
+    "trades": 1069,
+    "net_pnl": 1720.722513820151
+  },
+  "portfolio_oos": {
+    "winrate": 0.46522781774580335,
+    "trades_per_day": 2.7357075913776945,
+    "trades": 417,
+    "net_pnl": 398.746213200388
+  },
+  "portfolio_5m_only": {
+    "winrate": 0.5048076923076923,
+    "trades_per_day": 3.0982385624778344,
+    "trades": 1872,
+    "net_pnl": 969.3340788006587,
+    "final_equity": 1469.3340788006615,
+    "by_source": {
+      "course|wyckoff_spring|5m": 780,
+      "inv|of_absorption|5m": 387,
+      "inv|rsi_macd|5m": 705
+    }
+  }
+}

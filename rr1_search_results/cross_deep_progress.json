@@ -1,0 +1,41 @@
+{
+  "symbol": "USD/JPY",
+  "ki": 160,
+  "kinds": 598,
+  "tested": 43176,
+  "quals": 0,
+  "nears": 0,
+  "best": {
+    "symbol": "USD/JPY",
+    "class": "fx",
+    "name": "USD/JPY|fvg_rsi|rsi_not_chase+atr_not_expanded|rr1.2|h12",
+    "kind": "fvg_rsi",
+    "filter": "rsi_not_chase+atr_not_expanded",
+    "wr": 0.7727272727272727,
+    "oos_wr": 0.8333333333333334,
+    "tpd": 0.04938271604938271,
+    "oos_tpd": 0.041728763040238454,
+    "n": 22,
+    "oos_n": 6,
+    "pf": 3.3342341634880244,
+    "oos_pf": 5.019567996860857,
+    "pnl": 125.30989735615945,
+    "oos_pnl": 40.99959356800008,
+    "exit": {
+      "rr": 1.2,
+      "max_hold": 12,
+      "atr": "ATR_7",
+      "allow_long": true,
+      "allow_short": true
+    },
+    "params": {
+      "rsi": 7,
+      "os": 35,
+      "ob": 75,
+      "sessions": null
+    },
+    "qualifies": false,
+    "near": false
+  },
+  "time": "2026-10-14 18:00:46"
+}

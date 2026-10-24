@@ -1,0 +1,890 @@
+2026-10-19 18:56:46 | lot=0.01: min TP$ for $2.0 net = 2.270
+2026-10-19 18:56:46 | lot=0.02: min TP$ for $2.0 net = 1.270
+2026-10-19 18:56:46 | lot=0.05: min TP$ for $2.0 net = 0.670
+2026-10-19 18:56:47 | Loaded LOCAL 1m: 910000 2024-09-05 05:02:00 → 2026-10-14 05:04:00 (XAUUSD_1min_2024-09-05_2026-10-14.csv)
+2026-10-19 18:56:47 | Loaded LOCAL 5m: 185000 2024-09-03 16:00:00 → 2026-10-13 18:15:00 (XAUUSD_5min_2024-09-03_2026-10-13.csv)
+2026-10-19 18:56:47 | indicators 1m…
+/workspace/rr1_search.py:247: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB786_{sw}"] = d[f"SW_HI_{sw}"] - 0.786 * rng_s
+/workspace/rr1_search.py:249: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP382_{sw}"] = d[f"SW_LO_{sw}"] + 0.382 * rng_s
+/workspace/rr1_search.py:250: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP500_{sw}"] = d[f"SW_LO_{sw}"] + 0.500 * rng_s
+/workspace/rr1_search.py:251: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP618_{sw}"] = d[f"SW_LO_{sw}"] + 0.618 * rng_s
+/workspace/rr1_search.py:252: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP786_{sw}"] = d[f"SW_LO_{sw}"] + 0.786 * rng_s
+/workspace/rr1_search.py:238: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"SW_HI_{sw}"] = h.rolling(sw).max().shift(1)
+/workspace/rr1_search.py:239: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"SW_LO_{sw}"] = l.rolling(sw).min().shift(1)
+/workspace/rr1_search.py:242: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQ_{sw}"] = mid
+/workspace/rr1_search.py:244: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB382_{sw}"] = d[f"SW_HI_{sw}"] - 0.382 * rng_s
+/workspace/rr1_search.py:245: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB500_{sw}"] = d[f"SW_HI_{sw}"] - 0.500 * rng_s
+/workspace/rr1_search.py:246: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB618_{sw}"] = d[f"SW_HI_{sw}"] - 0.618 * rng_s
+/workspace/rr1_search.py:247: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB786_{sw}"] = d[f"SW_HI_{sw}"] - 0.786 * rng_s
+/workspace/rr1_search.py:249: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP382_{sw}"] = d[f"SW_LO_{sw}"] + 0.382 * rng_s
+/workspace/rr1_search.py:250: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP500_{sw}"] = d[f"SW_LO_{sw}"] + 0.500 * rng_s
+/workspace/rr1_search.py:251: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP618_{sw}"] = d[f"SW_LO_{sw}"] + 0.618 * rng_s
+/workspace/rr1_search.py:252: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP786_{sw}"] = d[f"SW_LO_{sw}"] + 0.786 * rng_s
+/workspace/rr1_search.py:257: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BULL_BOT"] = h.shift(2).where(bull_fvg)
+/workspace/rr1_search.py:258: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BULL_TOP"] = l.where(bull_fvg)
+/workspace/rr1_search.py:259: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BEAR_TOP"] = l.shift(2).where(bear_fvg)
+/workspace/rr1_search.py:260: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BEAR_BOT"] = h.where(bear_fvg)
+/workspace/rr1_search.py:265: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BULL_CE"] = (d["FVG_BULL_BOT"] + d["FVG_BULL_TOP"]) / 2.0
+/workspace/rr1_search.py:266: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BEAR_CE"] = (d["FVG_BEAR_BOT"] + d["FVG_BEAR_TOP"]) / 2.0
+/workspace/rr1_search.py:270: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG1_BULL_BOT"] = h.shift(1).where(gap_up).ffill().shift(1)
+/workspace/rr1_search.py:271: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG1_BULL_TOP"] = l.where(gap_up).ffill().shift(1)
+/workspace/rr1_search.py:272: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG1_BEAR_TOP"] = l.shift(1).where(gap_dn).ffill().shift(1)
+/workspace/rr1_search.py:273: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG1_BEAR_BOT"] = h.where(gap_dn).ffill().shift(1)
+/workspace/rr1_search.py:275: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BPR_TOP"] = pd.concat([d["FVG_BULL_TOP"], d["FVG_BEAR_TOP"]], axis=1).min(axis=1)
+/workspace/rr1_search.py:276: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BPR_BOT"] = pd.concat([d["FVG_BULL_BOT"], d["FVG_BEAR_BOT"]], axis=1).max(axis=1)
+/workspace/rr1_search.py:279: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["_day"] = day
+/workspace/rr1_search.py:285: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PDH"] = day.map(daily_hi.shift(1)).astype(float)
+/workspace/rr1_search.py:286: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PDL"] = day.map(daily_lo.shift(1)).astype(float)
+/workspace/rr1_search.py:290: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PWH"] = week.map(weekly_hi.shift(1)).astype(float)
+/workspace/rr1_search.py:291: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PWL"] = week.map(weekly_lo.shift(1)).astype(float)
+/workspace/rr1_search.py:296: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["NDOG_TOP"] = pd.concat([day_open, prev_close_map], axis=1).max(axis=1)
+/workspace/rr1_search.py:297: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["NDOG_BOT"] = pd.concat([day_open, prev_close_map], axis=1).min(axis=1)
+/workspace/rr1_search.py:301: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["NWOG_TOP"] = pd.concat([week_open, prev_wclose], axis=1).max(axis=1)
+/workspace/rr1_search.py:302: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["NWOG_BOT"] = pd.concat([week_open, prev_wclose], axis=1).min(axis=1)
+/workspace/rr1_search.py:315: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQH_{sw}"] = (sw_hi - prev_hi).abs() <= (tol * atr)
+/workspace/rr1_search.py:316: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQL_{sw}"] = (sw_lo - prev_lo).abs() <= (tol * atr)
+/workspace/rr1_search.py:317: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQH_LVL_{sw}"] = sw_hi.where(d[f"EQH_{sw}"]).ffill()
+/workspace/rr1_search.py:318: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQL_LVL_{sw}"] = sw_lo.where(d[f"EQL_{sw}"]).ffill()
+/workspace/rr1_search.py:315: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQH_{sw}"] = (sw_hi - prev_hi).abs() <= (tol * atr)
+/workspace/rr1_search.py:316: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQL_{sw}"] = (sw_lo - prev_lo).abs() <= (tol * atr)
+/workspace/rr1_search.py:317: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQH_LVL_{sw}"] = sw_hi.where(d[f"EQH_{sw}"]).ffill()
+/workspace/rr1_search.py:318: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQL_LVL_{sw}"] = sw_lo.where(d[f"EQL_{sw}"]).ffill()
+/workspace/rr1_search.py:323: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OB_BULL_HI"] = h.shift(1).where(impulse_up & d["bear"].shift(1)).ffill().shift(1)
+/workspace/rr1_search.py:324: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OB_BULL_LO"] = l.shift(1).where(impulse_up & d["bear"].shift(1)).ffill().shift(1)
+/workspace/rr1_search.py:325: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OB_BEAR_HI"] = h.shift(1).where(impulse_dn & d["bull"].shift(1)).ffill().shift(1)
+/workspace/rr1_search.py:326: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OB_BEAR_LO"] = l.shift(1).where(impulse_dn & d["bull"].shift(1)).ffill().shift(1)
+/workspace/rr1_search.py:330: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BB_BEAR_HI"] = d["OB_BULL_HI"].where(broke_bull_ob).ffill().shift(1)
+/workspace/rr1_search.py:331: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BB_BEAR_LO"] = d["OB_BULL_LO"].where(broke_bull_ob).ffill().shift(1)
+/workspace/rr1_search.py:332: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BB_BULL_HI"] = d["OB_BEAR_HI"].where(broke_bear_ob).ffill().shift(1)
+/workspace/rr1_search.py:333: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BB_BULL_LO"] = d["OB_BEAR_LO"].where(broke_bear_ob).ffill().shift(1)
+/workspace/rr1_search.py:335: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BOS_UP_20"] = c > d["SW_HI_20"]
+/workspace/rr1_search.py:336: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BOS_DN_20"] = c < d["SW_LO_20"]
+/workspace/rr1_search.py:337: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BOS_UP_40"] = c > d["SW_HI_40"]
+/workspace/rr1_search.py:338: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BOS_DN_40"] = c < d["SW_LO_40"]
+/workspace/rr1_search.py:346: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_TENKAN"] = tenkan
+/workspace/rr1_search.py:347: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_KIJUN"] = kijun
+/workspace/rr1_search.py:348: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_SPAN_A"] = span_a
+/workspace/rr1_search.py:349: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_SPAN_B"] = span_b
+/workspace/rr1_search.py:350: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_CLOUD_TOP"] = pd.concat([span_a, span_b], axis=1).max(axis=1)
+/workspace/rr1_search.py:351: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_CLOUD_BOT"] = pd.concat([span_a, span_b], axis=1).min(axis=1)
+/workspace/rr1_search.py:360: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["HA_OPEN"] = ha_o
+/workspace/rr1_search.py:361: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["HA_CLOSE"] = ha_c
+/workspace/rr1_search.py:362: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["HA_BULL"] = ha_c > ha_o
+/workspace/rr1_search.py:363: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["HA_BEAR"] = ha_c < ha_o
+/workspace/rr1_search.py:367: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_MID_{period}_{mult}"] = mid
+/workspace/rr1_search.py:368: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_UP_{period}_{mult}"] = mid + mult * d["ATR_14"]
+/workspace/rr1_search.py:369: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_LO_{period}_{mult}"] = mid - mult * d["ATR_14"]
+/workspace/rr1_search.py:367: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_MID_{period}_{mult}"] = mid
+/workspace/rr1_search.py:368: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_UP_{period}_{mult}"] = mid + mult * d["ATR_14"]
+/workspace/rr1_search.py:369: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_LO_{period}_{mult}"] = mid - mult * d["ATR_14"]
+/workspace/rr1_search.py:367: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_MID_{period}_{mult}"] = mid
+/workspace/rr1_search.py:368: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_UP_{period}_{mult}"] = mid + mult * d["ATR_14"]
+/workspace/rr1_search.py:369: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_LO_{period}_{mult}"] = mid - mult * d["ATR_14"]
+/workspace/rr1_search.py:373: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"ST_UP_{mult}"] = (hl2 + mult * d["ATR_14"]).shift(1)
+/workspace/rr1_search.py:374: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"ST_LO_{mult}"] = (hl2 - mult * d["ATR_14"]).shift(1)
+/workspace/rr1_search.py:373: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"ST_UP_{mult}"] = (hl2 + mult * d["ATR_14"]).shift(1)
+/workspace/rr1_search.py:374: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"ST_LO_{mult}"] = (hl2 - mult * d["ATR_14"]).shift(1)
+/workspace/rr1_search.py:380: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"CCI_{period}"] = (tp - sma) / (0.015 * mad.replace(0, np.nan))
+/workspace/rr1_search.py:380: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"CCI_{period}"] = (tp - sma) / (0.015 * mad.replace(0, np.nan))
+/workspace/rr1_search.py:390: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PLUS_DI"] = plus_di
+/workspace/rr1_search.py:391: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["MINUS_DI"] = minus_di
+/workspace/rr1_search.py:392: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ADX"] = dx.ewm(alpha=1 / 14, adjust=False).mean()
+/workspace/rr1_search.py:397: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"Z_{period}"] = (c - m) / s.replace(0, np.nan)
+/workspace/rr1_search.py:397: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"Z_{period}"] = (c - m) / s.replace(0, np.nan)
+/workspace/rr1_search.py:400: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["date"] = d.index.date
+/workspace/rr1_search.py:402: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["mod"] = mod
+/workspace/rr1_search.py:406: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:407: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:406: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:407: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:406: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:407: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:424: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_CLV"] = clv
+/workspace/rr1_search.py:429: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_DELTA"] = 0.6 * of_delta + 0.4 * body_signed
+/workspace/rr1_search.py:430: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_CVD"] = d["OF_DELTA"].cumsum()
+/workspace/rr1_search.py:432: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_SMA_{span}"] = d["OF_CVD"].rolling(span).mean()
+/workspace/rr1_search.py:433: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_DELTA_SMA_{span}"] = d["OF_DELTA"].rolling(span).mean()
+/workspace/rr1_search.py:432: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_SMA_{span}"] = d["OF_CVD"].rolling(span).mean()
+/workspace/rr1_search.py:433: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_DELTA_SMA_{span}"] = d["OF_DELTA"].rolling(span).mean()
+/workspace/rr1_search.py:432: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_SMA_{span}"] = d["OF_CVD"].rolling(span).mean()
+/workspace/rr1_search.py:433: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_DELTA_SMA_{span}"] = d["OF_DELTA"].rolling(span).mean()
+/workspace/rr1_search.py:440: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_BUY_STREAK"] = buy_streak
+/workspace/rr1_search.py:441: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_SELL_STREAK"] = sell_streak
+/workspace/rr1_search.py:445: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_EFFORT"] = effort
+/workspace/rr1_search.py:447: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_ABSORB_BUY"] = (d["OF_DELTA"] < 0) & (d["lower_wick"] >= 0.55) & (clv >= 0.55) & (effort >= 1.2)
+/workspace/rr1_search.py:448: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_ABSORB_SELL"] = (d["OF_DELTA"] > 0) & (d["upper_wick"] >= 0.55) & (clv <= 0.45) & (effort >= 1.2)
+/workspace/rr1_search.py:451: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_PX_HH_{look}"] = c >= c.rolling(look).max().shift(1)
+/workspace/rr1_search.py:452: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_PX_LL_{look}"] = c <= c.rolling(look).min().shift(1)
+/workspace/rr1_search.py:453: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_HH_{look}"] = d["OF_CVD"] >= d["OF_CVD"].rolling(look).max().shift(1)
+/workspace/rr1_search.py:454: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_LL_{look}"] = d["OF_CVD"] <= d["OF_CVD"].rolling(look).min().shift(1)
+/workspace/rr1_search.py:451: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_PX_HH_{look}"] = c >= c.rolling(look).max().shift(1)
+/workspace/rr1_search.py:452: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_PX_LL_{look}"] = c <= c.rolling(look).min().shift(1)
+/workspace/rr1_search.py:453: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_HH_{look}"] = d["OF_CVD"] >= d["OF_CVD"].rolling(look).max().shift(1)
+/workspace/rr1_search.py:454: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_LL_{look}"] = d["OF_CVD"] <= d["OF_CVD"].rolling(look).min().shift(1)
+/workspace/rr1_search.py:456: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_SWEEP_LO"] = (l < d["SW_LO_10"]) & (c > d["SW_LO_10"]) & (clv >= 0.55)
+/workspace/rr1_search.py:457: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_SWEEP_HI"] = (h > d["SW_HI_10"]) & (c < d["SW_HI_10"]) & (clv <= 0.45)
+/workspace/rr1_search.py:462: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_VOL"] = vol
+/workspace/rr1_search.py:465: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_RVOL_{span}"] = vol / vma.replace(0, np.nan)
+/workspace/rr1_search.py:465: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_RVOL_{span}"] = vol / vma.replace(0, np.nan)
+/workspace/rr1_search.py:465: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_RVOL_{span}"] = vol / vma.replace(0, np.nan)
+/workspace/rr1_search.py:466: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_UP"] = c > d["Open"]
+/workspace/rr1_search.py:467: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_DN"] = c < d["Open"]
+/workspace/rr1_search.py:470: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_UP_HV"] = d["LEVY_UP"] & (rvol20 >= 1.2)
+/workspace/rr1_search.py:471: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_DN_HV"] = d["LEVY_DN"] & (rvol20 >= 1.2)
+/workspace/rr1_search.py:472: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_UP_LV"] = d["LEVY_UP"] & (rvol20 <= 0.8)
+/workspace/rr1_search.py:473: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_DN_LV"] = d["LEVY_DN"] & (rvol20 <= 0.8)
+/workspace/rr1_search.py:479: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BULL_REG_{look}"] = (hv_up > hv_dn) & (hv_up >= 2)
+/workspace/rr1_search.py:481: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BEAR_REG_{look}"] = (hv_dn > hv_up) & (lv_up >= 2) & (hv_dn >= 2)
+/workspace/rr1_search.py:479: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BULL_REG_{look}"] = (hv_up > hv_dn) & (hv_up >= 2)
+/workspace/rr1_search.py:481: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BEAR_REG_{look}"] = (hv_dn > hv_up) & (lv_up >= 2) & (hv_dn >= 2)
+/workspace/rr1_search.py:479: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BULL_REG_{look}"] = (hv_up > hv_dn) & (hv_up >= 2)
+/workspace/rr1_search.py:481: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BEAR_REG_{look}"] = (hv_dn > hv_up) & (lv_up >= 2) & (hv_dn >= 2)
+/workspace/rr1_search.py:487: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PH_HI"] = pd.Series(hour_id.map(prior_h["H"]), index=d.index, dtype=float)
+/workspace/rr1_search.py:488: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PH_LO"] = pd.Series(hour_id.map(prior_h["L"]), index=d.index, dtype=float)
+/workspace/rr1_search.py:490: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["IB_MOTHER"] = (h.shift(1) <= h.shift(2)) & (l.shift(1) >= l.shift(2))
+/workspace/rr1_search.py:491: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["IB_HI"] = h.shift(2)
+/workspace/rr1_search.py:492: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["IB_LO"] = l.shift(2)
+2026-10-19 18:56:48 | indicators 5m…
+/workspace/rr1_search.py:247: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB786_{sw}"] = d[f"SW_HI_{sw}"] - 0.786 * rng_s
+/workspace/rr1_search.py:249: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP382_{sw}"] = d[f"SW_LO_{sw}"] + 0.382 * rng_s
+/workspace/rr1_search.py:250: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP500_{sw}"] = d[f"SW_LO_{sw}"] + 0.500 * rng_s
+/workspace/rr1_search.py:251: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP618_{sw}"] = d[f"SW_LO_{sw}"] + 0.618 * rng_s
+/workspace/rr1_search.py:252: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP786_{sw}"] = d[f"SW_LO_{sw}"] + 0.786 * rng_s
+/workspace/rr1_search.py:238: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"SW_HI_{sw}"] = h.rolling(sw).max().shift(1)
+/workspace/rr1_search.py:239: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"SW_LO_{sw}"] = l.rolling(sw).min().shift(1)
+/workspace/rr1_search.py:242: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQ_{sw}"] = mid
+/workspace/rr1_search.py:244: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB382_{sw}"] = d[f"SW_HI_{sw}"] - 0.382 * rng_s
+/workspace/rr1_search.py:245: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB500_{sw}"] = d[f"SW_HI_{sw}"] - 0.500 * rng_s
+/workspace/rr1_search.py:246: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB618_{sw}"] = d[f"SW_HI_{sw}"] - 0.618 * rng_s
+/workspace/rr1_search.py:247: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB786_{sw}"] = d[f"SW_HI_{sw}"] - 0.786 * rng_s
+/workspace/rr1_search.py:249: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP382_{sw}"] = d[f"SW_LO_{sw}"] + 0.382 * rng_s
+/workspace/rr1_search.py:250: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP500_{sw}"] = d[f"SW_LO_{sw}"] + 0.500 * rng_s
+/workspace/rr1_search.py:251: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP618_{sw}"] = d[f"SW_LO_{sw}"] + 0.618 * rng_s
+/workspace/rr1_search.py:252: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"FIB_UP786_{sw}"] = d[f"SW_LO_{sw}"] + 0.786 * rng_s
+/workspace/rr1_search.py:257: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BULL_BOT"] = h.shift(2).where(bull_fvg)
+/workspace/rr1_search.py:258: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BULL_TOP"] = l.where(bull_fvg)
+/workspace/rr1_search.py:259: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BEAR_TOP"] = l.shift(2).where(bear_fvg)
+/workspace/rr1_search.py:260: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BEAR_BOT"] = h.where(bear_fvg)
+/workspace/rr1_search.py:265: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BULL_CE"] = (d["FVG_BULL_BOT"] + d["FVG_BULL_TOP"]) / 2.0
+/workspace/rr1_search.py:266: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG_BEAR_CE"] = (d["FVG_BEAR_BOT"] + d["FVG_BEAR_TOP"]) / 2.0
+/workspace/rr1_search.py:270: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG1_BULL_BOT"] = h.shift(1).where(gap_up).ffill().shift(1)
+/workspace/rr1_search.py:271: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG1_BULL_TOP"] = l.where(gap_up).ffill().shift(1)
+/workspace/rr1_search.py:272: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG1_BEAR_TOP"] = l.shift(1).where(gap_dn).ffill().shift(1)
+/workspace/rr1_search.py:273: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["FVG1_BEAR_BOT"] = h.where(gap_dn).ffill().shift(1)
+/workspace/rr1_search.py:275: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BPR_TOP"] = pd.concat([d["FVG_BULL_TOP"], d["FVG_BEAR_TOP"]], axis=1).min(axis=1)
+/workspace/rr1_search.py:276: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BPR_BOT"] = pd.concat([d["FVG_BULL_BOT"], d["FVG_BEAR_BOT"]], axis=1).max(axis=1)
+/workspace/rr1_search.py:279: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["_day"] = day
+/workspace/rr1_search.py:285: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PDH"] = day.map(daily_hi.shift(1)).astype(float)
+/workspace/rr1_search.py:286: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PDL"] = day.map(daily_lo.shift(1)).astype(float)
+/workspace/rr1_search.py:290: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PWH"] = week.map(weekly_hi.shift(1)).astype(float)
+/workspace/rr1_search.py:291: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PWL"] = week.map(weekly_lo.shift(1)).astype(float)
+/workspace/rr1_search.py:296: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["NDOG_TOP"] = pd.concat([day_open, prev_close_map], axis=1).max(axis=1)
+/workspace/rr1_search.py:297: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["NDOG_BOT"] = pd.concat([day_open, prev_close_map], axis=1).min(axis=1)
+/workspace/rr1_search.py:301: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["NWOG_TOP"] = pd.concat([week_open, prev_wclose], axis=1).max(axis=1)
+/workspace/rr1_search.py:302: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["NWOG_BOT"] = pd.concat([week_open, prev_wclose], axis=1).min(axis=1)
+/workspace/rr1_search.py:315: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQH_{sw}"] = (sw_hi - prev_hi).abs() <= (tol * atr)
+/workspace/rr1_search.py:316: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQL_{sw}"] = (sw_lo - prev_lo).abs() <= (tol * atr)
+/workspace/rr1_search.py:317: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQH_LVL_{sw}"] = sw_hi.where(d[f"EQH_{sw}"]).ffill()
+/workspace/rr1_search.py:318: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQL_LVL_{sw}"] = sw_lo.where(d[f"EQL_{sw}"]).ffill()
+/workspace/rr1_search.py:315: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQH_{sw}"] = (sw_hi - prev_hi).abs() <= (tol * atr)
+/workspace/rr1_search.py:316: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQL_{sw}"] = (sw_lo - prev_lo).abs() <= (tol * atr)
+/workspace/rr1_search.py:317: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQH_LVL_{sw}"] = sw_hi.where(d[f"EQH_{sw}"]).ffill()
+/workspace/rr1_search.py:318: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"EQL_LVL_{sw}"] = sw_lo.where(d[f"EQL_{sw}"]).ffill()
+/workspace/rr1_search.py:323: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OB_BULL_HI"] = h.shift(1).where(impulse_up & d["bear"].shift(1)).ffill().shift(1)
+/workspace/rr1_search.py:324: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OB_BULL_LO"] = l.shift(1).where(impulse_up & d["bear"].shift(1)).ffill().shift(1)
+/workspace/rr1_search.py:325: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OB_BEAR_HI"] = h.shift(1).where(impulse_dn & d["bull"].shift(1)).ffill().shift(1)
+/workspace/rr1_search.py:326: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OB_BEAR_LO"] = l.shift(1).where(impulse_dn & d["bull"].shift(1)).ffill().shift(1)
+/workspace/rr1_search.py:330: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BB_BEAR_HI"] = d["OB_BULL_HI"].where(broke_bull_ob).ffill().shift(1)
+/workspace/rr1_search.py:331: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BB_BEAR_LO"] = d["OB_BULL_LO"].where(broke_bull_ob).ffill().shift(1)
+/workspace/rr1_search.py:332: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BB_BULL_HI"] = d["OB_BEAR_HI"].where(broke_bear_ob).ffill().shift(1)
+/workspace/rr1_search.py:333: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BB_BULL_LO"] = d["OB_BEAR_LO"].where(broke_bear_ob).ffill().shift(1)
+/workspace/rr1_search.py:335: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BOS_UP_20"] = c > d["SW_HI_20"]
+/workspace/rr1_search.py:336: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BOS_DN_20"] = c < d["SW_LO_20"]
+/workspace/rr1_search.py:337: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BOS_UP_40"] = c > d["SW_HI_40"]
+/workspace/rr1_search.py:338: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["BOS_DN_40"] = c < d["SW_LO_40"]
+/workspace/rr1_search.py:346: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_TENKAN"] = tenkan
+/workspace/rr1_search.py:347: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_KIJUN"] = kijun
+/workspace/rr1_search.py:348: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_SPAN_A"] = span_a
+/workspace/rr1_search.py:349: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_SPAN_B"] = span_b
+/workspace/rr1_search.py:350: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_CLOUD_TOP"] = pd.concat([span_a, span_b], axis=1).max(axis=1)
+/workspace/rr1_search.py:351: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ICH_CLOUD_BOT"] = pd.concat([span_a, span_b], axis=1).min(axis=1)
+/workspace/rr1_search.py:360: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["HA_OPEN"] = ha_o
+/workspace/rr1_search.py:361: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["HA_CLOSE"] = ha_c
+/workspace/rr1_search.py:362: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["HA_BULL"] = ha_c > ha_o
+/workspace/rr1_search.py:363: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["HA_BEAR"] = ha_c < ha_o
+/workspace/rr1_search.py:367: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_MID_{period}_{mult}"] = mid
+/workspace/rr1_search.py:368: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_UP_{period}_{mult}"] = mid + mult * d["ATR_14"]
+/workspace/rr1_search.py:369: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_LO_{period}_{mult}"] = mid - mult * d["ATR_14"]
+/workspace/rr1_search.py:367: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_MID_{period}_{mult}"] = mid
+/workspace/rr1_search.py:368: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_UP_{period}_{mult}"] = mid + mult * d["ATR_14"]
+/workspace/rr1_search.py:369: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_LO_{period}_{mult}"] = mid - mult * d["ATR_14"]
+/workspace/rr1_search.py:367: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_MID_{period}_{mult}"] = mid
+/workspace/rr1_search.py:368: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_UP_{period}_{mult}"] = mid + mult * d["ATR_14"]
+/workspace/rr1_search.py:369: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"KEL_LO_{period}_{mult}"] = mid - mult * d["ATR_14"]
+/workspace/rr1_search.py:373: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"ST_UP_{mult}"] = (hl2 + mult * d["ATR_14"]).shift(1)
+/workspace/rr1_search.py:374: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"ST_LO_{mult}"] = (hl2 - mult * d["ATR_14"]).shift(1)
+/workspace/rr1_search.py:373: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"ST_UP_{mult}"] = (hl2 + mult * d["ATR_14"]).shift(1)
+/workspace/rr1_search.py:374: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"ST_LO_{mult}"] = (hl2 - mult * d["ATR_14"]).shift(1)
+/workspace/rr1_search.py:380: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"CCI_{period}"] = (tp - sma) / (0.015 * mad.replace(0, np.nan))
+/workspace/rr1_search.py:380: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"CCI_{period}"] = (tp - sma) / (0.015 * mad.replace(0, np.nan))
+/workspace/rr1_search.py:390: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PLUS_DI"] = plus_di
+/workspace/rr1_search.py:391: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["MINUS_DI"] = minus_di
+/workspace/rr1_search.py:392: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["ADX"] = dx.ewm(alpha=1 / 14, adjust=False).mean()
+/workspace/rr1_search.py:397: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"Z_{period}"] = (c - m) / s.replace(0, np.nan)
+/workspace/rr1_search.py:397: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"Z_{period}"] = (c - m) / s.replace(0, np.nan)
+/workspace/rr1_search.py:400: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["date"] = d.index.date
+/workspace/rr1_search.py:402: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["mod"] = mod
+/workspace/rr1_search.py:406: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:407: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:406: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:407: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:406: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}"] = h.where(in_open).groupby(d["date"]).cummax().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:407: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}"] = l.where(in_open).groupby(d["date"]).cummin().groupby(d["date"]).ffill().shift(1)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:411: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_HI_{name}_{win}"] = (
+/workspace/rr1_search.py:414: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_LO_{name}_{win}"] = (
+/workspace/rr1_search.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OR_READY_{name}_{win}"] = mod >= (start_min + win)
+/workspace/rr1_search.py:424: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_CLV"] = clv
+/workspace/rr1_search.py:429: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_DELTA"] = 0.6 * of_delta + 0.4 * body_signed
+/workspace/rr1_search.py:430: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_CVD"] = d["OF_DELTA"].cumsum()
+/workspace/rr1_search.py:432: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_SMA_{span}"] = d["OF_CVD"].rolling(span).mean()
+/workspace/rr1_search.py:433: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_DELTA_SMA_{span}"] = d["OF_DELTA"].rolling(span).mean()
+/workspace/rr1_search.py:432: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_SMA_{span}"] = d["OF_CVD"].rolling(span).mean()
+/workspace/rr1_search.py:433: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_DELTA_SMA_{span}"] = d["OF_DELTA"].rolling(span).mean()
+/workspace/rr1_search.py:432: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_SMA_{span}"] = d["OF_CVD"].rolling(span).mean()
+/workspace/rr1_search.py:433: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_DELTA_SMA_{span}"] = d["OF_DELTA"].rolling(span).mean()
+/workspace/rr1_search.py:440: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_BUY_STREAK"] = buy_streak
+/workspace/rr1_search.py:441: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_SELL_STREAK"] = sell_streak
+/workspace/rr1_search.py:445: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_EFFORT"] = effort
+/workspace/rr1_search.py:447: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_ABSORB_BUY"] = (d["OF_DELTA"] < 0) & (d["lower_wick"] >= 0.55) & (clv >= 0.55) & (effort >= 1.2)
+/workspace/rr1_search.py:448: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_ABSORB_SELL"] = (d["OF_DELTA"] > 0) & (d["upper_wick"] >= 0.55) & (clv <= 0.45) & (effort >= 1.2)
+/workspace/rr1_search.py:451: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_PX_HH_{look}"] = c >= c.rolling(look).max().shift(1)
+/workspace/rr1_search.py:452: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_PX_LL_{look}"] = c <= c.rolling(look).min().shift(1)
+/workspace/rr1_search.py:453: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_HH_{look}"] = d["OF_CVD"] >= d["OF_CVD"].rolling(look).max().shift(1)
+/workspace/rr1_search.py:454: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_LL_{look}"] = d["OF_CVD"] <= d["OF_CVD"].rolling(look).min().shift(1)
+/workspace/rr1_search.py:451: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_PX_HH_{look}"] = c >= c.rolling(look).max().shift(1)
+/workspace/rr1_search.py:452: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_PX_LL_{look}"] = c <= c.rolling(look).min().shift(1)
+/workspace/rr1_search.py:453: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_HH_{look}"] = d["OF_CVD"] >= d["OF_CVD"].rolling(look).max().shift(1)
+/workspace/rr1_search.py:454: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"OF_CVD_LL_{look}"] = d["OF_CVD"] <= d["OF_CVD"].rolling(look).min().shift(1)
+/workspace/rr1_search.py:456: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_SWEEP_LO"] = (l < d["SW_LO_10"]) & (c > d["SW_LO_10"]) & (clv >= 0.55)
+/workspace/rr1_search.py:457: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["OF_SWEEP_HI"] = (h > d["SW_HI_10"]) & (c < d["SW_HI_10"]) & (clv <= 0.45)
+/workspace/rr1_search.py:462: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_VOL"] = vol
+/workspace/rr1_search.py:465: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_RVOL_{span}"] = vol / vma.replace(0, np.nan)
+/workspace/rr1_search.py:465: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_RVOL_{span}"] = vol / vma.replace(0, np.nan)
+/workspace/rr1_search.py:465: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_RVOL_{span}"] = vol / vma.replace(0, np.nan)
+/workspace/rr1_search.py:466: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_UP"] = c > d["Open"]
+/workspace/rr1_search.py:467: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_DN"] = c < d["Open"]
+/workspace/rr1_search.py:470: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_UP_HV"] = d["LEVY_UP"] & (rvol20 >= 1.2)
+/workspace/rr1_search.py:471: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_DN_HV"] = d["LEVY_DN"] & (rvol20 >= 1.2)
+/workspace/rr1_search.py:472: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_UP_LV"] = d["LEVY_UP"] & (rvol20 <= 0.8)
+/workspace/rr1_search.py:473: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["LEVY_DN_LV"] = d["LEVY_DN"] & (rvol20 <= 0.8)
+/workspace/rr1_search.py:479: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BULL_REG_{look}"] = (hv_up > hv_dn) & (hv_up >= 2)
+/workspace/rr1_search.py:481: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BEAR_REG_{look}"] = (hv_dn > hv_up) & (lv_up >= 2) & (hv_dn >= 2)
+/workspace/rr1_search.py:479: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BULL_REG_{look}"] = (hv_up > hv_dn) & (hv_up >= 2)
+/workspace/rr1_search.py:481: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BEAR_REG_{look}"] = (hv_dn > hv_up) & (lv_up >= 2) & (hv_dn >= 2)
+/workspace/rr1_search.py:479: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BULL_REG_{look}"] = (hv_up > hv_dn) & (hv_up >= 2)
+/workspace/rr1_search.py:481: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"LEVY_BEAR_REG_{look}"] = (hv_dn > hv_up) & (lv_up >= 2) & (hv_dn >= 2)
+/workspace/rr1_search.py:487: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PH_HI"] = pd.Series(hour_id.map(prior_h["H"]), index=d.index, dtype=float)
+/workspace/rr1_search.py:488: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["PH_LO"] = pd.Series(hour_id.map(prior_h["L"]), index=d.index, dtype=float)
+/workspace/rr1_search.py:490: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["IB_MOTHER"] = (h.shift(1) <= h.shift(2)) & (l.shift(1) >= l.shift(2))
+/workspace/rr1_search.py:491: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["IB_HI"] = h.shift(2)
+/workspace/rr1_search.py:492: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["IB_LO"] = l.shift(2)
+2026-10-19 18:56:48 | 1m window bars=13255 start=2026-10-05 00:00:00 end=2026-10-14 05:04:00 days≈7.9
+2026-10-19 18:56:48 | 5m window bars=2811 start=2026-10-04 00:00:00 end=2026-10-13 18:15:00 days≈7.9
+2026-10-19 18:56:48 | specs=694 exits=765 focused=True tfs=['1m', '5m']
+2026-10-19 18:56:50 | signal cache=2604
+2026-10-19 18:56:50 | PROBE 70.0% tpd=3.8 n=30 | rsi_cross 5m inv=False
+2026-10-19 18:56:50 | NEW HF80 CHAMP 80.0% net=$52 tpd=3.8 dd=4.6% | rsi_cross|tp3/sl6|h30|5m|LS|lot0.02
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$52 tpd=3.8 open=2 dd=4.6% | rsi_cross|tp3/sl6|h30|5m|LS|lot0.02
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$43 tpd=3.8 open=2 dd=2.8% | rsi_cross|tp4/sl7|h30|5m|LS|lot0.01
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$30 tpd=3.8 open=2 dd=2.0% | rsi_cross|tp3/sl5.25|h20|5m|LS|lot0.01
+2026-10-19 18:56:50 | NEW HF80 CHAMP 80.0% net=$61 tpd=3.8 dd=3.8% | rsi_cross|tp3/sl5.25|h30|5m|LS|lot0.02
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$61 tpd=3.8 open=2 dd=3.8% | rsi_cross|tp3/sl5.25|h30|5m|LS|lot0.02
+2026-10-19 18:56:50 | NEW HF80 CHAMP 80.0% net=$152 tpd=3.8 dd=8.0% | rsi_cross|tp3/sl5.25|h20|5m|LS|lot0.05
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$152 tpd=3.8 open=2 dd=8.0% | rsi_cross|tp3/sl5.25|h20|5m|LS|lot0.05
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$42 tpd=3.8 open=2 dd=2.2% | rsi_cross|tp4/sl8|h12|5m|LS|lot0.01
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$61 tpd=3.8 open=2 dd=3.7% | rsi_cross|tp3/sl5.25|h20|5m|LS|lot0.02
+2026-10-19 18:56:50 | NEW HF80 CHAMP 80.0% net=$214 tpd=3.8 dd=12.2% | rsi_cross|tp4/sl7|h30|5m|LS|lot0.05
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$214 tpd=3.8 open=2 dd=12.2% | rsi_cross|tp4/sl7|h30|5m|LS|lot0.05
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$30 tpd=3.8 open=2 dd=2.0% | rsi_cross|tp3/sl5.25|h30|5m|LS|lot0.01
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$86 tpd=3.8 open=2 dd=5.4% | rsi_cross|tp4/sl7|h30|5m|LS|lot0.02
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$151 tpd=3.8 open=2 dd=8.1% | rsi_cross|tp3/sl5.25|h30|5m|LS|lot0.05
+2026-10-19 18:56:50 | NEW HF80 CHAMP 83.3% net=$98 tpd=3.8 dd=5.9% | rsi_cross|tp4/sl8|h30|5m|LS|lot0.02
+2026-10-19 18:56:50 | HF80 HIT 83.3% net=$98 tpd=3.8 open=2 dd=5.9% | rsi_cross|tp4/sl8|h30|5m|LS|lot0.02
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$210 tpd=3.8 open=2 dd=8.4% | rsi_cross|tp4/sl8|h12|5m|LS|lot0.05
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$48 tpd=3.8 open=2 dd=1.8% | rsi_cross|tp4/sl8|h20|5m|LS|lot0.01
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$84 tpd=3.8 open=2 dd=4.1% | rsi_cross|tp4/sl8|h12|5m|LS|lot0.02
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$239 tpd=3.8 open=2 dd=7.8% | rsi_cross|tp4/sl8|h20|5m|LS|lot0.05
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$129 tpd=3.8 open=2 dd=10.0% | rsi_cross|tp3/sl6|h30|5m|LS|lot0.05
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$95 tpd=3.8 open=2 dd=3.5% | rsi_cross|tp4/sl8|h20|5m|LS|lot0.02
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$26 tpd=3.8 open=2 dd=2.4% | rsi_cross|tp3/sl6|h20|5m|LS|lot0.01
+2026-10-19 18:56:50 | HF80 HIT 80.0% net=$129 tpd=3.8 open=2 dd=9.9% | rsi_cross|tp3/sl6|h20|5m|LS|lot0.05
+2026-10-19 18:56:50 | HF80 HIT 83.3% net=$49 tpd=3.8 open=2 dd=3.1% | rsi_cross|tp4/sl8|h30|5m|LS|lot0.01
+2026-10-19 18:56:51 | NEW HF80 CHAMP 83.3% net=$244 tpd=3.8 dd=12.7% | rsi_cross|tp4/sl8|h30|5m|LS|lot0.05
+2026-10-19 18:56:51 | HF80 HIT 83.3% net=$244 tpd=3.8 open=2 dd=12.7% | rsi_cross|tp4/sl8|h30|5m|LS|lot0.05
+2026-10-19 18:56:51 | HF80 HIT 80.0% net=$52 tpd=3.8 open=2 dd=4.6% | rsi_cross|tp3/sl6|h20|5m|LS|lot0.02
+2026-10-19 18:56:51 | HF80 HIT 80.0% net=$26 tpd=3.8 open=2 dd=2.4% | rsi_cross|tp3/sl6|h30|5m|LS|lot0.01
+2026-10-19 18:56:51 | PROBE 70.7% tpd=7.4 n=58 | rsi_cross 1m inv=True
+2026-10-19 18:56:51 | hf80 tested=800 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:56:54 | PROBE 73.2% tpd=10.4 n=82 | rsi_recover 5m inv=False
+2026-10-19 18:56:54 | hf80 tested=2000 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:56:55 | hf80 tested=2400 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:56:55 | PROBE 70.0% tpd=3.8 n=30 | rsi_recover 5m inv=False
+2026-10-19 18:56:55 | hf80 tested=2800 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:56:56 | hf80 tested=3200 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:56:57 | PROBE 70.5% tpd=35.0 n=275 | rsi_cross 1m inv=True
+2026-10-19 18:56:58 | hf80 tested=3600 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:56:59 | hf80 tested=4000 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:01 | hf80 tested=4400 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:01 | PROBE 70.2% tpd=10.7 n=84 | rsi_recover 5m inv=False
+2026-10-19 18:57:02 | hf80 tested=4800 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:02 | hf80 tested=5200 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:02 | PROBE 74.1% tpd=7.4 n=58 | rsi_recover 5m inv=False
+2026-10-19 18:57:03 | hf80 tested=6000 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:03 | PROBE 71.0% tpd=34.2 n=269 | rsi_cross 1m inv=True
+2026-10-19 18:57:05 | hf80 tested=6400 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:07 | hf80 tested=6800 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:08 | PROBE 70.6% tpd=30.3 n=238 | rsi_cross 1m inv=True
+2026-10-19 18:57:09 | hf80 tested=7200 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:10 | hf80 tested=7600 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:11 | PROBE 70.2% tpd=43.5 n=342 | rsi_cross 1m inv=True
+2026-10-19 18:57:12 | hf80 tested=8000 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:14 | hf80 tested=8400 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:15 | PROBE 71.9% tpd=7.3 n=57 | rsi_recover 5m inv=False
+2026-10-19 18:57:15 | hf80 tested=8800 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:15 | hf80 tested=9200 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:16 | PROBE 77.8% tpd=4.6 n=36 | rsi_recover 5m inv=False
+2026-10-19 18:57:16 | hf80 tested=9600 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:17 | hf80 tested=10000 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:18 | hf80 tested=10400 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:18 | PROBE 70.9% tpd=44.5 n=350 | rsi_cross 1m inv=True
+2026-10-19 18:57:20 | hf80 tested=10800 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:22 | hf80 tested=11200 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:22 | PROBE 71.1% tpd=4.8 n=38 | rsi_stay 5m inv=False
+2026-10-19 18:57:22 | hf80 tested=12000 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:23 | PROBE 72.5% tpd=5.1 n=40 | rsi_recover 5m inv=False
+2026-10-19 18:57:24 | hf80 tested=12400 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:24 | hf80 tested=12800 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:25 | PROBE 71.0% tpd=7.9 n=62 | rsi_recover 5m inv=False
+2026-10-19 18:57:25 | hf80 tested=13200 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:26 | hf80 tested=14000 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:28 | PROBE 77.4% tpd=3.9 n=31 | bb_rsi_fade 1m inv=True
+2026-10-19 18:57:28 | hf80 tested=14400 hits80=24 best80=83.3% top75=83.3%
+2026-10-19 18:57:31 | PROBE 80.0% tpd=4.5 n=35 | rsi_recover 5m inv=False
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$73 tpd=4.5 open=2 dd=9.3% | rsi_recover|tp1.5/sl3|h20|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$29 tpd=4.5 open=2 dd=3.1% | rsi_recover|tp2.5/sl5|h8|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$34 tpd=4.5 open=2 dd=2.7% | rsi_recover|tp2.5/sl4.375|h30|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$69 tpd=4.5 open=2 dd=5.2% | rsi_recover|tp2.5/sl4.375|h30|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$172 tpd=4.5 open=2 dd=11.6% | rsi_recover|tp2.5/sl4.375|h12|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$146 tpd=4.5 open=2 dd=13.5% | rsi_recover|tp2.5/sl5|h8|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$41 tpd=4.5 open=2 dd=3.6% | rsi_recover|tp3/sl6|h12|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$83 tpd=4.5 open=2 dd=6.0% | rsi_recover|tp3/sl5.25|h12|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$73 tpd=4.5 open=2 dd=9.3% | rsi_recover|tp1.5/sl3|h30|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$153 tpd=4.5 open=2 dd=13.3% | rsi_recover|tp2.5/sl5|h20|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$34 tpd=4.5 open=2 dd=2.7% | rsi_recover|tp2.5/sl4.375|h20|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$45 tpd=4.5 open=2 dd=4.9% | rsi_recover|tp2/sl4|h12|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$73 tpd=4.5 open=2 dd=9.3% | rsi_recover|tp1.5/sl3|h8|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$31 tpd=4.5 open=2 dd=3.0% | rsi_recover|tp2.5/sl5|h12|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$230 tpd=4.5 open=2 dd=11.4% | rsi_recover|tp3/sl4.5|h12|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$45 tpd=4.5 open=2 dd=4.9% | rsi_recover|tp2/sl4|h20|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$31 tpd=4.5 open=2 dd=3.0% | rsi_recover|tp2.5/sl5|h20|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$45 tpd=4.5 open=2 dd=4.9% | rsi_recover|tp2/sl4|h30|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$164 tpd=4.5 open=2 dd=11.8% | rsi_recover|tp2.5/sl4.375|h8|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$69 tpd=4.5 open=2 dd=5.2% | rsi_recover|tp2.5/sl4.375|h20|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$29 tpd=4.5 open=2 dd=3.9% | rsi_recover|tp1.5/sl3|h12|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$113 tpd=4.5 open=2 dd=11.2% | rsi_recover|tp2/sl4|h12|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$172 tpd=4.5 open=2 dd=11.6% | rsi_recover|tp2.5/sl4.375|h30|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$46 tpd=4.5 open=2 dd=2.7% | rsi_recover|tp3/sl4.5|h12|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$104 tpd=4.5 open=2 dd=9.1% | rsi_recover|tp4/sl8|h30|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$29 tpd=4.5 open=2 dd=3.9% | rsi_recover|tp1.5/sl3|h30|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$42 tpd=4.5 open=2 dd=3.2% | rsi_recover|tp3/sl5.25|h12|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$153 tpd=4.5 open=2 dd=13.3% | rsi_recover|tp2.5/sl5|h12|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$29 tpd=4.5 open=2 dd=3.9% | rsi_recover|tp1.5/sl3|h20|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$113 tpd=4.5 open=2 dd=11.2% | rsi_recover|tp2/sl4|h20|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$66 tpd=4.5 open=2 dd=5.2% | rsi_recover|tp2.5/sl4.375|h8|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$61 tpd=4.5 open=2 dd=5.9% | rsi_recover|tp2.5/sl5|h30|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$172 tpd=4.5 open=2 dd=11.6% | rsi_recover|tp2.5/sl4.375|h20|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$69 tpd=4.5 open=2 dd=5.2% | rsi_recover|tp2.5/sl4.375|h12|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$33 tpd=4.5 open=2 dd=2.7% | rsi_recover|tp2.5/sl4.375|h8|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$153 tpd=4.5 open=2 dd=13.3% | rsi_recover|tp2.5/sl5|h30|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$58 tpd=4.5 open=2 dd=5.9% | rsi_recover|tp2.5/sl5|h8|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$61 tpd=4.5 open=2 dd=5.9% | rsi_recover|tp2.5/sl5|h20|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$82 tpd=4.5 open=2 dd=6.8% | rsi_recover|tp3/sl6|h12|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$31 tpd=4.5 open=2 dd=3.0% | rsi_recover|tp2.5/sl5|h30|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$73 tpd=4.5 open=2 dd=9.3% | rsi_recover|tp1.5/sl3|h12|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$29 tpd=4.5 open=2 dd=3.9% | rsi_recover|tp1.5/sl3|h8|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$113 tpd=4.5 open=2 dd=11.2% | rsi_recover|tp2/sl4|h30|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$34 tpd=4.5 open=2 dd=2.7% | rsi_recover|tp2.5/sl4.375|h12|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$52 tpd=4.5 open=2 dd=4.8% | rsi_recover|tp4/sl8|h30|5m|LS|lot0.01
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$259 tpd=4.5 open=2 dd=19.3% | rsi_recover|tp4/sl8|h30|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$92 tpd=4.5 open=2 dd=5.2% | rsi_recover|tp3/sl4.5|h12|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$208 tpd=4.5 open=2 dd=13.3% | rsi_recover|tp3/sl5.25|h12|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$61 tpd=4.5 open=2 dd=5.9% | rsi_recover|tp2.5/sl5|h12|5m|LS|lot0.02
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$204 tpd=4.5 open=2 dd=14.8% | rsi_recover|tp3/sl6|h12|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$108 tpd=4.5 open=2 dd=11.3% | rsi_recover|tp2/sl4|h8|5m|LS|lot0.05
+2026-10-19 18:57:31 | HF80 HIT 80.0% net=$43 tpd=4.5 open=2 dd=4.9% | rsi_recover|tp2/sl4|h8|5m|LS|lot0.02
+2026-10-19 18:57:32 | hf80 tested=16000 hits80=76 best80=83.3% top75=83.3%
+2026-10-19 18:57:33 | PROBE 72.5% tpd=5.1 n=40 | bb_rsi_fade 1m inv=True
+2026-10-19 18:57:35 | hf80 tested=16800 hits80=76 best80=83.3% top75=83.3%
+2026-10-19 18:57:36 | PROBE 70.6% tpd=8.7 n=68 | rsi_recover 5m inv=False
+2026-10-19 18:57:36 | hf80 tested=17200 hits80=76 best80=83.3% top75=83.3%
+2026-10-19 18:57:37 | hf80 tested=17600 hits80=76 best80=83.3% top75=83.3%
+2026-10-19 18:57:37 | pass 1/1 done tested=17904 hits=76
+2026-10-19 18:57:37 | DONE tested=17904 hits80=76 best=rsi_cross|tp4/sl8|h30|5m|LS|lot0.05
+2026-10-19 18:57:37 | top near: 83.3% net=$244 | rsi_cross|tp4/sl8|h30|5m|LS|lot0.05

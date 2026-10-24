@@ -1,0 +1,93 @@
+{
+  "rule": "\u226580% WR on last 10d, TP net\u2265$2 after costs, SL\u22642\u00d7TP, unlimited positions",
+  "champion": {
+    "name": "rsi_cross|tp4/sl8|h30|5m|LS|lot0.05",
+    "wr": 0.8333333333333334,
+    "net": 243.78585000002613,
+    "eq": 743.7858500000254,
+    "tpd": 3.8181818181818183,
+    "dd": 0.1273875539125036,
+    "pf": 2.179133494558785,
+    "trades": 30,
+    "max_open": 2,
+    "avg_win": 18.02143400000095,
+    "avg_loss": -41.34999999999955,
+    "expectancy": 8.126195000000871,
+    "net_tp_design": 18.65,
+    "tp_dist": 4.0,
+    "sl_dist": 8.0,
+    "sl_mult": 2.0,
+    "lot": 0.05,
+    "wins_tp": 24,
+    "losses_sl": 5,
+    "time_exits": 1,
+    "params": {
+      "kind": "rsi_cross",
+      "rsi": 7,
+      "os": 10,
+      "ob": 80,
+      "tf": "5m",
+      "exit": {
+        "tp_dist": 4.0,
+        "sl_dist": 8.0,
+        "max_hold": 30,
+        "lot": 0.05,
+        "net_tp": 18.65,
+        "sl_mult": 2.0,
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "window": "10d",
+    "time": "2026-10-19 18:56:51"
+  },
+  "time": "2026-10-19 18:56:51",
+  "caveat": {
+    "sample": "80% hits have only ~30-35 trades over 10d (~4 tpd) \u2014 thin; not 50-100/day",
+    "high_tpd_ceiling": "Under $2 net TP + SL\u22642\u00d7TP + unlimited, best WR at tpd\u226520 is ~73% (no 80% hit)",
+    "best_high_tpd": {
+      "kind": "rsi_level",
+      "invert": true,
+      "tf": "5m",
+      "wr": 0.7305699481865285,
+      "tpd": 24.563636363636366,
+      "net": 390.08825000017055,
+      "dd": 0.32318306735429536,
+      "trades": 193,
+      "max_open": 4,
+      "avg_win": 13.582088652483176,
+      "tp": 3.0,
+      "sl": 6.0,
+      "hold": 20,
+      "lot": 0.05,
+      "side": "S",
+      "params": {
+        "rsi": 5,
+        "os": 30,
+        "ob": 70
+      },
+      "pf": 1.2557978801449405
+    }
+  },
+  "alt_80_rsi_recover": {
+    "name": "rsi_recover|tp4/sl8|h30|5m|LS|lot0.05",
+    "params": {
+      "rsi": 5,
+      "os": 10,
+      "ob": 85
+    },
+    "wr": 0.8,
+    "trades": 35,
+    "tpd": 4.5,
+    "net": 259,
+    "dd": 0.193
+  },
+  "two_year_validation": {
+    "status": "REJECTED",
+    "is_wr": 0.5847378277153558,
+    "oos_wr": 0.5958466453674122,
+    "wr_gap": 0.011108817652056402,
+    "full_net": -10964.730365001722,
+    "note": "OOS\u2248IS (~59%) so no look-ahead; 10d 83% did not generalize"
+  }
+}

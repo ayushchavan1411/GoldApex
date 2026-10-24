@@ -1,0 +1,165 @@
+{
+  "primary": {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 12
+    },
+    "is": {
+      "trades": 51,
+      "winrate": 0.9803921568627451,
+      "profit_factor": 4.825849295159068,
+      "net_pnl": 41.19396117106815,
+      "final_equity": 541.1939611710682,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.3522727272727273,
+      "expectancy": 0.8077247288444735,
+      "avg_win": 1.0392246695851304,
+      "avg_loss": -10.767272308188355
+    },
+    "oos": {
+      "trades": 30,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 30.886461539227213,
+      "final_equity": 530.886461539227,
+      "max_dd": 0.0,
+      "trades_per_day": 1.8181818181818181,
+      "expectancy": 1.0295487179742404,
+      "avg_win": 1.0295487179742404,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 81,
+      "winrate": 0.9876543209876543,
+      "profit_factor": 7.930733427096601,
+      "net_pnl": 74.62509410501261,
+      "final_equity": 574.6250941050124,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.516042780748663,
+      "expectancy": 0.9212974580865754,
+      "avg_win": 1.067404580165012,
+      "avg_loss": -10.767272308188355
+    },
+    "summary": {
+      "kind": "stoch_cross",
+      "timeframe": "15m",
+      "params": {
+        "period": 5,
+        "os": 20,
+        "ob": 80,
+        "sessions": [
+          "london",
+          "overlap"
+        ]
+      },
+      "exit": {
+        "sl": 2.0,
+        "tp": 0.2,
+        "max_hold": 12
+      },
+      "trades": 81,
+      "winrate": 0.9876543209876543,
+      "net_pnl": 74.61,
+      "final_equity": 574.6250941050124,
+      "tp": 79,
+      "sl": 1,
+      "time_exits": 1,
+      "trades_per_bar_day": 1.4210526315789473,
+      "days_with_trade": 39,
+      "bar_days": 57,
+      "day_coverage": 0.6842105263157895,
+      "avg_on_active": 2.076923076923077,
+      "max_per_day": 5,
+      "period": "2026-08-04 04:00:00 \u2192 2026-10-13 16:00:00",
+      "causality": "prior levels where needed; signal close -> next open fill"
+    }
+  },
+  "dense": null,
+  "recommended_daily": {
+    "kind": "rsi_cross",
+    "timeframe": "15m",
+    "params": {
+      "rsi": 5,
+      "os": 25,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap",
+        "ny"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 6
+    },
+    "full": {
+      "trades": 180,
+      "winrate": 0.9444444444444444,
+      "profit_factor": 1.8259386337323567,
+      "net_pnl": 82.77471651457299,
+      "final_equity": 582.7747165145734,
+      "max_dd": 0.057909320520412255,
+      "trades_per_day": 3.368983957219251,
+      "expectancy": 0.45985953619207215,
+      "avg_win": 1.0764334312743906,
+      "avg_loss": -10.021896680207345
+    },
+    "is_": {
+      "trades": 128,
+      "winrate": 0.953125,
+      "profit_factor": 2.0984436274659033,
+      "net_pnl": 66.97955129823517,
+      "final_equity": 566.9795512982355,
+      "max_dd": 0.057909320520412255,
+      "trades_per_day": 3.393939393939394,
+      "expectancy": 0.5232777445174622,
+      "avg_win": 1.0488223569751964,
+      "avg_loss": -10.162796042123134
+    },
+    "oos": {
+      "trades": 52,
+      "winrate": 0.9230769230769231,
+      "profit_factor": 1.4025046766051557,
+      "net_pnl": 13.929219475526951,
+      "final_equity": 513.929219475527,
+      "max_dd": 0.03751226419987559,
+      "trades_per_day": 3.1515151515151514,
+      "expectancy": 0.2678696052985952,
+      "avg_win": 1.011157788518182,
+      "avg_loss": -8.651588593336445
+    },
+    "bot": "live_hf_wr_bot.py --strategy rsi"
+  },
+  "ultra_wr_stoch": {
+    "kind": "stoch_cross",
+    "timeframe": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 12
+    },
+    "bot": "live_hf_wr_bot.py --strategy stoch"
+  }
+}

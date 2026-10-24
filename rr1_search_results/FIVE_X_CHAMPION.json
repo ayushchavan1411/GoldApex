@@ -1,0 +1,139 @@
+{
+  "goal": "5x $500\u2192$2500 after fees, maximize WR",
+  "assumptions": {
+    "start_cap": 500.0,
+    "lot": 0.02,
+    "spread": 0.3,
+    "commission_rt_per_lot": 7.0
+  },
+  "champion": {
+    "name": "5x|stoch_cross|1.0%/0.5%|h72|15m|L|ny",
+    "min_wr": 0.6707317073170732,
+    "full_wr": 0.6863636363636364,
+    "is_wr": 0.6956521739130435,
+    "oos_wr": 0.6707317073170732,
+    "full_eq": 2532.0919953700663,
+    "mult": 5.0641839907401325,
+    "full_net": 2032.091995370066,
+    "is_net": 1290.3237989700046,
+    "oos_net": 741.7681964000618,
+    "full_n": 220,
+    "is_n": 138,
+    "oos_n": 82,
+    "full_tpd": 0.3645833333333333,
+    "full_dd": 0.23267044377367926,
+    "full_pf": 1.6774545506901928,
+    "charges": 162.8,
+    "year_ok": true,
+    "params": {
+      "kind": "stoch_cross",
+      "period": 14,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "ny"
+      ],
+      "tf": "15m",
+      "exit": {
+        "rr": 0.5,
+        "max_hold": 72,
+        "atr": "ATR_14",
+        "sl_pct": 0.01,
+        "tp_pct": 0.005,
+        "fixed_lot": 0.02,
+        "spread_price": 0.3,
+        "commission_per_lot_rt": 7.0,
+        "start_cap": 500.0,
+        "reward_label": "1.0%/0.5%",
+        "allow_long": true,
+        "allow_short": false
+      }
+    },
+    "time": "2026-10-18 18:53:28"
+  },
+  "time": "2026-10-18 18:53:28",
+  "report": {
+    "headline": "5x|stoch_cross|1.0%/0.5%|h72|15m|L|ny",
+    "start_capital": 500,
+    "final_equity_2y": 2532.09,
+    "multiple": 5.06,
+    "net_profit_after_charges": 2032.09,
+    "total_charges": 162.8,
+    "winrate_IS": 0.6957,
+    "winrate_OOS": 0.6707,
+    "min_WR": 0.6707,
+    "year_stable": true
+  },
+  "best_multiple_wr60": {
+    "name": "inv|cisd|1.5%/1.0%|h96|30m|LS|ny",
+    "min_wr": 0.627906976744186,
+    "full_wr": 0.6442786069651741,
+    "is_wr": 0.652014652014652,
+    "oos_wr": 0.627906976744186,
+    "full_eq": 5802.645834660097,
+    "mult": 11.605291669320193,
+    "full_net": 5302.645834660132,
+    "is_net": 3382.2774379600396,
+    "oos_net": 1920.3683967000914,
+    "full_n": 402,
+    "is_n": 273,
+    "oos_n": 129,
+    "full_tpd": 0.6705587989991659,
+    "full_dd": 0.3783026803284546,
+    "full_pf": 1.4248824265079352,
+    "charges": 297.48,
+    "year_ok": true,
+    "params": {
+      "kind": "cisd",
+      "sessions": [
+        "ny"
+      ],
+      "invert": true,
+      "tf": "30m",
+      "exit": {
+        "rr": 0.6666666666666667,
+        "max_hold": 96,
+        "atr": "ATR_14",
+        "sl_pct": 0.015,
+        "tp_pct": 0.01,
+        "fixed_lot": 0.02,
+        "spread_price": 0.3,
+        "commission_per_lot_rt": 7.0,
+        "start_cap": 500.0,
+        "reward_label": "1.5%/1.0%",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "time": "2026-10-18 18:54:38"
+  },
+  "external_dukascopy_validation": {
+    "source": "user/Grok independent Dukascopy backtest",
+    "data": "Sep 2023 \u2013 Sep/Oct 2026, UTC, real median spread ~$0.51",
+    "verdict": "Do NOT trade live yet. Paper MT5 demo at 0.01 lot max only.",
+    "full_3y_0.01": {
+      "trades": 173,
+      "winrate": 0.595,
+      "pf": 1.41,
+      "end_balance": 1429,
+      "max_dd": 0.22,
+      "start": 500
+    },
+    "full_3y_0.02": {
+      "trades": 173,
+      "winrate": 0.595,
+      "pf": 1.41,
+      "end_balance": 2358,
+      "max_dd": 0.27,
+      "start": 500
+    },
+    "past_year_0.02_dd": 0.58,
+    "concerns_accepted": [
+      "0.02 lot risks ~20-25%/trade; ~10% of reshuffled paths hit $0",
+      "random longs in same sessions/stops ~56.7% WR; signal edge small/~12% of random runs beat it",
+      "needs session filter; all-hours flat/blowup; shorts lose always",
+      "only ~173 trades / 3y; params look post-hoc; Q1 2026 and 4/12 quarters red"
+    ],
+    "recommendation": "0.01 lot max, MT5 demo paper only, not real money"
+  }
+}

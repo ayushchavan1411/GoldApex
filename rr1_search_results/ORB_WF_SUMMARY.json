@@ -1,0 +1,45 @@
+{
+  "tested": 5400,
+  "quals": 0,
+  "best": {
+    "name": "orb|orb_fade_win|30m",
+    "wr": 0.5541237113402062,
+    "oos_wr": 0.5492957746478874,
+    "min_wr": 0.5492957746478874,
+    "tpd": 0.8693982074263764,
+    "oos_tpd": 0.922077922077922,
+    "n": 388,
+    "oos_n": 142,
+    "pf": 1.2045219414781891,
+    "oos_pf": 1.224560879958387,
+    "params": {
+      "kind": "orb_fade_win",
+      "orb": "NY",
+      "win": 15,
+      "sessions": null,
+      "exit": {
+        "rr": 1.2,
+        "max_hold": 24,
+        "atr": "ATR_7",
+        "allow_long": true,
+        "allow_short": false
+      }
+    },
+    "year_ok": true,
+    "wf": {
+      "folds": 5,
+      "oos_wr_mean": 0.5469712069064819,
+      "oos_wr_min": 0.49382716049382713,
+      "oos_pf_mean": 1.182738656778498,
+      "profitable_folds": 4,
+      "max_profit_share": 0.40312468003935525,
+      "ok": true
+    },
+    "time": "2026-10-17 18:59:39"
+  },
+  "near_hits": [],
+  "walk_forward_ok": [],
+  "sessions": "ALL (None)",
+  "source": "Instagram reel DdCYACaP-ef @bennnytrades ORB walk-forward",
+  "time": "2026-10-17 19:05:17"
+}

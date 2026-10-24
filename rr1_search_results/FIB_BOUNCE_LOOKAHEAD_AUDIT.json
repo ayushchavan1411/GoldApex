@@ -1,0 +1,24 @@
+{
+  "subject": "fib_bounce|tp7/sl14|h72|5m|S|lot0.05 (swing=20, fib=618, wick=0.45)",
+  "look_ahead_verdict": "PASS — no look-ahead bug",
+  "structure": {
+    "swing": "SW_HI/LO = rolling(sw).max/min().shift(1) — excludes current bar",
+    "fib": "derived only from lagged SW_HI/LO (FIB* and FIB_UP*)",
+    "signal": "uses same-bar Low/High/Close/wick vs lagged fib — known at bar close",
+    "fill": "simulate_multi: signal on bar i → entry Open[i+1] ± spread/2 ± slip"
+  },
+  "empirical": {
+    "yahoo_70d_champion": {"is_wr": 0.744, "oos_wr": 0.739, "tpd": 6.46, "note": "FFBE seed hunt"},
+    "dukascopy_169d_same_spec": {
+      "baseline_next_open": {"is_wr": 0.495, "oos_wr": 0.422},
+      "signal_shift_plus1": {"is_wr": 0.495, "oos_wr": 0.408},
+      "evil_level_shift_minus1": {"is_wr": 0.492, "oos_wr": 0.434},
+      "leak_same_bar_fill": {"is_wr": 0.512, "oos_wr": 0.431},
+      "note": "Edge collapses off Yahoo window — overfitting, not peeking. Same-bar leak only +1–2pp."
+    }
+  },
+  "other_notes": [
+    "Rolling window fib ≠ confirmed swing-pivot fib; levels move every bar (definition quirk, not look-ahead).",
+    "Hunt grid requests swing=60 but add_indicators only builds 5/10/20/40 — those specs are skipped."
+  ]
+}

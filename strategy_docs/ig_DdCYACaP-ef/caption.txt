@@ -1,0 +1,44 @@
+1,029 likes, 2,243 comments - bennnytrades on September 8, 2026: "A backtest by itself means almost nothing.
+
+You can make an equity curve look incredible if you optimize enough s*** on the same historical data.
+
+The real question is: does the strategy survive when you statistically try to break it?
+
+That’s what we did with all our ORB systems.
+
+We used walk-forward optimization: optimize in-sample, lock the parameters, then test them on the next unseen out-of-sample period. Then roll everything forward and repeat.
+
+And before some empiricist comes in here screaming “DATA MINING BIAS” 😂 Yes, we thought about that too.
+
+This isn’t a strategy with 47 indicators and 100 parameters that we tortured until something worked.
+
+The ORB framework is intentionally simple with relatively few degrees of freedom. More importantly, we weren’t searching for one magical parameter combination.
+
+We wanted stability across neighboring configurations and different walk-forward windows.
+
+And that’s what we found.
+
+The strategy passed across the entire OOS% / walk-forward-run grid tested rather than surviving in one lucky pocket. The majority of rolling OOS windows were profitable, and no single period generated more than half of the total profit.
+
+That helps us attack:
+
+Curve fitting → repeatedly test unseen data.
+Look-ahead → lock parameters before the next chronological OOS period.
+Data mining → limit degrees of freedom and look for broad stability instead of one perfect result.
+Lucky-period dependence → make sure one abnormal period isn’t responsible for the strategy.
+
+Then comes the test no statistical validation can replace:
+
+Run the d*** thing live.
+
+Because none of this guarantees future profitability.
+
+We eventually deployed these systems ourselves, have successfully received prop-firm payouts with them, and have had members receive payouts as well.
+
+That’s the entire point.
+
+If you want to see the multiple ORB variations and the data behind them, 
+
+comment “orb” and we’ll send it to you
+
+#daytrading #futures #orb #propfirmstrategy #automatedtrading". 

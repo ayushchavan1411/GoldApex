@@ -1,0 +1,34 @@
+{
+  "name": "sl2|fvg_rsi+atr_expanded+skip_tiny_body|5m",
+  "timeframe": "5m",
+  "winrate": 0.7608695652173914,
+  "profit_factor": 3.1688370006561786,
+  "trades": 46,
+  "trades_per_day": 0.10164141414141414,
+  "net_pnl": 283.48714694850764,
+  "max_dd": 0.03998416000000074,
+  "params": {
+    "kind": "sl_dual",
+    "base": "fvg_rsi",
+    "f1": "atr_expanded",
+    "f2": "skip_tiny_body",
+    "rsi": 14,
+    "os": 40,
+    "ob": 80,
+    "sessions": null,
+    "exit": {
+      "rr": 1.2,
+      "max_hold": 12,
+      "atr": "ATR_14",
+      "allow_long": true,
+      "allow_short": true
+    }
+  },
+  "oos_winrate": 0.7619047619047619,
+  "oos_profit_factor": 2.793662898442053,
+  "oos_trades": 21,
+  "oos_trades_per_day": 0.13848327837965144,
+  "oos_net_pnl": 109.45673189762731,
+  "score": -2582.892610254447,
+  "rr": 1.0
+}

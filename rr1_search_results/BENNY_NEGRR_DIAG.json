@@ -1,0 +1,522 @@
+{
+  "source": "Instagram reel DdCYACaP-ef @bennnytrades",
+  "claim": "~80% WR ORB negative RR 5y",
+  "tested": 1077,
+  "best": {
+    "name": "benny|orb_break_win|5m",
+    "min_wr": 0.7406819984139572,
+    "wr": 0.7406819984139572,
+    "oos_wr": 0.7729166666666667,
+    "tpd": 2.7814715613675753,
+    "oos_tpd": 3.1653320772491758,
+    "pf": 0.9619633597509946,
+    "oos_pf": 1.1910244531714693,
+    "n": 1261,
+    "oos_n": 480,
+    "geo_rr": 0.3333333333333333,
+    "params": {
+      "kind": "orb_break_win",
+      "orb": "ASIAN",
+      "win": 15,
+      "first_only": true,
+      "sessions": null,
+      "exit": {
+        "rr": 0.5,
+        "max_hold": 12,
+        "atr": "ATR_7",
+        "allow_long": true,
+        "allow_short": false,
+        "tp_mult": 0.5,
+        "sl_mult": 1.5
+      }
+    },
+    "time": "2026-10-17 18:58:49"
+  },
+  "best_profitable_pf1": {
+    "name": "benny|orb_break_win|30m",
+    "min_wr": 0.6538461538461539,
+    "wr": 0.6538461538461539,
+    "oos_wr": 0.669683257918552,
+    "tpd": 1.8642765685019207,
+    "oos_tpd": 1.4350649350649352,
+    "pf": 1.0373270102171155,
+    "oos_pf": 1.0605057452515503,
+    "n": 832,
+    "oos_n": 221,
+    "geo_rr": 0.5,
+    "params": {
+      "kind": "orb_break_win",
+      "orb": "ASIAN",
+      "win": 15,
+      "first_only": true,
+      "sessions": null,
+      "exit": {
+        "rr": 0.5,
+        "max_hold": 12,
+        "atr": "ATR_7",
+        "allow_long": true,
+        "allow_short": false,
+        "tp_mult": 0.5,
+        "sl_mult": 1.0
+      }
+    },
+    "time": "2026-10-17 18:59:40"
+  },
+  "near_70pct_count": 115,
+  "near_70pct": [
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7406819984139572,
+      "wr": 0.7406819984139572,
+      "oos_wr": 0.7729166666666667,
+      "tpd": 2.7814715613675753,
+      "oos_tpd": 3.1653320772491758,
+      "pf": 0.9619633597509946,
+      "oos_pf": 1.1910244531714693,
+      "n": 1261,
+      "oos_n": 480,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.5,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:58:49"
+    },
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7406819984139572,
+      "wr": 0.7406819984139572,
+      "oos_wr": 0.7729166666666667,
+      "tpd": 2.7814715613675753,
+      "oos_tpd": 3.1653320772491758,
+      "pf": 0.9619633597509946,
+      "oos_pf": 1.1910244531714693,
+      "n": 1261,
+      "oos_n": 480,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.75,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:00"
+    },
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7406819984139572,
+      "wr": 0.7406819984139572,
+      "oos_wr": 0.7729166666666667,
+      "tpd": 2.7814715613675753,
+      "oos_tpd": 3.1653320772491758,
+      "pf": 0.9619633597509946,
+      "oos_pf": 1.1910244531714693,
+      "n": 1261,
+      "oos_n": 480,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:12"
+    },
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7403225806451613,
+      "wr": 0.7403225806451613,
+      "oos_wr": 0.7515400410677618,
+      "tpd": 2.7351504647865132,
+      "oos_tpd": 3.211493170042393,
+      "pf": 0.9432135277476691,
+      "oos_pf": 1.0404575031189651,
+      "n": 1240,
+      "oos_n": 487,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.5,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:58:48"
+    },
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7403225806451613,
+      "wr": 0.7403225806451613,
+      "oos_wr": 0.7515400410677618,
+      "tpd": 2.7351504647865132,
+      "oos_tpd": 3.211493170042393,
+      "pf": 0.9432135277476691,
+      "oos_pf": 1.0404575031189651,
+      "n": 1240,
+      "oos_n": 487,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.75,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:58:59"
+    },
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7403225806451613,
+      "wr": 0.7403225806451613,
+      "oos_wr": 0.7515400410677618,
+      "tpd": 2.7351504647865132,
+      "oos_tpd": 3.211493170042393,
+      "pf": 0.9432135277476691,
+      "oos_pf": 1.0404575031189651,
+      "n": 1240,
+      "oos_n": 487,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:11"
+    },
+    {
+      "name": "benny|orb_break_win|15m",
+      "min_wr": 0.7345215759849906,
+      "wr": 0.7345215759849906,
+      "oos_wr": 0.7412587412587412,
+      "tpd": 2.3636363636363638,
+      "oos_tpd": 1.8666666666666665,
+      "pf": 0.9823429512634587,
+      "oos_pf": 1.0460315912104532,
+      "n": 1066,
+      "oos_n": 286,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.5,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:17"
+    },
+    {
+      "name": "benny|orb_break_win|15m",
+      "min_wr": 0.7345215759849906,
+      "wr": 0.7345215759849906,
+      "oos_wr": 0.7412587412587412,
+      "tpd": 2.3636363636363638,
+      "oos_tpd": 1.8666666666666665,
+      "pf": 0.9823429512634587,
+      "oos_pf": 1.0460315912104532,
+      "n": 1066,
+      "oos_n": 286,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.75,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:21"
+    },
+    {
+      "name": "benny|orb_break_win|15m",
+      "min_wr": 0.7345215759849906,
+      "wr": 0.7345215759849906,
+      "oos_wr": 0.7412587412587412,
+      "tpd": 2.3636363636363638,
+      "oos_tpd": 1.8666666666666665,
+      "pf": 0.9823429512634587,
+      "oos_pf": 1.0460315912104532,
+      "n": 1066,
+      "oos_n": 286,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": false,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:28"
+    },
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7328118567311651,
+      "wr": 0.7328118567311651,
+      "oos_wr": 0.7665245202558635,
+      "tpd": 5.357806837876162,
+      "oos_tpd": 6.185586434291098,
+      "pf": 0.9690008277876863,
+      "oos_pf": 1.1640465316440796,
+      "n": 2429,
+      "oos_n": 938,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.5,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:58:49"
+    },
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7328118567311651,
+      "wr": 0.7328118567311651,
+      "oos_wr": 0.7665245202558635,
+      "tpd": 5.357806837876162,
+      "oos_tpd": 6.185586434291098,
+      "pf": 0.9690008277876863,
+      "oos_pf": 1.1640465316440796,
+      "n": 2429,
+      "oos_n": 938,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.75,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:00"
+    },
+    {
+      "name": "benny|orb_break_win|5m",
+      "min_wr": 0.7328118567311651,
+      "wr": 0.7328118567311651,
+      "oos_wr": 0.7665245202558635,
+      "tpd": 5.357806837876162,
+      "oos_tpd": 6.185586434291098,
+      "pf": 0.9690008277876863,
+      "oos_pf": 1.1640465316440796,
+      "n": 2429,
+      "oos_n": 938,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": true,
+          "allow_short": true,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:12"
+    },
+    {
+      "name": "benny|orb_break_win|15m",
+      "min_wr": 0.7306900102986612,
+      "wr": 0.7306900102986612,
+      "oos_wr": 0.7398648648648649,
+      "tpd": 4.305986696230598,
+      "oos_tpd": 3.8638694638694635,
+      "pf": 0.9364928245215983,
+      "oos_pf": 1.0467872870641917,
+      "n": 1942,
+      "oos_n": 592,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.5,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:17"
+    },
+    {
+      "name": "benny|orb_break_win|15m",
+      "min_wr": 0.7306900102986612,
+      "wr": 0.7306900102986612,
+      "oos_wr": 0.7398648648648649,
+      "tpd": 4.305986696230598,
+      "oos_tpd": 3.8638694638694635,
+      "pf": 0.9364928245215983,
+      "oos_pf": 1.0467872870641917,
+      "n": 1942,
+      "oos_n": 592,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 0.75,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:21"
+    },
+    {
+      "name": "benny|orb_break_win|15m",
+      "min_wr": 0.7306900102986612,
+      "wr": 0.7306900102986612,
+      "oos_wr": 0.7398648648648649,
+      "tpd": 4.305986696230598,
+      "oos_tpd": 3.8638694638694635,
+      "pf": 0.9364928245215983,
+      "oos_pf": 1.0467872870641917,
+      "n": 1942,
+      "oos_n": 592,
+      "geo_rr": 0.3333333333333333,
+      "params": {
+        "kind": "orb_break_win",
+        "orb": "ASIAN",
+        "win": 15,
+        "first_only": true,
+        "sessions": null,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 12,
+          "atr": "ATR_14",
+          "allow_long": true,
+          "allow_short": true,
+          "tp_mult": 0.5,
+          "sl_mult": 1.5
+        }
+      },
+      "time": "2026-10-17 18:59:28"
+    }
+  ],
+  "reproduced_80pct": false,
+  "verdict": "XAU causal ORB under asymmetric TP/SL peaks at 74.1% min WR (geoRR=0.33) but IS PF=0.96 \u2014 not a clean 80% reproduce. Best dual-PF\u22651 neg-RR setup reaches 65.4% if any. Under RR1 (SL=TP) ORB walk-forward stays ~55\u201356% year-stable. Does NOT qualify for live_rr1_bot.",
+  "note": "Asymmetric TP/SL diagnostic only \u2014 does not write live bot. Process OOM'd mid-run; summary from leaderboard.",
+  "time": "2026-10-17 19:04:57"
+}

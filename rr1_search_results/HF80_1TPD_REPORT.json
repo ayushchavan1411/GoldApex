@@ -1,0 +1,52 @@
+{
+  "request": "≥1 trade/day + IS&OOS ≥80% WR + TP net≥$2 + SL≤2×TP + causal next-open + 2y Dukascopy XAU",
+  "status": "NOT_FOUND",
+  "hunts": {
+    "map_probe": {
+      "file": "HF80_1TPD_MAP.json",
+      "mapped": 8781,
+      "hits80": 0,
+      "n_ge70": 0,
+      "n_ge75": 0,
+      "ceiling": {
+        "kind": "bb_rsi_fade",
+        "tf": "5m",
+        "is_wr": 0.631,
+        "oos_wr": 0.624,
+        "full_tpd": 1.47,
+        "full_net": -2056.05,
+        "note": "Best matched IS/OOS at tpd≥1 — still losing after costs"
+      }
+    },
+    "isfirst_expand": {
+      "file": "HF80_1TPD_SUMMARY.json",
+      "tested": 10920,
+      "hits_80_1tpd": 0,
+      "verdict": "No tpd≥1 candidates with IS WR≥70% expanded"
+    },
+    "expand_profit_gate": {
+      "file": "HF80_1TPD_EXPAND.json",
+      "tested": 35190,
+      "hits80": 0,
+      "verdict": "No profitable tpd≥1 with IS≥65%"
+    }
+  },
+  "contrast_80pct_champion": {
+    "file": "HF80_2Y_CHAMPION.json",
+    "name": "inv|bb_rsi_fade|withTrend|tp15/sl30|h72|1h|LS|lot0.02|one",
+    "is_wr": 0.83,
+    "oos_wr": 0.85,
+    "tpd": 0.11,
+    "full_n": 67,
+    "note": "Clears 80% dual gate but only ~1 trade / 9 days — fails ≥1 tpd"
+  },
+  "ceiling_summary": {
+    "at_tpd_ge_1": {
+      "best_matched_wr": "~62–63% IS/OOS",
+      "best_is_only_probes": "~68% (do not clear dual 80% + profit)",
+      "hits_80": 0
+    },
+    "tradeoff": "80%+ WR on 2y requires rare selective setups (~0.11 tpd). Forcing ≥1 tpd drops the ceiling to ~62–68% and nets go negative under fee+slip."
+  },
+  "verdict": "No strategy found with ≥80% IS&OOS win rate AND ≥1 trade/day on 2y under cost rules. Frequency ↔ win-rate tradeoff appears binding under these constraints."
+}

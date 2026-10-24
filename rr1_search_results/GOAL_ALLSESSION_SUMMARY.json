@@ -1,0 +1,37 @@
+{
+  "tested": 37000,
+  "quals": 0,
+  "best": {
+    "name": "g|rsi_macd|30m",
+    "wr": 0.6666666666666666,
+    "oos_wr": 0.7058823529411765,
+    "min_wr": 0.6666666666666666,
+    "tpd": 0.06722151088348272,
+    "oos_tpd": 0.11038961038961038,
+    "n": 30,
+    "oos_n": 17,
+    "pf": 1.9179754664813387,
+    "oos_pf": 2.321233287101905,
+    "params": {
+      "kind": "rsi_macd",
+      "rsi": 7,
+      "os": 35,
+      "ob": 60,
+      "sessions": null,
+      "invert": false,
+      "exit": {
+        "rr": 1.0,
+        "max_hold": 8,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": false
+      }
+    },
+    "year_ok": false,
+    "time": "2026-10-17 18:42:49"
+  },
+  "near_hits": [],
+  "best_tpd1": [],
+  "sessions": "ALL (None \u2014 no session blocks)",
+  "time": "2026-10-17 19:05:13"
+}

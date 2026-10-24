@@ -1,0 +1,77 @@
+{
+  "window": "last 10 trading days (2026-10-05 \u2192 2026-10-14)",
+  "rules": {
+    "min_net_on_tp_usd": 2.0,
+    "slip_per_side": 0.05,
+    "spread": 0.3,
+    "commission_per_lot_rt": 7.0,
+    "sl_max_multiple_of_tp": 2.0,
+    "max_open_positions": "unlimited",
+    "target_wr": 0.8
+  },
+  "champion_80": {
+    "name": "rsi_cross|tp4/sl8|h30|5m|LS|lot0.05",
+    "wr": 0.8333333333333334,
+    "net": 243.78585000002613,
+    "eq": 743.7858500000254,
+    "tpd": 3.8181818181818183,
+    "dd": 0.1273875539125036,
+    "pf": 2.179133494558785,
+    "trades": 30,
+    "max_open": 2,
+    "avg_win": 18.02143400000095,
+    "avg_loss": -41.34999999999955,
+    "expectancy": 8.126195000000871,
+    "net_tp_design": 18.65,
+    "tp_dist": 4.0,
+    "sl_dist": 8.0,
+    "sl_mult": 2.0,
+    "lot": 0.05,
+    "wins_tp": 24,
+    "losses_sl": 5,
+    "time_exits": 1,
+    "params": {
+      "kind": "rsi_cross",
+      "rsi": 7,
+      "os": 10,
+      "ob": 80,
+      "tf": "5m",
+      "exit": {
+        "tp_dist": 4.0,
+        "sl_dist": 8.0,
+        "max_hold": 30,
+        "lot": 0.05,
+        "net_tp": 18.65,
+        "sl_mult": 2.0,
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "window": "10d",
+    "time": "2026-10-19 18:56:51"
+  },
+  "high_frequency_best": {
+    "kind": "rsi_level",
+    "invert": true,
+    "tf": "5m",
+    "wr": 0.7305699481865285,
+    "tpd": 24.563636363636366,
+    "net": 390.08825000017055,
+    "dd": 0.32318306735429536,
+    "trades": 193,
+    "max_open": 4,
+    "avg_win": 13.582088652483176,
+    "tp": 3.0,
+    "sl": 6.0,
+    "hold": 20,
+    "lot": 0.05,
+    "side": "S",
+    "params": {
+      "rsi": 5,
+      "os": 30,
+      "ob": 70
+    },
+    "pf": 1.2557978801449405
+  },
+  "finding": "Found \u226580% WR on 10d (best 83.3% rsi_cross) but only ~4 trades/day. At \u226520 trades/day the WR ceiling under these cost/SL rules is ~73% \u2014 no 80% hit."
+}
