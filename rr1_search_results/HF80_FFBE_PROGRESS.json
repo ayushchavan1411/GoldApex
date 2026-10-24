@@ -1,0 +1,75 @@
+{
+  "elapsed_s": 43.9184992313385,
+  "remaining_s": 7156.081500530243,
+  "signal_combos": 167,
+  "tested_exits": 6675,
+  "hits80": 0,
+  "best_tpd1": {
+    "name": "fib_bounce|tp7/sl14|h72|5m|S|lot0.05|multi",
+    "kind": "fib_bounce",
+    "tf": "5m",
+    "invert": false,
+    "params": {
+      "swing": 10,
+      "fib": "618",
+      "wick": 0.55
+    },
+    "exit": {
+      "tp": 7.0,
+      "sl": 14.0,
+      "hold": 72,
+      "lot": 0.05,
+      "side": "S",
+      "net_tp": 33.65
+    },
+    "is_wr": 0.7247706422018348,
+    "oos_wr": 0.7282608695652174,
+    "wr_gap": 0.0034902273633825587,
+    "is_tpd": 5.662337662337662,
+    "oos_tpd": 6.162679425837321,
+    "full_tpd": 5.802139037433155,
+    "is_n": 218,
+    "oos_n": 92,
+    "full_n": 310,
+    "is_net": 1035.7000000001985,
+    "oos_net": 470.8000000000769,
+    "full_net": 1506.5000000002756,
+    "full_dd": 0.4857978788247978,
+    "score": 0.7247706422018348
+  },
+  "best_any": {
+    "name": "fib_bounce|tp7/sl14|h72|5m|S|lot0.05|multi",
+    "kind": "fib_bounce",
+    "tf": "5m",
+    "invert": false,
+    "params": {
+      "swing": 10,
+      "fib": "618",
+      "wick": 0.55
+    },
+    "exit": {
+      "tp": 7.0,
+      "sl": 14.0,
+      "hold": 72,
+      "lot": 0.05,
+      "side": "S",
+      "net_tp": 33.65
+    },
+    "is_wr": 0.7247706422018348,
+    "oos_wr": 0.7282608695652174,
+    "wr_gap": 0.0034902273633825587,
+    "is_tpd": 5.662337662337662,
+    "oos_tpd": 6.162679425837321,
+    "full_tpd": 5.802139037433155,
+    "is_n": 218,
+    "oos_n": 92,
+    "full_n": 310,
+    "is_net": 1035.7000000001985,
+    "oos_net": 470.8000000000769,
+    "full_net": 1506.5000000002756,
+    "full_dd": 0.4857978788247978,
+    "score": 0.7247706422018348
+  },
+  "status": "RUNNING",
+  "goal": "IS&OOS\u226580% + tpd\u22651 + TP net\u2265$2 + SL\u22642\u00d7TP + FVG/Fib/BB/EMA only"
+}
