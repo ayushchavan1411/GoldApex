@@ -1,8 +1,7 @@
 {
-  "elapsed_s": 2658.3440461158752,
-  "remaining_s": 419.6559536457062,
-  "signal_combos": 3227,
-  "tested_exits": 303550,
+  "elapsed_s": 3078.013308286667,
+  "signal_combos": 3731,
+  "tested_exits": 328649,
   "hits80": 0,
   "best_tpd1": {
     "name": "fib_ema|tp20/sl40|h120|15m|L|lot0.05|multi",
@@ -74,6 +73,22 @@
     "full_dd": 0.4932016581027959,
     "score": 0.7508896797153025
   },
-  "status": "RUNNING",
-  "goal": "IS&OOS\u226580% + tpd\u22651 + TP net\u2265$2 + SL\u22642\u00d7TP + FVG/Fib/BB/EMA only"
+  "champion": null,
+  "status": "NOT_FOUND",
+  "verdict": "No \u226580% at tpd\u22651 after 3731 signal combos / 328649 exits. Best tpd\u22651 minWR=75.1% (fib_ema/15m)",
+  "constraints": {
+    "indicators": [
+      "FVG",
+      "Fib",
+      "Bollinger",
+      "EMA"
+    ],
+    "tfs": [
+      "5m",
+      "15m"
+    ],
+    "sessions": null,
+    "mode": "multi unlimited"
+  },
+  "remaining_s": 0
 }
