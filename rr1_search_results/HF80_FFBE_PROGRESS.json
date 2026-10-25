@@ -1,0 +1,94 @@
+{
+  "elapsed_s": 3078.013308286667,
+  "signal_combos": 3731,
+  "tested_exits": 328649,
+  "hits80": 0,
+  "best_tpd1": {
+    "name": "fib_ema|tp20/sl40|h120|15m|L|lot0.05|multi",
+    "kind": "fib_ema",
+    "tf": "15m",
+    "invert": false,
+    "params": {
+      "swing": 60,
+      "fib": "786",
+      "wick": 0.0,
+      "fast": 34,
+      "slow": 200
+    },
+    "exit": {
+      "tp": 20.0,
+      "sl": 40.0,
+      "hold": 120,
+      "lot": 0.05,
+      "side": "L",
+      "net_tp": 98.65
+    },
+    "is_wr": 0.7508896797153025,
+    "oos_wr": 0.7663551401869159,
+    "wr_gap": 0.015465460471613346,
+    "is_tpd": 2.4778500944782698,
+    "oos_tpd": 0.872960372960373,
+    "full_tpd": 1.8057352043929225,
+    "is_n": 843,
+    "oos_n": 214,
+    "full_n": 1057,
+    "is_net": 31985.32499999884,
+    "oos_net": 6235.187500000186,
+    "full_net": 38220.51249999903,
+    "full_dd": 0.4932016581027959,
+    "score": 0.7508896797153025
+  },
+  "best_any": {
+    "name": "fib_ema|tp20/sl40|h120|15m|L|lot0.05|multi",
+    "kind": "fib_ema",
+    "tf": "15m",
+    "invert": false,
+    "params": {
+      "swing": 60,
+      "fib": "786",
+      "wick": 0.0,
+      "fast": 34,
+      "slow": 200
+    },
+    "exit": {
+      "tp": 20.0,
+      "sl": 40.0,
+      "hold": 120,
+      "lot": 0.05,
+      "side": "L",
+      "net_tp": 98.65
+    },
+    "is_wr": 0.7508896797153025,
+    "oos_wr": 0.7663551401869159,
+    "wr_gap": 0.015465460471613346,
+    "is_tpd": 2.4778500944782698,
+    "oos_tpd": 0.872960372960373,
+    "full_tpd": 1.8057352043929225,
+    "is_n": 843,
+    "oos_n": 214,
+    "full_n": 1057,
+    "is_net": 31985.32499999884,
+    "oos_net": 6235.187500000186,
+    "full_net": 38220.51249999903,
+    "full_dd": 0.4932016581027959,
+    "score": 0.7508896797153025
+  },
+  "champion": null,
+  "status": "NOT_FOUND",
+  "verdict": "No \u226580% at tpd\u22651 after 3731 signal combos / 328649 exits. Best tpd\u22651 minWR=75.1% (fib_ema/15m)",
+  "constraints": {
+    "indicators": [
+      "FVG",
+      "Fib",
+      "Bollinger",
+      "EMA"
+    ],
+    "tfs": [
+      "5m",
+      "15m"
+    ],
+    "sessions": null,
+    "mode": "multi unlimited"
+  },
+  "remaining_s": 0
+}

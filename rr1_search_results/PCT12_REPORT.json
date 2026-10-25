@@ -1,0 +1,197 @@
+{
+  "target": "1.2% reward 1:1",
+  "capital": 500.0,
+  "lot": 0.02,
+  "spread": 0.3,
+  "commission_per_trade": 0.14,
+  "rows": [
+    {
+      "signal": "fvg_rsi",
+      "mode": "1.2%_of_capital",
+      "WR": 0.548,
+      "n": 168,
+      "tpd": 0.28,
+      "profit_on_500": 73.3,
+      "final_equity": 573.3,
+      "charges": 124.3,
+      "max_dd": 0.097
+    },
+    {
+      "signal": "fvg_rsi",
+      "mode": "1.2%_of_price",
+      "WR": 0.517,
+      "n": 147,
+      "tpd": 0.24,
+      "profit_on_500": 669.5,
+      "final_equity": 1169.5,
+      "charges": 108.8,
+      "max_dd": 0.284
+    },
+    {
+      "signal": "fvg_rsi",
+      "mode": "ATR\u00d71.2_nofee_risk",
+      "WR": 0.669,
+      "n": 130,
+      "tpd": 0.21,
+      "profit_on_500": 599.1,
+      "final_equity": 1099.1,
+      "charges": 0,
+      "max_dd": 0.06
+    },
+    {
+      "signal": "turtle_soup",
+      "mode": "1.2%_of_capital",
+      "WR": 0.372,
+      "n": 43,
+      "tpd": 0.07,
+      "profit_on_500": -75.9,
+      "final_equity": 424.1,
+      "charges": 31.8,
+      "max_dd": 0.164
+    },
+    {
+      "signal": "turtle_soup",
+      "mode": "1.2%_of_price",
+      "WR": 0.483,
+      "n": 60,
+      "tpd": 0.1,
+      "profit_on_500": -89.3,
+      "final_equity": 410.7,
+      "charges": 44.4,
+      "max_dd": 0.251
+    },
+    {
+      "signal": "turtle_soup",
+      "mode": "ATR\u00d71.2_nofee_risk",
+      "WR": 0.451,
+      "n": 113,
+      "tpd": 0.19,
+      "profit_on_500": -83.1,
+      "final_equity": 416.9,
+      "charges": 0,
+      "max_dd": 0.235
+    },
+    {
+      "signal": "ob_retest",
+      "mode": "1.2%_of_capital",
+      "WR": 0.45,
+      "n": 120,
+      "tpd": 0.2,
+      "profit_on_500": -76.7,
+      "final_equity": 423.3,
+      "charges": 88.8,
+      "max_dd": 0.153
+    },
+    {
+      "signal": "ob_retest",
+      "mode": "1.2%_of_price",
+      "WR": 0.333,
+      "n": 27,
+      "tpd": 0.04,
+      "profit_on_500": -123.6,
+      "final_equity": 376.4,
+      "charges": 20.0,
+      "max_dd": 0.25
+    },
+    {
+      "signal": "ob_retest",
+      "mode": "ATR\u00d71.2_nofee_risk",
+      "WR": 0.483,
+      "n": 288,
+      "tpd": 0.48,
+      "profit_on_500": -77.6,
+      "final_equity": 422.4,
+      "charges": 0,
+      "max_dd": 0.334
+    },
+    {
+      "signal": "wyckoff_spring",
+      "mode": "1.2%_of_capital",
+      "WR": 0.51,
+      "n": 335,
+      "tpd": 0.55,
+      "profit_on_500": -79.5,
+      "final_equity": 420.5,
+      "charges": 247.9,
+      "max_dd": 0.306
+    },
+    {
+      "signal": "wyckoff_spring",
+      "mode": "1.2%_of_price",
+      "WR": 0.489,
+      "n": 90,
+      "tpd": 0.15,
+      "profit_on_500": -82.2,
+      "final_equity": 417.8,
+      "charges": 66.6,
+      "max_dd": 0.317
+    },
+    {
+      "signal": "wyckoff_spring",
+      "mode": "ATR\u00d71.2_nofee_risk",
+      "WR": 0.489,
+      "n": 348,
+      "tpd": 0.58,
+      "profit_on_500": -80.9,
+      "final_equity": 419.1,
+      "charges": 0,
+      "max_dd": 0.494
+    },
+    {
+      "signal": "rsi_macd",
+      "mode": "1.2%_of_capital",
+      "WR": 0.485,
+      "n": 134,
+      "tpd": 0.22,
+      "profit_on_500": -78.0,
+      "final_equity": 422.0,
+      "charges": 99.2,
+      "max_dd": 0.221
+    },
+    {
+      "signal": "rsi_macd",
+      "mode": "1.2%_of_price",
+      "WR": 0.5,
+      "n": 98,
+      "tpd": 0.16,
+      "profit_on_500": -96.0,
+      "final_equity": 404.0,
+      "charges": 72.5,
+      "max_dd": 0.299
+    },
+    {
+      "signal": "rsi_macd",
+      "mode": "ATR\u00d71.2_nofee_risk",
+      "WR": 0.484,
+      "n": 192,
+      "tpd": 0.32,
+      "profit_on_500": -78.7,
+      "final_equity": 421.3,
+      "charges": 0,
+      "max_dd": 0.309
+    }
+  ],
+  "fvg_rsi_1.2pct_price": {
+    "IS": {
+      "winrate": 0.5368421052631579,
+      "trades_per_day": 0.2095478178667087,
+      "trades": 95,
+      "net_pnl": 474.8236751440138,
+      "profit_factor": 1.3766637496745944
+    },
+    "OOS": {
+      "winrate": 0.4807692307692308,
+      "trades_per_day": 0.34291097503532736,
+      "trades": 52,
+      "net_pnl": 194.70439128006888,
+      "profit_factor": 1.2042014467270856
+    },
+    "FULL": {
+      "profit_on_500": 669.5280664240788,
+      "final_equity": 1169.5280664240788,
+      "charges": 108.78000000000003,
+      "max_dd": 0.2836405314122553,
+      "winrate": 0.5170068027210885
+    }
+  }
+}

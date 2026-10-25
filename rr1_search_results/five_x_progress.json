@@ -1,0 +1,11 @@
+{
+  "tested": 111500,
+  "hits_5x_oos": 126,
+  "best_min_wr": 0.6707317073170732,
+  "best_name": "5x|stoch_cross|1.0%/0.5%|h72|15m|L|ny",
+  "best_eq": 2532.0919953700663,
+  "best_mult": 5.0641839907401325,
+  "near": 24,
+  "gate": "full_eq>=2500.0 IS+OOS net>0 after fees lot=0.02",
+  "time": "2026-10-18 19:01:09"
+}

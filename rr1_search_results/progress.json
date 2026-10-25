@@ -1,0 +1,42 @@
+{
+  "tested": 1061696,
+  "phase": 2,
+  "qualified_count": 0,
+  "champion": {
+    "name": "rsi_level|5m|p1",
+    "timeframe": "5m",
+    "winrate": 0.7857142857142857,
+    "profit_factor": 3.5758768087939035,
+    "trades": 42,
+    "trades_per_day": 1.0909090909090908,
+    "net_pnl": 242.75548059700708,
+    "max_dd": 0.028822950176119314,
+    "params": {
+      "kind": "rsi_level",
+      "rsi": 7,
+      "os": 20,
+      "ob": 90,
+      "sessions": [
+        "overlap",
+        "ny"
+      ],
+      "band": 5,
+      "exit": {
+        "rr": 1.2,
+        "max_hold": 2,
+        "atr": "ATR_14",
+        "allow_long": true,
+        "allow_short": true
+      }
+    },
+    "oos_winrate": 0.6818181818181818,
+    "oos_profit_factor": 2.71274867023687,
+    "oos_trades": 22,
+    "oos_trades_per_day": 1.3333333333333333,
+    "oos_net_pnl": 81.00092478292072,
+    "score": 458.4074968874118,
+    "rr": 1.0
+  },
+  "time": "2026-10-13 17:25:40",
+  "target": "WR>=80% tpd>=1 RR=1:1 causal"
+}

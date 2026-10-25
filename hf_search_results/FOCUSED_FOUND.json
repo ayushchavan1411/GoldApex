@@ -1,0 +1,1082 @@
+[
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 12
+    },
+    "is_m": {
+      "trades": 51,
+      "winrate": 0.9803921568627451,
+      "profit_factor": 4.825849295159068,
+      "net_pnl": 41.19396117106815,
+      "final_equity": 541.1939611710682,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.3522727272727273,
+      "expectancy": 0.8077247288444735,
+      "avg_win": 1.0392246695851304,
+      "avg_loss": -10.767272308188355
+    },
+    "oos_m": {
+      "trades": 30,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 30.886461539227213,
+      "final_equity": 530.886461539227,
+      "max_dd": 0.0,
+      "trades_per_day": 1.8181818181818181,
+      "expectancy": 1.0295487179742404,
+      "avg_win": 1.0295487179742404,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 81,
+      "winrate": 0.9876543209876543,
+      "profit_factor": 7.930733427096601,
+      "net_pnl": 74.62509410501261,
+      "final_equity": 574.6250941050124,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.516042780748663,
+      "expectancy": 0.9212974580865754,
+      "avg_win": 1.067404580165012,
+      "avg_loss": -10.767272308188355
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 15,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 12
+    },
+    "is_m": {
+      "trades": 53,
+      "winrate": 0.9811320754716981,
+      "profit_factor": 5.067534233774791,
+      "net_pnl": 43.36090179159987,
+      "final_equity": 543.3609017915996,
+      "max_dd": 0.01999999999999967,
+      "trades_per_day": 1.4053030303030303,
+      "expectancy": 0.8181302224830165,
+      "avg_win": 1.0388681617350826,
+      "avg_loss": -10.660242618624423
+    },
+    "oos_m": {
+      "trades": 24,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 24.560181692392838,
+      "final_equity": 524.560181692393,
+      "max_dd": 0.0,
+      "trades_per_day": 1.4545454545454546,
+      "expectancy": 1.0233409038497017,
+      "avg_win": 1.0233409038497017,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 77,
+      "winrate": 0.987012987012987,
+      "profit_factor": 7.571237563984011,
+      "net_pnl": 70.05098673668809,
+      "final_equity": 570.0509867366883,
+      "max_dd": 0.01999999999999967,
+      "trades_per_day": 1.4411764705882353,
+      "expectancy": 0.9097530745024427,
+      "avg_win": 1.0619898599383226,
+      "avg_loss": -10.660242618624423
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 12
+    },
+    "is_m": {
+      "trades": 65,
+      "winrate": 0.9692307692307692,
+      "profit_factor": 3.0565494467720713,
+      "net_pnl": 44.3263991199374,
+      "final_equity": 544.3263991199376,
+      "max_dd": 0.02607345694953018,
+      "trades_per_day": 1.7234848484848484,
+      "expectancy": 0.6819446018451908,
+      "avg_win": 1.045717011455027,
+      "avg_loss": -10.776886300864646
+    },
+    "oos_m": {
+      "trades": 36,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 37.289037334738964,
+      "final_equity": 537.289037334739,
+      "max_dd": 0.0,
+      "trades_per_day": 2.1818181818181817,
+      "expectancy": 1.035806592631638,
+      "avg_win": 1.035806592631638,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 101,
+      "winrate": 0.9801980198019802,
+      "profit_factor": 4.939969838563613,
+      "net_pnl": 84.92121395807216,
+      "final_equity": 584.9212139580724,
+      "max_dd": 0.02607345694953018,
+      "trades_per_day": 1.8903743315508021,
+      "expectancy": 0.8408040985947739,
+      "avg_win": 1.0755049147454694,
+      "avg_loss": -10.776886300864646
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 8
+    },
+    "is_m": {
+      "trades": 51,
+      "winrate": 0.9607843137254902,
+      "profit_factor": 3.988545645328453,
+      "net_pnl": 38.33169743306529,
+      "final_equity": 538.3316974330652,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.3522727272727273,
+      "expectancy": 0.7516019104522605,
+      "avg_win": 1.0440388137893648,
+      "avg_loss": -6.413102221306793
+    },
+    "oos_m": {
+      "trades": 30,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 30.886461539227213,
+      "final_equity": 530.886461539227,
+      "max_dd": 0.0,
+      "trades_per_day": 1.8181818181818181,
+      "expectancy": 1.0295487179742404,
+      "avg_win": 1.0295487179742404,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 81,
+      "winrate": 0.9753086419753086,
+      "profit_factor": 6.581231789153113,
+      "net_pnl": 71.58601996929184,
+      "final_equity": 571.5860199692917,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.516042780748663,
+      "expectancy": 0.883778024312245,
+      "avg_win": 1.0685091697709546,
+      "avg_loss": -6.413102221306793
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 6
+    },
+    "is_m": {
+      "trades": 51,
+      "winrate": 0.9607843137254902,
+      "profit_factor": 2.9627319067777997,
+      "net_pnl": 33.87899959884868,
+      "final_equity": 533.8789995988486,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.3522727272727273,
+      "expectancy": 0.6642941097813466,
+      "avg_win": 1.0436764158078582,
+      "avg_loss": -8.630572387868183
+    },
+    "oos_m": {
+      "trades": 30,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 30.886461539227213,
+      "final_equity": 530.886461539227,
+      "max_dd": 0.0,
+      "trades_per_day": 1.8181818181818181,
+      "expectancy": 1.0295487179742404,
+      "avg_win": 1.0295487179742404,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 81,
+      "winrate": 0.9753086419753086,
+      "profit_factor": 4.873339042277882,
+      "net_pnl": 66.85826597427057,
+      "final_equity": 566.8582659742704,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.516042780748663,
+      "expectancy": 0.8254106910403773,
+      "avg_win": 1.0648026677216067,
+      "avg_loss": -8.630572387868183
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 15,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 8
+    },
+    "is_m": {
+      "trades": 53,
+      "winrate": 0.9622641509433962,
+      "profit_factor": 4.180065882656514,
+      "net_pnl": 40.48717754959002,
+      "final_equity": 540.4871775495899,
+      "max_dd": 0.01999999999999967,
+      "trades_per_day": 1.4053030303030303,
+      "expectancy": 0.7639090103696231,
+      "avg_win": 1.043504521943202,
+      "avg_loss": -6.365776534756642
+    },
+    "oos_m": {
+      "trades": 24,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 24.560181692392838,
+      "final_equity": 524.560181692393,
+      "max_dd": 0.0,
+      "trades_per_day": 1.4545454545454546,
+      "expectancy": 1.0233409038497017,
+      "avg_win": 1.0233409038497017,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 77,
+      "winrate": 0.974025974025974,
+      "profit_factor": 6.265351662097401,
+      "net_pnl": 67.03610411564303,
+      "final_equity": 567.0361041156432,
+      "max_dd": 0.01999999999999967,
+      "trades_per_day": 1.4411764705882353,
+      "expectancy": 0.8705987547486107,
+      "avg_win": 1.063568762468751,
+      "avg_loss": -6.365776534756642
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 15,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 6
+    },
+    "is_m": {
+      "trades": 53,
+      "winrate": 0.9622641509433962,
+      "profit_factor": 3.0948248527529274,
+      "net_pnl": 36.016651113245196,
+      "final_equity": 536.016651113245,
+      "max_dd": 0.01999999999999967,
+      "trades_per_day": 1.4053030303030303,
+      "expectancy": 0.6795594549668905,
+      "avg_win": 1.0433295571106573,
+      "avg_loss": -8.59657814969917
+    },
+    "oos_m": {
+      "trades": 24,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 24.560181692392838,
+      "final_equity": 524.560181692393,
+      "max_dd": 0.0,
+      "trades_per_day": 1.4545454545454546,
+      "expectancy": 1.0233409038497017,
+      "avg_win": 1.0233409038497017,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 77,
+      "winrate": 0.974025974025974,
+      "profit_factor": 4.626209330651255,
+      "net_pnl": 62.34598379622367,
+      "final_equity": 562.3459837962233,
+      "max_dd": 0.01999999999999967,
+      "trades_per_day": 1.4411764705882353,
+      "expectancy": 0.8096881012496581,
+      "avg_win": 1.0605218679416266,
+      "avg_loss": -8.59657814969917
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 15,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 4
+    },
+    "is_m": {
+      "trades": 53,
+      "winrate": 0.9622641509433962,
+      "profit_factor": 2.8977797231748728,
+      "net_pnl": 34.84600930926162,
+      "final_equity": 534.8460093092615,
+      "max_dd": 0.01999999999999967,
+      "trades_per_day": 1.4053030303030303,
+      "expectancy": 0.6574718737596532,
+      "avg_win": 1.0432837412207125,
+      "avg_loss": -9.180730746497362
+    },
+    "oos_m": {
+      "trades": 24,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 24.560181692392838,
+      "final_equity": 524.560181692393,
+      "max_dd": 0.0,
+      "trades_per_day": 1.4545454545454546,
+      "expectancy": 1.0233409038497017,
+      "avg_win": 1.0233409038497017,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 77,
+      "winrate": 0.974025974025974,
+      "profit_factor": 4.328593405527806,
+      "net_pnl": 61.11783964143499,
+      "final_equity": 561.1178396414347,
+      "max_dd": 0.01999999999999967,
+      "trades_per_day": 1.4411764705882353,
+      "expectancy": 0.7937381771614934,
+      "avg_win": 1.0597240151257294,
+      "avg_loss": -9.180730746497362
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 8
+    },
+    "is_m": {
+      "trades": 65,
+      "winrate": 0.9538461538461539,
+      "profit_factor": 2.7544225173607138,
+      "net_pnl": 41.44756856080224,
+      "final_equity": 541.4475685608026,
+      "max_dd": 0.02607345694953018,
+      "trades_per_day": 1.7234848484848484,
+      "expectancy": 0.6376549009354191,
+      "avg_win": 1.049551458450472,
+      "avg_loss": -7.87487395437567
+    },
+    "oos_m": {
+      "trades": 36,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 37.289037334738964,
+      "final_equity": 537.289037334739,
+      "max_dd": 0.0,
+      "trades_per_day": 2.1818181818181817,
+      "expectancy": 1.035806592631638,
+      "avg_win": 1.035806592631638,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 101,
+      "winrate": 0.9702970297029703,
+      "profit_factor": 4.463661185039011,
+      "net_pnl": 81.82768575853704,
+      "final_equity": 581.8276857585372,
+      "max_dd": 0.02607345694953018,
+      "trades_per_day": 1.8903743315508021,
+      "expectancy": 0.8101751065201688,
+      "avg_win": 1.0760439553231025,
+      "avg_loss": -7.87487395437567
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 6
+    },
+    "is_m": {
+      "trades": 65,
+      "winrate": 0.9538461538461539,
+      "profit_factor": 2.3163180869768514,
+      "net_pnl": 36.969098451446854,
+      "final_equity": 536.969098451447,
+      "max_dd": 0.02607345694953018,
+      "trades_per_day": 1.7234848484848484,
+      "expectancy": 0.56875536079149,
+      "avg_win": 1.0492633893899925,
+      "avg_loss": -9.36174389691089
+    },
+    "oos_m": {
+      "trades": 36,
+      "winrate": 1.0,
+      "profit_factor": 99.0,
+      "net_pnl": 37.289037334738964,
+      "final_equity": 537.289037334739,
+      "max_dd": 0.0,
+      "trades_per_day": 2.1818181818181817,
+      "expectancy": 1.035806592631638,
+      "avg_win": 1.035806592631638,
+      "avg_loss": 0.0
+    },
+    "full": {
+      "trades": 101,
+      "winrate": 0.9702970297029703,
+      "profit_factor": 3.742196354975201,
+      "net_pnl": 77.01521997096114,
+      "final_equity": 577.0152199709614,
+      "max_dd": 0.02607345694953018,
+      "trades_per_day": 1.8903743315508021,
+      "expectancy": 0.7625269304055559,
+      "avg_win": 1.0724535883846307,
+      "avg_loss": -9.36174389691089
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 25,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 12
+    },
+    "is_m": {
+      "trades": 59,
+      "winrate": 0.9830508474576272,
+      "profit_factor": 5.589626938255113,
+      "net_pnl": 49.91392133545899,
+      "final_equity": 549.9139213354587,
+      "max_dd": 0.020000000000000445,
+      "trades_per_day": 1.5643939393939394,
+      "expectancy": 0.8459986667026947,
+      "avg_win": 1.0480913434459493,
+      "avg_loss": -10.875376584406071
+    },
+    "oos_m": {
+      "trades": 37,
+      "winrate": 0.9459459459459459,
+      "profit_factor": 1.720566862312753,
+      "net_pnl": 14.982426603076185,
+      "final_equity": 514.9824266030762,
+      "max_dd": 0.029957507091137526,
+      "trades_per_day": 2.242424242424242,
+      "expectancy": 0.4049304487317888,
+      "avg_win": 1.0221423508369987,
+      "avg_loss": -10.396277838109386
+    },
+    "full": {
+      "trades": 96,
+      "winrate": 0.96875,
+      "profit_factor": 2.967543328419633,
+      "net_pnl": 66.39201126429563,
+      "final_equity": 566.3920112642952,
+      "max_dd": 0.02995750709113748,
+      "trades_per_day": 1.7967914438502672,
+      "expectancy": 0.6915834506697461,
+      "avg_win": 1.0767270914160465,
+      "avg_loss": -11.247869412465564
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 25,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 12
+    },
+    "is_m": {
+      "trades": 73,
+      "winrate": 0.9726027397260274,
+      "profit_factor": 3.441415436619728,
+      "net_pnl": 53.09683053140654,
+      "final_equity": 553.0968305314062,
+      "max_dd": 0.02412560386342929,
+      "trades_per_day": 1.9356060606060606,
+      "expectancy": 0.72735384289598,
+      "avg_win": 1.0541578941043495,
+      "avg_loss": -10.874189975001137
+    },
+    "oos_m": {
+      "trades": 43,
+      "winrate": 0.9534883720930233,
+      "profit_factor": 2.012170275658125,
+      "net_pnl": 21.193197188792332,
+      "final_equity": 521.1931971887924,
+      "max_dd": 0.02801742210531986,
+      "trades_per_day": 2.606060606060606,
+      "expectancy": 0.4928650509021473,
+      "avg_win": 1.0275992347651053,
+      "avg_loss": -10.469185718288491
+    },
+    "full": {
+      "trades": 116,
+      "winrate": 0.9655172413793104,
+      "profit_factor": 2.704300700106142,
+      "net_pnl": 76.54061091930284,
+      "final_equity": 576.5406109193025,
+      "max_dd": 0.028017422105319975,
+      "trades_per_day": 2.171122994652406,
+      "expectancy": 0.6598328527526106,
+      "avg_win": 1.0843828984412966,
+      "avg_loss": -11.227568426530596
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 4
+    },
+    "is_m": {
+      "trades": 51,
+      "winrate": 0.9607843137254902,
+      "profit_factor": 2.7757135581418475,
+      "net_pnl": 32.71302635174651,
+      "final_equity": 532.7130263517464,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.3522727272727273,
+      "expectancy": 0.6414318892499316,
+      "avg_win": 1.043581519103215,
+      "avg_loss": -9.211234042155503
+    },
+    "oos_m": {
+      "trades": 30,
+      "winrate": 0.9666666666666667,
+      "profit_factor": 11.201329480353337,
+      "net_pnl": 27.129903671856912,
+      "final_equity": 527.1299036718567,
+      "max_dd": 0.005090161938188188,
+      "trades_per_day": 1.8181818181818181,
+      "expectancy": 0.9043301223952304,
+      "avg_win": 1.0272190177185285,
+      "avg_loss": -2.659447841980419
+    },
+    "full": {
+      "trades": 81,
+      "winrate": 0.9629629629629629,
+      "profit_factor": 3.8988607658678918,
+      "net_pnl": 61.617932531079035,
+      "final_equity": 561.617932531079,
+      "max_dd": 0.020000000000000337,
+      "trades_per_day": 1.516042780748663,
+      "expectancy": 0.7607152164330745,
+      "avg_win": 1.0624852004107956,
+      "avg_loss": -7.085304366987676
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 25,
+      "ob": 85,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 6
+    },
+    "is_m": {
+      "trades": 47,
+      "winrate": 0.9787234042553191,
+      "profit_factor": 4.4797722392816475,
+      "net_pnl": 37.16940676095418,
+      "final_equity": 537.169406760954,
+      "max_dd": 0.020000000000000302,
+      "trades_per_day": 1.246212121212121,
+      "expectancy": 0.7908384417224295,
+      "avg_win": 1.0402384753220912,
+      "avg_loss": -10.681563103862024
+    },
+    "oos_m": {
+      "trades": 33,
+      "winrate": 0.9393939393939394,
+      "profit_factor": 1.5265593002818312,
+      "net_pnl": 10.883084377597983,
+      "final_equity": 510.8830843775979,
+      "max_dd": 0.029957507091137304,
+      "trades_per_day": 2.0,
+      "expectancy": 0.3297904356847874,
+      "avg_win": 1.0177865187957258,
+      "avg_loss": -10.334148852534758
+    },
+    "full": {
+      "trades": 80,
+      "winrate": 0.9625,
+      "profit_factor": 2.4857706905741006,
+      "net_pnl": 48.86152671864161,
+      "final_equity": 548.8615267186415,
+      "max_dd": 0.029957507091137498,
+      "trades_per_day": 1.4973262032085561,
+      "expectancy": 0.6107690839830202,
+      "avg_win": 1.0616603150192936,
+      "avg_loss": -10.962105845947995
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 25,
+      "ob": 85,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 8
+    },
+    "is_m": {
+      "trades": 47,
+      "winrate": 0.9787234042553191,
+      "profit_factor": 4.4797722392816475,
+      "net_pnl": 37.16940676095418,
+      "final_equity": 537.169406760954,
+      "max_dd": 0.020000000000000302,
+      "trades_per_day": 1.246212121212121,
+      "expectancy": 0.7908384417224295,
+      "avg_win": 1.0402384753220912,
+      "avg_loss": -10.681563103862024
+    },
+    "oos_m": {
+      "trades": 33,
+      "winrate": 0.9393939393939394,
+      "profit_factor": 1.5265593002818312,
+      "net_pnl": 10.883084377597983,
+      "final_equity": 510.8830843775979,
+      "max_dd": 0.029957507091137304,
+      "trades_per_day": 2.0,
+      "expectancy": 0.3297904356847874,
+      "avg_win": 1.0177865187957258,
+      "avg_loss": -10.334148852534758
+    },
+    "full": {
+      "trades": 80,
+      "winrate": 0.9625,
+      "profit_factor": 2.4857706905741006,
+      "net_pnl": 48.86152671864161,
+      "final_equity": 548.8615267186415,
+      "max_dd": 0.029957507091137498,
+      "trades_per_day": 1.4973262032085561,
+      "expectancy": 0.6107690839830202,
+      "avg_win": 1.0616603150192936,
+      "avg_loss": -10.962105845947995
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 25,
+      "ob": 85,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 12
+    },
+    "is_m": {
+      "trades": 47,
+      "winrate": 0.9787234042553191,
+      "profit_factor": 4.4797722392816475,
+      "net_pnl": 37.16940676095418,
+      "final_equity": 537.169406760954,
+      "max_dd": 0.020000000000000302,
+      "trades_per_day": 1.246212121212121,
+      "expectancy": 0.7908384417224295,
+      "avg_win": 1.0402384753220912,
+      "avg_loss": -10.681563103862024
+    },
+    "oos_m": {
+      "trades": 33,
+      "winrate": 0.9393939393939394,
+      "profit_factor": 1.5265593002818312,
+      "net_pnl": 10.883084377597983,
+      "final_equity": 510.8830843775979,
+      "max_dd": 0.029957507091137304,
+      "trades_per_day": 2.0,
+      "expectancy": 0.3297904356847874,
+      "avg_win": 1.0177865187957258,
+      "avg_loss": -10.334148852534758
+    },
+    "full": {
+      "trades": 80,
+      "winrate": 0.9625,
+      "profit_factor": 2.4857706905741006,
+      "net_pnl": 48.86152671864161,
+      "final_equity": 548.8615267186415,
+      "max_dd": 0.029957507091137498,
+      "trades_per_day": 1.4973262032085561,
+      "expectancy": 0.6107690839830202,
+      "avg_win": 1.0616603150192936,
+      "avg_loss": -10.962105845947995
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 20,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 4
+    },
+    "is_m": {
+      "trades": 65,
+      "winrate": 0.9538461538461539,
+      "profit_factor": 2.2236706621324207,
+      "net_pnl": 35.79637653545952,
+      "final_equity": 535.7963765354599,
+      "max_dd": 0.02607345694953018,
+      "trades_per_day": 1.7234848484848484,
+      "expectancy": 0.5507134851609158,
+      "avg_win": 1.0491879562862108,
+      "avg_loss": -9.751092251428512
+    },
+    "oos_m": {
+      "trades": 36,
+      "winrate": 0.9722222222222222,
+      "profit_factor": 13.491544674293722,
+      "net_pnl": 33.48717477753661,
+      "final_equity": 533.4871747775368,
+      "max_dd": 0.005090161938188185,
+      "trades_per_day": 2.1818181818181817,
+      "expectancy": 0.9301992993760169,
+      "avg_win": 1.0333703461184562,
+      "avg_loss": -2.680787336609353
+    },
+    "full": {
+      "trades": 101,
+      "winrate": 0.9603960396039604,
+      "profit_factor": 3.231246180964414,
+      "net_pnl": 71.68099034788706,
+      "final_equity": 571.6809903478872,
+      "max_dd": 0.02607345694953018,
+      "trades_per_day": 1.8903743315508021,
+      "expectancy": 0.709712775721654,
+      "avg_win": 1.0701750452021386,
+      "avg_loss": -8.031497259180101
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 25,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 8
+    },
+    "is_m": {
+      "trades": 59,
+      "winrate": 0.9661016949152542,
+      "profit_factor": 4.624877622398934,
+      "net_pnl": 47.005539518604394,
+      "final_equity": 547.0055395186041,
+      "max_dd": 0.020000000000000445,
+      "trades_per_day": 1.5643939393939394,
+      "expectancy": 0.7967040596373626,
+      "avg_win": 1.0521582925736288,
+      "avg_loss": -6.483741579046226
+    },
+    "oos_m": {
+      "trades": 37,
+      "winrate": 0.9459459459459459,
+      "profit_factor": 1.720566862312753,
+      "net_pnl": 14.982426603076185,
+      "final_equity": 514.9824266030762,
+      "max_dd": 0.029957507091137526,
+      "trades_per_day": 2.242424242424242,
+      "expectancy": 0.4049304487317888,
+      "avg_win": 1.0221423508369987,
+      "avg_loss": -10.396277838109386
+    },
+    "full": {
+      "trades": 96,
+      "winrate": 0.9583333333333334,
+      "profit_factor": 2.775077404282242,
+      "net_pnl": 63.39648021323154,
+      "final_equity": 563.3964802132309,
+      "max_dd": 0.02995750709113783,
+      "trades_per_day": 1.7967914438502672,
+      "expectancy": 0.6603800022211619,
+      "avg_win": 1.077296191767449,
+      "avg_loss": -8.928692357343442
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 25,
+      "ob": 80,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 6
+    },
+    "is_m": {
+      "trades": 59,
+      "winrate": 0.9661016949152542,
+      "profit_factor": 3.4311197512161042,
+      "net_pnl": 42.48109781707925,
+      "final_equity": 542.481097817079,
+      "max_dd": 0.020000000000000445,
+      "trades_per_day": 1.5643939393939394,
+      "expectancy": 0.7200186070691399,
+      "avg_win": 1.05184173787316,
+      "avg_loss": -8.736940620845433
+    },
+    "oos_m": {
+      "trades": 37,
+      "winrate": 0.9459459459459459,
+      "profit_factor": 1.720566862312753,
+      "net_pnl": 14.982426603076185,
+      "final_equity": 514.9824266030762,
+      "max_dd": 0.029957507091137526,
+      "trades_per_day": 2.242424242424242,
+      "expectancy": 0.4049304487317888,
+      "avg_win": 1.0221423508369987,
+      "avg_loss": -10.396277838109386
+    },
+    "full": {
+      "trades": 96,
+      "winrate": 0.9583333333333334,
+      "profit_factor": 2.467200502647175,
+      "net_pnl": 58.736464280280416,
+      "final_equity": 558.73646428028,
+      "max_dd": 0.029957507091137675,
+      "trades_per_day": 1.7967914438502672,
+      "expectancy": 0.6118381695862544,
+      "avg_win": 1.073581330231381,
+      "avg_loss": -10.008254525251662
+    }
+  },
+  {
+    "kind": "stoch_cross",
+    "tf": "15m",
+    "params": {
+      "period": 5,
+      "os": 25,
+      "ob": 75,
+      "sessions": [
+        "london",
+        "overlap"
+      ]
+    },
+    "exit": {
+      "sl": 2.0,
+      "tp": 0.2,
+      "max_hold": 8
+    },
+    "is_m": {
+      "trades": 73,
+      "winrate": 0.958904109589041,
+      "profit_factor": 3.103402735136047,
+      "net_pnl": 50.171614961357065,
+      "final_equity": 550.1716149613568,
+      "max_dd": 0.02412560386342929,
+      "trades_per_day": 1.9356060606060606,
+      "expectancy": 0.6872823967309187,
+      "avg_win": 1.0574887232302892,
+      "avg_loss": -7.950865221587723
+    },
+    "oos_m": {
+      "trades": 43,
+      "winrate": 0.9534883720930233,
+      "profit_factor": 2.012170275658125,
+      "net_pnl": 21.193197188792332,
+      "final_equity": 521.1931971887924,
+      "max_dd": 0.02801742210531986,
+      "trades_per_day": 2.606060606060606,
+      "expectancy": 0.4928650509021473,
+      "avg_win": 1.0275992347651053,
+      "avg_loss": -10.469185718288491
+    },
+    "full": {
+      "trades": 116,
+      "winrate": 0.9568965517241379,
+      "profit_factor": 2.567248576263037,
+      "net_pnl": 73.4914060084618,
+      "final_equity": 573.4914060084615,
+      "max_dd": 0.0280174221053202,
+      "trades_per_day": 2.171122994652406,
+      "expectancy": 0.6335466035212224,
+      "avg_win": 1.0845351074690952,
+      "avg_loss": -9.378398184121554
+    }
+  }
+]

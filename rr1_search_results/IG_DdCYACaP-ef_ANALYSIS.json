@@ -1,0 +1,18 @@
+{
+  "url": "https://www.instagram.com/reel/DdCYACaP-ef/",
+  "author": "bennnytrades (Benny)",
+  "claim": "~80% WR ORB over 5y, negative RR, walk-forward + Monte Carlo + live prop payouts",
+  "mechanics": "Auto-detect opening range \u2192 enter on range cross (gold bar) \u2192 exit coded",
+  "validation": "Walk-forward (IS optimize \u2192 lock \u2192 OOS), stability across neighbors, no single period >50% profit",
+  "our_action": "Expand OR windows 15\u201390m, sessions=None, RR1 causal, walk-forward fold scoring on XAU",
+  "goal_fit": "High WR + shallow losers aligns with RR1 goal if tpd\u22651 and year_stable hold",
+  "xau_neg_rr_diag": {
+    "best_min_wr": 0.7406819984139572,
+    "best_geo_rr": 0.3333333333333333,
+    "best_pf": 0.9619633597509946,
+    "best_profitable_min_wr": 0.6538461538461539,
+    "reproduced_80pct": false,
+    "tested": 1077
+  },
+  "updated": "2026-10-17 19:04:57"
+}

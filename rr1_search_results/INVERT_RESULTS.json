@@ -1,0 +1,222 @@
+{
+  "verdict": "Invert works directionally (low WR \u2192 higher WR) but no \u226575% or \u226565% full dual-side hit yet under RR1 ATR gates.",
+  "best_invert": {
+    "name": "inv|ema_cross|15m",
+    "wr": 0.6333333333333333,
+    "oos_wr": 0.6052631578947368,
+    "min_wr": 0.6052631578947368,
+    "tpd": 0.20131011343665123,
+    "oos_tpd": 0.248018648018648,
+    "n": 90,
+    "oos_n": 38,
+    "pf": 1.5702487179553517,
+    "oos_pf": 1.4769649472550699,
+    "pnl": 210.4681436823727,
+    "oos_pnl": 72.10382742235309,
+    "base_wr": 0.3617021276595745,
+    "base_oos_wr": 0.5,
+    "params": {
+      "kind": "ema_cross",
+      "fast": 21,
+      "slow": 100,
+      "sessions": [
+        "overlap",
+        "ny"
+      ],
+      "invert": true,
+      "exit": {
+        "rr": 1.2,
+        "max_hold": 8,
+        "atr": "ATR_7",
+        "allow_long": false,
+        "allow_short": true
+      }
+    },
+    "tf": "15m",
+    "year_ok": true
+  },
+  "top5": [
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.6333333333333333,
+      "oos_wr": 0.6052631578947368,
+      "min_wr": 0.6052631578947368,
+      "tpd": 0.20131011343665123,
+      "oos_tpd": 0.248018648018648,
+      "n": 90,
+      "oos_n": 38,
+      "pf": 1.5702487179553517,
+      "oos_pf": 1.4769649472550699,
+      "pnl": 210.4681436823727,
+      "oos_pnl": 72.10382742235309,
+      "base_wr": 0.3617021276595745,
+      "base_oos_wr": 0.5,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 21,
+        "slow": 100,
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 8,
+          "atr": "ATR_7",
+          "allow_long": false,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "year_ok": true
+    },
+    {
+      "name": "inv|rsi_macd|15m",
+      "wr": 0.58,
+      "oos_wr": 0.6206896551724138,
+      "min_wr": 0.58,
+      "tpd": 0.11183895190925068,
+      "oos_tpd": 0.18927738927738927,
+      "n": 50,
+      "oos_n": 29,
+      "pf": 1.3223695205248354,
+      "oos_pf": 1.6118739460152036,
+      "pnl": 73.770285623512,
+      "oos_pnl": 71.82077351254078,
+      "base_wr": 0.4,
+      "base_oos_wr": 0.3793103448275862,
+      "params": {
+        "kind": "rsi_macd",
+        "rsi": 14,
+        "os": 40,
+        "ob": 60,
+        "sessions": [
+          "london",
+          "overlap"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.0,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": false,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "year_ok": false
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.6111111111111112,
+      "oos_wr": 0.5789473684210527,
+      "min_wr": 0.5789473684210527,
+      "tpd": 0.20131011343665123,
+      "oos_tpd": 0.248018648018648,
+      "n": 90,
+      "oos_n": 38,
+      "pf": 1.5377531407244822,
+      "oos_pf": 1.442495363372283,
+      "pnl": 183.73726953547376,
+      "oos_pnl": 67.52036427199008,
+      "base_wr": 0.3617021276595745,
+      "base_oos_wr": 0.5,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 21,
+        "slow": 100,
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 6,
+          "atr": "ATR_7",
+          "allow_long": false,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.5888888888888889,
+      "oos_wr": 0.5789473684210527,
+      "min_wr": 0.5789473684210527,
+      "tpd": 0.20131011343665123,
+      "oos_tpd": 0.248018648018648,
+      "n": 90,
+      "oos_n": 38,
+      "pf": 1.5222789030042823,
+      "oos_pf": 1.43356423622068,
+      "pnl": 199.18759844150418,
+      "oos_pnl": 70.22853886650478,
+      "base_wr": 0.3617021276595745,
+      "base_oos_wr": 0.5,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 21,
+        "slow": 100,
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 12,
+          "atr": "ATR_7",
+          "allow_long": false,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "year_ok": true
+    },
+    {
+      "name": "inv|ema_cross|15m",
+      "wr": 0.6,
+      "oos_wr": 0.5789473684210527,
+      "min_wr": 0.5789473684210527,
+      "tpd": 0.20131011343665123,
+      "oos_tpd": 0.248018648018648,
+      "n": 90,
+      "oos_n": 38,
+      "pf": 1.5460142394278502,
+      "oos_pf": 1.4121480428977327,
+      "pnl": 216.68550839383974,
+      "oos_pnl": 65.09464257560816,
+      "base_wr": 0.3617021276595745,
+      "base_oos_wr": 0.5,
+      "params": {
+        "kind": "ema_cross",
+        "fast": 21,
+        "slow": 100,
+        "sessions": [
+          "overlap",
+          "ny"
+        ],
+        "invert": true,
+        "exit": {
+          "rr": 1.2,
+          "max_hold": 18,
+          "atr": "ATR_7",
+          "allow_long": false,
+          "allow_short": true
+        }
+      },
+      "tf": "15m",
+      "year_ok": true
+    }
+  ],
+  "counts": {
+    "ge65": 0,
+    "ge60": 1,
+    "ge55": 17
+  },
+  "still_best_non_invert_champion": "sl2|fvg_rsi+atr_expanded+skip_tiny_body|5m"
+}

@@ -1,0 +1,27 @@
+{
+  "subject": "fib_ema|tp20/sl40|h120|15m|L|lot0.05 (sw60, fib786, EMA34/200)",
+  "look_ahead_verdict": "PASS — no look-ahead bug",
+  "risk_reward": {
+    "tp_dist": 20.0,
+    "sl_dist": 40.0,
+    "sl_mult": 2.0,
+    "reward_to_risk": "1:2",
+    "tp_over_sl": 0.5,
+    "note": "Asymmetric toward win-rate: risk $2 to make $1 (SL = 2× TP). Allowed by hunt rule SL≤2×TP.",
+    "net_on_clean_tp_lot005": 98.65,
+    "side": "long-only",
+    "max_hold_bars_15m": 120
+  },
+  "structure": {
+    "fib": "FIB_UP786 from SW_LO/HI = rolling(60).min/max().shift(1)",
+    "ema_trend": "EMA_34.shift(1) > EMA_200.shift(1)",
+    "entry_touch": "Low≤fib & Close>fib on signal bar (known at close)",
+    "fill": "Open[i+1] + half-spread + slip"
+  },
+  "empirical_2y_15m": {
+    "baseline_next_open": {"is_wr": 0.751, "oos_wr": 0.766},
+    "signal_shift_plus1": "similar / not collapsed",
+    "evil_peek": "does not inflate WR materially",
+    "same_bar_leak": "only small bump — not a smoking gun"
+  }
+}

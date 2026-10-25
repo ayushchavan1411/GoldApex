@@ -1,0 +1,11 @@
+{
+  "tested": 1350240,
+  "quals_rr1": 0,
+  "quals_posrr": 0,
+  "best_min_wr": 0.6172839506172839,
+  "best_name": "inv|turtle_soup|30m",
+  "best_tpd": 0.18149807938540333,
+  "near": 0,
+  "gate": "RR1 WR>=75% tpd>=1 | PosRR geoRR>=1.5 WR>=60% tpd>=1",
+  "time": "2026-10-18 18:51:32"
+}

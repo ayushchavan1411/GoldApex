@@ -1,0 +1,43 @@
+{
+  "goal": "IS&OOS ≥80% WR + tpd≥1 + TP net≥$2 + SL≤2×TP · FVG/Fib/BB/EMA only · 5m/15m · multi · no sessions",
+  "window": "2 hours (Asia/Calcutta session ending ~05:07 IST 2026-10-25)",
+  "achieved": false,
+  "hits80": 0,
+  "data": {
+    "source": "Dukascopy XAUUSD 5m (fetched during hunt)",
+    "span_days": 746,
+    "bars_5m": 66317,
+    "range": "2024-10-06 → 2026-10-23"
+  },
+  "totals_approx": {
+    "yahoo_seed_pass": {"combos": 368, "exits": 25920, "best_min_wr": 0.739, "note": "70d overfit"},
+    "pass1_177d": {"combos": 492, "exits": 101088, "best_min_wr": 0.752},
+    "pass2_357d": {"combos": 757, "exits": 363575, "best_min_wr": 0.762},
+    "full_2y_pass": {"combos": 3731, "exits": 328649, "best_min_wr": 0.751},
+    "sum_exits_tested": "~820k+"
+  },
+  "best_on_full_2y": {
+    "name": "fib_ema|tp20/sl40|h120|15m|L|lot0.05|multi",
+    "kind": "fib_ema",
+    "params": {"swing": 60, "fib": "786", "wick": 0.0, "fast": 34, "slow": 200},
+    "is_wr": 0.7509,
+    "oos_wr": 0.7664,
+    "full_tpd": 1.81,
+    "full_net": 38220.51,
+    "note": "Closest dual-gate candidate on true 2y; still short of 80% IS"
+  },
+  "best_any_partial_window": {
+    "name": "fib_ema|tp15/sl30|h120|15m|L|lot0.05|multi",
+    "window": "~357d Dukascopy",
+    "is_wr": 0.7619,
+    "oos_wr": 0.8016,
+    "full_tpd": 2.26,
+    "note": "OOS≥80% but IS 76.2%; did not hold as dual-80% on full 2y"
+  },
+  "fib_bounce_lookahead": {
+    "verdict": "PASS — no look-ahead",
+    "file": "FIB_BOUNCE_LOOKAHEAD_AUDIT.json",
+    "yahoo_74pct": "overfit; collapses to ~49% IS on Dukascopy"
+  },
+  "verdict": "NOT ACHIEVED. Under FVG+Fib+BB+EMA only, 5m/15m, unlimited positions, no sessions, cost rules: no strategy cleared IS&OOS ≥80% with ≥1 trade/day on 2y. Ceiling ≈75% min(IS,OOS) on full 2y (fib_ema)."
+}

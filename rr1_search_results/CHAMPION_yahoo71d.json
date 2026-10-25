@@ -1,0 +1,35 @@
+{
+  "name": "rand|rsi_level|5m",
+  "timeframe": "5m",
+  "winrate": 0.7837837837837838,
+  "profit_factor": 3.2766185799476637,
+  "trades": 37,
+  "trades_per_day": 0.961038961038961,
+  "net_pnl": 195.04349590185691,
+  "max_dd": 0.039600000000001016,
+  "params": {
+    "kind": "rsi_level",
+    "rsi": 7,
+    "os": 19,
+    "ob": 90,
+    "sessions": [
+      "overlap",
+      "ny"
+    ],
+    "band": 4,
+    "exit": {
+      "rr": 1.2,
+      "max_hold": 2,
+      "atr": "ATR_14",
+      "allow_long": true,
+      "allow_short": true
+    }
+  },
+  "oos_winrate": 0.8235294117647058,
+  "oos_profit_factor": 3.908845380588306,
+  "oos_trades": 17,
+  "oos_trades_per_day": 1.0303030303030303,
+  "oos_net_pnl": 96.80534002460674,
+  "score": 502.83052742839516,
+  "rr": 1.0
+}

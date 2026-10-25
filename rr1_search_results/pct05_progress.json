@@ -1,0 +1,11 @@
+{
+  "tested": 4900,
+  "quals": 0,
+  "best_min_wr": 0.5447263017356475,
+  "best_name": "pct|donch_fade|1.0%_price|5m",
+  "best_tpd": 1.6549873737373737,
+  "best_net_after_charges": -112.05563620015096,
+  "near": 0,
+  "gate": "WR>=75% tpd>=1 after charges lot=0.02",
+  "time": "2026-10-18 12:34:25"
+}
